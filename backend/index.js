@@ -2,15 +2,19 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 app.use(bodyParser());
 
+//import model for admin config
 
-const Admin = require('./models/admin');
+
+//import keys from keys.js
 const keys = require('./config/keys');
 
 
-
+//import keys for db config from keys.js
 mongoose.connect(keys.mongoURI);
 
 mongoose.connection.on('error', () => {
@@ -21,27 +25,23 @@ mongoose.connection.once('open', () => {
     console.log("Successfully connected to the database");
 });
 
-app.post('/login', (req, res) => {
-    // Create and Save a new Student
-    if(!req.body) {
-        res.status(400).send({message: "admin can not be empty"});
-    }
+app.use(cookieParser());
+app.use(session({
+  secret: 'mySecritKey',
+  resave: true,
+  saveUnitialized: true
+}));
 
-     admin = new Admin(req.body);
-      admin.save( (err) =>{
-        if(err) {
-          return res.send(err);
-        }
-        
-        return res.send({message: "admin created successfully!"})
-    });
-});
+
+//import aminlogin route form adminlogin
+require('./routes/userRegister')(app);
+require('./routes/userLogin')(app);
 
 
 
 
 app.get('/', (req, res) => {
-	res.send('the server is wotking')
+	res.send('the app is wotking')
 });
 
 
