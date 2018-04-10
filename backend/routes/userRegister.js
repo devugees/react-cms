@@ -16,8 +16,8 @@ app.post('/register', (req, res) => {
 	        	"password": req.body.password, 
 	        	"role": "admin"
 	          });
-	         user.save((err) => {
-		        if(err) {
+	            user.save((err) => {
+		         if(err) {
 		          return res.send(err);
 		        }
              return res.send({message: "regist created successfully!"})
@@ -27,3 +27,4 @@ app.post('/register', (req, res) => {
     
 });
 }
+

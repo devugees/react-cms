@@ -21,7 +21,7 @@ app.post('/login', (req, res) => {
                       console.log('this is an erro');
                       console.log(JSON.stringify(req.session));
                      res.send('you are going to admin page');
-                     //res.redirect('/admin');
+                   
                     } else {
                       console.log(user)
                       res.send('this password or email is wrong');
@@ -32,4 +32,4 @@ app.post('/login', (req, res) => {
      });
     }   
 });
-}
+
