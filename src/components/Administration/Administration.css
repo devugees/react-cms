@@ -1,0 +1,7 @@
+.Top-Header {
+  background-color: crimson;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: auto;
+}
