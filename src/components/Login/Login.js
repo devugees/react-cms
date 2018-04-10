@@ -5,7 +5,17 @@ import './Login.css';
 
     render() {
         return(
-            <div></div>
+            <div class="Homepage">
+                <form>
+                    <div class="box">
+                        <h1>Login</h1>
+                        <input type="email" placeholder="email" class="email" />
+                        <input type="password" placeholder="password" class="email" />
+                        <a href=""><div class="btn">Login</div></a> 
+                    </div>
+                </form>
+                <p>Forgot your password? <u>Click Here!</u></p>
+            </div>
         )
     }
 };
