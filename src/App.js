@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Header from './components/HeaderComponent/HeaderComponent';
 import './App.css';
 import Administration from './components/Administration/Administration'
 
@@ -8,6 +8,7 @@ class App extends Component {
     return (
       <div className="App">
        <Administration />
+        <Header />
       </div>
     );
   }
