@@ -1,7 +1,26 @@
-.Top-Header {
-  background-color: crimson;
+.Administration {
   display: flex;
-  flex-direction: column;
-  width: 200px;
-  height: auto;
+  height: 100vh;
+}
+
+.Top-Header {
+  background-color: lightgreen;
+  display: block;
+  width: 100%;
+  height: 2.5rem;
+  position: absolute;
+}
+
+.Dashboard {
+  background-color: crimson;
+  width: 11rem;
+  height: 95vh;
+  margin: 2.5rem 0;
+}
+
+.Main {
+  background-color: lightblue;
+  height: 95vh;
+  width: 100vw;
+  margin: 2.5rem 0
 }

@@ -6,12 +6,14 @@ class Administration extends Component {
   render() {
     return (
       <div className='Administration'>
-        <div className='Dashboard'>
-        </div>
         <div className='Top-Header'>
-        DASHBOARD
+          Top-Header
+        </div>
+        <div className='Dashboard'>
+          Dashboard
         </div>
         <div className='Main'>
+          Main
         </div>
       </div>
     );
