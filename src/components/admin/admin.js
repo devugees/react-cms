@@ -20,6 +20,7 @@ class SideMenu extends Component {
         <hr />
 
         <strong>Site Structure</strong>
+        <div className="nomargin">
          <Nav vertical>
           <NavItem>
             <NavLink href="#">Content Type</NavLink>
@@ -34,6 +35,7 @@ class SideMenu extends Component {
             <NavLink href="#">Field Type</NavLink>
           </NavItem>
           </Nav>
+          </div>
             <hr />
            <strong>Post</strong>
             <Nav vertical>

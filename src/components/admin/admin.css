@@ -1,4 +1,9 @@
 .style {
 	border: 1px solid ;
 	border-top: 0;
+
+}
+.nomargin {
+   padding-left: 0;
+	margin-left: 0;
 }
