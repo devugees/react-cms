@@ -1,7 +1,4 @@
-.Administration {
-  display: flex;
-  height: 100vh;
-}
+
 
 .Top-Header {
   background-color: lightgreen;
@@ -12,15 +9,19 @@
 }
 
 .Dashboard {
+  position: absolute;
+  top: 0;
   background-color: crimson;
   width: 11rem;
-  height: 95vh;
-  margin: 2.5rem 0;
+  height: 100vh;
+  margin: 5.5rem 0;
 }
 
 .Main {
+  position: absolute;
+  top: 0;
   background-color: lightblue;
   height: 95vh;
-  width: 100vw;
-  margin: 2.5rem 0
+  width: 88vw;
+  margin: 5.5rem 0 5.5rem 12.5rem;
 }

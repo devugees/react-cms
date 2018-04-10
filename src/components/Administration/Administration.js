@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TopHeader from '../HeaderComponent/HeaderComponent';
 import './Administration.css';
 
 
@@ -6,9 +7,7 @@ class Administration extends Component {
   render() {
     return (
       <div className='Administration'>
-        <div className='Top-Header'>
-          Top-Header
-        </div>
+       <TopHeader />
         <div className='Dashboard'>
           Dashboard
         </div>
