@@ -1,11 +1,11 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-var adminSchema = new Schema({
+const adminSchema = new Schema({
   email: String,
   password: String,
   
 });
 
-var Admin = mongoose.model('students', adminSchema);
+const Admin = mongoose.model('students', adminSchema);
 module.exports = Admin;

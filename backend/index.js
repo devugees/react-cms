@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 app.use(bodyParser());
@@ -13,11 +13,11 @@ const keys = require('./config/keys');
 
 mongoose.connect(keys.mongoURI);
 
-mongoose.connection.on('error', function() {
+mongoose.connection.on('error', () => {
     console.log('Could not connect to the database. Exiting now...');
     process.exit();
 });
-mongoose.connection.once('open', function() {
+mongoose.connection.once('open', () => {
     console.log("Successfully connected to the database");
 });
 
