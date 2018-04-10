@@ -2,15 +2,19 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 app.use(bodyParser());
 
+//import model for admin config
 
-const Admin = require('./models/admin');
+
+//import keys from keys.js
 const keys = require('./config/keys');
 
 
-
+//import keys for db config from keys.js
 mongoose.connect(keys.mongoURI);
 
 mongoose.connection.on('error', () => {
@@ -21,13 +25,23 @@ mongoose.connection.once('open', () => {
     console.log("Successfully connected to the database");
 });
 
-require('./routes/adminLogin')(app);
+app.use(cookieParser());
+app.use(session({
+  secret: 'mySecritKey',
+  resave: true,
+  saveUnitialized: true
+}));
+
+
+//import aminlogin route form adminlogin
+require('./routes/userRegister')(app);
+require('./routes/userLogin')(app);
 
 
 
 
 app.get('/', (req, res) => {
-	res.send('the server is wotking')
+	res.send('the app is wotking')
 });
 
 
