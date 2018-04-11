@@ -1,15 +1,33 @@
 import React, { Component } from 'react';
+import {BrowserRouter, Route} from 'react-router-dom';
 import Header from './components/HeaderComponent/HeaderComponent';
-import Admin from './components/dashBoard/dashBoard';
+import DashBoard from './components/dashBoard/dashBoard';
+import './components/dashBoard/dashBoard.css';
 import './App.css';
+
+const contentType = () => <p>contentType</p>
+const Menues = () => <p>Menues</p>
+const allFields = () => <p>allFields</p>
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Header />
-        <Admin />
-      </div>
+    	<div>
+    	<Header />
+    	<DashBoard />
+       
+             <BrowserRouter>
+              <div className="container">
+                 <div className="sub">
+	                 
+	                  <Route exact path="/contentType" component={contentType} />
+	                  <Route exact path="/Menues" component={Menues} />
+	                  <Route exact path="/allFields" component={allFields} />
+               </div>
+               </div>
+             </BrowserRouter>
+		  </div>
+		
     );
   }
 }

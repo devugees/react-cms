@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import './dashBoard.css'
-import FaBeer from 'react-icons/lib/fa/beer';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 
 
 class SideMenu extends Component {
+
+
+
+  
 	render() {
 		return(
 	 <div className="col-2 style">
@@ -23,13 +26,13 @@ class SideMenu extends Component {
         <div className="nomargin">
          <Nav vertical>
           <NavItem>
-            <NavLink href="#">Content Type</NavLink>
+            <NavLink href="/contentType">Content Type</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#">Menues</NavLink>
+            <NavLink href="/Menues">Menues</NavLink>
           </NavItem>
            <NavItem>
-            <NavLink href="#">All Fileds</NavLink>
+            <NavLink href="/allFields">All Fileds</NavLink>
           </NavItem>
           <NavItem>
             <NavLink href="#">Field Type</NavLink>
@@ -37,21 +40,24 @@ class SideMenu extends Component {
           </Nav>
           </div>
             <hr />
-           <strong>Post</strong>
-            <Nav vertical>
-          <NavItem>
-            <NavLink href="#">Link</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="#">Link</NavLink>
-          </NavItem>
-           <NavItem>
-            <NavLink href="#">Link</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="#">Link</NavLink>
-          </NavItem>
-          </Nav>
+            <div>
+            {/* here will implent the post  
+                   <strong>Post</strong>
+                  <Nav vertical>
+                <NavItem>
+                  <NavLink href="#">Link</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="#">Link</NavLink>
+                </NavItem>
+                 <NavItem>
+                  <NavLink href="#">Link</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="#">Link</NavLink>
+                </NavItem>
+                </Nav>*/}  
+             </div>
              <hr />
          <strong>Appearance</strong>
           <Nav vertical>

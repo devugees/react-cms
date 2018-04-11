@@ -7,3 +7,10 @@
    padding-left: 0;
 	margin-left: 0;
 }
+.sub {
+	position: absolute;
+    top: 70px;
+    margin: 20px;
+    width: 80%;
+    text-align: center;
+}
