@@ -5,7 +5,8 @@ import DashBoard from './components/dashBoard/dashBoard';
 import './components/dashBoard/dashBoard.css';
 import Login from './components/Login/Login';
 import './App.css';
-import Administration from './components/Administration/Administration'
+import Administration from './components/Administration/Administration';
+import AddContent from './components/AddContent/AddContent';
 
 const contentType = () => <p>contentType</p>
 const Menues = () => <p>Menues</p>
@@ -17,7 +18,7 @@ class App extends Component {
     	<div>
     	<Header />
     	<DashBoard />
-       
+      <AddContent /> 
              <BrowserRouter>
               <div className="container">
                  <div className="sub">
