@@ -1,0 +1,36 @@
+.Homepage {
+    position: absolute;
+    top: 30%;
+    width:100%; 
+    text-align:center;
+    margin: 20px 0px 20px 0px; 
+}
+
+.box{
+    width:300px;
+    border-radius:6px;
+    margin: 0 auto 0 auto;
+    border: #2980b9 4px solid; 
+}
+
+.email {
+    border: #ccc 1px solid;
+    padding: .5em;
+    margin: 1em;
+    width:250px;
+    color:black;
+    font-size:1em;
+}
+
+.btn {
+    background-color: aqua;
+    width: 5em;
+    display: inline-block;
+    margin: 1em;
+    padding: .4em;
+    border-radius:4px;
+}
+
+u {
+    color: #2980b9;
+}
