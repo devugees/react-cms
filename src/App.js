@@ -3,7 +3,9 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import Header from './components/HeaderComponent/HeaderComponent';
 import DashBoard from './components/dashBoard/dashBoard';
 import './components/dashBoard/dashBoard.css';
+import Login from './components/Login/Login';
 import './App.css';
+import Administration from './components/Administration/Administration'
 
 const contentType = () => <p>contentType</p>
 const Menues = () => <p>Menues</p>
