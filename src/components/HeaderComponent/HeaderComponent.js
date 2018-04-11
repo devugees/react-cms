@@ -31,7 +31,8 @@ import {
   }
 
   render() {
-  const style ={backgroundColor: '#555'};
+  const style ={backgroundColor: '#555', height:'2rem'};
+  const fontSize ={fontSize:'.9rem'};
   const textColor ={color: '#fff'};
 
     return (
@@ -39,7 +40,7 @@ import {
         <Navbar style={style} light expand="md">
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav navbar>
+            <Nav  style={fontSize} navbar>
               <NavItem>
                 <NavLink style={textColor} href="/components/">Go to Website</NavLink>
               </NavItem>
@@ -65,21 +66,20 @@ import {
               </NavItem>
             </Nav>
 
-          <NavbarBrand className="ml-auto" href="/">
+          <NavbarBrand style={fontSize} className="ml-auto" href="/">
               <UncontrolledDropdown>
                 <DropdownToggle style={textColor} nav caret>
                   My Account
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
+                    <img src='https://i.ebayimg.com/images/g/oawAAOSwi0RX0uyP/s-l300.jpg' />
+                  </DropdownItem>
+                  <DropdownItem>
                     <a  /> My Account
                   </DropdownItem>
                   <DropdownItem>
                     <a  /> Sign out
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    <img src='https://i.ebayimg.com/images/g/oawAAOSwi0RX0uyP/s-l300.jpg' />
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
