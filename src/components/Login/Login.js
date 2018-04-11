@@ -49,7 +49,7 @@ import './Login.css';
                 <form onSubmit={this.handleSubmit}>
                     <div className="box">
                         <h1>Login</h1>
-                        <input type="email" name="email" placeholder="email" className="email" onChange ={this.handleChange} />
+                        <input type="text" name="email" placeholder="email" className="email" onChange ={this.handleChange} />
                         <input type="password" name="password" placeholder="password" className="email" onChange ={this.handleChange} />
                         <input type="submit" value="login" className="btn"  />
                     </div>
