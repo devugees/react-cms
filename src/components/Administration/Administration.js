@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TopHeader from '../HeaderComponent/HeaderComponent';
+import Main from '../Main/Main';
 import './Administration.css';
 
 
@@ -11,9 +12,7 @@ class Administration extends Component {
         <div className='Dashboard'>
           Dashboard
         </div>
-        <div className='Main'>
-          Main
-        </div>
+        <Main />
       </div>
     );
   }
