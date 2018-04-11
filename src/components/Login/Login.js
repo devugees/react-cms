@@ -32,23 +32,26 @@ import './Login.css';
           password: this.state.loginData.password
         };
     
-    
-        fetch.post('http://localhost:5000/login', data).then(function(response) {
-          console.log("Login successful: ", response);
-        }).catch(function(error) {
-          console.log("Error: ", error);
-        });
+        fetch('http://localhost:5000/login', {
+        method: 'POST',
+        header: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(this.state.loginData)
+        })
+        .then(res => res.json())
+        .then(data => console.log(data));
       };
 
     render() {
         return(
             <div className="Homepage">
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <div className="box">
                         <h1>Login</h1>
                         <input type="email" name="email" placeholder="email" className="email" onChange ={this.handleChange} />
                         <input type="password" name="password" placeholder="password" className="email" onChange ={this.handleChange} />
-                        <input type="submit" value="login" className="btn" onSubmit={this.handleSubmit} />
+                        <input type="submit" value="login" className="btn"  />
                     </div>
                 </form>
                 <p>Forgot your password? <u>Click Here!</u></p>
