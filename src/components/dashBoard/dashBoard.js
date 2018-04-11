@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './admin.css'
+import './dashBoard.css'
 import FaBeer from 'react-icons/lib/fa/beer';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 
