@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './HeaderComponent.css';
 import {
   Collapse,
@@ -13,7 +13,7 @@ import {
   DropdownMenu,
   DropdownItem } from 'reactstrap';
 
-export default class Example extends React.Component {
+  class TopHeader extends Component {
 
   constructor(props) {
     super(props);
@@ -91,3 +91,4 @@ export default class Example extends React.Component {
     );
   }
 }
+export default TopHeader;
