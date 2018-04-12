@@ -1,0 +1,10 @@
+.AddField {
+  position: absolute;
+  top: 2em;
+  left: 20em;
+  background-color: lightblue;
+}
+
+.btn{
+  float: right;
+}
