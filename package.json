@@ -2,7 +2,7 @@
   "name": "react-cms",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/devugees/react-cms",
+  "homepage": "https://devugees.github.io/react-cms/",
   "dependencies": {
     "bootstrap": "^4.1.0",
     "gh-pages": "^1.1.0",
