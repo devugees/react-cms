@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import Header from './components/HeaderComponent/HeaderComponent';
+import Settings from './components/SettingsComponent/SettingsComponent'
 import DashBoard from './components/dashBoard/dashBoard';
 import './components/dashBoard/dashBoard.css';
 import Login from './components/Login/Login';
@@ -17,12 +18,13 @@ class App extends Component {
     return (
     	<div>
     	<Header />
-    	<DashBoard />    
+    	<DashBoard />
+      <Settings />
       <AddContent /> 
              <BrowserRouter>
               <div className="container">
                  <div className="sub">
-	                 
+                  
 	                  <Route exact path="/contentType" component={contentType} />
 	                  <Route exact path="/Menues" component={Menues} />
 	                  <Route exact path="/allFields" component={allFields} />
