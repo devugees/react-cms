@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './AddContent.css';
-import ContentSetting from '../ContentType-MainSetting/ContentType-MainSetting';
+import ContentSetting from '../ContentSetting/ContentSetting';
 
 
 class AddContent extends Component {

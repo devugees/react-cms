@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Label, Input, Form, FormGroup, Button, FormText} from 'reactstrap';
+import './ContentSetting.css';
 
 class ContentSetting extends Component {
   render() {
@@ -34,6 +35,7 @@ class ContentSetting extends Component {
                  <Input type="textarea" name="text"/>
               </Col>
             </Row>
+            </FormGroup>
             <FormGroup>
               <Row>
                 <Col sm="1" md="1" lg="1">
@@ -43,12 +45,10 @@ class ContentSetting extends Component {
                   <Button color="secondary">Cancel</Button>
                 </Col>
                  <FormText color="muted">
-                * Required fields
+                <i>* Required fields</i>
                 </FormText>
               </Row>
             </FormGroup>
-          </FormGroup>
-
           </Form>
         </Container>
       </div>
