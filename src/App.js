@@ -21,12 +21,10 @@ class App extends Component {
     	<div>
     	<Header />
     	<DashBoard />
-     {/*<Settings />
-      
+      <Settings />
       <AddContent />
       <AddPost />
-    */ }
-    <FieldTypes />
+      <FieldTypes />
              <BrowserRouter>
               <div className="container">
                  <div className="sub">
