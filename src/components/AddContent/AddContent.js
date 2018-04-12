@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './AddContent.css';
 import ContentSetting from '../ContentSetting/ContentSetting';
+import AddField from '../AddField/AddField';
 
 
 class AddContent extends Component {
@@ -8,6 +9,7 @@ class AddContent extends Component {
     return (
       <div className='AddContent'>
         <ContentSetting />
+        <AddField />
       </div>
     );
   }

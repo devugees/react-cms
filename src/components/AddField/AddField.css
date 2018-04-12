@@ -1,8 +1,9 @@
 .AddField {
   position: absolute;
-  top: 2em;
+  top: 3em;
   left: 20em;
   background-color: lightblue;
+  width: 90%;
 }
 
 .btn{

@@ -5,53 +5,48 @@ import './ContentSetting.css';
 class ContentSetting extends Component {
   render() {
     return (
-      <div className='ContentSetting'>
-      <Container>
+      <Container className='ContentSetting'>
         <Form>
-          <FormGroup>
             <Row>
               <Col sm="3" md="3" lg="3">
-                <Label>Title</Label>
-                <Input type="text"/>
+                <FormGroup>
+                  <Label>Title</Label>
+                  <Input type="text"/>
+                </FormGroup>
               </Col>
               <Col sm="3" md="3" lg="3">
-                <Label>Machine-Name*</Label>
-                <Input type="text"/>
+                <FormGroup>
+                  <Label>Machine-Name*</Label>
+                  <Input type="text"/>
+                </FormGroup>
               </Col>
               <Col sm="6" md="6" lg="6">
-                <Label>URL*</Label>
-                <Input type="text"/>
+                <FormGroup>
+                  <Label>URL*</Label>
+                  <Input type="text"/>
+                </FormGroup>
               </Col>
             </Row>
-          </FormGroup>
-          <FormGroup>
             <Row>
                <Col sm="6" md="6" lg="6">
-                <Label>Descripton</Label>
-                <Input type="textarea" name="text"/>
+                <FormGroup>
+                  <Label>Descripton</Label>
+                  <Input type="textarea" name="text"/>
+                </FormGroup>
               </Col>
               <Col sm="6" md="6" lg="6">
+                <FormGroup>
                 <Label>Submission Guidlines</Label>
-                 <Input type="textarea" name="text"/>
+                <Input type="textarea" name="text"/>
+                </FormGroup>
               </Col>
             </Row>
-            </FormGroup>
-            <FormGroup>
-              <Row>
-                <Col sm="1" md="1" lg="1">
-                  <Button color="secondary">Save</Button>
-                </Col>
-                <Col sm="1" md="1" lg="1">
-                  <Button color="secondary">Cancel</Button>
-                </Col>
-                 <FormText color="muted">
-                <i>* Required fields</i>
-                </FormText>
-              </Row>
-            </FormGroup>
+                <Col>
+                  <Button className="btn">Save</Button>
+                  <Button className="btn">Cancel</Button>
+                </Col>   
           </Form>
         </Container>
-      </div>
     );
   }
 }
