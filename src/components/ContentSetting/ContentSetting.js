@@ -41,10 +41,10 @@ class ContentSetting extends Component {
                 </FormGroup>
               </Col>
             </Row>
-                <Col>
-                  <Button className="btn">Save</Button>
-                  <Button className="btn">Cancel</Button>
-                </Col>   
+              <Col>
+                <Button className="btn">Save</Button>
+                <Button className="btn">Cancel</Button>
+              </Col>   
           </Form>
         </Container>
     );
