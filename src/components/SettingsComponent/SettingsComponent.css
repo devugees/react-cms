@@ -1,0 +1,6 @@
+.SettingsForm {
+    margin: auto;
+    position: absolute;
+    top: 40px; left: 50%;
+    grid-area: content;
+}

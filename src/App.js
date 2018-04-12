@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import Header from './components/HeaderComponent/HeaderComponent';
+import Settings from './components/SettingsComponent/SettingsComponent'
 import DashBoard from './components/dashBoard/dashBoard';
 import './components/dashBoard/dashBoard.css';
 import Login from './components/Login/Login';
-import AddField from './components/AddField/AddField';
 import './App.css';
 import Administration from './components/Administration/Administration';
 import AddContent from './components/AddContent/AddContent';
@@ -19,13 +19,12 @@ class App extends Component {
     	<div>
     	<Header />
     	<DashBoard />
-      <AddField />
-       
+      <Settings />
       <AddContent /> 
              <BrowserRouter>
               <div className="container">
                  <div className="sub">
-	                 
+                  
 	                  <Route exact path="/contentType" component={contentType} />
 	                  <Route exact path="/Menues" component={Menues} />
 	                  <Route exact path="/allFields" component={allFields} />
