@@ -31,8 +31,12 @@ import {
   }
 
   render() {
+<<<<<<< Updated upstream
   const style ={backgroundColor: '#555', height:'2rem'};
   const fontSize ={fontSize:'.9rem'};
+=======
+  const style ={backgroundColor: '#555', height: '3rem', fontSize: '1rem'};
+>>>>>>> Stashed changes
   const textColor ={color: '#fff'};
 
     return (
@@ -73,18 +77,28 @@ import {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
+<<<<<<< Updated upstream
                     <img src='https://i.ebayimg.com/images/g/oawAAOSwi0RX0uyP/s-l300.jpg' />
                   </DropdownItem>
                   <DropdownItem>
                     <a  /> My Account
+=======
+                    <a>My Account</a>
                   </DropdownItem>
                   <DropdownItem>
+                    <a>Sign out</a>
+>>>>>>> Stashed changes
+                  </DropdownItem>
+                  <DropdownItem>
+<<<<<<< Updated upstream
                     <a  /> Sign out
+=======
+                    <img src='https://i.ebayimg.com/images/g/oawAAOSwi0RX0uyP/s-l300.jpg' alt='user img' />
+>>>>>>> Stashed changes
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
           </NavbarBrand>
-
           </Collapse>
         </Navbar>
       </div>
