@@ -8,8 +8,8 @@ import Login from './components/Login/Login';
 import './App.css';
 import Administration from './components/Administration/Administration';
 import AddContent from './components/AddContent/AddContent';
-import NewType from './components/NewType/NewType';
 import AddPost from './components/AddPost/AddPost';
+import FieldTypes from './components/FieldTypes/FieldTypes';
 
 const contentType = () => <p>contentType</p>
 const Menues = () => <p>Menues</p>
@@ -23,9 +23,8 @@ class App extends Component {
     	<DashBoard />
       <Settings />
       <AddContent />
-      <AddPost /> 
-      <AddContent /> 
-      <NewType />
+      <AddPost />
+      <FieldTypes />
              <BrowserRouter>
               <div className="container">
                  <div className="sub">
