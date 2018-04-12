@@ -2,9 +2,6 @@ import React from 'react';
 import { Col, Button, Form, FormGroup, Label, Input, FormText, Row } from 'reactstrap';
 import { Badge } from 'reactstrap';
 import './SettingsComponent.css';
-import DatePicker from 'react-datepicker';
-import moment from 'moment';
-import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 
 export default class Example extends React.Component {
