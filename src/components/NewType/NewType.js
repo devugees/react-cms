@@ -11,50 +11,40 @@ import './NewType.css';
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label for="exampleEmail">Title</Label>
-                            <Input />    
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="exampleEmail">URL</Label>
-                            <Input />    
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="exampleEmail">Author</Label>
+                            <Label for="exampleEmail">Type Title</Label>
                             <Input />    
                         </FormGroup>
                     </Col>
-                    <Col>
-                        <FormGroup>
-                            <Label for="exampleText">Categories</Label>
-                            <Input />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="exampleText">Tags</Label>
-                            <Input  />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="exampleText">Status</Label>
-                            <Input  />
-                        </FormGroup>
-                    </Col>
-                    <Col>
-                        <FormGroup>
-                            <Label for="exampleText">Rating</Label>
-                            <Input />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="exampleText">Date</Label>
-                            <Input  />
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row>
                     <Col>
                         <FormGroup>
                             <Label for="exampleText">Text Area</Label>
                             <Input type="textarea" name="text" id="exampleText" />
                         </FormGroup>
-                        <Button className="btn">Add New Post</Button>
+                    </Col>
+                    <Col>
+                        <FormGroup>
+                            <Label for="exampleSelect">Input Form Type - or</Label>
+                            <Input type="select" name="select" id="exampleSelect">
+                                <option>Number</option>
+                                <option>Checkbox</option>
+                                <option>Color</option>
+                            </Input>
+                        </FormGroup>
+                    </Col>
+                    <Col>
+                        <FormGroup>
+                            <Label for="exampleText">Condition Script/Element</Label>
+                            <Input type="textarea" name="text" id="exampleText" />
+                        </FormGroup>
+                    </Col>
+                    <Col>
+                    <Row>
+                    <Button>Add</Button>{' '}
+                    </Row>
+                    <Row>
+                    <Button>Save</Button>{' '}
+                    <Button>Cancel</Button>{' '}
+                    </Row>
                     </Col>
                 </Row>
             </Form>
