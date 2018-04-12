@@ -1,8 +1,10 @@
 .AddField {
-    position: absolute;
-    top: 0;
-    background-color: lightblue;
-    height: 91%;
-    width: 90%;
-    margin: 4rem 0 9.5rem 11.5rem;
-  }
+  position: absolute;
+  top: 2em;
+  left: 20em;
+  background-color: lightblue;
+}
+
+.btn{
+  float: right;
+}
