@@ -4,7 +4,6 @@ import Header from './components/HeaderComponent/HeaderComponent';
 import DashBoard from './components/dashBoard/dashBoard';
 import './components/dashBoard/dashBoard.css';
 import Login from './components/Login/Login';
-import AddField from './components/AddField/AddField';
 import './App.css';
 import Administration from './components/Administration/Administration';
 import AddContent from './components/AddContent/AddContent';
@@ -18,9 +17,7 @@ class App extends Component {
     return (
     	<div>
     	<Header />
-    	<DashBoard />
-      <AddField />
-       
+    	<DashBoard />    
       <AddContent /> 
              <BrowserRouter>
               <div className="container">
