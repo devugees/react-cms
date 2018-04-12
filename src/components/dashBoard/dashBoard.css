@@ -1,18 +1,13 @@
 .style {
-	border: 1px solid ;
-    border-top: 0;
-    
-   
-
-}
-.nomargin {
-   padding-left: 0;
-	margin-left: 0;
-}
-.sub {
-	position: absolute;
-    top: 70px;
-    margin: 20px;
-    width: 80%;
-    text-align: center;
+  width: 10rem;
+  overflow: scroll;
+  margin: 0;
+  padding:  10px 0 0 10px;
+  height: 100vh;
+  border: 2px solid #555;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  -webkit-overflow-scrolling: touch;
+  background-color: #666;
+  color: #85C1E9;
 }
