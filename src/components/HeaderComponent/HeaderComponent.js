@@ -31,12 +31,10 @@ import {
   }
 
   render() {
-<<<<<<< Updated upstream
-  const style ={backgroundColor: '#555', height:'2rem'};
   const fontSize ={fontSize:'.9rem'};
-=======
+
   const style ={backgroundColor: '#555', height: '3rem', fontSize: '1rem'};
->>>>>>> Stashed changes
+
   const textColor ={color: '#fff'};
 
     return (
