@@ -17,7 +17,7 @@ class App extends Component {
     return (
     	<div>
     	<Header />
-    	<DashBoard />
+    	<DashBoard />    
       <AddContent /> 
              <BrowserRouter>
               <div className="container">
