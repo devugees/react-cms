@@ -36,7 +36,7 @@ import axios from 'axios';
 
          axios.post('http://localhost:5000/login', data)
               .then((response) => {
-                console.log(response);
+               // console.log(response);
               if(response.data[0].role === 'admin') {
                 const Logindatacopy1 = {...this.state.loginData};
                 Logindatacopy1.role = true ;
