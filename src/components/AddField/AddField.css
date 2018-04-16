@@ -1,8 +1,11 @@
- .Main {
+.AddField {
   position: absolute;
-  top: 0;
+  top: 3em;
+  left: 20em;
   background-color: lightblue;
-  height: 91%;
   width: 90%;
-  margin: 4rem 0 9.5rem 11.5rem;
+}
+
+.btn{
+  float: right;
 }
