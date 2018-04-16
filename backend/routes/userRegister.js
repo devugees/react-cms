@@ -3,8 +3,8 @@ const User = require('../models/User');
 
 module.exports = (app) => {
 app.post('/register', (req, res) => {
-    // Create and Save a new Student
-    if(!req.body) {
+
+    if(!req.body.email && !req.body.password) {
         res.status(400).send({message: "admin can not be empty"});
     }
     

@@ -3,7 +3,7 @@ import './dashBoard.css'
 import { Nav, NavItem, NavLink } from 'reactstrap';
 
 
-class SideMenu extends Component {
+class dashBord extends Component {
 
 
 
@@ -105,4 +105,4 @@ class SideMenu extends Component {
 	}
 }
 
-export default SideMenu;
+export default dashBord;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Login.css';
+import axios from 'axios';
 
  class Login extends Component { 
 
@@ -9,6 +10,7 @@ import './Login.css';
           loginData: {
             email: "",
             password: "",
+            role: false
           }
         }
         this.handleChange = this.handleChange.bind(this);
@@ -27,21 +29,23 @@ import './Login.css';
 
       handleSubmit(e) {
         e.preventDefault();
-        const data = {
-          email: this.state.loginData.email,
-          password: this.state.loginData.password
-        };
-    
-        fetch('http://localhost:5000/login', {
-        method: 'POST',
-        header: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(this.state.loginData)
-        })
-        .then(res => res.json())
-        .then(data => console.log(data));
-      };
+       const data = {
+            email: this.state.loginData.email,
+            password: this.state.loginData.password
+          };
+
+         axios.post('http://localhost:5000/login', data)
+              .then((response) => {
+                console.log(response);
+              if(response.data[0].role === 'admin') {
+                const Logindatacopy1 = {...this.state.loginData};
+                Logindatacopy1.role = true ;
+                this.setState({loginData: Logindatacopy1})
+              } 
+            }).catch(function(error) {
+              console.log("Error: ", error);
+            });
+          };
 
     render() {
         return(
@@ -52,6 +56,8 @@ import './Login.css';
                         <input type="email" name="email" placeholder="email" className="email" onChange ={this.handleChange} />
                         <input type="password" name="password" placeholder="password" className="email" onChange ={this.handleChange} />
                         <input type="submit" value="login" className="btn"  />
+                        <a href="/administration" className="btn">Go to admin </a>
+
                     </div>
                 </form>
                 <p>Forgot your password? <u>Click Here!</u></p>

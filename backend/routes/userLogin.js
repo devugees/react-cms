@@ -12,18 +12,19 @@ app.post('/login', (req, res) => {
         User.find({"email": req.body.email}, (err, user) => {
           bcrypt.compare(req.body.password, user[0].password, function(err1, answer) {
             if(err) {
-              
+               console.log(err1)
               res.send('the email or password invaild')
             
             } else if(req.body.email === user[0].email && answer === true && user[0].role === "admin") {
                       req.session.user = user[0].email;
                       req.session.admin = true;
-                      console.log('this is an erro');
                       console.log(JSON.stringify(req.session));
-                     res.send('you are going to admin page');
+                   
+                      res.send('you are going to admin page now');
                    
                     } else {
                       console.log(user)
+
                       res.send('this password or email is wrong');
                       //res.redirect('/frontpage');
                     
@@ -32,4 +33,4 @@ app.post('/login', (req, res) => {
      });
     }   
 });
-
+}

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import Header from './components/HeaderComponent/HeaderComponent';
-import DashBoard from './components/dashBoard/dashBoard';
 import './components/dashBoard/dashBoard.css';
 import Login from './components/Login/Login';
 import './App.css';
@@ -12,19 +11,20 @@ const Menues = () => <p>Menues</p>
 const allFields = () => <p>allFields</p>
 
 class App extends Component {
+
+
+
   render() {
     return (
     	<div>
-    	<Header />
-    	<DashBoard />
-       
              <BrowserRouter>
-              <div className="container">
-                 <div className="sub">
-	                 
-	                  <Route exact path="/contentType" component={contentType} />
-	                  <Route exact path="/Menues" component={Menues} />
-	                  <Route exact path="/allFields" component={allFields} />
+              <div className="">
+                 <div className="">
+	                  <Route exact path="/login/" component={Login} />
+	                  <Route exact path="/administration/" component={Administration} />
+	                  <Route exact path="/administration/contentType" component={contentType} />
+	                  <Route exact path="/administration/Menues" component={Menues} />
+	                  <Route exact path="/administration/allFields" component={allFields} />
                </div>
                </div>
              </BrowserRouter>
