@@ -8,15 +8,17 @@ import SettingsComponent from '../SettingsComponent/SettingsComponent';
 class Main extends Component {
 
   render() {
-    if(this.props.history.path === "/Administration/AddContent") {
-      return ( <div> <AddContent/> </div>)
-    } else if(this.props.history.path === "/Administration/ContentTypes") {
-      return (<div> <ContentTypes/> </div>)
-    }  else if(this.props.history.path === "/Administration/SettingsComponent"){
-      return (<div> <SettingsComponent/> </div>)
+    if(this.props.activeLink === "/Administration/AddContent") {
+      return ( <div> <AddContent/> </div>);
+    } else if(this.props.activeLink === "/Administration/ContentTypes") {
+      return (<div> <ContentTypes/> </div>);
+    }  else if(this.props.activeLink === "/Administration/SettingsComponent"){
+      return (<div> <SettingsComponent/> </div>);
     }  else {
+      return (
         <div className='Main'>
         </div>
+        );
       }
     }; 
   }
