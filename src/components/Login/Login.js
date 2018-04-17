@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, Form, FormGroup, Label, Input, FormFeedback, Container, Row, Col } from 'reactstrap';
 import './Login.css';
 import axios from 'axios';
 import { Nav, NavItem, NavLink } from 'reactstrap';
@@ -56,21 +57,27 @@ import {Link} from 'react-router-dom';
             });
           };
 
+      
     render() {
-        return(
-            <div className="Homepage">
-                <form onSubmit={this.handleSubmit}>
-                    <div className="box">
-                        <h1>Login</h1>
-                        <input type="email" name="email" placeholder="email" className="email" onChange ={this.handleChange} />
-                        <input type="password" name="password" placeholder="password" className="email" onChange ={this.handleChange} />
-                        <input type="submit" value="login" className="btn"  />
-                        <Link to="/administration" className="btn">Go to admin </Link>
+      const buttonStyle = {width:"100%"}
 
-                    </div>
-                </form>
-                <p>Forgot your password? <u>Click Here!</u></p>
-            </div>
+        return(
+          <Container className="Login">
+            <Form className="form-signin" onSubmit={this.handleSubmit}>
+              <h2>Login</h2>
+              <FormGroup>
+                <Input type="email" name="email" placeholder="email" className="email" onChange ={this.handleChange} />
+                <Input type="password" name="password" placeholder="password" className="email" onChange ={this.handleChange} />
+              </FormGroup>
+              <FormGroup className="checkbox">
+                <Label>
+                  <Input type="checkbox" />{' '}
+                  Remember me
+                </Label>
+              </FormGroup>
+              <Button style={buttonStyle} type="submit" value="login">Login</Button> 
+            </Form>
+          </Container>
         )
     }
 };
