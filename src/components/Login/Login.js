@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, Form, FormGroup, Label, Input, FormFeedback, Container, Row, Col } from 'reactstrap';
 import './Login.css';
 
  class Login extends Component { 
@@ -43,19 +44,27 @@ import './Login.css';
         .then(data => console.log(data));
       };
 
+      
     render() {
+      const buttonStyle = {width:"100%"}
+
         return(
-            <div className="Homepage">
-                <form onSubmit={this.handleSubmit}>
-                    <div className="box">
-                        <h1>Login</h1>
-                        <input type="email" name="email" placeholder="email" className="email" onChange ={this.handleChange} />
-                        <input type="password" name="password" placeholder="password" className="email" onChange ={this.handleChange} />
-                        <input type="submit" value="login" className="btn"  />
-                    </div>
-                </form>
-                <p>Forgot your password? <u>Click Here!</u></p>
-            </div>
+          <Container className="Login">
+            <Form className="form-signin" onSubmit={this.handleSubmit}>
+              <h2>Login</h2>
+              <FormGroup>
+                <Input type="email" name="email" placeholder="email" className="email" onChange ={this.handleChange} />
+                <Input type="password" name="password" placeholder="password" className="email" onChange ={this.handleChange} />
+              </FormGroup>
+              <FormGroup className="checkbox">
+                <Label>
+                  <Input type="checkbox" />{' '}
+                  Remember me
+                </Label>
+              </FormGroup>
+              <Button style={buttonStyle} type="submit" value="login">Login</Button> 
+            </Form>
+          </Container>
         )
     }
 };
