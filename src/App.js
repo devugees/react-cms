@@ -19,22 +19,8 @@ class App extends Component {
   render() {
     return (
     	<div>
-    	<Header />
-    	<DashBoard />
-      <Settings />
-      <AddContent />
-      <AddPost />
-      <FieldTypes />
-             <BrowserRouter>
-              <div className="container">
-                 <div className="sub">
-                  
-	                  <Route exact path="/contentType" component={contentType} />
-	                  <Route exact path="/Menues" component={Menues} />
-	                  <Route exact path="/allFields" component={allFields} />
-               </div>
-               </div>
-             </BrowserRouter>
+      <Login />
+    	
 		  </div>
 		
     );
