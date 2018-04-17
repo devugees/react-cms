@@ -73,13 +73,13 @@ import {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
-                    <img src='https://i.ebayimg.com/images/g/oawAAOSwi0RX0uyP/s-l300.jpg' />
+                    <img alt='User Img' src='https://i.ebayimg.com/images/g/oawAAOSwi0RX0uyP/s-l300.jpg' />
                   </DropdownItem>
                   <DropdownItem>
-                    <a  /> My Account
+                    <a> My Account </a>
                   </DropdownItem>
                   <DropdownItem>
-                    <a  /> Sign out
+                    <a> Sign out </a>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
