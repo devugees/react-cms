@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css';
 import axios from 'axios';
+import { Nav, NavItem, NavLink } from 'reactstrap';
 
  class Login extends Component { 
 
@@ -36,12 +37,14 @@ import axios from 'axios';
 
          axios.post('http://localhost:5000/login', data)
               .then((response) => {
-               // console.log(response);
+                console.log(response)
               if(response.data[0].role === 'admin') {
+                console.log('the role will change to true')
                 const Logindatacopy1 = {...this.state.loginData};
                 Logindatacopy1.role = true ;
-                this.setState({loginData: Logindatacopy1})
-              } 
+                this.setState({loginData: Logindatacopy1});
+                this.props.history.push("/administration");
+              }
             }).catch(function(error) {
               console.log("Error: ", error);
             });
@@ -56,7 +59,7 @@ import axios from 'axios';
                         <input type="email" name="email" placeholder="email" className="email" onChange ={this.handleChange} />
                         <input type="password" name="password" placeholder="password" className="email" onChange ={this.handleChange} />
                         <input type="submit" value="login" className="btn"  />
-                        <a href="/administration" className="btn">Go to admin </a>
+                        <NavItem href="/administration" className="btn">Go to admin </NavItem>
 
                     </div>
                 </form>

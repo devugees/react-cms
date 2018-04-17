@@ -11,9 +11,9 @@ import AddContent from './components/AddContent/AddContent';
 import AddPost from './components/AddPost/AddPost';
 import FieldTypes from './components/FieldTypes/FieldTypes';
 
-const contentType = () => <p>contentType</p>
+
+// this is demo text untill we create component meanu
 const Menues = () => <p>Menues</p>
-const allFields = () => <p>allFields</p>
 
 class App extends Component {
 
@@ -21,20 +21,19 @@ class App extends Component {
 
   render() {
     return (
-    	<div>
+    
+  
              <BrowserRouter>
-              <div className="">
-                 <div className="">
-	                  <Route exact path="/login/" component={Login} />
+              <div>
+	                  <Route exact path="/login" component={Login} />
 	                  <Route exact path="/administration/" component={Administration} />
-	                  <Route exact path="/administration/contentType" component={contentType} />
-	                  <Route exact path="/administration/Menues" component={Menues} />
-	                  <Route exact path="/administration/allFields" component={allFields} />
-               </div>
+	                  <Route exact path="/administration/contentType" component={AddContent} />
+	                  <Route exact path="/administration/menues" component={Menues} />
+	                  <Route exact path="/administration/allFields" component={FieldTypes} />
+        
                </div>
              </BrowserRouter>
-		  </div>
-		
+	
     );
   }
 }

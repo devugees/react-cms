@@ -20,7 +20,7 @@ app.post('/login', (req, res) => {
                       req.session.admin = true;
                       console.log(JSON.stringify(req.session));
                    
-                      res.send('you are going to admin page now');
+                      res.send(user);
                    
                     } else {
                       console.log(user)

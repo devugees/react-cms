@@ -76,10 +76,10 @@ import {
                     <img alt='User Img' src='https://i.ebayimg.com/images/g/oawAAOSwi0RX0uyP/s-l300.jpg' />
                   </DropdownItem>
                   <DropdownItem>
-                    <a> My Account </a>
+                    <NavLink  href="#"> My Account </NavLink>
                   </DropdownItem>
                   <DropdownItem>
-                    <a> Sign out </a>
+                    <NavLink  href="#"> Sign out </NavLink>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

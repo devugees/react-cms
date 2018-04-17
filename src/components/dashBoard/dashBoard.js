@@ -28,13 +28,13 @@ class dashBord extends Component {
           <div>
             <Nav vertical>
               <NavItem>
-                <NavLink style={FontColor} href="/contentType">Content Type</NavLink>
+                <NavLink style={FontColor} href="/administration/contentType">Content Type</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink style={FontColor} href="/Menues">Menues</NavLink>
+                <NavLink style={FontColor} href="administration/menues">Menues</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink style={FontColor} href="/allFields">All Fileds</NavLink>
+                <NavLink style={FontColor} href="/administration/allFields">All Fileds</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink style={FontColor} href="#">Field Type</NavLink>
