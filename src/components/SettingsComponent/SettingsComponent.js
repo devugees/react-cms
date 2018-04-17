@@ -72,7 +72,7 @@ export default class Example extends React.Component {
                 <Row>
                   <Col>
                     <h3>Tools</h3>
-                  </Col>Remake 
+                  </Col> 
                   <Col>
                     <Button>Import</Button>
                     <Button>Export</Button>
