@@ -64,7 +64,7 @@ export default class Example extends React.Component {
               </Col>
             </FormGroup>
             <h1><Badge color="">Tools</Badge></h1>
-            <Button color="primary" size="lg">Import</Button>{' '}
+            <Button color="primary" size="lg">import</Button>{' '}
             <Button color="secondary" size="lg">Export</Button>
             <FormGroup check>
           <Label check>
