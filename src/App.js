@@ -12,13 +12,18 @@ import AddPost from './components/AddPost/AddPost';
 import FieldTypes from './components/FieldTypes/FieldTypes';
 import Main from './components/Main/Main';
 
-const contentType = () => <p>contentType</p>
+
+// this is demo text untill we create component meanu
 const Menues = () => <p>Menues</p>
-const allFields = () => <p>allFields</p>
 
 class App extends Component {
+
+
+
   render() {
+
     return (
+
     	<div>
              <BrowserRouter>
                  <div className="sub">
@@ -30,7 +35,6 @@ class App extends Component {
               
              </BrowserRouter>
 		  </div>
-		
     );
   }
 }

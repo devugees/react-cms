@@ -4,8 +4,9 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const cors = require('cors')
 
-app.use(bodyParser());
+
 
 //import model for admin config
 
@@ -24,6 +25,8 @@ mongoose.connection.on('error', () => {
 mongoose.connection.once('open', () => {
     console.log("Successfully connected to the database");
 });
+app.use(bodyParser.json());
+app.use(cors());
 
 app.use(cookieParser());
 app.use(session({
