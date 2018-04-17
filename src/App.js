@@ -10,6 +10,7 @@ import Administration from './components/Administration/Administration';
 import AddContent from './components/AddContent/AddContent';
 import AddPost from './components/AddPost/AddPost';
 import FieldTypes from './components/FieldTypes/FieldTypes';
+import Main from './components/Main/Main';
 
 
 // this is demo text untill we create component meanu
@@ -22,24 +23,18 @@ class App extends Component {
   render() {
 
     return (
-    
-  
-             <BrowserRouter>
-              <div>
-	                  <Route exact path="/login" component={Login} />
-	                  <Route exact path="/administration/" component={() => {
 
-                    
-                      return <Administration />
-                    }
-                    } />
-	                  <Route exact path="/administration/contentType" component={AddContent} />
-	                  <Route exact path="/administration/menues" component={Menues} />
-	                  <Route exact path="/administration/allFields" component={FieldTypes} />
-        
+    	<div>
+             <BrowserRouter>
+                 <div className="sub">
+                    <Route  path="/Administration/:activeLink" component={Administration} />
+	                  <Route exact path="/contentType" component={contentType} />
+	                  <Route exact path="/Menues" component={Menues} />
+	                  <Route exact path="/allFields" component={allFields} />
                </div>
+              
              </BrowserRouter>
-	
+		  </div>
     );
   }
 }

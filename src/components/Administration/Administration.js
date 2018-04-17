@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import TopHeader from '../HeaderComponent/HeaderComponent';
 import Dashboard from '../dashBoard/dashBoard';
 import './Administration.css';
+import DashBoard from '../dashBoard/dashBoard';
+
 
 
 class Administration extends Component {
@@ -9,9 +11,8 @@ class Administration extends Component {
     return (
       <div className='Administration'>
        <TopHeader />
-        <div className='Dashboard'>
-          <Dashboard />
-        </div>
+       <DashBoard />
+       <Main activeLink={this.props.match.url}/>
       </div>
     );
   }
