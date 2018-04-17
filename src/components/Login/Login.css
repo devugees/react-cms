@@ -1,36 +1,21 @@
-.Homepage {
-    position: absolute;
-    top: 30%;
-    width:100%; 
-    text-align:center;
-    margin: 20px 0px 20px 0px; 
+.Login {
+    margin-top: 80px;
+    margin-bottom: 80px;
 }
 
-.box{
-    width:300px;
-    border-radius:6px;
-    margin: 0 auto 0 auto;
-    border: #2980b9 4px solid; 
+.form-signin {
+    max-width: 380px;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.1);  
 }
 
-.email {
-    border: #ccc 1px solid;
-    padding: .5em;
-    margin: 1em;
-    width:250px;
-    color:black;
-    font-size:1em;
+.checkbox {
+    margin-left: 1.3em;
 }
 
-.btn {
-    background-color: aqua;
-    width: 5em;
-    display: inline-block;
-    margin: 1em;
-    padding: .4em;
-    border-radius:4px;
-}
-
-u {
-    color: #2980b9;
+.LoginButton {
+   color: blue !important;
+   margin-bottom: 2em;
 }
