@@ -20,13 +20,19 @@ class App extends Component {
 
 
   render() {
+
     return (
     
   
              <BrowserRouter>
               <div>
 	                  <Route exact path="/login" component={Login} />
-	                  <Route exact path="/administration/" component={Administration} />
+	                  <Route exact path="/administration/" component={() => {
+
+                    
+                      return <Administration />
+                    }
+                    } />
 	                  <Route exact path="/administration/contentType" component={AddContent} />
 	                  <Route exact path="/administration/menues" component={Menues} />
 	                  <Route exact path="/administration/allFields" component={FieldTypes} />

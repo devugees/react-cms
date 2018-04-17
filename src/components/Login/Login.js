@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './Login.css';
 import axios from 'axios';
 import { Nav, NavItem, NavLink } from 'reactstrap';
+import {Link} from 'react-router-dom';
+
 
  class Login extends Component { 
 
@@ -37,9 +39,13 @@ import { Nav, NavItem, NavLink } from 'reactstrap';
 
          axios.post('http://localhost:5000/login', data)
               .then((response) => {
-                console.log(response)
-              if(response.data[0].role === 'admin') {
-                console.log('the role will change to true')
+
+              if(response.data.role === 'admin') {
+                
+                // set the token in localStorage
+                const token = response.data.token;
+                localStorage.setItem('token', token);
+
                 const Logindatacopy1 = {...this.state.loginData};
                 Logindatacopy1.role = true ;
                 this.setState({loginData: Logindatacopy1});
@@ -59,7 +65,7 @@ import { Nav, NavItem, NavLink } from 'reactstrap';
                         <input type="email" name="email" placeholder="email" className="email" onChange ={this.handleChange} />
                         <input type="password" name="password" placeholder="password" className="email" onChange ={this.handleChange} />
                         <input type="submit" value="login" className="btn"  />
-                        <NavItem href="/administration" className="btn">Go to admin </NavItem>
+                        <Link to="/administration" className="btn">Go to admin </Link>
 
                     </div>
                 </form>
