@@ -11,18 +11,35 @@ import AddContent from './components/AddContent/AddContent';
 import AddPost from './components/AddPost/AddPost';
 import FieldTypes from './components/FieldTypes/FieldTypes';
 
-const contentType = () => <p>contentType</p>
+
+// this is demo text untill we create component meanu
 const Menues = () => <p>Menues</p>
-const allFields = () => <p>allFields</p>
 
 class App extends Component {
+
+
+
   render() {
+
     return (
-    	<div>
-      <Login />
-    	
-		  </div>
-		
+    
+  
+             <BrowserRouter>
+              <div>
+	                  <Route exact path="/login" component={Login} />
+	                  <Route exact path="/administration/" component={() => {
+
+                    
+                      return <Administration />
+                    }
+                    } />
+	                  <Route exact path="/administration/contentType" component={AddContent} />
+	                  <Route exact path="/administration/menues" component={Menues} />
+	                  <Route exact path="/administration/allFields" component={FieldTypes} />
+        
+               </div>
+             </BrowserRouter>
+	
     );
   }
 }
