@@ -31,8 +31,10 @@ import {
   }
 
   render() {
-  const style ={backgroundColor: '#555', height:'2rem'};
   const fontSize ={fontSize:'.9rem'};
+
+  const style ={backgroundColor: '#555', height: '3rem', fontSize: '1rem'};
+
   const textColor ={color: '#fff'};
 
     return (
@@ -84,7 +86,6 @@ import {
                 </DropdownMenu>
               </UncontrolledDropdown>
           </NavbarBrand>
-
           </Collapse>
         </Navbar>
       </div>
