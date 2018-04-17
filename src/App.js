@@ -10,6 +10,7 @@ import Administration from './components/Administration/Administration';
 import AddContent from './components/AddContent/AddContent';
 import AddPost from './components/AddPost/AddPost';
 import FieldTypes from './components/FieldTypes/FieldTypes';
+import Main from './components/Main/Main';
 
 const contentType = () => <p>contentType</p>
 const Menues = () => <p>Menues</p>
@@ -19,21 +20,14 @@ class App extends Component {
   render() {
     return (
     	<div>
-    	<Header />
-    	<DashBoard />
-      <Settings />
-      <AddContent />
-      <AddPost />
-      <FieldTypes />
              <BrowserRouter>
-              <div className="container">
                  <div className="sub">
-                  
+                    <Route  path="/administration" component={Administration} />
 	                  <Route exact path="/contentType" component={contentType} />
 	                  <Route exact path="/Menues" component={Menues} />
 	                  <Route exact path="/allFields" component={allFields} />
                </div>
-               </div>
+              
              </BrowserRouter>
 		  </div>
 		
