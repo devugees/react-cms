@@ -40,11 +40,7 @@ class ContentSetting extends Component {
                 <Input type="textarea" name="text"/>
                 </FormGroup>
               </Col>
-            </Row>
-              <Col>
-                <Button className="btn">Save</Button>
-                <Button className="btn">Cancel</Button>
-              </Col>   
+            </Row> 
           </Form>
         </Container>
     );
