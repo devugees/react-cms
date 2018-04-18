@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import NewType from '../NewType/NewType';
+import NewType from './NewType/NewType';
 import './FieldTypes.css';
 import { Button } from 'reactstrap';
-import ViewTable from '../ViewTable/ViewTable';
+import ViewTable from '../../ViewTable/ViewTable';
 
 class FieldTypes extends Component {
   render() {
@@ -10,6 +10,7 @@ class FieldTypes extends Component {
       <div className='FieldTypes'>
       <Button>Create New</Button>
         <NewType />
+        <ViewTable/>
       </div>
     );
   }

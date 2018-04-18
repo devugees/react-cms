@@ -64,7 +64,7 @@ import {
                 </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem>
-                <NavLink style={textColor}>Create Node</NavLink>
+                <NavLink style={textColor} href="/Administration/NewContentType">Create Node</NavLink>
               </NavItem>
             </Nav>
 

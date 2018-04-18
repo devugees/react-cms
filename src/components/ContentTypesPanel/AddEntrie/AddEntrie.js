@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Container, Row, Col } from 'reactstrap';
-import './AddPost.css';
+import './AddEntrie.css';
 
 class AddPost extends Component { 
 
