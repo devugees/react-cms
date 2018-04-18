@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormFeedback, Container, Row, Col } from 'reactstrap';
 import './Login.css';
+import axios from 'axios';
+import { Nav, NavItem, NavLink } from 'reactstrap';
+import {Link} from 'react-router-dom';
+
 
  class Login extends Component { 
 
@@ -10,6 +14,7 @@ import './Login.css';
           loginData: {
             email: "",
             password: "",
+            role: false
           }
         }
         this.handleChange = this.handleChange.bind(this);
@@ -28,21 +33,29 @@ import './Login.css';
 
       handleSubmit(e) {
         e.preventDefault();
-        const data = {
-          email: this.state.loginData.email,
-          password: this.state.loginData.password
-        };
-    
-        fetch('http://localhost:5000/login', {
-        method: 'POST',
-        header: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(this.state.loginData)
-        })
-        .then(res => res.json())
-        .then(data => console.log(data));
-      };
+       const data = {
+            email: this.state.loginData.email,
+            password: this.state.loginData.password
+          };
+
+         axios.post('http://localhost:5000/login', data)
+              .then((response) => {
+
+              if(response.data.role === 'admin') {
+                
+                // set the token in localStorage
+                const token = response.data.token;
+                localStorage.setItem('token', token);
+
+                const Logindatacopy1 = {...this.state.loginData};
+                Logindatacopy1.role = true ;
+                this.setState({loginData: Logindatacopy1});
+                this.props.history.push("/administration");
+              }
+            }).catch(function(error) {
+              console.log("Error: ", error);
+            });
+          };
 
       
     render() {
