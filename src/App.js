@@ -5,7 +5,7 @@ import Administration from './components/Administration/Administration';
 
 
 // this is demo text untill we create component meanu
-const Menues = () => <p>Menues</p>
+
 
 class App extends Component {
 
@@ -20,6 +20,7 @@ class App extends Component {
                  <div className="sub">
                     <Route  exact path="/Administration/" component={Administration} />
                     <Route  path="/Administration/:activeLink" component={Administration} />
+	                
                </div>
               
              </BrowserRouter>
