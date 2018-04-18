@@ -3,6 +3,7 @@ import TopHeader from '../HeaderComponent/HeaderComponent';
 import Dashboard from '../dashBoard/dashBoard';
 import './Administration.css';
 import DashBoard from '../dashBoard/dashBoard';
+import Main from '../Main/Main';
 
 
 
