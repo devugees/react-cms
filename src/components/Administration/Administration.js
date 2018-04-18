@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import TopHeader from '../HeaderComponent/HeaderComponent';
-import DashBoard from '../dashBoard/dashBoard';
+import TopHeader from './HeaderComponent/HeaderComponent';
+import DashBoard from './dashBoard/dashBoard';
 import { Button, Container, Row, Col } from 'reactstrap';
 import Main from '../Main/Main';
 import './Administration.css';

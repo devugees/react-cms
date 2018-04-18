@@ -4,6 +4,7 @@ import './App.css';
 import Administration from './components/Administration/Administration';
 
 
+
 class Routers extends Component {
 
   render() {
@@ -14,9 +15,11 @@ class Routers extends Component {
                   <Switch className="sub">
                     <Route  exact path="/Administration/" component={Administration} />
                     <Route  path="/Administration/:activeLink" component={Administration} />
+
                   </Switch>
               
              </BrowserRouter>
+             
              );
   }
 }

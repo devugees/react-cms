@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import './Main.css';
 import Sitestatus from '../SiteOverView/Sitestatus/Sitestatus';
 import Update from '../SiteOverView/Update/Update';
-import AddContent from '../AddContent/AddContent';
-import ContentTypes from '../ContentTypes/ContentTypes';
+import NewContentType from '../SiteStructure/NewContentType/NewContentType';
+import ContentTypesList from '../SiteStructure/ContentTypesList/ContentTypesList';
 import SettingsComponent from '../SettingsComponent/SettingsComponent';
-import FieldTypes from '../FieldTypes/FieldTypes';
-import AllFields from '../AllFields/AllFields';
+import FieldTypes from '../SiteStructure/FieldTypes/FieldTypes';
+import AllFields from '../SiteStructure/AllFields/AllFields';
 import Themes from '../Appearance/Themes/Themes';
 import CustomeCode from '../Appearance/CustomeCode/CustomeCode';
 import Custome from '../Appearance/Custome/Custome';
@@ -26,7 +26,7 @@ class Main extends Component {
 
   render() {
   /*
-    const Links = [AddContent,ContentTypes,SettingsComponent,FieldTypes,AllFields]
+    const Links = [NewContentType,ContentTypesList,SettingsComponent,FieldTypes,AllFields]
     const activatedLink = this.props.activeLink.split('/')[2]
     console.log(activatedLink)
     let workingLink = "";
@@ -38,10 +38,10 @@ class Main extends Component {
     return ( `<div> <${workingLink}/> </div>`);
     */
 
-    if(this.props.activeLink === "/Administration/AddContent") {
-      return ( <div> <AddContent/> </div>);
-    } else if(this.props.activeLink === "/Administration/ContentTypes") {
-      return (<div> <ContentTypes/> </div>);
+    if(this.props.activeLink === "/Administration/NewContentType") {
+      return ( <div> <NewContentType/> </div>);
+    } else if(this.props.activeLink === "/Administration/ContentTypesList") {
+      return (<div> <ContentTypesList/> </div>);
     }  else if(this.props.activeLink === "/Administration/SettingsComponent"){
       return (<div> <SettingsComponent/> </div>);
     }  else if(this.props.activeLink === "/Administration/FieldTypes"){
