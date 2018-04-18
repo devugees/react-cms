@@ -14,15 +14,12 @@ import Editor from '../Appearance/Editor/Editor';
 import Blocks from '../Appearance/Blocks/Blocks';
 import AllUsers from '../Users/AllUsers/AllUsers';
 import Roles from '../Users/Roles/Roles';
-
 import Plugins from '../Plugins/Plugins';
 
+console.log(ContentTypesList)
 
 
 class Main extends Component {
-
-
-
 
   render() {
   /*
@@ -71,6 +68,7 @@ class Main extends Component {
     }  else {
       return (
         <div className='Main'>
+        Hi
         </div>
         );
       }
