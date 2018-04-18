@@ -8,8 +8,10 @@ import Login from './components/Login/Login';
 import './App.css';
 import Administration from './components/Administration/Administration';
 import AddContent from './components/AddContent/AddContent';
+import ContentTypes from './components/ContentTypes/ContentTypes';
 import AddPost from './components/AddPost/AddPost';
 import FieldTypes from './components/FieldTypes/FieldTypes';
+import AllFields from './components/AllFields/AllFields';
 import Main from './components/Main/Main';
 
 
@@ -27,10 +29,9 @@ class App extends Component {
     	<div>
              <BrowserRouter>
                  <div className="sub">
+                    <Route  exact path="/Administration/" component={Administration} />
                     <Route  path="/Administration/:activeLink" component={Administration} />
-	                  <Route exact path="/contentType" component={contentType} />
-	                  <Route exact path="/Menues" component={Menues} />
-	                  <Route exact path="/allFields" component={allFields} />
+	                 
                </div>
               
              </BrowserRouter>
