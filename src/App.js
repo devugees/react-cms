@@ -11,7 +11,6 @@ import Administration from './components/Administration/Administration';
 class App extends Component {
 
   render() {
-
     return (
               <Routers/>
       );

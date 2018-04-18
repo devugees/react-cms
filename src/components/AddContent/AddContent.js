@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './AddContent.css';
 import ContentSetting from '../ContentSetting/ContentSetting';
 import AddField from '../AddField/AddField';
+import ViewTable from '../ViewTable/ViewTable';
 import {Button} from 'reactstrap';
 
 

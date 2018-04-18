@@ -6,8 +6,8 @@ import Main from '../Main/Main';
 import './Administration.css';
 
 
-
 class Administration extends Component {
+
   render() {
   const colstyle ={padding: '0',margin:'0'};
     return (
