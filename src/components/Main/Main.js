@@ -3,6 +3,7 @@ import './Main.css';
 import AddContent from '../AddContent/AddContent';
 import ContentTypes from '../ContentTypes/ContentTypes';
 import SettingsComponent from '../SettingsComponent/SettingsComponent';
+import ViewTable from '../ViewTable/ViewTable';
 
 
 class Main extends Component {
@@ -16,6 +17,7 @@ class Main extends Component {
     }  else {
       return (
         <div className='Main'>
+        <ViewTable/>
         </div>
         );
       }

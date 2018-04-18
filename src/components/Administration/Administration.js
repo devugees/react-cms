@@ -6,6 +6,7 @@ import './Administration.css';
 
 
 class Administration extends Component {
+
   render() {
     return (
       <div className='Administration'>
