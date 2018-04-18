@@ -18,7 +18,7 @@ class App extends Component {
     	<div>
              <BrowserRouter>
                  <div className="sub">
-                    <Route  path="/Administration/" component={Administration} />
+                    <Route  exact path="/Administration/" component={Administration} />
                     <Route  path="/Administration/:activeLink" component={Administration} />
                </div>
               
