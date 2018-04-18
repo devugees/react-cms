@@ -29,7 +29,7 @@ class dashBord extends Component {
           <div>
             <Nav vertical>
               <NavItem>
-                <Link style={FontColor} to="/Administration/ContentTypes">Content Type</Link>
+                <Link style={FontColor} to="/Administration/ContentTypesList">Content Types</Link>
               </NavItem>
               <NavItem>
                 <Link style={FontColor} to="/Administration/menues">Menues</Link>

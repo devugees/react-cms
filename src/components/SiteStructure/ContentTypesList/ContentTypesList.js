@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
-import './ContentTypes.css';
+import './ContentTypesList.css';
+import {Link} from 'react-router-dom';
+
 
 
 class ContentTypes extends Component {
   render() {
     return (
       <div className='ContentTypes'>
-          <a href="/Administration/AddContent" ><Button>Create New</Button></a>
+          <Link href="/Administration/NewContentType" ><Button>Create New</Button></Link>
       </div>
     );
   }
