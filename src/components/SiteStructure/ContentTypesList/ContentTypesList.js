@@ -5,14 +5,14 @@ import {Link} from 'react-router-dom';
 
 
 
-class ContentTypes extends Component {
+class ContentTypesList extends Component {
   render() {
     return (
-      <div className='ContentTypes'>
+      <div >
           <Link href="/Administration/NewContentType" ><Button>Create New</Button></Link>
       </div>
     );
   }
 }
 
-export default ContentTypes;
+export default ContentTypesList;
