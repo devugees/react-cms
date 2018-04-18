@@ -6,7 +6,6 @@ import SettingsComponent from '../SettingsComponent/SettingsComponent';
 
 
 class Main extends Component {
-
   render() {
     if(this.props.activeLink === "/Administration/AddContent") {
       return ( <div> <AddContent/> </div>);
