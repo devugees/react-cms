@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './AddContent.css';
 import ContentSetting from '../ContentSetting/ContentSetting';
 import AddField from '../AddField/AddField';
+import ViewTable from '../ViewTable/ViewTable';
+import {Button} from 'reactstrap';
 
 
 class AddContent extends Component {
@@ -10,6 +12,8 @@ class AddContent extends Component {
       <div className='AddContent'>
         <ContentSetting />
         <AddField />
+          <Button className="btn">Save</Button>
+          <Button className="btn">Cancel</Button>
       </div>
     );
   }
