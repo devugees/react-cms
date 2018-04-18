@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './dashBoard.css'
-import { Nav, NavItem, NavLink } from 'reactstrap';
+import { Nav, NavItem} from 'reactstrap';
+import {Link} from 'react-router-dom';
 
 
 class dashBord extends Component {
@@ -15,10 +16,10 @@ class dashBord extends Component {
         <strong>Dashbord</strong>
         <Nav className='color' vertical>
           <NavItem>
-            <NavLink style={FontColor} href="#">Sitestatus</NavLink>
+            <Link style={FontColor} to="/Administration/Sitestatus">Sitestatus</Link>
             </NavItem>
           <NavItem>
-            <NavLink style={FontColor} href="#">Update</NavLink>
+            <Link style={FontColor} to="/Administration/Update">Update</Link>
           </NavItem>
         </Nav>
 
@@ -28,16 +29,16 @@ class dashBord extends Component {
           <div>
             <Nav vertical>
               <NavItem>
-                <NavLink style={FontColor} href="/administration/contentType">Content Type</NavLink>
+                <Link style={FontColor} to="/Administration/ContentTypes">Content Type</Link>
               </NavItem>
               <NavItem>
-                <NavLink style={FontColor} href="administration/menues">Menues</NavLink>
+                <Link style={FontColor} to="/Administration/menues">Menues</Link>
               </NavItem>
               <NavItem>
-                <NavLink style={FontColor} href="/administration/allFields">All Fileds</NavLink>
+                <Link style={FontColor} to="/Administration/AllFields">All Fileds</Link>
               </NavItem>
               <NavItem>
-                <NavLink style={FontColor} href="#">Field Type</NavLink>
+                <Link style={FontColor} to="/Administration/FieldType">Field Type</Link>
               </NavItem>
             </Nav>
           </div>
@@ -49,16 +50,16 @@ class dashBord extends Component {
                    <strong>Post</strong>
                   <Nav vertical>
                 <NavItem>
-                  <NavLink href="#">Link</NavLink>
+                  <Link to="#">Link</Link>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="#">Link</NavLink>
+                  <Link to="#">Link</Link>
                 </NavItem>
                  <NavItem>
-                  <NavLink href="#">Link</NavLink>
+                  <Link to="#">Link</Link>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="#">Link</NavLink>
+                  <Link to="#">Link</Link>
                 </NavItem>
                 </Nav>*/}  
           </div>
@@ -66,19 +67,19 @@ class dashBord extends Component {
         <strong>Appearance</strong>
             <Nav vertical>
               <NavItem>
-                <NavLink style={FontColor} href="#">Themes</NavLink>
+                <Link style={FontColor} to="/Administration/Themes">Themes</Link>
               </NavItem>
               <NavItem>
-                <NavLink style={FontColor} href="#">Custome</NavLink>
+                <Link style={FontColor} to="/Administration/Custome">Custome</Link>
               </NavItem>
               <NavItem>
-                <NavLink style={FontColor} href="#">Blocks</NavLink>
+                <Link style={FontColor} to="/Administration/Blocks">Blocks</Link>
               </NavItem>
               <NavItem>
-                <NavLink style={FontColor} href="#">Custome Code</NavLink>
+                <Link style={FontColor} to="/Administration/CustomeCode">Custome Code</Link>
               </NavItem>
               <NavItem>
-                <NavLink style={FontColor} href="#">Link</NavLink>
+                <Link style={FontColor} to="/Administration/Editor">Editor</Link>
               </NavItem>
             </Nav>
 
@@ -87,17 +88,17 @@ class dashBord extends Component {
         <strong>Users</strong>
             <Nav vertical>
               <NavItem>
-                <NavLink style={FontColor} href="#">All Users</NavLink>
+                <Link style={FontColor} to="/Administration/AllUsers">All Users</Link>
               </NavItem>
               <NavItem>
-                <NavLink style={FontColor} href="#">Roles</NavLink>
+                <Link style={FontColor} to="/Administration/Roles">Roles</Link>
               </NavItem>
             </Nav>
         <hr />
            
             <Nav vertical>
               <NavItem>
-                <NavLink style={FontColor} href="#">Setting</NavLink>
+                <Link style={FontColor} to="/Administration/SettingsComponent">Setting</Link>
               </NavItem>
             </Nav>
 
@@ -105,7 +106,7 @@ class dashBord extends Component {
 
             <Nav vertical>
               <NavItem>
-                <NavLink style={FontColor} href="#">Plugins</NavLink>
+                <Link style={FontColor} to="/Administration/Plugins">Plugins</Link>
               </NavItem>
             </Nav>
   </div>

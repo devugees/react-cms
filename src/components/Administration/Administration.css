@@ -1,17 +1,7 @@
-/*.Top-Header {
-  background-color: lightgreen;
-  display: block;
+.Administration {
   width: 100%;
-  height: 2.5rem;
-  position: absolute;
 }
 
-.Dashboard {
-  position: absolute;
-  top: 0;
-  background-color: crimson;
-  height: 91%;
-  width: 10%;
-  margin: 4rem 0;
+.Main {
+  margin-top: 1em;
 }
-*/
