@@ -22,12 +22,7 @@ class ViewTable extends Component {
 
     const tableObj = this.state.fields[0];
     const tableKeys = Object.keys(tableObj);
-    const keyVal = this.state.fields;
-/*
-    keyVal.map((object,index) => {
-      console.log(Object.values(object).slice(0,5))            
-    })
-    */           
+    const keyVal = this.state.fields;      
 
     return (
       <div className='ViewTable'>
