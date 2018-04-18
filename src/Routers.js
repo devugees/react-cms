@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Route, sw} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import './App.css';
 import Administration from './components/Administration/Administration';
 
@@ -11,10 +11,10 @@ class Routers extends Component {
     return (
 
              <BrowserRouter>
-                  <div className="sub">
+                  <Switch className="sub">
                     <Route  exact path="/Administration/" component={Administration} />
                     <Route  path="/Administration/:activeLink" component={Administration} />
-                  </div>
+                  </Switch>
               
              </BrowserRouter>
              );
