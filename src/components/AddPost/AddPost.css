@@ -1,9 +1,3 @@
-.AddPost {
-    margin-top: 4em;
-    background-color: lightblue;
+.boxs input{
+	margin-right: 100px;
 }
-
-.btn{
-    float: right;
-    width: auto;
-  }
