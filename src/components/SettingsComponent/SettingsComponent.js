@@ -6,7 +6,7 @@ import ToggleButton from 'react-toggle-button';
 import './SettingsComponent.css';
 
 
-export default class Example extends React.Component {
+export default class Setting extends React.Component {
  
     render() {
         return (
