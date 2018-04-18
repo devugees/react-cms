@@ -7,7 +7,7 @@ class ContentTypes extends Component {
   render() {
     return (
       <div className='ContentTypes'>
-          <Button>Create New</Button>
+          <a href="/Administration/AddContent" ><Button>Create New</Button></a>
       </div>
     );
   }
