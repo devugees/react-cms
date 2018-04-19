@@ -76,8 +76,8 @@ export default class Setting extends React.Component {
                     <h3>Tools</h3>
                   </Col> 
                   <Col>
-                    <Button>Import</Button>
-                    <Button>Export</Button>
+                    <Button className='settingsBotton'>Import</Button>
+                    <Button className='settingsBotton'>Export</Button>
                   </Col>
                   <Col>
                     <FormGroup className="ToggleButton">
