@@ -6,13 +6,27 @@ import ViewTable from '../../ViewTable/ViewTable';
 import {Button} from 'reactstrap';
 
 
-class AddContent extends Component {
+class NewContentType extends Component {
+
+  state = {
+    
+    fields: [
+
+    ]
+  };
+
+    addFields = (field) => {
+      const fields = this.state.fields;
+      fields.push(field);
+      this.setState({fields:fields})
+    }
+
   render() {
     return (
       <div className='AddContent'>
         <ContentSetting />
         <ViewTable/>
-        <AddField />
+        <AddField addfield={this.addFields} />
           <Button className="btn">Save</Button>
           <Button className="btn">Cancel</Button>
       </div>
@@ -20,4 +34,4 @@ class AddContent extends Component {
   }
 }
 
-export default AddContent;
+export default NewContentType;
