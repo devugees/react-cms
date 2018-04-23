@@ -32,13 +32,13 @@ class dashBord extends Component {
                 <Link style={FontColor} to="/Administration/ContentTypes">Content Type</Link>
               </NavItem>
               <NavItem>
-                <Link style={FontColor} to="/Administration/menues">Menues</Link>
+                <Link style={FontColor} to="/Administration/Menues">Menues</Link>
               </NavItem>
               <NavItem>
                 <Link style={FontColor} to="/Administration/AllFields">All Fileds</Link>
               </NavItem>
               <NavItem>
-                <Link style={FontColor} to="/Administration/FieldType">Field Type</Link>
+                <Link style={FontColor} to="/Administration/FieldTypes">Field Type</Link>
               </NavItem>
             </Nav>
           </div>
@@ -88,7 +88,7 @@ class dashBord extends Component {
         <strong>Users</strong>
             <Nav vertical>
               <NavItem>
-                <Link style={FontColor} to="/Administration/AllUsers">All Users</Link>
+                <Link style={FontColor} to="/Administration/Allusers">All Users</Link>
               </NavItem>
               <NavItem>
                 <Link style={FontColor} to="/Administration/Roles">Roles</Link>
@@ -98,7 +98,7 @@ class dashBord extends Component {
            
             <Nav vertical>
               <NavItem>
-                <Link style={FontColor} to="/Administration/SettingsComponent">Setting</Link>
+                <Link style={FontColor} to="/Administration/Setting">Setting</Link>
               </NavItem>
             </Nav>
 

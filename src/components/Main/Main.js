@@ -18,26 +18,60 @@ import Roles from '../Users/Roles/Roles';
 import Plugins from '../Plugins/Plugins';
 
 
+let finalLink;
+
 
 class Main extends Component {
+      
+      constructor(props) {
+        super(props);
+        this.state = {
+          Links: [ 
+            AddContent,
+            ContentTypes,
+            SettingsComponent,
+            FieldTypes,
+            AllFields,
+            Themes,
+            CustomeCode,
+            Custome,
+            Editor,
+            Blocks,
+            Plugins,
+            AllUsers,
+            Roles,
+            Sitestatus,
+            Update
+           ]
+        }
+        this.handleRoute = this.handleRoute.bind(this);
+      }
+  
+  handleRoute(){
+    console.log(this.state.Links)
+  const activatedLink = this.props.activeLink.split('/')[2]
+  const Links = this.state.Links;
+ Links.map((link,index) => {
+  //console.log(link)
+  //console.log(link.name)
 
-
-
+      if (activatedLink == `/Administration/${link.name}` ) {
+        console.log("hihihi",link)
+        finalLink = <div> {link[index]}</div>
+    
+    }
+ })
+      };
 
   render() {
-  /*
-    const Links = [AddContent,ContentTypes,SettingsComponent,FieldTypes,AllFields]
-    const activatedLink = this.props.activeLink.split('/')[2]
-    console.log(activatedLink)
-    let workingLink = "";
-    for (var i = 0; i < Links.length; i++) {
-      if (Links[i] === activatedLink ) {
-        return workingLink = activatedLink;
-      }
-    }
-    return ( `<div> <${workingLink}/> </div>`);
-    */
+    this.handleRoute()
 
+return(
+
+   <div> {finalLink}</div>
+  )
+
+/*
     if(this.props.activeLink === "/Administration/AddContent") {
       return ( <div> <AddContent/> </div>);
     } else if(this.props.activeLink === "/Administration/ContentTypes") {
@@ -73,7 +107,7 @@ class Main extends Component {
         <div className='Main'>
         </div>
         );
-      }
+      }*/
     }; 
   }
 
