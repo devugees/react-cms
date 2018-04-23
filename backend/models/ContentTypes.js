@@ -3,12 +3,11 @@ const Schema = mongoose.Schema;
 
 const contentTypesSchema = new Schema({
   title: String,
-  machine-name: String,
+  machineName: String,
   url: String,
-  admin-url: String,
+  adminUrl: String,
   description: String,
-  fields: Array,
-  frontend-view: Object,
+  fields: Array
 });
 
 const ContentTypes = mongoose.model('ContentTypes', contentTypesSchema);

@@ -16,45 +16,9 @@ import AllUsers from '../Users/AllUsers/AllUsers';
 import Roles from '../Users/Roles/Roles';
 import Plugins from '../Plugins/Plugins';
 
-console.log(ContentTypesList)
-
-let finalLink;
-
-
 class Main extends Component {
       
-      constructor(props) {
-        super(props);
-        this.state = {
-          Links: [ 
-            AddContent,
-            ContentTypes,
-            SettingsComponent,
-            FieldTypes,
-            AllFields,
-            Themes,
-            CustomeCode,
-            Custome,
-            Editor,
-            Blocks,
-            Plugins,
-            AllUsers,
-            Roles,
-            Sitestatus,
-            Update
-           ]
-        }
-        this.handleRoute = this.handleRoute.bind(this);
-      }
-  
-  handleRoute(){
-    console.log(this.state.Links)
-  const activatedLink = this.props.activeLink.split('/')[2]
-  const Links = this.state.Links;
- Links.map((link,index) => {
-  //console.log(link)
-  //console.log(link.name)
-
+     
   render() {
   /*
     const Links = [NewContentType,ContentTypesList,SettingsComponent,FieldTypes,AllFields]
@@ -105,7 +69,7 @@ class Main extends Component {
         Hi
         </div>
         );
-      }*/
+      }
     }; 
   }
 
