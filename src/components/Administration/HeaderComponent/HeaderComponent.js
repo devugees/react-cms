@@ -38,7 +38,7 @@ import {
   const textColor ={color: '#fff'};
 
     return (
-      <div>
+      <div className="top">
         <Navbar style={style} light expand="md">
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -64,7 +64,7 @@ import {
                 </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem>
-                <NavLink style={textColor}>Create Node</NavLink>
+                <NavLink style={textColor} href="/Administration/NewContentType">Create Node</NavLink>
               </NavItem>
             </Nav>
 
