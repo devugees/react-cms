@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
+import './ViewTable.css';
 
 class ViewTable extends Component {
 
