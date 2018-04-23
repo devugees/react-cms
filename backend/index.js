@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const cors = require('cors')
+const cors = require('cors');
+const fileUpload = require('express-fileupload')
 
 
 
@@ -27,6 +28,7 @@ mongoose.connection.once('open', () => {
 });
 app.use(bodyParser.json());
 app.use(cors());
+app.use(fileUpload());
 
 app.use(cookieParser());
 app.use(session({
@@ -52,3 +54,23 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
 	console.log('the srver is runing on port:' + PORT)
 });
+
+// FileUploader 
+
+app.post('/upload', (req, res, next) => {
+    console.log(req);
+    let uploadFile = req.files.file;
+  
+    uploadFile.mv(`${__dirname}/public/${req.body.filename}.jpg`, function(err) {
+      if (err) {
+        return res.status(500).send(err);
+      }
+  
+      res.json({file: `public/${req.body.filename}.jpg`});
+    });
+  
+  }) 
+
+
+
+

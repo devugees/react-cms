@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import Routers from './Routers';
-import FileUploader from './components/FileUploader/FileUploader';
 
 // this is demo text untill we create component meanu
 
@@ -9,8 +8,8 @@ import FileUploader from './components/FileUploader/FileUploader';
 class App extends Component {
 
   render() {
-    return (       
-       <Routers/>
+    return (
+              <Routers/>
       );
   }
 }

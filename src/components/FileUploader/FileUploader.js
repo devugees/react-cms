@@ -5,7 +5,7 @@ import { Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reac
 import './FileUploader.css';
 
 export default class FileUploader extends Component {
-/*
+
     constructor(props) {
         super(props);
           this.state = {
@@ -30,7 +30,7 @@ export default class FileUploader extends Component {
             console.log(error);
           });
       }
-  */
+  
    render() {
      return(
         <Container className="FileUploader">
