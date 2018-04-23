@@ -9,10 +9,12 @@ class AllFields extends Component {
   render() {
     return (
       <div className='AllFields'>
-      <ViewTable/>
+        <ViewTable/>
         <AddField />
-        <Button>Save</Button>
-        <Button>Cancel</Button>
+      <div className='button'>
+        <Button className='FieldsButtons'>Save</Button>
+        <Button className='FieldsButtons'>Cancel</Button>
+      </div>
       </div>
     );
   }

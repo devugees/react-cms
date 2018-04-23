@@ -9,19 +9,20 @@ import './Administration.css';
 class Administration extends Component {
 
   render() {
-  const colstyle ={padding: '0',margin:'0'};
+  const colstyle ={padding: '0 0 0 0',margin:'0 0 0 0', height: 'auto'};
     return (
       <div className='Administration'>
-        <Row>
+        <Row style={colstyle}>
           <Col style={colstyle}>
           <TopHeader />
           </Col>
         </Row>
-        <Row>
-          <Col lg="2">
+        <Row style={colstyle}>
+          <Col style={colstyle} lg="2">
             <DashBoard />
           </Col>
-          <Col lg="9">
+        {/*<h1>HHH</h1>*/}
+          <Col className='hhh' lg="9">
             <Main className="Main"  activeLink={this.props.match.url}/>
           </Col>
         </Row>   
