@@ -36,7 +36,24 @@ class NewContentType extends Component {
     console.log("hi",contentSettingObj);
     this.setState( {contentSettings : contentSettingObj } )
     console.log(this.state);
-  }
+    const finalNewContentType = {
+       title: this.titleRef.current.value,
+       machineName: this.machineNameRef.current.value,
+       url: this.urlRef.current.value,
+       descripton: this.descriptonRef.current.value,
+       guidelines: this.guidlinesRef.current.value,
+       fields: this.state.fields
+    }
+        console.log("final", finalNewContentType);
+
+}
+
+    addFields = (field) => {
+      const fields = this.state.fields;
+      fields.push(field);
+      this.setState({fields:fields})
+    }
+
   
   render() {
     return (
@@ -79,13 +96,13 @@ class NewContentType extends Component {
               </Col>
             </Row>
             <Row>
-            <AddField />
+            <AddField addFields={this.addFields} />
             </Row>
              <Row>
             <ViewTable/>
             </Row>
             <Row>
-            <Input type="submit" className="btn" value="Save" />
+            <Button type="submit" className="btn" >Save</Button>
             <Button className="btn">Cancel</Button>
             </Row>
           </Form>

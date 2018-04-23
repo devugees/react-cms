@@ -4,31 +4,54 @@ import './AddField.css';
 
  class AddField extends Component { 
 
+        fieldLabelRef = React.createRef();
+        typeOptRef = React.createRef();
+        typeRef = React.createRef();
+        uniqueRef = React.createRef();
+        visibleRef = React.createRef();
+        requiredRef = React.createRef();
+        cssClassNameRef = React.createRef();
+        customCsslRef = React.createRef();
+
+  handelClick = (e) => {
+    e.preventDefault();
+    const field = {
+        fieldLabel: this.fieldLabelRef.current.value,
+        typeOption: this.typeOptRef.current.value,
+        type: this.typeRef.current.value,
+        unique: this.uniqueRef.current.checked,
+        visible: this.visibleRef.current.checked,
+        required: this.requiredRef.current.checked,
+        cssClassName: this.cssClassNameRef.current.value,
+        customCss: this.customCsslRef.current.value
+    }
+    this.props.addFields(field);
+  }
+
     render() {
+        
+        
+
         return(
             <Container className="AddField">
-                <Form>
+                <Form >
                     <Row>
                         <Col>
                             <FormGroup>
                                 <Label for="exampleEmail">Field Label</Label>
-                                <Input />    
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="exampleEmail">Field Label</Label>
-                                <Input />    
+                                <Input name="fieldLabel" innerRef={this.fieldLabelRef} />    
                             </FormGroup>
                         </Col>
                         <Col>
                             <FormGroup>
                                 <Label for="exampleText">Type-Option</Label>
-                                <Input type="textarea" name="text" id="exampleText" />
+                                <Input name="typeOption" type="textarea" id="exampleText" innerRef={this.typeOptRef} />
                             </FormGroup>
                         </Col>
                         <Col>
                             <FormGroup>
                                 <Label for="exampleSelect">Type</Label>
-                                <Input type="select" name="select" id="exampleSelect">
+                                <Input name="type" type="select" id="exampleSelect" innerRef={this.typeRef}>
                                     <option>Button</option>
                                     <option>Checkbox</option>
                                     <option>Color</option>
@@ -55,17 +78,17 @@ import './AddField.css';
                             <Form>
                                 <FormGroup check inline>
                                 <Label check>
-                                    <Input type="checkbox" /> Unique
+                                    <Input name="unique" type="checkbox" innerRef={this.uniqueRef} /> Unique
                                 </Label>
                                 </FormGroup>
                                 <FormGroup check inline>
                                 <Label check>
-                                    <Input type="checkbox" /> Visible
+                                    <Input name="visible" type="checkbox" innerRef={this.visibleRef} /> Visible
                                 </Label>
                                 </FormGroup>
                                 <FormGroup check inline>
                                 <Label check>
-                                    <Input type="checkbox" /> Required
+                                    <Input name="required" type="checkbox" innerRef={this.requiredRef} /> Required
                                 </Label>
                                 </FormGroup>
                             </Form>
@@ -73,21 +96,21 @@ import './AddField.css';
                         <Col>
                             <FormGroup>
                                 <Label for="exampleText">CSS-ClassName</Label>
-                                <Input type="textarea" name="text" id="exampleText" />
+                                <Input name="cssClassName" type="textarea" id="exampleText" innerRef={this.cssClassNameRef}/>
                             </FormGroup>
                         </Col>
                         <Col>
                             <FormGroup>
                                 <Label for="exampleText">Custom CSS</Label>
-                                <Input type="textarea" name="text" id="exampleText" />
+                                <Input name="customCss" type="textarea" id="exampleText" innerRef={this.customCsslRef} />
                             </FormGroup>
-                            <Button className="btn">Add</Button>{' '}
+                            <Button className="btn" onClick={this.handelClick} >Add</Button>
                         </Col>
                     </Row>
                 </Form>
             </Container>
-        )
+        );
     }
-};
+}
 
 export default AddField;
