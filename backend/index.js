@@ -40,6 +40,7 @@ app.use(session({
 require('./routes/userRegister')(app);
 require('./routes/userLogin')(app);
 require('./routes/newContentType')(app);
+require('./routes/Entries')(app);
 
 
 
