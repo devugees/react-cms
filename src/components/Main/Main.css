@@ -1,4 +1,10 @@
- .Main {
+/*
+div {
+	margin: 1rem;
+	padding: .5rem;
+}
+*/
+.Main {
   position: absolute;
   padding: 0;
   margin: 0;

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const ContentTypes = require('./ContentTypes');
 const Schema = mongoose.Schema;
 
 const entriesSchema = new Schema({

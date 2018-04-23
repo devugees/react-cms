@@ -4,10 +4,3 @@
   width: 80%;
   padding: 5rem;
 }
-
-Button .create {
-  position: absolute;
-  bottom: 3rem;
-  left: 3rem;
-  width: 60%;
-}
