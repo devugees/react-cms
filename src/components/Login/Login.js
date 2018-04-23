@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, FormFeedback, Container, Row, Col } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
 import './Login.css';
 import axios from 'axios';
-import { Nav, NavItem, NavLink } from 'reactstrap';
 import {Link} from 'react-router-dom';
 
 

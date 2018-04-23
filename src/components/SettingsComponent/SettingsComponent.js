@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Form, 
-  FormGroup, Label, Input, FormFeedback, 
+  FormGroup, Label, Input, 
   Container, Row, Col } from 'reactstrap';
 import ToggleButton from 'react-toggle-button';
 import './SettingsComponent.css';

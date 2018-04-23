@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Label, Input, Form, FormGroup, Button, FormText} from 'reactstrap';
+import { Container, Row, Col, Label, Input, Form, FormGroup} from 'reactstrap';
 import './ContentSetting.css';
 
 class ContentSetting extends Component {
