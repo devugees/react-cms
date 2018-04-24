@@ -41,6 +41,8 @@ app.use(session({
 //import aminlogin route form adminlogin
 require('./routes/userRegister')(app);
 require('./routes/userLogin')(app);
+require('./routes/newContentType')(app);
+require('./routes/Entries')(app);
 
 /*
 app.post('/upload', (req, res, next) => {

@@ -7,6 +7,7 @@ import FileUploader from './components/FileUploader/FileUploader.js';
 
 class App extends Component {
 
+
 render() {
 	return (
 		<div>

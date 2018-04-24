@@ -16,11 +16,9 @@ import AllUsers from '../Users/AllUsers/AllUsers';
 import Roles from '../Users/Roles/Roles';
 import Plugins from '../Plugins/Plugins';
 
-console.log(ContentTypesList)
-
-
 class Main extends Component {
-
+      
+     
   render() {
   /*
     const Links = [NewContentType,ContentTypesList,SettingsComponent,FieldTypes,AllFields]
