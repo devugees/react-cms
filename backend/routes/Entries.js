@@ -2,7 +2,7 @@ const Entries = require('../models/Entries');
 
 
 module.exports = (app) => {
-app.post('/api/entries', (req, res)=> {
+app.post('/api/newentries', (req, res)=> {
    if  (!req.body.contentTypeId && 
 		!req.body.content && 
 		!req.body.archived ) {
