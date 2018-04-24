@@ -1,0 +1,19 @@
+.CustomTheme {
+    padding: 1em
+}
+
+.firstRow {
+    border: 1px solid grey;
+    padding: .5em;
+}
+
+.addRow,
+.removeRow {
+    float: left;
+    margin-top: .5em;
+    margin-right: .3em;
+}
+
+.saveBtn {
+    margin-top: .5em;
+}
