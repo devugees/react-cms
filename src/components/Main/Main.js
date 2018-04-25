@@ -16,6 +16,7 @@ import AllUsers from '../Users/AllUsers/AllUsers';
 import Roles from '../Users/Roles/Roles';
 import Plugins from '../Plugins/Plugins';
 
+
 class Main extends Component {
       
      
@@ -33,35 +34,35 @@ class Main extends Component {
     return ( `<div> <${workingLink}/> </div>`);
     */
 
-    if(this.props.activeLink === "/Administration/NewContentType") {
+    if(this.props.activeLink === "/Administration/main/NewContentType") {
       return ( <div> <NewContentType/> </div>);
-    } else if(this.props.activeLink === "/Administration/ContentTypesList") {
+    } else if(this.props.activeLink === "/Administration/main/ContentTypesList") {
       return (<div> <ContentTypesList/> </div>);
-    }  else if(this.props.activeLink === "/Administration/SettingsComponent"){
+    }  else if(this.props.activeLink === "/Administration/main/SettingsComponent"){
       return (<div> <SettingsComponent/> </div>);
-    }  else if(this.props.activeLink === "/Administration/FieldTypes"){
+    }  else if(this.props.activeLink === "/Administration/main/FieldTypes"){
       return (<div> <FieldTypes/> </div>);
-    }  else if(this.props.activeLink === "/Administration/AllFields"){
+    }  else if(this.props.activeLink === "/Administration/main/AllFields"){
       return (<div> <AllFields/> </div>);
-    } else if(this.props.activeLink === "/Administration/Themes"){
+    } else if(this.props.activeLink === "/Administration/main/Themes"){
       return (<div> <Themes/> </div>);
-    } else if(this.props.activeLink === "/Administration/CustomeCode"){
+    } else if(this.props.activeLink === "/Administration/main/CustomeCode"){
       return (<div> <CustomeCode/> </div>);
-    } else if(this.props.activeLink === "/Administration/Custome"){
+    } else if(this.props.activeLink === "/Administration/main/Custome"){
       return (<div> <Custome/> </div>);
-    } else if(this.props.activeLink === "/Administration/Editor"){
+    } else if(this.props.activeLink === "/Administration/main/Editor"){
       return (<div> <Editor/> </div>);
-    } else if(this.props.activeLink === "/Administration/Blocks"){
+    } else if(this.props.activeLink === "/Administration/main/Blocks"){
       return (<div> <Blocks/> </div>);
-    } else if(this.props.activeLink === "/Administration/Plugins"){
+    } else if(this.props.activeLink === "/Administration/main/Plugins"){
       return (<div> <Plugins/> </div>);
-    } else if(this.props.activeLink === "/Administration/AllUsers"){
+    } else if(this.props.activeLink === "/Administration/main/AllUsers"){
       return (<div> <AllUsers/> </div>);
-    } else if(this.props.activeLink === "/Administration/Roles"){
+    } else if(this.props.activeLink === "/Administration/main/Roles"){
       return (<div> <Roles/> </div>);
-    } else if(this.props.activeLink === "/Administration/Sitestatus"){
+    } else if(this.props.activeLink === "/Administration/main/Sitestatus"){
       return (<div> <Sitestatus/> </div>);
-    } else if(this.props.activeLink === "/Administration/Update"){
+    } else if(this.props.activeLink === "/Administration/main/Update"){
       return (<div> <Update/> </div>);
     }  else {
       return (

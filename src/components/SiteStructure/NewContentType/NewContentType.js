@@ -13,7 +13,7 @@ class AddContent extends Component {
         <ContentSetting />
         <ViewTable/>
         <AddField />
-          <Button className="btn">Save</Button>
+          <Button className="btn red">Save</Button>
           <Button className="btn">Cancel</Button>
       </div>
     );
