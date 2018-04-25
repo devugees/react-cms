@@ -30,12 +30,6 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(fileUpload());
 
-app.use(cookieParser());
-app.use(session({
-  secret: 'mySecritKey',
-  resave: true,
-  saveUnitialized: true
-}));
 
 
 //import aminlogin route form adminlogin
@@ -43,6 +37,7 @@ require('./routes/userRegister')(app);
 require('./routes/userLogin')(app);
 require('./routes/newContentType')(app);
 require('./routes/Entries')(app);
+require('./routes/contentTypes')(app);
 
 /*
 app.post('/upload', (req, res, next) => {
