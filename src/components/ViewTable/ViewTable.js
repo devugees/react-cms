@@ -1,61 +1,59 @@
 import React, { Component } from 'react';
-import { Table } from 'reactstrap';
+import { Table ,Input,Button,Row } from 'reactstrap';
 import './ViewTable.css';
 
 class ViewTable extends Component {
 
   state = {
-    title : "Posts",
-    machineName : "posts",
-    url: "/posts",
-    des:"This a Posts Content type",
-    submetionguidlines:" read so you know how enters the data",
-    fields:[
-    {label:"Title",machineName:"title",type:"text",unique:true,visible:true,required:true,cssClasses:"title",css:""},
-    {label:"Url",machineName:"title",type:"text",unique:true,visible:true,required:true,cssClasses:"title",css:""},
-    {label:"Author",machineName:"title",type:"text",unique:true,visible:true,required:true,cssClasses:"title",css:""},
-    {label:"Categories",machineName:"title",type:"text",unique:true,visible:true,required:true,cssClasses:"title",css:""},
-    {label:"Date",machineName:"title",type:"text",unique:true,visible:true,required:true,cssClasses:"title",css:""}
-     ]
     };
+
 
   render() {
 
-    const tableObj = this.state.fields[0];
+    //const tableObj = this.state.items.fields[0];
+
+    const tableObj = this.props.keys;
+    console.log("tableObj",tableObj)
     const tableKeys = Object.keys(tableObj);
-    const keyVal = this.state.fields;      
+    console.log("tableKeys",tableKeys)
+
+    const keyVal = this.props.items;
+    console.log("keyVal",keyVal)
+
 
     return (
       <div className='ViewTable'>
         <Table striped>
         <thead>
           <tr>
-            {tableKeys.slice(0,5).map((object,index) => {
+            {tableKeys.map((object,index) => {
               return <th>{object}</th>
             })}
+            <th>Controllers</th>
           </tr>
         </thead>
         <tbody>
-        {keyVal.slice(0,5).map((object,index) => {
+        {keyVal.map((object,index) => {
           return (
+
             <tr>
-            {Object.values(object).slice(0,5).map((string,index) => {
+            {Object.values(object).map((string,index) => {
              return (<td>{string.toString()}</td>
               )})}
+            <td>
+            <Row>
+              <button>Edit</button>
+              <button>Delete</button>
+              </Row>
+            </td>
             </tr>)
+         {/* <tr>
+           
+            </tr>*/}
+            
+
          })}
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
+        
       </tbody>
     </Table>
     </div>

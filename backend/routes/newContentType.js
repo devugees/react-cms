@@ -24,7 +24,7 @@ module.exports = (app) => {
                 if (err) {
                     return res.send(err);
                 }
-                return res.send({ message: "regist created successfully!" })
+               return res.status(200).send({message: "regist created successfully!",success: 0})
             });
         }
     });
@@ -39,4 +39,5 @@ module.exports = (app) => {
             return res.send( data[0]._id )
         });
     });
+             
 }

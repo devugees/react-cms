@@ -16,6 +16,7 @@ class Routers extends Component {
 
              <BrowserRouter>
                   <Switch className="sub">
+                    <Route  exact path="/login" component={Login} />
                     <Route  exact path="/Administration/" component={Administration} />
                     <Route  exact path="/login" component={Login} />
                     <Route  path="/Administration/main/:activeLink" component={Administration} />
