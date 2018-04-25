@@ -4,49 +4,46 @@ import ContentSetting from './ContentSetting/ContentSetting';
 import AddField from '../AddField/AddField';
 import ViewTable from '../../ViewTable/ViewTable';
 import { Button,Container, Row, Col, Label, Input, Form, FormGroup } from 'reactstrap';
+import axios from 'axios';
+
 
 
 class NewContentType extends Component {
 
   state = {
-    contentSettings :{hi:"hi"},
-    fields:[]
+    contentSettings :{},
+    fields:[],
+    fieldsKeys:{FieldLabel:"",MachineName:"",Type:"",TypeOption:"",Unique:"",Visible:"",Required:"",CssClasses:"",CustomCss:""}
   }
 
+newContentTypeObj = {}
 
 
-  titleRef = React.createRef();
-  machineNameRef = React.createRef();
-  urlRef = React.createRef();
-  descriptonRef = React.createRef();
-  guidlinesRef = React.createRef();
-
-
+  handelChange = (e) => {
+    const inputName = e.target.name
+    this.newContentTypeObj[inputName] = e.target.value
+    console.log(this.newContentTypeObj);
+  }
 
   handelSubmit = (e) => {
     e.preventDefault();
+    this.newContentTypeObj.fields = this.state.fields
+    
+        console.log("final", this.newContentTypeObj);
+        axios.post('http://localhost:5000/api/newcontenttype', this.newContentTypeObj)
+              .then((response) => {
+                console.log(response);
+              if(response.status === 200 ) {
+                alert("your contentType is submaited")
+              }else{
+                alert("there is a problem")
+              }
+            }).catch(function(error) {
+              console.log("Error: ", error);
+            });
+          };
 
-    const contentSettingObj = {
-       title: this.titleRef.current.value,
-       machineName: this.machineNameRef.current.value,
-       url: this.urlRef.current.value,
-       descripton: this.descriptonRef.current.value,
-       guidelines: this.guidlinesRef.current.value,
-    }
-    console.log("hi",contentSettingObj);
-    this.setState( {contentSettings : contentSettingObj } )
-    console.log(this.state);
-    const finalNewContentType = {
-       title: this.titleRef.current.value,
-       machineName: this.machineNameRef.current.value,
-       url: this.urlRef.current.value,
-       descripton: this.descriptonRef.current.value,
-       guidelines: this.guidlinesRef.current.value,
-       fields: this.state.fields
-    }
-        console.log("final", finalNewContentType);
 
-}
 
     addFields = (field) => {
       const fields = this.state.fields;
@@ -65,19 +62,19 @@ class NewContentType extends Component {
               <Col sm="3" md="3" lg="3">
                 <FormGroup>
                   <Label>Title</Label>
-                  <Input name="title" innerRef={this.titleRef} placeholder="title" type="text"/>
+                  <Input name="title" placeholder="title" type="text" onChange={this.handelChange}/>
                 </FormGroup>
               </Col>
               <Col sm="3" md="3" lg="3">
                 <FormGroup>
                   <Label>Machine-Name*</Label>
-                  <Input name="machineName" innerRef={this.machineNameRef} placeholder="machineName" type="text"/>
+                  <Input name="machineName"  placeholder="machineName" type="text" onChange={this.handelChange} />
                 </FormGroup>
               </Col>
               <Col sm="6" md="6" lg="6">
                 <FormGroup>
                   <Label>URL*</Label>
-                  <Input name="url" innerRef={this.urlRef} placeholder="url" type="text"/>
+                  <Input name="url"  placeholder="url" type="text" onChange={this.handelChange} />
                 </FormGroup>
               </Col>
             </Row>
@@ -85,13 +82,13 @@ class NewContentType extends Component {
                <Col sm="6" md="6" lg="6">
                 <FormGroup>
                   <Label>Descripton</Label>
-                  <Input name="descripton" innerRef={this.descriptonRef} placeholder="descripton" type="textarea" />
+                  <Input name="descripton" placeholder="descripton" type="textarea" onChange={this.handelChange} />
                 </FormGroup>
               </Col>
               <Col sm="6" md="6" lg="6">
                 <FormGroup>
                 <Label>Submission Guidlines</Label>
-                <Input name="guidlines" innerRef={this.guidlinesRef} placeholder="guidlines" type="textarea" />
+                <Input name="guidlines" placeholder="guidlines" type="textarea" onChange={this.handelChange} />
                 </FormGroup>
               </Col>
             </Row>
@@ -99,7 +96,7 @@ class NewContentType extends Component {
             <AddField addFields={this.addFields} />
             </Row>
              <Row>
-            <ViewTable/>
+            <ViewTable items={this.state.fields} keys={this.state.fieldsKeys}/>
             </Row>
             <Row>
             <Button type="submit" className="btn" >Save</Button>
