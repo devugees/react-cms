@@ -4,6 +4,7 @@ import Sitestatus from '../SiteOverView/Sitestatus/Sitestatus';
 import Update from '../SiteOverView/Update/Update';
 import NewContentType from '../SiteStructure/NewContentType/NewContentType';
 import ContentTypesList from '../SiteStructure/ContentTypesList/ContentTypesList';
+import Menues from '../SiteStructure/Menues/Menues';
 import SettingsComponent from '../SettingsComponent/SettingsComponent';
 import FieldTypes from '../SiteStructure/FieldTypes/FieldTypes';
 import AllFields from '../SiteStructure/AllFields/AllFields';
@@ -15,37 +16,47 @@ import Blocks from '../Appearance/Blocks/Blocks';
 import AllUsers from '../Users/AllUsers/AllUsers';
 import Roles from '../Users/Roles/Roles';
 import Plugins from '../Plugins/Plugins';
+import ContentTypePanel from '../ContentTypesPanel/ContentTypePanel';
+import Structure from '../ContentTypesPanel/Structure/Structure';
 import PageNotFound from '../PageNotFound/PageNotFound';
 
 
-let components = {
-  "NewContentType": <NewContentType/>,
-  "Sitestatus": <Sitestatus/>,
-  "Update": <Update/>,
-  "ContentTypesList": <ContentTypesList/>,
-  "SettingsComponent": <SettingsComponent/>,
-  "FieldTypes": <FieldTypes/>,
-  "AllFields": <AllFields/>,
-  "Themes": <Themes/>,
-  "CustomeCode": <CustomeCode/>,
-  "Custome": <Custome/>,
-  "Editor": <Editor/>,
-  "Blocks": <Blocks/>,
-  "AllUsers": <AllUsers/>,
-  "Roles": <Roles/>,
-  "Plugins": <Plugins/>,
-  
-}
+
 
 class Main extends Component {
 
 
-      
-     
+
+
   render() {
-    let linkString = this.props.activeLink.split('/')[3]
-    console.log(linkString)
-    let component = components[linkString] || <PageNotFound/>
+
+    let components = {
+      "NewContentType": <NewContentType/>,
+      "Sitestatus": <Sitestatus/>,
+      "Update": <Update/>,
+      "ContentTypesList": <ContentTypesList/>,
+      "SettingsComponent": <SettingsComponent/>,
+      "FieldTypes": <FieldTypes/>,
+      "AllFields": <AllFields/>,
+      "Themes": <Themes/>,
+      "CustomeCode": <CustomeCode/>,
+      "Custome": <Custome/>,
+      "Editor": <Editor/>,
+      "Blocks": <Blocks/>,
+      "Menues": <Menues/>,
+      "AllUsers": <AllUsers/>,
+      "Roles": <Roles/>,
+      "Plugins": <Plugins/>,
+      "ContentType": <ContentTypePanel id={this.props.activeLink.split('/')[3]} />,
+      "Structure": <Structure id={this.props.activeLink.split('/')[3]} />,
+    }
+
+
+    let linkMain = this.props.activeLink.split('/')[3]
+    let linkSecound = this.props.activeLink.split('/')[2]
+    
+    console.log(linkMain)
+    let component = components[linkMain] || components[linkSecound] || <PageNotFound/>
     return (<div>{component}</div>)
   /*
     const Links = [NewContentType,ContentTypesList,SettingsComponent,FieldTypes,AllFields]
@@ -100,8 +111,8 @@ class Main extends Component {
         );
       }
 */
-    }; 
+    };
   }
-  
+
 
 export default Main;

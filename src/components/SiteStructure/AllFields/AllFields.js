@@ -9,7 +9,8 @@ class AllFields extends Component {
   render() {
     return (
       <div className='AllFields'>
-        <ViewTable/>
+        {/*<ViewTable/>*/}
+        <h1>here will be view table</h1>
         <AddField />
       <div className='button'>
         <Button className='FieldsButtons'>Save</Button>

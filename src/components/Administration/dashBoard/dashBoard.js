@@ -25,10 +25,10 @@ let contentTypesObj = null;
                              <strong>{contentType.title}</strong>
                              <Nav vertical>
                             <NavItem >
-                              <Link className='dashLink' to="#">All {contentType.title}</Link>
+                              <Link className='dashLink' to={`/Administration/ContentType/${contentType._id}`}>All {contentType.title}</Link>
                             </NavItem>
                             <NavItem>
-                              <Link className='dashLink' to="#">Categories {contentType.title}</Link>
+                              <Link className='dashLink' to={`/Administration/Categories/${contentType._id}`}>Categories {contentType.title}</Link>
                             </NavItem>
                              <NavItem>
                               <Link className='dashLink' to={`/Administration/Structure/${contentType._id}`}>Structure</Link>
@@ -67,14 +67,14 @@ return(
           <Link className='dashLinks'  to="/Administration/main/ContentTypesList">Content Types</Link>
         </NavItem>
         <NavItem>
-          <Link className='dashLinks'  to="/Administration/main/menues">Menues</Link>
+          <Link className='dashLinks'  to="/Administration/main/Menues">Menues</Link>
         </NavItem>
         <NavItem>
           <Link className='dashLinks'  to="/Administration/main/AllFields">All Fileds</Link>
         </NavItem>
-        <NavItem>
-          <Link className='dashLinks'  to="/Administration/main/FieldType">Field Type</Link>
-        </NavItem>
+        {/*<NavItem>
+          <Link className='dashLinks'  to="/Administration/main/FieldTypes">Field Types</Link>
+        </NavItem>*/}
       </Nav>
     </div>
     
