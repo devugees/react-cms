@@ -15,12 +15,38 @@ import Blocks from '../Appearance/Blocks/Blocks';
 import AllUsers from '../Users/AllUsers/AllUsers';
 import Roles from '../Users/Roles/Roles';
 import Plugins from '../Plugins/Plugins';
+import PageNotFound from '../PageNotFound/PageNotFound';
 
+
+let components = {
+  "NewContentType": <NewContentType/>,
+  "Sitestatus": <Sitestatus/>,
+  "Update": <Update/>,
+  "ContentTypesList": <ContentTypesList/>,
+  "SettingsComponent": <SettingsComponent/>,
+  "FieldTypes": <FieldTypes/>,
+  "AllFields": <AllFields/>,
+  "Themes": <Themes/>,
+  "CustomeCode": <CustomeCode/>,
+  "Custome": <Custome/>,
+  "Editor": <Editor/>,
+  "Blocks": <Blocks/>,
+  "AllUsers": <AllUsers/>,
+  "Roles": <Roles/>,
+  "Plugins": <Plugins/>,
+  
+}
 
 class Main extends Component {
+
+
       
      
   render() {
+    let linkString = this.props.activeLink.split('/')[3]
+    console.log(linkString)
+    let component = components[linkString] || <PageNotFound/>
+    return (<div>{component}</div>)
   /*
     const Links = [NewContentType,ContentTypesList,SettingsComponent,FieldTypes,AllFields]
     const activatedLink = this.props.activeLink.split('/')[2]
@@ -32,7 +58,9 @@ class Main extends Component {
       }
     }
     return ( `<div> <${workingLink}/> </div>`);
-    */
+
+
+  ----------------------------------
 
     if(this.props.activeLink === "/Administration/main/NewContentType") {
       return ( <div> <NewContentType/> </div>);
@@ -71,7 +99,9 @@ class Main extends Component {
         </div>
         );
       }
+*/
     }; 
   }
+  
 
 export default Main;
