@@ -5,7 +5,7 @@ We put together several technologies we've learned such as React, JavaScript, No
 
 
 ## Deployed version:                               
-- https://devugees.github.io/react-cms/Administration
+- https://devugees.github.io/react-cms/
 
 ## Mockups
 - https://balsamiq.cloud/s9a8xz5/ptfxjmv/rBB9F
