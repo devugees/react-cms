@@ -51,7 +51,7 @@ return(
   <strong>Dashbord</strong>
   <Nav className='color' vertical>
     <NavItem>
-      <Link className='dashLinks'  to="/Administration/main/Sitestatus">Sitestatus</Link>
+      <Link className='dashLinks'  to="/Administration/main/Sitestatus">Site Status</Link>
       </NavItem>
     <NavItem>
       <Link className='dashLinks'  to="/Administration/main/Update">Update</Link>
@@ -88,13 +88,13 @@ return(
           <Link className='dashLinks'  to="/Administration/main/Themes">Themes</Link>
         </NavItem>
         <NavItem>
-          <Link className='dashLinks'  to="/Administration/main/Custome">Custome</Link>
+          <Link className='dashLinks'  to="/Administration/main/Custome">Custom</Link>
         </NavItem>
         <NavItem>
           <Link className='dashLinks'  to="/Administration/main/Blocks">Blocks</Link>
         </NavItem>
         <NavItem>
-          <Link className='dashLinks'  to="/Administration/main/CustomeCode">Custome Code</Link>
+          <Link className='dashLinks'  to="/Administration/main/CustomeCode">Custom Code</Link>
         </NavItem>
         <NavItem>
           <Link className='dashLinks'  to="/Administration/main/Editor">Editor</Link>
