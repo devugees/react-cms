@@ -5,7 +5,7 @@ class Custome extends Component {
   render() {
     return (
       <div>
-       <h1> hallo from Custome</h1>
+       <h1> hallo from Custom</h1>
       </div>
     );
   }
