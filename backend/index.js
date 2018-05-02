@@ -4,8 +4,10 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
+const fileUpload = require('express-fileupload')
 
-app.use(bodyParser());
+
 
 //import model for admin config
 
@@ -24,19 +26,33 @@ mongoose.connection.on('error', () => {
 mongoose.connection.once('open', () => {
     console.log("Successfully connected to the database");
 });
+app.use(bodyParser.json());
+app.use(cors());
+app.use(fileUpload());
 
-app.use(cookieParser());
-app.use(session({
-  secret: 'mySecritKey',
-  resave: true,
-  saveUnitialized: true
-}));
 
 
 //import aminlogin route form adminlogin
 require('./routes/userRegister')(app);
 require('./routes/userLogin')(app);
+require('./routes/newContentType')(app);
+require('./routes/Entries')(app);
+require('./routes/contentTypes')(app);
 
+/*
+app.post('/upload', (req, res, next) => {
+  console.log(req);
+  let fileUpload = req.files.file;
+
+  fileUpload.mv(`${__dirname}/public/${req.body.filename}.jpg`, function(err) {
+    if (err) {
+      return res.status(500).send(err);
+    }
+
+    res.json({file: `public/${req.body.filename}.jpg`});
+  });
+
+}) */
 
 
 
@@ -49,3 +65,9 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
 	console.log('the srver is runing on port:' + PORT)
 });
+
+// FileUploader 
+
+
+
+
