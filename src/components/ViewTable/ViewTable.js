@@ -4,9 +4,7 @@ import './ViewTable.css';
 
 class ViewTable extends Component {
 
-  state = {
-    };
-
+  state = {};
 
   render() {
 

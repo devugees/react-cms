@@ -43,15 +43,13 @@ newContentTypeObj = {}
             });
           };
 
-
-
     addFields = (field) => {
       const fields = this.state.fields;
       fields.push(field);
       this.setState({fields:fields})
+
     }
 
-  
   render() {
     return (
       <div className='AddContent'>

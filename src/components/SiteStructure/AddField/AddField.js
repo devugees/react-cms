@@ -25,28 +25,47 @@ import './AddField.css';
         required: this.requiredRef.current.checked,
         cssClasses: this.cssClassNameRef.current.value,
         customCss: this.customCsslRef.current.value
-    }
+        }
     this.props.addFields(field);
+
   }
 
-    render() {
-        
-        
+// fetch post
+/*
+addField = {};
 
+handelSubmit = (e) => {
+    e.preventDefault();
+    
+    
+        console.log("final", this.addField);
+        axios.post('http://localhost:5000/api/addfield', this.newContentTypeObj)
+              .then((response) => {
+                console.log(response);
+              if(response.status === 200 ) {
+                alert("your field is submaited")
+              }else{
+                alert("there is a problem")
+              }
+            }).catch(function(error) {
+              console.log("Error: ", error);
+            });
+          };
+    }
+  */
+    render() {
         return(
             <div className="addfield">
             <h4 className="header">Add Your Content Fields</h4>
             <Container className="AddField">
-                <Form >
+                <Form onSubmit={this.handelSubmit}>
                     <Row>
                         <Col>
                             <FormGroup>
                                 <Label for="exampleEmail">Field Label</Label>
                                 <Input name="fieldLabel" innerRef={this.fieldLabelRef} />    
                             </FormGroup>
-                            
                         </Col>
-
                         <Col>
                             <FormGroup>
                                 <Label for="exampleSelect">Type</Label>
@@ -74,15 +93,12 @@ import './AddField.css';
                                     <option>Week</option>
                                 </Input>
                             </FormGroup>
-                                
-                            
                         </Col>
                         <Col>
                             <FormGroup>
                                 <Label for="exampleText">Type-Option</Label>
                                 <Input name="typeOption" type="textarea" id="exampleText" innerRef={this.typeOptRef} />
                             </FormGroup>
-                            
                         </Col>
                         <Col>
                             <FormGroup>
@@ -95,7 +111,6 @@ import './AddField.css';
                                 <Label for="exampleText">Custom CSS</Label>
                                 <Input name="customCss" type="textarea" id="exampleText" innerRef={this.customCsslRef} />
                             </FormGroup>
-                           
                         </Col>
                     </Row>
                     <Row>
@@ -121,7 +136,6 @@ import './AddField.css';
                             </FormGroup>
                         </Col>
                          <Button onClick={this.handelClick} className="btn">Add</Button>
-
                     </Row>
                 </Form>
             </Container>
