@@ -18,6 +18,10 @@ import Roles from '../Users/Roles/Roles';
 import Plugins from '../Plugins/Plugins';
 import ContentTypePanel from '../ContentTypesPanel/ContentTypePanel';
 import Structure from '../ContentTypesPanel/Structure/Structure';
+import Categories from '../ContentTypesPanel/Categories/Categories';
+import View from '../ContentTypesPanel/View/View';
+
+
 import PageNotFound from '../PageNotFound/PageNotFound';
 
 
@@ -25,19 +29,29 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 
 class Main extends Component {
 
-
-
-
   render() {
+    let fields =[];
+    let allTheFields =[];
+    let contentTypesObj = this.props.contenttypes;
+
+    contentTypesObj.map((contentType) => {
+      contentType.fields.map((field) => {
+        allTheFields.push(field)
+
+      })
+      if (this.props.activeLink.split('/')[3] === contentType._id) {
+        fields = contentType.fields
+      }
+    })
 
     let components = {
       "NewContentType": <NewContentType/>,
       "Sitestatus": <Sitestatus/>,
       "Update": <Update/>,
-      "ContentTypesList": <ContentTypesList/>,
+      "ContentTypesList": <ContentTypesList contenttypes={this.props.contenttypes} />,
       "SettingsComponent": <SettingsComponent/>,
       "FieldTypes": <FieldTypes/>,
-      "AllFields": <AllFields/>,
+      "AllFields": <AllFields allFields={allTheFields} />,
       "Themes": <Themes/>,
       "CustomeCode": <CustomeCode/>,
       "Custome": <Custome/>,
@@ -47,15 +61,15 @@ class Main extends Component {
       "AllUsers": <AllUsers/>,
       "Roles": <Roles/>,
       "Plugins": <Plugins/>,
-      "ContentType": <ContentTypePanel id={this.props.activeLink.split('/')[3]} />,
-      "Structure": <Structure id={this.props.activeLink.split('/')[3]} />,
+      "ContentType": <ContentTypePanel fields={fields} contenttypes={this.props.contenttypes} id={this.props.activeLink.split('/')[3]} />,
+      "Structure": <Structure fields={fields} id={this.props.activeLink.split('/')[3]} />,
+      "Categories": <Categories id={this.props.activeLink.split('/')[3]}/>,
+      "View": <View id={this.props.activeLink.split('/')[3]} />,
     }
 
 
-    let linkMain = this.props.activeLink.split('/')[3]
-    let linkSecound = this.props.activeLink.split('/')[2]
-    
-    console.log(linkMain)
+    let linkMain = this.props.activeLink.split('/')[3];
+    let linkSecound = this.props.activeLink.split('/')[2];
     let component = components[linkMain] || components[linkSecound] || <PageNotFound/>
     return (<div>{component}</div>)
   /*

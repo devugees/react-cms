@@ -34,7 +34,7 @@ let contentTypesObj = null;
                               <Link className='dashLink' to={`/Administration/Structure/${contentType._id}`}>Structure</Link>
                             </NavItem>
                             <NavItem>
-                              <Link className='dashLink' to="#">View</Link>
+                              <Link className='dashLink' to={`/Administration/View/${contentType._id}`}>View</Link>
                             </NavItem>
                             </Nav>
                              <hr />
