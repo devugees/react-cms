@@ -47,7 +47,7 @@ constructor(props) {
           </Col>
         {/*<h1>HHH</h1>*/}
           <Col className='hhh' lg="9">
-            <Main className="Main"  activeLink={this.props.match.url}/>
+            <Main contenttypes={this.state.contentTypes} className="Main"  activeLink={this.props.match.url}/>
           </Col>
         </Row>   
       </div>
