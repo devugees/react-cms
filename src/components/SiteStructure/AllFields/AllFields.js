@@ -17,6 +17,7 @@ class AllFields extends Component {
 
 
   render() {
+    
     return (
       <div className='AllFields'>
         <ViewTable items={this.props.allFields} keys={this.state.fieldsKeys}/>

@@ -29,9 +29,6 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 
 class Main extends Component {
 
-
-
-
   render() {
     let fields =[];
     let allTheFields =[];
@@ -45,7 +42,6 @@ class Main extends Component {
       if (this.props.activeLink.split('/')[3] === contentType._id) {
         fields = contentType.fields
       }
-      console.log(allTheFields)
     })
 
     let components = {
@@ -72,10 +68,8 @@ class Main extends Component {
     }
 
 
-    let linkMain = this.props.activeLink.split('/')[3]
-    let linkSecound = this.props.activeLink.split('/')[2]
-    
-    console.log(linkMain)
+    let linkMain = this.props.activeLink.split('/')[3];
+    let linkSecound = this.props.activeLink.split('/')[2];
     let component = components[linkMain] || components[linkSecound] || <PageNotFound/>
     return (<div>{component}</div>)
   /*

@@ -36,8 +36,10 @@ app.use(fileUpload());
 require('./routes/userRegister')(app);
 require('./routes/userLogin')(app);
 require('./routes/newContentType')(app);
-require('./routes/Entries')(app);
+require('./routes/newEntries')(app);
 require('./routes/contentTypes')(app);
+require('./routes/entries')(app);
+
 
 /*
 app.post('/upload', (req, res, next) => {
