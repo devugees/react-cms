@@ -5,22 +5,7 @@ import axios from 'axios';
 
 class AddPost extends Component { 
 
-state = {
-title : "Posts",
-machineName : "movies",
-url: "/posts",
-des:"This a Posts Content type",
-submetionguidlines:" read so you know how enir the data",
-fields:[
-{label:"Title",machineName:"title",type:"text",unique:true,visible:true,required:true,cssClasses:"title",css:""},
-{label:"Url",machineName:"url",type:"text",unique:true,visible:true,required:false,cssClasses:"title",css:""},
-{label:"Author",machineName:"author",type:"text",unique:true,visible:true,required:true,cssClasses:"title",css:""},
-{label:"Categories",machineName:"categories",type:"text",unique:true,visible:true,required:true,cssClasses:"title",css:""},
-{label:"Date",machineName:"date",type:"text",unique:true,visible:true,required:true,cssClasses:"title",css:""}
-]
-}
-
- 
+state = {}
 
 
 newEntrie = {}
@@ -69,17 +54,16 @@ render() {
         width: "90%",
     }
 
-this.state.fields.map( (object,index) => {console.log(object.label)})
 return(
         <div className='boxs' >
             <Form style={styleForm} onSubmit={this.handelFormSubmit}>
 
-                {this.state.fields.map( (object,index) => {
+                {this.props.fields.map( (object,index) => {
 
                 return (
                 <div>
                    <FormGroup style={styleFormGroups} className='FormGroup'>
-                       <Label for="exampleEmail">{object.label}</Label>
+                       <Label for="exampleEmail">{object.fieldLabel}</Label>
                        <input 
                         name={object.machineName}
                         type={object.type} 
