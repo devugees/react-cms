@@ -25,8 +25,7 @@ newContentTypeObj = {}
 
   handelSubmit = (e) => {
     e.preventDefault();
-    this.newContentTypeObj.fields = this.state.fields
-    
+    this.newContentTypeObj.fields = this.state.fields;
         console.log("final", this.newContentTypeObj);
         axios.post('http://localhost:5000/api/newcontenttype', this.newContentTypeObj)
               .then((response) => {
