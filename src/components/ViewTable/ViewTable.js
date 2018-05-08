@@ -4,21 +4,18 @@ import './ViewTable.css';
 
 class ViewTable extends Component {
 
-  state = {
-    };
-
+  state = {};
 
   render() {
 
-    //const tableObj = this.state.items.fields[0];
+    //const keysObj = this.state.items.fields[0];
 
-    const tableObj = this.props.keys;
-    console.log("tableObj",tableObj)
-    const tableKeys = Object.keys(tableObj);
-    console.log("tableKeys",tableKeys)
-
-    const keyVal = this.props.items;
-    console.log("keyVal",keyVal)
+    const keysObj = this.props.keys;
+    console.log("keysObj",keysObj)
+    const keys = Object.keys(keysObj);
+    console.log("keys",keys)
+    const items = this.props.items;
+    console.log("items",items)
 
 
     return (
@@ -26,14 +23,14 @@ class ViewTable extends Component {
         <Table striped>
         <thead>
           <tr>
-            {tableKeys.map((object,index) => {
+            {keys.map((object,index) => {
               return <th>{object}</th>
             })}
             <th>Controllers</th>
           </tr>
         </thead>
         <tbody>
-        {keyVal.map((object,index) => {
+        {items.map((object,index) => {
           return (
 
             <tr>
