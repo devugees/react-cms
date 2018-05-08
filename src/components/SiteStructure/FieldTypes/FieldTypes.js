@@ -10,7 +10,7 @@ class FieldTypes extends Component {
       <div className='FieldTypes'>
       <Button>Create New</Button>
         <NewType />
-        <ViewTable/>
+        {/*<ViewTable/>*/}<h1>Here will be view table</h1>
       </div>
     );
   }

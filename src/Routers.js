@@ -3,6 +3,8 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import './App.css';
 import Administration from './components/Administration/Administration';
 import Login from './components/Login/Login';
+import AddEntrie from './components/ContentTypesPanel/AddEntrie/AddEntrie';
+import Structure from './components/ContentTypesPanel/Structure/Structure';
 
 
 
@@ -14,10 +16,14 @@ class Routers extends Component {
 
              <BrowserRouter>
                   <Switch className="sub">
+                    <Route  exact path="/login" component={Login} />
                     <Route  exact path="/Administration/" component={Administration} />
                     <Route  exact path="/login" component={Login} />
-                    <Route  path="/Administration/:activeLink" component={Administration} />
-
+                    <Route  path="/Administration/main/:activeLink" component={Administration} />
+                    <Route  path="/AddEntrie" component={AddEntrie} />
+                    <Route  path="/Administration/Structure/:id" component={Administration} />
+                    <Route  path="/Administration/ContentType/:id" component={Administration} />
+                    <Route  path="/Administration/Categories/:id" component={Administration} />
                   </Switch>
               
              </BrowserRouter>
