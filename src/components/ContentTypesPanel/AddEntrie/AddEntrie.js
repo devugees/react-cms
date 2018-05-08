@@ -36,8 +36,6 @@ handelFormSubmit = (event) => {
                   console.log("Error: ", error);
                 });
               } 
-
-
             }).catch(function(error) {
               console.log("Error: ", error);
             });
@@ -72,20 +70,21 @@ return(
                         onChange={this.handelChange} />
                    </FormGroup>
                    </div>
-                )
-                })}
-{/*
+                  )
+                })
+              }
+              {/*
                 <FormGroup>
                 <Label for="exampleText">Text Area</Label>
                 <Input type="textarea" name="text" id="exampleText" />
                 </FormGroup>
                 
-*/}
+            */}
               <Button type="submit" className="btn">AddNew Post</Button>
             </Form>
         </div>
-)
-}
+      )
+    }
 };
 
 export default AddPost;
