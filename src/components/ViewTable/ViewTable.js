@@ -14,7 +14,6 @@ class ViewTable extends Component {
     console.log("tableObj",tableObj)
     const tableKeys = Object.keys(tableObj);
     console.log("tableKeys",tableKeys)
-
     const keyVal = this.props.items;
     console.log("keyVal",keyVal)
 
