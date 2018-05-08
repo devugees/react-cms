@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
 import './AddField.css';
+import axios from 'axios';
 
  class AddField extends Component { 
 
@@ -27,8 +28,22 @@ import './AddField.css';
         customCss: this.customCsslRef.current.value
         }
     this.props.addFields(field);
+    //
+    console.log('fields are', field)
+    axios.put(`http://localhost:5000/api/contenttypes/:${this.props.id}`, field)
+              .then((response) => {
+                console.log('response is', response);
+              if(response.status === 200 ) {
+                alert("your contentType is submaited")
+              }else{
+                alert("there is a problem")
+              }
+            }).catch((error) => {
+              console.log("Error: ", error);
+            });
+          };
 
-  }
+  
 
     render() {
         return(

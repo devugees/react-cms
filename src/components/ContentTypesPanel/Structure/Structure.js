@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Row, Col, Form } from 'reactstrap';
+
 import TopHeader from '../../Administration/HeaderComponent/HeaderComponent';
 import DashBoard from '../../Administration/dashBoard/dashBoard';
 import AddField from '../../SiteStructure/AddField/AddField';
@@ -8,9 +9,13 @@ import ViewTable from '../../ViewTable/ViewTable';
 
 class Structure extends Component {
 
-  state = {
-    fields:[],
+  constructor(props) {
+    console.log('props', props)
+    super() 
+    this.state = {
+    fields: [props.fields],
     fieldsKeys:{FieldLabel:"",MachineName:"",Type:"",TypeOption:"",Unique:"",Visible:"",Required:"",CssClasses:"",CustomCss:""}
+    }  
   }
 
    getDerivedStateFromProps = (nextProps, prevState) => {
@@ -25,13 +30,15 @@ class Structure extends Component {
       this.setState({fields:fields})
     }
 
+ 
 	render() {
    const colstyle ={padding: '0',margin:'0 0 0 0', height: 'auto'};
 	    return (
 	      <div>
-	        <h1>Here is the Structure</h1>
           <ViewTable items={this.state.fields} keys={this.state.fieldsKeys}/>
-  	      <AddField addFields={this.addFields}/>
+          <Form onSubmit={this.handelSubmit}>
+            <AddField addFields={this.addFields} id={this.props.id}/>
+          </Form>
         </div>
     );
   }

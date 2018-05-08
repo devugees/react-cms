@@ -35,7 +35,7 @@ newContentTypeObj = {}
               }else{
                 alert("there is a problem")
               }
-            }).catch(function(error) {
+            }).catch((error) => {
               console.log("Error: ", error);
             });
           };
