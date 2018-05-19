@@ -8,7 +8,7 @@ import AddEntrie from './AddEntrie/AddEntrie'
     return (
       <div>
           <h1>ContentTypePanel Component</h1>
-          <AddEntrie/>
+          <AddEntrie fields={this.props.fields}/>
       </div>
     );
   }

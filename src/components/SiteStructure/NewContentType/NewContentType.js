@@ -7,7 +7,6 @@ import { Button,Container, Row, Col, Label, Input, Form, FormGroup } from 'react
 import axios from 'axios';
 
 
-
 class NewContentType extends Component {
 
   state = {
@@ -18,7 +17,6 @@ class NewContentType extends Component {
 
 newContentTypeObj = {}
 
-
   handelChange = (e) => {
     const inputName = e.target.name
     this.newContentTypeObj[inputName] = e.target.value
@@ -27,8 +25,7 @@ newContentTypeObj = {}
 
   handelSubmit = (e) => {
     e.preventDefault();
-    this.newContentTypeObj.fields = this.state.fields
-    
+    this.newContentTypeObj.fields = this.state.fields;
         console.log("final", this.newContentTypeObj);
         axios.post('http://localhost:5000/api/newcontenttype', this.newContentTypeObj)
               .then((response) => {
@@ -43,19 +40,15 @@ newContentTypeObj = {}
             });
           };
 
-
-
     addFields = (field) => {
       const fields = this.state.fields;
       fields.push(field);
       this.setState({fields:fields})
     }
 
-  
   render() {
     return (
       <div className='AddContent'>
-
       <Container className='ContentSetting'>
         <Form onSubmit={this.handelSubmit}>
             <Row>
