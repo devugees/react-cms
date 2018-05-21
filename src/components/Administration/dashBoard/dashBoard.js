@@ -16,7 +16,6 @@ let contentTypesObj = null;
         contentTypesObj = (
              <div>
                 {recive.map((contentType) => {
-                  console.log(contentType);
                    if(!contentType){
                     return;
                    }

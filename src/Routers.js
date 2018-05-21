@@ -20,9 +20,7 @@ class Routers extends Component {
                     <Route  exact path="/LandingPage" component={LandingPage} />
                     <Route  exact path="/login" component={Login} />
                     <Route  exact path="/Administration/" component={Administration} />
-                    <Route  exact path="/login" component={Login} />
                     <Route  path="/Administration/main/:activeLink" component={Administration} />
-                    <Route  path="/AddEntrie" component={AddEntrie} />
                     <Route  path="/Administration/Structure/:id" component={Administration} />
                     <Route  path="/Administration/ContentType/:id" component={Administration} />
                     <Route  path="/Administration/Categories/:id" component={Administration} />
