@@ -13,7 +13,13 @@ class Structure extends Component {
     fieldsKeys:{FieldLabel:"",MachineName:"",Type:"",TypeOption:"",Unique:"",Visible:"",Required:"",CssClasses:"",CustomCss:""}
   }
 
-   getDerivedStateFromProps = (nextProps, prevState) => {
+  componentWillMount = () => {
+    this.setState({
+      fields: this.props.fields,
+    })
+   }
+
+  componentWillReceiveProps = (nextProps, prevState) => {
     this.setState({
       fields: nextProps.fields,
     })
