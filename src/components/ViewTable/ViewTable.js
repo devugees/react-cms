@@ -4,13 +4,15 @@ import './ViewTable.css';
 
 class ViewTable extends Component {
 
-  state = {};
+  state = {
+    itemsWithId: null
+  };
 
-   itemsWithId;
-   componentWillReceiveProps =(nextProps, prevState) => {
-    this.itemsWithId = JSON.parse(JSON.stringify(nextProps.items));
-   }
-  handleEdit  (index,machineName) {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return {itemsWithId: JSON.parse(JSON.stringify(nextProps.items))};
+  }
+
+  handleEdit (index,machineName) {
     /* Nebras: I have done so much work to reach here
      so now we have the id of the entrie/contentType
      so we can use it to edit in the backend 
@@ -18,8 +20,8 @@ class ViewTable extends Component {
 
      We need to do the same for delete but we don't delete we just archive the entrie or make the filied not visable
      */
-    console.log(machineName)
-    console.log(this.itemsWithId[index].id)
+    console.log('machineName', machineName)
+    console.log('itemsWithId', this.state.itemsWithId[index])
     
   }
 
