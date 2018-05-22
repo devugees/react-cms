@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Table ,Input,Button,Row } from 'reactstrap';
+import axios from 'axios';
 import './ViewTable.css';
 
 class ViewTable extends Component {
 
   state = {
-    itemsWithId: null
+    item: null
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -20,9 +21,11 @@ class ViewTable extends Component {
 
      We need to do the same for delete but we don't delete we just archive the entrie or make the filied not visable
      */
-    console.log('machineName', machineName)
-    console.log('itemsWithId', this.state.itemsWithId[index])
-    
+
+    const item = this.state.itemsWithId[index]
+    this.setState({item: item})
+    // put('/api/entries/:entrieId'
+    // delete('/api/entries/:entrieId'
   }
 
   render() {
@@ -38,61 +41,56 @@ class ViewTable extends Component {
         delete keysObj.id
       } else {
       keysObj = this.props.keys;
-    }
+      }
     }
 
     keys = Object.keys(keysObj);
 
     if(this.props.items[0]){
-    if(this.props.items[0].id){
+      if(this.props.items[0].id){
+        items = this.props.items
+        items.map((item)=> {
+          delete item.id
+        })
+    } else {
       items = this.props.items
-      items.map((item)=> {
-        delete item.id
-      })
-    }else {
-      items = this.props.items
-    }
+      }
     }
      
     console.log("items",items)
 
-
     return (
       <div className='ViewTable'>
         <Table striped>
-        <thead>
-          <tr>
-            {keys.map((object,index) => {
-              return <th>{object}</th>
-            })}
-            <th>Controllers</th>
-          </tr>
-        </thead>
-        <tbody>
-        {items.map((object,index) => {
-          return (
-
+          <thead>
             <tr>
-            {Object.values(object).map((string,index2) => {
-             return (<td>{string.toString()}</td>
-              )})}
-            <td>
-            <Row>
-              <button onClick={this.handleEdit.bind(this, index,object.machineName)} >Edit</button>
-              <button>Delete</button>
-              </Row>
-            </td>
-            </tr>)
-         {/* <tr>
-           
-            </tr>*/}
-            
-
-         })}
-        
-      </tbody>
-    </Table>
-    </div>
+              {keys.map((object,index) => {
+                return <th>{object}</th>
+              })}
+              <th>Controllers</th>
+            </tr>
+          </thead>
+          <tbody>
+          {items.map((object,index) => {
+            return (
+              <tr>
+              {Object.values(object).map((string,index2) => {
+               return (
+                <td>{string.toString()}</td>
+                )}
+               )}
+              <td>
+                <Row>
+                  <button onClick={this.handleEdit.bind(this, index,object.machineName)}>Edit</button>
+                  <button>Delete</button>
+                </Row>
+              </td>
+              </tr>
+              )}
+            )}
+          </tbody>
+        </Table>
+      </div>
     );
   }
 };

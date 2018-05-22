@@ -20,12 +20,7 @@ import ContentTypePanel from '../ContentTypesPanel/ContentTypePanel';
 import Structure from '../ContentTypesPanel/Structure/Structure';
 import Categories from '../ContentTypesPanel/Categories/Categories';
 import View from '../ContentTypesPanel/View/View';
-
-
 import PageNotFound from '../PageNotFound/PageNotFound';
-
-
-
 
 class Main extends Component {
 
