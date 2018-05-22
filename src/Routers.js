@@ -18,9 +18,7 @@ class Routers extends Component {
                   <Switch className="sub">
                     <Route  exact path="/LandingPage" component={LandingPage} />
                     <Route  exact path="/login" component={Login} />
-                    <Route  path="/Administration/:activeLink" component={Administration} />
                     <Route  exact path="/CustomeCode/" component={CustomeCode} />
-                    <Route  exact path="/Administration/" component={Administration} />
                     <Route  path="/Administration/main/:activeLink" component={Administration} />
                     <Route  path="/Administration/Structure/:id" component={Administration} />
                     <Route  path="/Administration/ContentType/:id" component={Administration} />
