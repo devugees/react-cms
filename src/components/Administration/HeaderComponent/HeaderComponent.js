@@ -68,9 +68,9 @@ import {
               </NavItem>
             </Nav>
 
-          <NavbarBrand style={fontSize} className="ml-auto" href="/">
+          <NavbarBrand style={fontSize} className="ml-auto">
               <UncontrolledDropdown>
-                <DropdownToggle style={textColor} nav caret>
+                <DropdownToggle style={textColor} caret>
                   My Account
                 </DropdownToggle>
                 <DropdownMenu right>
@@ -78,7 +78,7 @@ import {
                     <img alt='User Img' src='https://i.ebayimg.com/images/g/oawAAOSwi0RX0uyP/s-l300.jpg' />
                   </DropdownItem>
                   <DropdownItem>
-                    <NavLink  href="#"> My Account </NavLink>
+                    <NavLink  href="#" > My Account </NavLink>
                   </DropdownItem>
                   <DropdownItem>
                     <NavLink  href="#"> Sign out </NavLink>
