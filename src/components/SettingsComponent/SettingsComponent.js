@@ -28,7 +28,7 @@ export default class Setting extends React.Component {
                       <Input />    
                     </FormGroup>
                     <FormGroup>
-                      <Label >Admin loglink</Label>
+                      <Label >Admin Loglink</Label>
                       <Input />   
                     </FormGroup>
                   </Col>

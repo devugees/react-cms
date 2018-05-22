@@ -5,17 +5,55 @@ import {Link} from 'react-router-dom';
 
 class dashBord extends Component {
 
+        state = {
+         contentTypes: this.props.contenttypes
+          }
+
+  
 render() {
-const FontColor ={color: '#fff'};
+  let recive = this.props.contenttypes;
+let contentTypesObj = null;
+        contentTypesObj = (
+             <div>
+                {recive.map((contentType) => {
+                   if(!contentType){
+                    return;
+                   }
+                     return (
+                           <div>
+                             <strong>{contentType.title}</strong>
+                             <Nav vertical>
+                            <NavItem >
+                              <Link className='dashLink' to={`/Administration/ContentType/${contentType._id}`}>All {contentType.title}</Link>
+                            </NavItem>
+                            <NavItem>
+                              <Link className='dashLink' to={`/Administration/Categories/${contentType._id}`}>Categories {contentType.title}</Link>
+                            </NavItem>
+                             <NavItem>
+                              <Link className='dashLink' to={`/Administration/Structure/${contentType._id}`}>Structure</Link>
+                            </NavItem>
+                            <NavItem>
+                              <Link className='dashLink' to={`/Administration/View/${contentType._id}`}>View</Link>
+                            </NavItem>
+                            </Nav>
+                             <hr />
+                        </div>
+
+                      );
+                   
+                })}   
+             </div>
+          )
+
 return(
-<div className="style">
+<div className="style FontColor">
   <strong>Dashbord</strong>
   <Nav className='color' vertical>
     <NavItem>
-      <Link className='dashLinks' style={FontColor} to="/Administration/Sitestatus">Sitestatus</Link>
+      <Link className='dashLinks'  to="/Administration/main/Sitestatus">Site Status</Link>
       </NavItem>
     <NavItem>
-      <Link className='dashLinks' style={FontColor} to="/Administration/Update">Update</Link>
+      <Link className='dashLinks'  to="/Administration/main/Update">Update</Link>
     </NavItem>
   </Nav>
 
@@ -25,57 +63,40 @@ return(
     <div>
       <Nav vertical>
         <NavItem>
-          <Link className='dashLinks' style={FontColor} to="/Administration/ContentTypesList">Content Types</Link>
+          <Link className='dashLinks'  to="/Administration/main/ContentTypesList">Content Types</Link>
         </NavItem>
         <NavItem>
-          <Link className='dashLinks' style={FontColor} to="/Administration/menues">Menues</Link>
+          <Link className='dashLinks'  to="/Administration/main/Menues">Menues</Link>
         </NavItem>
         <NavItem>
-          <Link className='dashLinks' style={FontColor} to="/Administration/AllFields">All Fileds</Link>
+          <Link className='dashLinks'  to="/Administration/main/AllFields">All Fileds</Link>
         </NavItem>
-        <NavItem>
-          <Link className='dashLinks' style={FontColor} to="/Administration/FieldType">Field Type</Link>
-        </NavItem>
+        {/*<NavItem>
+          <Link className='dashLinks'  to="/Administration/main/FieldTypes">Field Types</Link>
+        </NavItem>*/}
       </Nav>
     </div>
     
   <hr />
-    
-    <div>
-      {/* here will implent the post  
-             <strong>Post</strong>
-            <Nav vertical>
-          <NavItem>
-            <Link to="#">Link</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="#">Link</Link>
-          </NavItem>
-           <NavItem>
-            <Link to="#">Link</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="#">Link</Link>
-          </NavItem>
-          </Nav>*/}  
+  <div>
+    {contentTypesObj}
     </div>
-  <hr />
   <strong>Appearance</strong>
       <Nav vertical>
         <NavItem>
-          <Link className='dashLinks' style={FontColor} to="/Administration/Themes">Themes</Link>
+          <Link className='dashLinks'  to="/Administration/main/Themes">Themes</Link>
         </NavItem>
         <NavItem>
-          <Link className='dashLinks' style={FontColor} to="/Administration/Custome">Custome</Link>
+          <Link className='dashLinks'  to="/Administration/main/Custome">Custom</Link>
         </NavItem>
         <NavItem>
-          <Link className='dashLinks' style={FontColor} to="/Administration/Blocks">Blocks</Link>
+          <Link className='dashLinks'  to="/Administration/main/Blocks">Blocks</Link>
         </NavItem>
         <NavItem>
-          <Link className='dashLinks' style={FontColor} to="/Administration/CustomeCode">Custome Code</Link>
+          <Link className='dashLinks'  to="/Administration/main/CustomeCode">Custom Code</Link>
         </NavItem>
         <NavItem>
-          <Link className='dashLinks' style={FontColor} to="/Administration/Editor">Editor</Link>
+          <Link className='dashLinks'  to="/Administration/main/Editor">Editor</Link>
         </NavItem>
       </Nav>
 
@@ -84,17 +105,17 @@ return(
   <strong>Users</strong>
       <Nav vertical>
         <NavItem>
-          <Link className='dashLinks' style={FontColor} to="/Administration/AllUsers">All Users</Link>
+          <Link className='dashLinks'  to="/Administration/main/AllUsers">All Users</Link>
         </NavItem>
         <NavItem>
-          <Link className='dashLinks' style={FontColor} to="/Administration/Roles">Roles</Link>
+          <Link className='dashLinks'  to="/Administration/main/Roles">Roles</Link>
         </NavItem>
       </Nav>
   <hr />
      
       <Nav vertical>
         <NavItem>
-          <Link className='dashLinks' style={FontColor} to="/Administration/SettingsComponent">Setting</Link>
+          <Link className='dashLinks'  to="/Administration/main/SettingsComponent">Setting</Link>
         </NavItem>
       </Nav>
 
@@ -102,7 +123,7 @@ return(
 
       <Nav vertical>
         <NavItem>
-          <Link className='dashLinks' style={FontColor} to="/Administration/Plugins">Plugins</Link>
+          <Link className='dashLinks'  to="/Administration/main/Plugins">Plugins</Link>
         </NavItem>
       </Nav>
 </div>

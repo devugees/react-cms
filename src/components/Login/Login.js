@@ -49,6 +49,7 @@ import {Link} from 'react-router-dom';
                 const Logindatacopy1 = {...this.state.loginData};
                 Logindatacopy1.role = true ;
                 this.setState({loginData: Logindatacopy1});
+
                 this.props.history.push("/administration");
               }
             }).catch(function(error) {
