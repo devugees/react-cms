@@ -10,3 +10,12 @@
   float: right;
 }
 */
+.addfield{
+  padding: 10px;
+  border: 2px solid #999999;
+  border-radius: 4px;
+}
+.header {
+  color:#666666;
+  align-content: center;
+}

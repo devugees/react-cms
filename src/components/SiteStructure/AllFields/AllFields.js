@@ -6,13 +6,21 @@ import ViewTable from '../../ViewTable/ViewTable';
 
 
 class AllFields extends Component {
+  constructor(props) {
+        super(props);
+        this.state = {
+          fieldsKeys:{FieldLabel:"",MachineName:"",Type:"",TypeOption:"",Unique:"",Visible:"",Required:"",CssClasses:"",CustomCss:""}
+        }
+      }
+
+ 
+
+
   render() {
+    
     return (
       <div className='AllFields'>
-      <ViewTable/>
-        <AddField />
-        <Button>Save</Button>
-        <Button>Cancel</Button>
+        <ViewTable items={this.props.allFields} keys={this.state.fieldsKeys}/>
       </div>
     );
   }
