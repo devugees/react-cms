@@ -6,15 +6,52 @@ class ViewTable extends Component {
 
   state = {};
 
+   itemsWithId;
+   componentWillReceiveProps =(nextProps, prevState) => {
+    this.itemsWithId = JSON.parse(JSON.stringify(nextProps.items));
+   }
+  handleEdit  (index,machineName) {
+    /* Nebras: I have done so much work to reach here
+     so now we have the id of the entrie/contentType
+     so we can use it to edit in the backend 
+     and we have the machineName so we use it to edit the filed in the backend
+
+     We need to do the same for delete but we don't delete we just archive the entrie or make the filied not visable
+     */
+    console.log(machineName)
+    console.log(this.itemsWithId[index].id)
+    
+  }
+
   render() {
 
-    //const keysObj = this.state.items.fields[0];
+    let keysObjWithOutId;
+    let keysObj ={};
+    let keys = [];
+    let items = [];
 
-    const keysObj = this.props.keys;
-    console.log("keysObj",keysObj)
-    const keys = Object.keys(keysObj);
-    console.log("keys",keys)
-    const items = this.props.items;
+    if(this.props.keys) {
+      if(this.props.keys.id){
+        keysObj = {...this.props.keys}
+        delete keysObj.id
+      } else {
+      keysObj = this.props.keys;
+    }
+    }
+
+    keys = Object.keys(keysObj);
+
+    if(this.props.items[0]){
+    if(this.props.items[0].id){
+      items = this.props.items
+      items.map((item)=> {
+        delete item.id
+      })
+    }else {
+      items = this.props.items
+    }
+    }
+     
     console.log("items",items)
 
 
@@ -34,12 +71,12 @@ class ViewTable extends Component {
           return (
 
             <tr>
-            {Object.values(object).map((string,index) => {
+            {Object.values(object).map((string,index2) => {
              return (<td>{string.toString()}</td>
               )})}
             <td>
             <Row>
-              <button>Edit</button>
+              <button onClick={this.handleEdit.bind(this, index,object.machineName)} >Edit</button>
               <button>Delete</button>
               </Row>
             </td>

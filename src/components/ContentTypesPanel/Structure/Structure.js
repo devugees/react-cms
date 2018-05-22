@@ -18,7 +18,13 @@ class Structure extends Component {
     }  
   }
 
-   getDerivedStateFromProps = (nextProps, prevState) => {
+  componentWillMount = () => {
+    this.setState({
+      fields: this.props.fields,
+    })
+   }
+
+  componentWillReceiveProps = (nextProps, prevState) => {
     this.setState({
       fields: nextProps.fields,
     })
