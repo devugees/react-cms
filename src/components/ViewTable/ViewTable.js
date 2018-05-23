@@ -11,7 +11,7 @@ class ViewTable extends Component {
     let keysObj ={};
     let keys = [];
     let items = [];
-console.log(props)
+    console.log(props)
     if(props.keys) {
       if(props.keys.id){
         keysObj = {...props.keys}
@@ -60,8 +60,22 @@ console.log(props)
      */
     console.log(machineName)
     console.log(this.itemsWithId[index].id)
-    // if this.itemsWithId[index].id is there 
-    
+    this.props.toggle()
+    this.props.bringItem(this.state.items[index], index)
+    /*
+    if (this.itemsWithId[index].id) {
+      axios.put('/api/entries/:entrieId')
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.error('Error:', error)
+      })
+    }
+    this.setState({ 
+
+    })
+    */
   }
 
   render() {

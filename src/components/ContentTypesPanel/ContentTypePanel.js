@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
 import './ContentTypePanel.css';
 import AddEntrie from './AddEntrie/AddEntrie';
+import EditEntrie from './EditEntrie/EditEntrie';
 import ViewTable from '../ViewTable/ViewTable'
 import axios from 'axios';
+import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Container, Row, Col, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+
  
  
   class ContentTypePanel extends Component {
  
     constructor(props) {
       super(props);
+
             this.state = {
               entries:[],
-              entriesKeys :{}
+              entriesKeys :{},
+              modal: false
             };
+            this.toggle = this.toggle.bind(this);
     }
+
+     toggle() {
+    this.setState({
+      modal: !this.state.modal
+    });
+  }
 
     bringEntries =(nextProps) => {
       
@@ -36,6 +48,7 @@ import axios from 'axios';
           }).catch(function(error) {
             console.log("Error: ", error);
           });
+
     }
 
     componentWillMount = () => {
@@ -53,6 +66,24 @@ import axios from 'axios';
     entries : stateEntries
   })
  }
+
+ EditEntrie = (entrie, index) => {
+  let newEntries = [...this.state.entries];
+  let editedEntrie = entrie;
+  newEntries[index] = editedEntrie;
+  console.log("newEntries",newEntries)
+  this.setState({
+    entrie: newEntries
+  })
+ }
+ 
+ editingItem = {};
+
+ bringItem = (item, index) => {
+  console.log(this.editingItem)
+  this.editingItem.item = item; 
+  this.editingItem.index = index; 
+ }
  
   render() {
      
@@ -63,11 +94,24 @@ import axios from 'axios';
     
     return (
       <div>
+
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+          <ModalBody>
+            <EditEntrie EditEntrie={this.EditEntrie} editingItem={this.editingItem} fields={this.props.fields} contentTypeId={this.props.id}/>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
+            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+          </ModalFooter>
+        </Modal>
+
+
           <h1>Hoii </h1>
           {this.state.entries.length > 0 && 
-          <ViewTable items={this.state.entries} keys={this.state.entriesKeys}/>
+          <ViewTable bringItem={this.bringItem} toggle={this.toggle} items={this.state.entries} keys={this.state.entriesKeys}/>
           }
-          <AddEntrie fields={this.props.fields} contentTypeId={this.props.id} addEntrie={this.addEntrie}/>
+          <AddEntrie  fields={this.props.fields} contentTypeId={this.props.id} addEntrie={this.addEntrie}/>
       </div>
     );
   }
