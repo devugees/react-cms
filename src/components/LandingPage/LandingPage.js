@@ -17,6 +17,7 @@ import {
     DropdownItem } from 'reactstrap';
 import './LandingPage.css';
 import axios from 'axios';
+import * as Icon from 'react-icons/lib/fa';
 
 
 class LandingPage extends Component {
@@ -25,15 +26,15 @@ class LandingPage extends Component {
     constructor(props) {
         super(props);
     
-        this.toggleNavbar = this.toggleNavbar.bind(this);
+        this.toggle = this.toggle.bind(this);
         this.state = {
-          collapsed: true
+          isOpen: false
         };
       }
     
-      toggleNavbar() {
-        this.setState({
-          collapsed: !this.state.collapsed
+      toggle() {
+      this.setState({
+        isOpen: !this.state.isOpen
         });
       }
     
@@ -70,6 +71,21 @@ class LandingPage extends Component {
         </Jumbotron>
 
         <Row>
+          <Col className="Box">
+            <Icon.FaChild size='120' className="Icon" />
+            <h3>Lorem ipsum</h3>
+            <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+          </Col>
+          <Col className="Box">
+            <Icon.FaBank size='120' className="Icon" />
+            <h3>Nam liber</h3>
+            <p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
+          </Col>
+          <Col className="Box">
+            <Icon.FaBell size='120' className="Icon" />
+            <h3>Duis autem</h3>
+            <p>Consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+          </Col>
 
         </Row>
             
