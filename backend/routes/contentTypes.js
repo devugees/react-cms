@@ -21,7 +21,6 @@ module.exports = (app) => {
             if (!contenttype) {
                 console.log(err)
                 return res.send({ message: 'No contenttype found' })
-
             }
             console.log()
             for (attr in req.body) {

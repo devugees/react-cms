@@ -8,6 +8,7 @@ import AddEntrie from './components/ContentTypesPanel/AddEntrie/AddEntrie';
 import Structure from './components/ContentTypesPanel/Structure/Structure';
 import LandingPage from './components/LandingPage/LandingPage';
 
+
 class Routers extends Component {
 
   render() {
