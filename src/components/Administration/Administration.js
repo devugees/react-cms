@@ -21,7 +21,6 @@ constructor(props) {
       
      axios.get('http://localhost:5000/api/contenttypes')
           .then((response) => {
-         console.log(response);
          this.setState({
           contentTypes: response.data
          })
