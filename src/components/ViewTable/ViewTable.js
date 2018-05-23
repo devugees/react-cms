@@ -11,6 +11,7 @@ class ViewTable extends Component {
     let keysObj ={};
     let keys = [];
     let items = [];
+    let newItems = [];
     console.log(props)
     if(props.keys) {
       if(props.keys.id){
@@ -37,19 +38,30 @@ class ViewTable extends Component {
       items = props.items
       }
     }
-    console.log(items)
+
     this.state = {
       items,
       keys,
-      fields: []
+      fields: [],
+      newItems: []
     };
-  }
 
+    console.log(items)
+  }
 
    itemsWithId;
    componentWillReceiveProps =(nextProps, prevState) => {
     this.itemsWithId = JSON.parse(JSON.stringify(nextProps.items));
+    console.log('next:', nextProps.newItems)
+    this.setState({newItems: nextProps})
+
+    if(this.state.newItems.length > 0) {
+      // still not working
+      console.log("overwrite")
+    this.setState({items: this.state.newItems})
+    }
   };
+
 
   handleEdit(index, machineName) {
     /* Nebras: I have done so much work to reach here
@@ -79,24 +91,25 @@ class ViewTable extends Component {
     */
   }
 
-  render() {
 
+
+  render() {
     return (
       <div className="ViewTable">
         <Table striped>
           <thead>
             <tr>
-              {this.state.keys.map((object,index) => {
+              {this.state.keys.map((object, index) => {
                 return <th>{object}</th>
               })}
               <th>Controllers</th>
             </tr>
           </thead>
           <tbody>
-          {this.state.items.map((object,index) => {
+          {this.state.items.map((object, index) => {
             return (
               <tr>
-              {Object.values(object).map((string,index2) => {
+              {Object.values(object).map((string, index2) => {
                return (
                 <td>{string.toString()}</td>
                 )}
