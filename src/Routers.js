@@ -12,18 +12,21 @@ class Routers extends Component {
 
   render() {
     return (
-         <BrowserRouter>
-           <Switch className="sub">
-             <Route  exact path="/LandingPage" component={LandingPage} />
-             <Route  exact path="/login" component={Login} />
-             <Route  exact path="/CustomeCode/" component={CustomeCode} />
-             <Route  path="/Administration/main/:activeLink" component={Administration} />
-             <Route  path="/Administration/Structure/:id" component={Administration} />
-             <Route  path="/Administration/ContentType/:id" component={Administration} />
-             <Route  path="/Administration/Categories/:id" component={Administration} />
-           </Switch>
-         </BrowserRouter>
-           );
+
+             <BrowserRouter>
+                  <Switch className="sub">
+                    <Route  exact path="/LandingPage" component={LandingPage} />
+                    <Route  exact path="/login" component={Login} />
+                    <Route  exact path="/CustomeCode/" component={CustomeCode} />
+                    <Route  exact path="/Administration/" component={Administration} />
+                    <Route  path="/Administration/main/:activeLink" component={Administration} />
+                    <Route  path="/Administration/Structure/:id" component={Administration} />
+                    <Route  path="/Administration/ContentType/:id" component={Administration} />
+                    <Route  path="/Administration/Categories/:id" component={Administration} />
+                  </Switch>
+             </BrowserRouter>
+             
+             );
      }
 }
 

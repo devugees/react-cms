@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './ContentTypePanel.css';
+import { Button,Container, Row, Col, Label, Input, Form, FormGroup } from 'reactstrap';
 import AddEntrie from './AddEntrie/AddEntrie';
 import EditEntrie from './EditEntrie/EditEntrie';
 import ViewTable from '../ViewTable/ViewTable'
