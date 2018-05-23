@@ -8,8 +8,10 @@ class Allusers extends Component {
 	constructor(props) {
         super(props);
         this.state = {
-         users:[]
+         users:[],
+
           }
+          
         }
     
  componentWillMount = () => {
@@ -42,7 +44,34 @@ handleDelete(index, userId) {
 
 
   render() {
-  	console.log(this.state.users);
+  	let socialInputs;
+  	 const {displaySocialInputs } = this.state;
+
+    if (this.state.displaySocialInputs) {
+      socialInputs = (
+        <div>
+          <Input
+            placeholder="Twitter Profile URL"
+            name="twitter"
+            icon="fab fa-twitter"
+            value=""
+            onChange=""
+            
+          />
+
+          <Input
+            placeholder="Facebook Page URL"
+            name="facebook"
+            icon="fab fa-facebook"
+            value=""
+            onChange=""
+           
+          />
+
+         
+        </div>
+      );
+    }
   	return (
 	      <div className="container">
 	        <Table striped>
@@ -59,23 +88,35 @@ handleDelete(index, userId) {
                     <td>{user.email}</td>
                     <td>{user.role}</td>
                      <td>
+
                     <Row>
                       <button
-                       onClick={this.handleEdit.bind(
-                          this,
-                          index,
-                          user.id
-                        )} 
-                      >
+		                    type="button"
+		                    onClick={() => {
+		                     this.setState(prevState => ({
+                               displaySocialInputs: !prevState.displaySocialInputs
+                              }));
+		                    }}
+		                    className="btn btn-light"
+                         >
                         Edit
                       </button>
+
                       <button   onClick={this.handleDelete.bind(
                           this,
                           index,
                           user.id
                         )} >
-                      Delete</button>
+                         Delete</button>
                     </Row>
+                  </td>
+
+                  <td>
+                  	<row>
+                  
+                      {socialInputs}
+                   
+                  	</row>
                   </td>
                 </tr>
               );
