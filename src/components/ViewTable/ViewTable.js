@@ -49,8 +49,9 @@ class ViewTable extends Component {
    itemsWithId;
    componentWillReceiveProps =(nextProps, prevState) => {
     this.itemsWithId = JSON.parse(JSON.stringify(nextProps.items));
-   }
-  handleEdit  (index,machineName) {
+  };
+
+  handleEdit(index, machineName) {
     /* Nebras: I have done so much work to reach here
      so now we have the id of the entrie/contentType
      so we can use it to edit in the backend 
@@ -81,7 +82,7 @@ class ViewTable extends Component {
   render() {
 
     return (
-      <div className='ViewTable'>
+      <div className="ViewTable">
         <Table striped>
           <thead>
             <tr>
@@ -114,6 +115,6 @@ class ViewTable extends Component {
       </div>
     );
   }
-};
+}
 
 export default ViewTable;

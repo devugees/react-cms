@@ -8,6 +8,7 @@ import AddEntrie from './components/ContentTypesPanel/AddEntrie/AddEntrie';
 import Structure from './components/ContentTypesPanel/Structure/Structure';
 import LandingPage from './components/LandingPage/LandingPage';
 
+
 class Routers extends Component {
 
   render() {
@@ -15,10 +16,12 @@ class Routers extends Component {
 
              <BrowserRouter>
                   <Switch className="sub">
-                    <Route  exact path="/LandingPage" component={LandingPage} />
-                    <Route  exact path="/login" component={Login} />
-                    <Route  exact path="/CustomeCode/" component={CustomeCode} />
+                     <Route  exact path="/login" component={Login} />
                     <Route  exact path="/Administration/" component={Administration} />
+                    <Route  exact path="/login" component={Login} />
+                    <Route  path="/Administration/main/:activeLink" component={Administration} />
+                    <Route  path="/AddEntrie" component={AddEntrie} />
+                    <Route  exact path="/CustomeCode/" component={CustomeCode} />
                     <Route  path="/Administration/main/:activeLink" component={Administration} />
                     <Route  path="/Administration/Structure/:id" component={Administration} />
                     <Route  path="/Administration/ContentType/:id" component={Administration} />
