@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Row, Col, Form } from 'reactstrap';
+import { Button,Container, Row, Col, Label, Input, Form, FormGroup } from 'reactstrap';
 
 import TopHeader from '../../Administration/HeaderComponent/HeaderComponent';
 import DashBoard from '../../Administration/dashBoard/dashBoard';
@@ -35,16 +35,31 @@ class Structure extends Component {
       fields.push(field);
       this.setState({fields:fields})
     }
+  handelSubmit = () => {
 
+  }
  
 	render() {
    const colstyle ={padding: '0',margin:'0 0 0 0', height: 'auto'};
 	    return (
 	      <div>
-          <ViewTable items={this.state.fields} keys={this.state.fieldsKeys}/>
+        <Container className='ContentSetting'>
           <Form onSubmit={this.handelSubmit}>
+            <Row>
+            <ViewTable items={this.state.fields} keys={this.state.fieldsKeys}/>
+            </Row>
+
+            <Row>
             <AddField addFields={this.addFields} id={this.props.id}/>
+            </Row>
+
+            <Row>
+            <Button type="submit" className="btn" >Save</Button>
+            <Button className="btn">Cancel</Button>
+            </Row>
+
           </Form>
+        </Container>
         </div>
     );
   }

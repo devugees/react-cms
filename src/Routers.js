@@ -23,6 +23,7 @@ class Routers extends Component {
                     <Route  path="/Administration/main/:activeLink" component={Administration} />
                     <Route  path="/AddEntrie" component={AddEntrie} />
                     <Route  exact path="/CustomeCode/" component={CustomeCode} />
+                    <Route  path="/Administration/main/:activeLink" component={Administration} />
                     <Route  path="/Administration/Structure/:id" component={Administration} />
                     <Route  path="/Administration/ContentType/:id" component={Administration} />
                     <Route  path="/Administration/Categories/:id" component={Administration} />

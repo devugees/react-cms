@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './ContentTypePanel.css';
+import { Button,Container, Row, Col, Label, Input, Form, FormGroup } from 'reactstrap';
 import AddEntrie from './AddEntrie/AddEntrie';
 import ViewTable from '../ViewTable/ViewTable'
 import axios from 'axios';
@@ -63,9 +64,27 @@ import axios from 'axios';
     
     return (
       <div>
-          <h1>Hoii </h1>
-          <ViewTable items={this.state.entries} keys={this.state.entriesKeys}/>
-          <AddEntrie fields={this.props.fields} contentTypeId={this.props.id} addEntrie={this.addEntrie}/>
+
+      <Container className='ContentSetting'>
+          <Form onSubmit={this.handelSubmit}>
+            <Row>
+            <ViewTable items={this.state.entries} keys={this.state.entriesKeys}/>
+            
+            </Row>
+
+            <Row>
+            <AddEntrie fields={this.props.fields} contentTypeId={this.props.id} addEntrie={this.addEntrie}/>
+
+            </Row>
+
+            <Row>
+            <Button type="submit" className="btn" >Save</Button>
+            <Button className="btn">Cancel</Button>
+            </Row>
+
+          </Form>
+        </Container>
+
       </div>
     );
   }
