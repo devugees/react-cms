@@ -5,15 +5,52 @@ import './ViewTable.css';
 
 class ViewTable extends Component {
 
-  state = {
-    item: null
-  };
+  constructor(props) {
+    super(props);
+    let keysObjWithOutId;
+    let keysObj ={};
+    let keys = [];
+    let items = [];
+console.log(props)
+    if(props.keys) {
+      if(props.keys.id){
+        keysObj = {...props.keys}
+        delete keysObj.id
+      } else {
+      keysObj = props.keys;
+      }
+    }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return {itemsWithId: JSON.parse(JSON.stringify(nextProps.items))};
+    keys = Object.keys(keysObj);
+
+    if(props.items[0]){
+      if(props.items[0].id){
+        items = props.items
+        items.map((item)=> {
+          delete item.id
+        })
+        this.setState({
+          items,
+          keys
+        })
+    } else {
+      items = props.items
+      }
+    }
+    console.log(items)
+    this.state = {
+      items,
+      keys,
+      fields: []
+    };
   }
 
-  handleEdit (index,machineName) {
+
+   itemsWithId;
+   componentWillReceiveProps =(nextProps, prevState) => {
+    this.itemsWithId = JSON.parse(JSON.stringify(nextProps.items));
+   }
+  handleEdit  (index,machineName) {
     /* Nebras: I have done so much work to reach here
      so now we have the id of the entrie/contentType
      so we can use it to edit in the backend 
@@ -21,57 +58,27 @@ class ViewTable extends Component {
 
      We need to do the same for delete but we don't delete we just archive the entrie or make the filied not visable
      */
-
-    const item = this.state.itemsWithId[index]
-    this.setState({item: item})
-    // put('/api/entries/:entrieId'
-    // delete('/api/entries/:entrieId'
+    console.log(machineName)
+    console.log(this.itemsWithId[index].id)
+    // if this.itemsWithId[index].id is there 
+    
   }
 
   render() {
-
-    let keysObjWithOutId;
-    let keysObj ={};
-    let keys = [];
-    let items = [];
-
-    if(this.props.keys) {
-      if(this.props.keys.id){
-        keysObj = {...this.props.keys}
-        delete keysObj.id
-      } else {
-      keysObj = this.props.keys;
-      }
-    }
-
-    keys = Object.keys(keysObj);
-
-    if(this.props.items[0]){
-      if(this.props.items[0].id){
-        items = this.props.items
-        items.map((item)=> {
-          delete item.id
-        })
-    } else {
-      items = this.props.items
-      }
-    }
-     
-    console.log("items",items)
 
     return (
       <div className='ViewTable'>
         <Table striped>
           <thead>
             <tr>
-              {keys.map((object,index) => {
+              {this.state.keys.map((object,index) => {
                 return <th>{object}</th>
               })}
               <th>Controllers</th>
             </tr>
           </thead>
           <tbody>
-          {items.map((object,index) => {
+          {this.state.items.map((object,index) => {
             return (
               <tr>
               {Object.values(object).map((string,index2) => {

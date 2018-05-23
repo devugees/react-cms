@@ -64,7 +64,9 @@ import axios from 'axios';
     return (
       <div>
           <h1>Hoii </h1>
+          {this.state.entries.length > 0 && 
           <ViewTable items={this.state.entries} keys={this.state.entriesKeys}/>
+          }
           <AddEntrie fields={this.props.fields} contentTypeId={this.props.id} addEntrie={this.addEntrie}/>
       </div>
     );
