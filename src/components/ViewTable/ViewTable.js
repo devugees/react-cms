@@ -42,26 +42,19 @@ class ViewTable extends Component {
     this.state = {
       items,
       keys,
-      fields: [],
-      newItems: []
+      fields: []
     };
-
-    console.log(items)
   }
 
    itemsWithId;
-   componentWillReceiveProps =(nextProps, prevState) => {
+   
+   componentWillReceiveProps = (nextProps, prevState) => {
     this.itemsWithId = JSON.parse(JSON.stringify(nextProps.items));
-    console.log('next:', nextProps.newItems)
-    this.setState({newItems: nextProps})
-
-    if(this.state.newItems.length > 0) {
-      // still not working
-      console.log("overwrite")
-    this.setState({items: this.state.newItems})
+    if(nextProps.newItems) {
+      nextProps.newItems.map((item)=> {delete item.id})
+      this.setState({items: nextProps.newItems})
     }
   };
-
 
   handleEdit(index, machineName) {
     /* Nebras: I have done so much work to reach here
@@ -71,8 +64,6 @@ class ViewTable extends Component {
 
      We need to do the same for delete but we don't delete we just archive the entrie or make the filied not visable
      */
-    console.log(machineName)
-    console.log(this.itemsWithId[index].id)
     this.props.toggle()
     this.props.bringItem(this.state.items[index], index)
     /*
@@ -90,8 +81,6 @@ class ViewTable extends Component {
     })
     */
   }
-
-
 
   render() {
     return (

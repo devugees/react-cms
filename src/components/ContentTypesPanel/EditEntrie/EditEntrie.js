@@ -7,51 +7,51 @@ class EditEntrie extends Component {
 
   editedEntrie = {}
 
-  handelChange = e => {
-      let inputName = e.target.name;
-      this.editedEntrie[inputName] = e.target.value;
-      console.log(this.editedEntrie);
+  handelChange = event => {
+      let inputName = event.target.name;
+      this.editedEntrie[inputName] = event.target.value;
+      //console.log(this.editedEntrie);
   }
 
-  handelFormSubmit = (event) => {
+  handelFormSubmit = event => {
       event.preventDefault();
       const editedEntrieObj = {
-          content: this.editedEntrie,
+        content: this.editedEntrie,
       }
       console.log("editedEntrieObj",editedEntrieObj)
-          this.props.EditEntrie(editedEntrieObj.content, this.props.editingItem.index);
+        this.props.editEntrie(editedEntrieObj.content, 
+        this.props.editingItem.index
+        );
   }
 
   render() {
-      const styleFormGroups={
+      const styleFormGroups = {
           width: '250px', 
           float:"left",
           margin:"15px",
           padding:"15px",
       }
-      const styleForm={
+      const styleForm = {
           width: "90%",
       }
 
   return(
       <div className='boxs' >
-          <Form style={styleForm} onSubmit={this.handelFormSubmit}>
-
-              {this.props.fields.map( (object,index) => {
-
+        <Form style={styleForm} onSubmit={this.handelFormSubmit}>
+            {this.props.fields.map( (object,index) => {
               return (
-              <div>
+                <div key={index}>
                  <FormGroup style={styleFormGroups} className='FormGroup'>
-                     <Label for="exampleEmail">{object.fieldLabel}</Label>
-                     <input 
-                      name={object.machineName}
-                      type={object.type} 
-                      required={object.required}
-                      className={object.cssClasses}
-                      onChange={this.handelChange}
-                      placeholder={this.props.editingItem.item[object.machineName]} />
-                 </FormGroup>
-                 </div>
+                 <Label for="exampleEmail">{object.fieldLabel}</Label>
+                 <input 
+                  name={object.machineName}
+                  type={object.type} 
+                  required={object.required}
+                  className={object.cssClasses}
+                  onChange={this.handelChange}
+                  placeholder={this.props.editingItem.item[object.machineName]} />
+                  </FormGroup>
+                </div>
                 )
               })
             }
@@ -62,7 +62,10 @@ class EditEntrie extends Component {
               </FormGroup>
               
           */}
-            <Button type="submit" className="btn">Save Changes</Button>
+          <div className="btns">
+            <Button type="submit" color="primary" className="btn" onClick={this.props.toggle}>Save Changes</Button>
+            <Button className="btn" onClick={this.props.toggle}>Cancel</Button>
+          </div>
           </Form>
       </div>
       )

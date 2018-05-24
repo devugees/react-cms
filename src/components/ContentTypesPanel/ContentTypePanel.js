@@ -26,27 +26,25 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
     }
 
     bringEntries = nextProps => {
-      
       let entries = [];
       let contentObj;
       let entriesKeys = {};
 
       axios.get(`http://localhost:5000/api/entries/${nextProps.id}`)
      .then((response) => {
-      console.log("response",response);
+      console.log("response", response);
       response.data.map((entrie) => {
         contentObj = {...entrie.content}
         contentObj.id = entrie._id
         entries.push(contentObj)
       })
       this.setState({
-        entries:entries,
-        entriesKeys:entries[0]
+        entries: entries,
+        entriesKeys: entries[0]
       })
       }).catch(function(error) {
-        console.log("Error: ", error);
+        console.error("Error: ", error);
       });
-
     }
 
     componentWillMount = () => {
@@ -61,15 +59,14 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
      let stateEntries = this.state.entries 
      stateEntries.push(content)
      this.setState({
-      entries : stateEntries
+      entries: stateEntries
     })
    }
 
-    EditEntrie = (entrie, index) => {
+    editEntrie = (entrie, index) => {
       let newEntries = [...this.state.entries];
       let editedEntrie = entrie;
       newEntries[index] = editedEntrie;
-      console.log("newEntries", newEntries)
       this.setState({
         entrie: newEntries
     })
@@ -78,7 +75,6 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
     editingItem = {};
 
     bringItem = (item, index) => {
-      console.log(this.editingItem)
       this.editingItem.item = item; 
       this.editingItem.index = index; 
      }
@@ -92,12 +88,8 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
           <ModalBody>
-            <EditEntrie EditEntrie={this.EditEntrie} editingItem={this.editingItem} fields={this.props.fields} contentTypeId={this.props.id}/>
+            <EditEntrie toggle={this.toggle} editEntrie={this.editEntrie} editingItem={this.editingItem} fields={this.props.fields} contentTypeId={this.props.id}/>
           </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-          </ModalFooter>
         </Modal>
 
 
@@ -105,7 +97,7 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
         {this.state.entries.length > 0 && 
         <ViewTable newItems={this.state.entrie} bringItem={this.bringItem} toggle={this.toggle} items={this.state.entries} keys={this.state.entriesKeys}/>
         }
-        <AddEntrie  fields={this.props.fields} contentTypeId={this.props.id} addEntrie={this.addEntrie}/>
+        <AddEntrie fields={this.props.fields} contentTypeId={this.props.id} addEntrie={this.addEntrie}/>
       </div>
     );
   }
