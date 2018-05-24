@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Table ,Input,Button,Row } from 'reactstrap';
-import axios from 'axios';
 import './ViewTable.css';
+import { Table, Row } from "reactstrap";
+import axios from 'axios';
 
 class ViewTable extends Component {
 
