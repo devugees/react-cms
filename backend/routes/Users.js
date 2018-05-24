@@ -33,4 +33,24 @@ app.delete('/deleteuser/:userid',(req, res)  => {
     });
 });
 
+app.post('/updateuser/:iduser', (req, res) => {
+    console.log(req.params.iduser);
+     User.findById(req.params.iduser, (err, user) => {
+      if(!user)
+        return res.send({message: "user not found!"});
+
+      // Check all params that are set in req.body and attach/overwrite the user object
+      for(attr in req.body) {
+        user[attr] = req.body[attr];
+      }
+
+      user.save((err) => {
+        if(err) {
+          return res.send(err);
+        }
+        return res.send({message: "user updated successfully!"});
+      });
+    });
+})
+
 };
