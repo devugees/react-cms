@@ -24,6 +24,7 @@ class EditEntrie extends Component {
         );
 
       // still not working
+      /*
       const contentId = this.props.contentTypeId;
       const editItem
       axios.put(`http://localhost:5000/api/entries/${contentId}`)
@@ -33,6 +34,7 @@ class EditEntrie extends Component {
       .catch(error => {
         console.error('Error:', error)
       })
+      */
     }
     
     
