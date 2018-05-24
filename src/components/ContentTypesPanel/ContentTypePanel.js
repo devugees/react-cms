@@ -65,9 +65,11 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
     })
    }
 
-    EditEntrie = (entrie, index) => {
+    editEntrie = (entrie, index) => {
       let newEntries = [...this.state.entries];
       let editedEntrie = entrie;
+      console.log('editEntrie', entrie);
+      console.log('entrie', entrie);
       newEntries[index] = editedEntrie;
       console.log("newEntries", newEntries)
       this.setState({
@@ -92,7 +94,7 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
           <ModalBody>
-            <EditEntrie EditEntrie={this.EditEntrie} editingItem={this.editingItem} fields={this.props.fields} contentTypeId={this.props.id}/>
+            <EditEntrie editEntrie={this.editEntrie} editingItem={this.editingItem} fields={this.props.fields} contentTypeId={this.props.id}/>
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}

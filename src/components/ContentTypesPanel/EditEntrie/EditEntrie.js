@@ -7,19 +7,21 @@ class EditEntrie extends Component {
 
   editedEntrie = {}
 
-  handelChange = e => {
-      let inputName = e.target.name;
-      this.editedEntrie[inputName] = e.target.value;
-      console.log(this.editedEntrie);
+  handelChange = event => {
+      let inputName = event.target.name;
+      this.editedEntrie[inputName] = event.target.value;
+      //console.log(this.editedEntrie);
   }
 
-  handelFormSubmit = (event) => {
+  handelFormSubmit = event => {
       event.preventDefault();
       const editedEntrieObj = {
-          content: this.editedEntrie,
+        content: this.editedEntrie,
       }
       console.log("editedEntrieObj",editedEntrieObj)
-          this.props.EditEntrie(editedEntrieObj.content, this.props.editingItem.index);
+        this.props.editEntrie(editedEntrieObj.content, 
+        this.props.editingItem.index
+        );
   }
 
   render() {

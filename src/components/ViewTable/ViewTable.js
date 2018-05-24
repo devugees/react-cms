@@ -50,18 +50,14 @@ class ViewTable extends Component {
   }
 
    itemsWithId;
-   componentWillReceiveProps =(nextProps, prevState) => {
+   
+   componentWillReceiveProps = (nextProps, prevState) => {
     this.itemsWithId = JSON.parse(JSON.stringify(nextProps.items));
-    console.log('next:', nextProps.newItems)
-    this.setState({newItems: nextProps})
-
-    if(this.state.newItems.length > 0) {
-      // still not working
-      console.log("overwrite")
-    this.setState({items: this.state.newItems})
+    if(nextProps.newItems) {
+    this.setState({items: nextProps.newItems})
     }
+    
   };
-
 
   handleEdit(index, machineName) {
     /* Nebras: I have done so much work to reach here
