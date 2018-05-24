@@ -15,12 +15,12 @@ render() {
 let contentTypesObj = null;
         contentTypesObj = (
              <div>
-                {recive.map((contentType) => {
+                {recive.map((contentType, index) => {
                    if(!contentType){
                     return;
                    }
                      return (
-                           <div>
+                           <div key={index}>
                              <strong>{contentType.title}</strong>
                              <Nav vertical>
                             <NavItem >
