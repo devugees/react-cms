@@ -54,6 +54,7 @@ class ViewTable extends Component {
       nextProps.newItems.map((item)=> {delete item.id})
       this.setState({items: nextProps.newItems})
     }
+    
   };
 
   handleEdit(index, machineName) {

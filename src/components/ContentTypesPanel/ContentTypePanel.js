@@ -66,6 +66,8 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
     editEntrie = (entrie, index) => {
       let newEntries = [...this.state.entries];
       let editedEntrie = entrie;
+      console.log('editEntrie', entrie);
+      console.log('entrie', entrie);
       newEntries[index] = editedEntrie;
       this.setState({
         entrie: newEntries
