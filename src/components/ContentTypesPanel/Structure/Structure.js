@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button,Container, Row, Col, Label, Input, Form, FormGroup } from 'reactstrap';
+import { Button,Container, Row, Form } from 'reactstrap';
 
 import TopHeader from '../../Administration/HeaderComponent/HeaderComponent';
 import DashBoard from '../../Administration/dashBoard/dashBoard';

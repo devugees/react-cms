@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Input, Button, Row } from "reactstrap";
+import { Table, Row } from "reactstrap";
 import "./ViewTable.css";
 
 class ViewTable extends Component {
@@ -23,7 +23,6 @@ class ViewTable extends Component {
   }
 
   render() {
-    let keysObjWithOutId;
     let keysObj = {};
     let keys = [];
     let items = [];
@@ -58,7 +57,7 @@ class ViewTable extends Component {
           <thead>
             <tr>
               {keys.map((object, index) => {
-                return <th>{object}</th>;
+                return <th key={index}>{object}</th>;
               })}
               <th>Controllers</th>
             </tr>
@@ -66,9 +65,9 @@ class ViewTable extends Component {
           <tbody>
             {items.map((object, index) => {
               return (
-                <tr>
+                <tr key={index}>
                   {Object.values(object).map((string, index2) => {
-                    return <td>{string.toString()}</td>;
+                    return <td key={index2}>{string.toString()}</td>;
                   })}
                   <td>
                     <Row>
