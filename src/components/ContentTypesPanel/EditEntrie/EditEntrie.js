@@ -13,16 +13,30 @@ class EditEntrie extends Component {
       //console.log(this.editedEntrie);
   }
 
-  handelFormSubmit = event => {
+  handelFormSubmit = (event, index, id) => {
       event.preventDefault();
       const editedEntrieObj = {
         content: this.editedEntrie,
-      }
+      } // issues with th props when editing twice
       console.log("editedEntrieObj",editedEntrieObj)
         this.props.editEntrie(editedEntrieObj.content, 
         this.props.editingItem.index
         );
-  }
+
+      // still not working
+      const contentId = this.props.contentTypeId;
+      const editItem
+      axios.put(`http://localhost:5000/api/entries/${contentId}`)
+      .then(response => {
+        console.log('Response:', response )
+      })
+      .catch(error => {
+        console.error('Error:', error)
+      })
+    }
+    
+    
+  
 
   render() {
       const styleFormGroups = {

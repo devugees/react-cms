@@ -92,7 +92,6 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
           </ModalBody>
         </Modal>
 
-
         <h1>Hoii </h1>
         {this.state.entries.length > 0 && 
         <ViewTable newItems={this.state.entrie} bringItem={this.bringItem} toggle={this.toggle} items={this.state.entries} keys={this.state.entriesKeys}/>
