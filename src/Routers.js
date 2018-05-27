@@ -49,6 +49,9 @@ class Routers extends Component {
                    <Switch>
                       <PrivatRoute  path="/Administration/Categories/:id" component={Administration} />
                    </Switch>
+                    <Switch>
+                      <PrivatRoute  path="/Administration/view/:id" component={Administration} />
+                   </Switch>
 
                   </div>
                 </div>
