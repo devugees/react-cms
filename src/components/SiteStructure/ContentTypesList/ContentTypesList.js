@@ -9,7 +9,7 @@ class ContentTypesList extends Component {
   render() {
     return (
       <div >
-          <Link href="/Administration/NewContentType" ><Button>Create New</Button></Link>
+          <Link to="/Administration/main/NewContentType" ><Button>Create New</Button></Link>
       </div>
     );
   }

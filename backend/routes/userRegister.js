@@ -18,7 +18,6 @@ app.post('/register', (req, res) => {
 				const user = req.body;
 				user.token = token 
 				delete user.pass;  
-				console.log(user);
                 res.json(user);
 
 	        userInfo = new User({

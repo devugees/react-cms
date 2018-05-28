@@ -35,6 +35,7 @@ app.use(fileUpload());
 //import aminlogin route form adminlogin
 require('./routes/userRegister')(app);
 require('./routes/userLogin')(app);
+require('./routes/Users')(app);
 require('./routes/newContentType')(app);
 require('./routes/contentTypes')(app);
 require('./routes/entries')(app);

@@ -15,13 +15,12 @@ render() {
 let contentTypesObj = null;
         contentTypesObj = (
              <div>
-                {recive.map((contentType) => {
-                  console.log(contentType);
+                {recive.map((contentType, index) => {
                    if(!contentType){
                     return;
                    }
                      return (
-                           <div>
+                           <div key={index}>
                              <strong>{contentType.title}</strong>
                              <Nav vertical>
                             <NavItem >
@@ -34,7 +33,7 @@ let contentTypesObj = null;
                               <Link className='dashLink' to={`/Administration/Structure/${contentType._id}`}>Structure</Link>
                             </NavItem>
                             <NavItem>
-                              <Link className='dashLink' to={`/Administration/View/${contentType._id}`}>View</Link>
+                              <Link className='dashLink' to={`/Administration/View/${contentType._id}` }>View</Link>
                             </NavItem>
                             </Nav>
                              <hr />
@@ -80,7 +79,7 @@ return(
     
   <hr />
   <div>
-    {contentTypesObj}
+    {contentTypesObj ? contentTypesObj : null}
     </div>
   <strong>Appearance</strong>
       <Nav vertical>

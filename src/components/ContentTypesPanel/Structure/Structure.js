@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Row, Col, Form } from 'reactstrap';
+import { Button,Container, Row, Form } from 'reactstrap';
+
 import TopHeader from '../../Administration/HeaderComponent/HeaderComponent';
 import DashBoard from '../../Administration/dashBoard/dashBoard';
 import AddField from '../../SiteStructure/AddField/AddField';
@@ -8,12 +9,22 @@ import ViewTable from '../../ViewTable/ViewTable';
 
 class Structure extends Component {
 
-  state = {
-    fields:[],
+  constructor(props) {
+    console.log('props', props)
+    super() 
+    this.state = {
+    fields: [props.fields],
     fieldsKeys:{FieldLabel:"",MachineName:"",Type:"",TypeOption:"",Unique:"",Visible:"",Required:"",CssClasses:"",CustomCss:""}
+    }  
   }
 
-   getDerivedStateFromProps = (nextProps, prevState) => {
+  componentWillMount = () => {
+    this.setState({
+      fields: this.props.fields,
+    })
+   }
+
+  componentWillReceiveProps = (nextProps, prevState) => {
     this.setState({
       fields: nextProps.fields,
     })
@@ -24,14 +35,31 @@ class Structure extends Component {
       fields.push(field);
       this.setState({fields:fields})
     }
+  handelSubmit = () => {
 
+  }
+ 
 	render() {
    const colstyle ={padding: '0',margin:'0 0 0 0', height: 'auto'};
 	    return (
 	      <div>
-	        <h1>Here is the Structure</h1>
-          <ViewTable items={this.state.fields} keys={this.state.fieldsKeys}/>
-  	      <AddField addFields={this.addFields}/>
+        <Container className='ContentSetting'>
+          <Form onSubmit={this.handelSubmit}>
+            <Row>
+            <ViewTable items={this.state.fields} keys={this.state.fieldsKeys}/>
+            </Row>
+
+            <Row>
+            <AddField addFields={this.addFields} id={this.props.id}/>
+            </Row>
+
+            <Row>
+            <Button type="submit" className="btn" >Save</Button>
+            <Button className="btn">Cancel</Button>
+            </Row>
+
+          </Form>
+        </Container>
         </div>
     );
   }
