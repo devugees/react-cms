@@ -16,9 +16,7 @@ constructor(props) {
           }
         }
     
-
      componentWillMount = () => {
-      
      axios.get('http://localhost:5000/api/contenttypes')
           .then((response) => {
          this.setState({
@@ -27,9 +25,7 @@ constructor(props) {
         }).catch(function(error) {
           console.log("Error: ", error);
         });
-     
     }
-
 
   render() {
   const colstyle ={padding: '0',margin:'0 0 0 0', height: 'auto'};
