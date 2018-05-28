@@ -40,6 +40,7 @@ class Main extends Component {
     })
 
     let components = {
+      "View": <View  id={this.props.activeLink.split('/')[3]} />,
       "NewContentType": <NewContentType/>,
       "Sitestatus": <Sitestatus/>,
       "Update": <Update/>,
@@ -58,7 +59,7 @@ class Main extends Component {
       "Plugins": <Plugins/>,
       "ContentType": <ContentTypePanel fields={fields} contenttypes={this.props.contenttypes} id={this.props.activeLink.split('/')[3]} />,
       "Structure": <Structure fields={fields} id={this.props.activeLink.split('/')[3]} />,
-      "View": <View  id={this.props.activeLink.split('/')[3]} />,
+      
       "Categories": <Categories id={this.props.activeLink.split('/')[3]}/>,
      
     }
