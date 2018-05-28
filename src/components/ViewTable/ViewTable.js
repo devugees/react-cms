@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { Table ,Input,Button,Row } from 'reactstrap';
-import './ViewTable.css';
+import React, { Component } from "react";
+import { Table, Row } from "reactstrap";
+import "./ViewTable.css";
 
 class ViewTable extends Component {
-
   state = {};
 
-   itemsWithId;
-   componentWillReceiveProps =(nextProps, prevState) => {
+  itemsWithId;
+  componentWillReceiveProps = (nextProps, prevState) => {
     this.itemsWithId = JSON.parse(JSON.stringify(nextProps.items));
-   }
-  handleEdit  (index,machineName) {
+  };
+
+  handleEdit(index, machineName) {
     /* Nebras: I have done so much work to reach here
      so now we have the id of the entrie/contentType
      so we can use it to edit in the backend 
@@ -18,81 +18,84 @@ class ViewTable extends Component {
 
      We need to do the same for delete but we don't delete we just archive the entrie or make the filied not visable
      */
-    console.log(machineName)
-    console.log(this.itemsWithId[index].id)
-    
+  
+    console.log(this.itemsWithId[index].id);
   }
 
   render() {
-
-    let keysObjWithOutId;
-    let keysObj ={};
+    let keysObj = {};
     let keys = [];
     let items = [];
 
-    if(this.props.keys) {
-      if(this.props.keys.id){
-        keysObj = {...this.props.keys}
-        delete keysObj.id
+    if (this.props.keys) {
+      if (this.props.keys.id) {
+        keysObj = { ...this.props.keys };
+        delete keysObj.id;
       } else {
-      keysObj = this.props.keys;
-    }
+        keysObj = this.props.keys;
+      }
     }
 
     keys = Object.keys(keysObj);
 
-    if(this.props.items[0]){
-    if(this.props.items[0].id){
-      items = this.props.items
-      items.map((item)=> {
-        delete item.id
-      })
-    }else {
-      items = this.props.items
+    if (this.props.items[0]) {
+      if (this.props.items[0].id) {
+        items = this.props.items;
+        items.map(item => {
+          delete item.id;
+        });
+      } else {
+        items = this.props.items;
+      }
     }
-    }
-     
-    console.log("items",items)
 
+    console.log("items", items);
 
     return (
-      <div className='ViewTable'>
+      <div className="ViewTable">
         <Table striped>
-        <thead>
-          <tr>
-            {keys.map((object,index) => {
-              return <th>{object}</th>
-            })}
-            <th>Controllers</th>
-          </tr>
-        </thead>
-        <tbody>
-        {items.map((object,index) => {
-          return (
-
+          <thead>
             <tr>
-            {Object.values(object).map((string,index2) => {
-             return (<td>{string.toString()}</td>
-              )})}
-            <td>
-            <Row>
-              <button onClick={this.handleEdit.bind(this, index,object.machineName)} >Edit</button>
-              <button>Delete</button>
-              </Row>
-            </td>
-            </tr>)
-         {/* <tr>
+              {keys.map((object, index) => {
+                return <th key={index}>{object}</th>;
+              })}
+              <th>Controllers</th>
+            </tr>
+          </thead>
+          <tbody>
+            {items.map((object, index) => {
+              return (
+                <tr key={index}>
+                  {Object.values(object).map((string, index2) => {
+                    return <td key={index2}>{string.toString()}</td>;
+                  })}
+                  <td>
+                    <Row>
+                      <button
+                        onClick={this.handleEdit.bind(
+                          this,
+                          index,
+                          object.machineName
+                        )}
+                      >
+                        Edit
+                      </button>
+                      <button>Delete</button>
+                    </Row>
+                  </td>
+                </tr>
+              );
+              {
+                /* <tr>
            
-            </tr>*/}
-            
-
-         })}
-        
-      </tbody>
-    </Table>
-    </div>
+            </tr>*/
+              }
+            })}
+          </tbody>
+        </Table>
+      </div>
     );
   }
-};
+}
 
 export default ViewTable;
