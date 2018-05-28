@@ -23,6 +23,11 @@ class Routers extends Component {
 
                   <Switch>
                      <PrivatRoute
+                     exact path="/" component={LandingPage} />
+                 </Switch>
+
+                  <Switch>
+                     <PrivatRoute
                      exact path="/Administration/" component={Administration} />
                  </Switch>
 
