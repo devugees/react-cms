@@ -32,7 +32,6 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
 
       axios.get(`http://localhost:5000/api/entries/${nextProps.id}`)
      .then((response) => {
-      console.log("response", response);
       response.data.map((entrie) => {
         contentObj = {...entrie.content}
         contentObj.id = entrie._id
@@ -66,8 +65,6 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
     editEntrie = (entrie, index) => {
       let newEntries = [...this.state.entries];
       let editedEntrie = entrie;
-      console.log('editEntrie', entrie);
-      console.log('entrie', entrie);
       newEntries[index] = editedEntrie;
       this.setState({
         entrie: newEntries
@@ -76,9 +73,10 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
    
     editingItem = {};
 
-    bringItem = (item, index) => {
+    bringItem = (item, itemId) => {
       this.editingItem.item = item; 
-      this.editingItem.index = index; 
+      this.editingItem.itemId = itemId; 
+      console.log(this.editingItem)
      }
  
   render() {    
@@ -90,7 +88,7 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
           <ModalBody>
-            <EditEntrie toggle={this.toggle} editEntrie={this.editEntrie} editingItem={this.editingItem} fields={this.props.fields} contentTypeId={this.props.id}/>
+            <EditEntrie toggle={this.toggle} editEntrie={this.editEntrie} editingItem={this.editingItem} fields={this.props.fields} contentTypeId={this.props.id} />
           </ModalBody>
         </Modal>
 
