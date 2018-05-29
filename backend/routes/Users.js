@@ -1,11 +1,20 @@
 const User = require('../models/User');
+const  jwt = require('jsonwebtoken');
+const  VerifyToken = require('../config/VerifyToken');
+
+
+const serversignature = 'mysignature';
 
 module.exports = (app) => {
-app.get('/users', (req, res) => {
+app.get('/users',VerifyToken, (req, res) => {
+   jwt.verify(req.token, serversignature, (err1, authData) => {
+    if(err1) {
+      throw err1;
+    } 
     // Retrieve and return all users from the database.
     User.find((err, users) => {
         if(err) {
-            res.status(500).send({message: "Some error ocuured while retrieving users."});
+            res.status(500).json({message: "Some error ocuured while retrieving users."});
         } else {
        
         const newUser =	users.map(user => {
@@ -20,9 +29,14 @@ app.get('/users', (req, res) => {
         }
     });
 
+    });
 });
 
-app.delete('/deleteuser/:userid',(req, res)  => {
+app.delete('/deleteuser/:userid', VerifyToken, (req, res)  => {
+   jwt.verify(req.token, serversignature, (err1, authData) => {
+    if(err1) {
+      throw err1;
+    } 
     // Delete a user with the specified users in the request
     User.remove({_id: req.params.userid}, function(err, data) {
         if(err) {
@@ -31,10 +45,16 @@ app.delete('/deleteuser/:userid',(req, res)  => {
             res.send({message: "user deleted successfully!"})
         }
     });
+     });
 });
 
-app.post('/updateuser/:iduser', (req, res) => {
-    console.log(req.params.iduser);
+app.post('/updateuser/:iduser', VerifyToken, (req, res) => {
+
+   jwt.verify(req.token, serversignature, (err1, authData) => {
+    if(err1) {
+      throw err1;
+    } 
+    
      User.findById(req.params.iduser, (err, user) => {
       if(!user)
         return res.send({message: "user not found!"});
@@ -46,10 +66,11 @@ app.post('/updateuser/:iduser', (req, res) => {
 
       user.save((err) => {
         if(err) {
-          return res.send(err);
+         throw err;
         }
         return res.send({message: "user updated successfully!"});
       });
+    });
     });
 })
 
