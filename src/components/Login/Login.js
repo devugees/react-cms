@@ -3,6 +3,7 @@ import { Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
 import './Login.css';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import PrivatRoute from '../PrivatRoute/PrivatRoute';
 
 import setAuthToken from '../../setauthtoken/setAuthToken'
 
@@ -15,7 +16,8 @@ import setAuthToken from '../../setauthtoken/setAuthToken'
           loginData: {
             email: "",
             password: "",
-            role: false
+            role: false,
+            isAuthenticated: false
           }
         }
         this.handleChange = this.handleChange.bind(this);
@@ -53,9 +55,12 @@ import setAuthToken from '../../setauthtoken/setAuthToken'
 
                 const Logindatacopy1 = {...this.state.loginData};
                 Logindatacopy1.role = true ;
-                this.setState({loginData: Logindatacopy1});
+                Logindatacopy1.isAuthenticated = true;
 
+                this.setState({loginData: Logindatacopy1
+                });
                 this.props.history.push("/administration");
+                
               }
             }).catch(function(error) {
               console.log("Error: ", error);
@@ -64,6 +69,7 @@ import setAuthToken from '../../setauthtoken/setAuthToken'
 
       
     render() {
+    
       const buttonStyle = {width:"100%"}
 
         return(
