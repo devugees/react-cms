@@ -71,7 +71,7 @@ class ViewTable extends Component {
                   })}
                   <td>
                     <Row>
-                      <button
+                      <button className="mr-2 btn-outline-info btn-sm"
                         onClick={this.handleEdit.bind(
                           this,
                           index,
@@ -80,7 +80,7 @@ class ViewTable extends Component {
                       >
                         Edit
                       </button>
-                      <button>Delete</button>
+                      <button className='btn btn-outline-danger btn-sm'>Delete</button>
                     </Row>
                   </td>
                 </tr>
