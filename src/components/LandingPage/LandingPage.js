@@ -168,29 +168,31 @@ console.log(Icon)
       borderColor: 'grey',
       marginTop: '2em'
     }
-{/*
+
+    const android = <Icon.FaAndroid size='120' className="Icon" />
+    const github = <Icon.FaGithubAlt size='120' className="Icon" />
+    const paw = <Icon.FaPaw size='120' className="Icon" />
+
     const columns = [
       {
-        icon: "Android",
+        icon: android,
         title: "Lorem ipsum",
         text: "At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet"
       },
       {
-        icon: "Github",
+        icon: github,
         title: "Nam liber",
         text: "Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
       },
       {
-        icon: "Paw",
+        icon: paw,
         title: "Duis autem",
         text: "Consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
       }
     ]
-    let android = <Icon.FaAndroid size='120' className="Icon" />
-    let github = <Icon.FaGithubAlt size='120' className="Icon" />
-    let paw = <Icon.FaPaw size='120' className="Icon" />
+    
 
-  */}
+ 
 
     return (
       <Container style={landingPage} fluid>
@@ -203,7 +205,7 @@ console.log(Icon)
                 <NavLink href="/components/">Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/">Login</NavLink>
+                <NavLink href="/login">Login</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
@@ -216,7 +218,7 @@ console.log(Icon)
             </Container>
         </Jumbotron>
 
-        <Row style={landingPage}>
+        {/* <Row style={landingPage}>
           <Col className="Box">
             <Icon.FaAndroid size='120' className="Icon" />
             <h3>Lorem ipsum</h3>
@@ -232,23 +234,22 @@ console.log(Icon)
             <h3>Duis autem</h3>
             <p>Consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
           </Col>
-        </Row>
+    </Row> */}
 
-{   /*   
+   
         <Row style={landingPage}> 
           {columns.map(column => {
+            console.log(column)
             return(
               <Col className="Box">
-                <img src={`../../../node_modules/react-icons/lib/fa/${column.icon}`} />
-               
-                {<Icon type={column.type} size='120' className="Icon" />}
+                {column.icon}
                 <h3>{column.title}</h3>
                 <p>{column.text}</p>
                </Col>  
             )
           })}      
         </Row>       
-        */}
+ 
         <hr style={hrBorder}/>
         <Row style={postBox} className="text-center">
             <Col sm="8">
