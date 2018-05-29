@@ -105,7 +105,7 @@ import axios from 'axios';
                             </FormGroup>
                         </Col>
                     </Row>
-                    <Row>
+                    <Row className='d-inline-flex text-center float-right w-50'>
                         <Col>
                             <FormGroup check inline>
                                     <Label check>
@@ -127,7 +127,7 @@ import axios from 'axios';
                                 </Label>
                             </FormGroup>
                         </Col>
-                         <Button onClick={this.handelClick} className="btn">Add</Button>
+                         <Button onClick={this.handelClick} className="btn btn-md btn-outline-primary mr-3">Add</Button>
                     </Row>
                 </Form>
             </Container>
