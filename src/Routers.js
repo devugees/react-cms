@@ -27,6 +27,7 @@ class Routers extends Component {
                     <Route  path="/Administration/Structure/:id" component={Administration} />
                     <Route  path="/Administration/ContentType/:id" component={Administration} />
                     <Route  path="/Administration/Categories/:id" component={Administration} />
+                    <Route  path="/Administration/view/:id" component={Administration} />
                   </Switch>
              </BrowserRouter>
              

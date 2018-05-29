@@ -4,6 +4,8 @@ import './Login.css';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 
+import setAuthToken from '../../setauthtoken/setAuthToken'
+
 
  class Login extends Component { 
 
@@ -40,11 +42,14 @@ import {Link} from 'react-router-dom';
          axios.post('http://localhost:5000/login', data)
               .then((response) => {
 
-              if(response.data.role === 'admin') {
+              if(response.data.role) {
                 
                 // set the token in localStorage
                 const token = response.data.token;
                 localStorage.setItem('token', token);
+                
+                 // set token to header
+                //setAuthToken(token);
 
                 const Logindatacopy1 = {...this.state.loginData};
                 Logindatacopy1.role = true ;
