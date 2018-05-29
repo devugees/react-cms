@@ -21,10 +21,15 @@ class Allusers extends Component {
         }
     
  componentWillMount = () => {
-      
-     axios.get('http://localhost:5000/users')
+      const tokenStr = localStorage.getItem('token');
+      console.log(tokenStr);
+     axios.get('http://localhost:5000/users',
+              {headers: 
+                  {"Authorization" : `Bearer ${tokenStr}`}
+              }
+            )
           .then((response) => {
-          	
+          	console.log(response)
          this.setState({
           users: response.data.newUser
          })
@@ -32,6 +37,7 @@ class Allusers extends Component {
           console.log("Error: ", error);
         });
     }
+
 
 handleEdit(index, user) {
    this.setState(prevState => ({
@@ -43,7 +49,13 @@ handleEdit(index, user) {
   }
 
 handleDelete(index, userId) {
-    axios.delete(`http://localhost:5000/deleteuser/${userId}`)
+  const tokenStr = localStorage.getItem('token');
+      console.log(tokenStr);
+    axios.delete(`http://localhost:5000/deleteuser/${userId}`,
+               {headers: 
+                  {"Authorization" : `Bearer ${tokenStr}`}
+                }
+             )
           .then((response) => this.componentWillMount()
            
         ).catch((error) => {
@@ -54,18 +66,25 @@ handleDelete(index, userId) {
 
   handleSubmit() {
    const newdata = {
-   	email: this.state.email,
-   	role: this.state.role
-   }
+         	email: this.state.email,
+         	role: this.state.role
+         }
+         console.log(newdata);
+   const tokenStr = localStorage.getItem('token');
+         console.log(tokenStr);
 
    const iduser = this.state.id;
-   
-   axios.post(`http://localhost:5000/updateuser/${iduser}`, newdata)
+   axios.post(`http://localhost:5000/updateuser/${iduser}`, newdata,
+                 {headers: 
+                     {"Authorization" : `Bearer ${tokenStr}`}
+                   })
              .then(response => this.componentWillMount())
              .catch(err => console.log(err));
   }
 
- onChange(e) {
+
+
+  onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
