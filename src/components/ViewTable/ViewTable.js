@@ -59,14 +59,6 @@ class ViewTable extends Component {
   };
 
   handleEdit(index, machineName) {
-    console.log(index)
-    /* Nebras: I have done so much work to reach here
-     so now we have the id of the entrie/contentType
-     so we can use it to edit in the backend 
-     and we have the machineName so we use it to edit the filed in the backend
-
-     We need to do the same for delete but we don't delete we just archive the entrie or make the filied not visable
-     */
     this.props.toggle()
     const itemId = this.itemsWithId[index].id
     console.log(itemId)
@@ -75,6 +67,29 @@ class ViewTable extends Component {
     items = {...this.state.items[index], index: index}
 
     this.props.bringItem(items, itemId)
+  }
+
+  handleDelete = index => {
+    //console.log(`index: ${index} machineName ${machineName}`)
+    console.log(this.props.keys.id)
+    this.props.deleteEntrie(index)
+    // axios.delete(`http://localhost:5000/api/entries/${this.props.keys.id}`)
+    // .then(response => {
+    //   if(response.data.message) {
+    //       console.error(response.data.message)
+    //     } else {
+    //     // this.props.editEntrie(this.editedEntrie, this.props.editingItem.item.index);
+    //     // this.setState({editingItem: this.props.item}) 
+        
+    //     }
+    //   })  
+    //   .catch(error => {
+    //     console.error('Error:', error)
+    //   })
+    // })
+   
+
+   
   }
 
   render() {
@@ -101,7 +116,7 @@ class ViewTable extends Component {
               <td>
                 <Row>
                   <button onClick={this.handleEdit.bind(this, index, object.machineName)}>Edit</button>
-                  <button>Delete</button>
+                  <button onClick={this.handleDelete.bind(this, index)}>Delete</button>
                 </Row>
               </td>
               </tr>

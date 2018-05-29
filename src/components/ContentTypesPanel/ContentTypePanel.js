@@ -70,6 +70,13 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
         entrie: newEntries
     })
    }
+
+   deleteEntrie = index => {
+    console.log(index)
+    let entries = [...this.state.entries]   
+    entries.splice(1,index)
+    this.setState({entries})
+  }
    
     editingItem = {};
 
@@ -94,7 +101,13 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
 
         <h1>Hoii </h1>
         {this.state.entries.length > 0 && 
-        <ViewTable newItems={this.state.entrie} bringItem={this.bringItem} toggle={this.toggle} items={this.state.entries} keys={this.state.entriesKeys}/>
+        <ViewTable
+        newItems={this.state.entrie}
+        bringItem={this.bringItem}
+        deleteEntrie={this.deleteEntrie}
+        toggle={this.toggle}
+        items={this.state.entries}
+        keys={this.state.entriesKeys}/>
         }
         <AddEntrie fields={this.props.fields} contentTypeId={this.props.id} addEntrie={this.addEntrie}/>
       </div>
