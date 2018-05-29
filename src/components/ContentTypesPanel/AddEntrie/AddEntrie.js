@@ -70,7 +70,7 @@ handelFormSubmit = (event) => {
               </FormGroup>
               
           */}
-           <Button type="submit" className="btn">AddNew Post</Button>
+           <Button type="submit" className="btn btn-md btn-outline-primary mr-3">AddNew Post</Button>
         </Form>
     </div>
       )
