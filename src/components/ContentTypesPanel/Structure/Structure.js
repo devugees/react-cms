@@ -53,9 +53,9 @@ class Structure extends Component {
             <AddField addFields={this.addFields} id={this.props.id}/>
             </Row>
 
-            <Row>
-            <Button type="submit" className="btn" >Save</Button>
-            <Button className="btn">Cancel</Button>
+            <Row className='float-right'>
+            <Button type="submit" className="btn mt-2 btn btn-outline-success btn-md" >Save</Button>
+            <Button className="btn ml-2 mt-2 btn btn-outline-secondary btn-md">Cancel</Button>
             </Row>
 
           </Form>
