@@ -70,27 +70,23 @@ class ViewTable extends Component {
   }
 
   handleDelete = index => {
-    //console.log(`index: ${index} machineName ${machineName}`)
-    console.log(this.props.keys.id)
     this.props.deleteEntrie(index)
-    // axios.delete(`http://localhost:5000/api/entries/${this.props.keys.id}`)
-    // .then(response => {
-    //   if(response.data.message) {
-    //       console.error(response.data.message)
-    //     } else {
-    //     // this.props.editEntrie(this.editedEntrie, this.props.editingItem.item.index);
-    //     // this.setState({editingItem: this.props.item}) 
+    axios.delete(`http://localhost:5000/api/entries/${this.props.keys.id}`)
+    .then(response => {
+      if(response.data.message) {
+          console.error(response.data.message)
+        } else {
+        // this.props.editEntrie(this.editedEntrie, this.props.editingItem.item.index);
+         this.setState({entries: this.props.item})
         
-    //     }
-    //   })  
-    //   .catch(error => {
-    //     console.error('Error:', error)
-    //   })
-    // })
-   
-
-   
-  }
+        }
+      })  
+      .catch(error => {
+        console.error('Error:', error)
+      })
+      
+         console.log(this.state.entries)
+    }
 
   render() {
     return (
