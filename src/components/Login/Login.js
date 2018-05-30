@@ -49,7 +49,7 @@ import setAuthToken from '../../setauthtoken/setAuthToken'
                 // set the token in localStorage
                 const token = response.data.token;
                 localStorage.setItem('token', token);
-                
+
                  // set token to header
                 //setAuthToken(token);
 
@@ -60,7 +60,7 @@ import setAuthToken from '../../setauthtoken/setAuthToken'
                 this.setState({loginData: Logindatacopy1
                 });
                 this.props.history.push("/administration");
-                
+
               }
             }).catch(function(error) {
               console.log("Error: ", error);

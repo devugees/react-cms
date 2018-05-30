@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './HeaderComponent.css';
+import {Link} from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -11,7 +12,8 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem
+   } from 'reactstrap';
 
   class TopHeader extends Component {
 
@@ -20,14 +22,20 @@ import {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      logout: ''
     };
+    //localStorage.getItme("token")
   }
 
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
+  }
+
+   logOut() {
+    localStorage.removeItem("token");
   }
 
   render() {
@@ -81,7 +89,7 @@ import {
                     <NavLink className='gfgfgfg' href="#"> My Account </NavLink>
                   </DropdownItem>
                   <DropdownItem>
-                    <NavLink className='gf58585g' href="#"> Sign out </NavLink>
+                    <NavLink className='gf58585g' onClick={this.logOut}> <Link to="/login">Sign out </Link></NavLink>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
