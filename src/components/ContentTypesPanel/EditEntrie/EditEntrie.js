@@ -68,8 +68,8 @@ class EditEntrie extends Component {
                 
             */}
             <div className="btns">
-              <Button type="submit" color="primary" className="btn" onClick={this.props.toggle}>Save Changes</Button>
-              <Button className="btn" onClick={this.props.toggle}>Cancel</Button>
+              <Button type="submit" color="primary" className="btn mt-2 btn btn-outline-success btn-md" onClick={this.props.toggle}>Save Changes</Button>
+              <Button className="btn ml-2 mt-2 btn btn-outline-secondary btn-md" onClick={this.props.toggle}>Cancel</Button>
             </div>
             </Form>
         </div>

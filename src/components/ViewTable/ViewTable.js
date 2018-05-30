@@ -115,15 +115,15 @@ class ViewTable extends Component {
                )}
               <td>
                 <Row>
-                  <button onClick={this.handleEdit.bind(this, index, object.machineName)}>Edit</button>
-                  <button onClick={this.handleDelete.bind(this, index)}>Delete</button>
+                  <button className="mr-2 btn-outline-info btn-sm" onClick={this.handleEdit.bind(this, index, object.machineName)}>Edit</button>
+                  <button className='btn btn-outline-danger btn-sm' onClick={this.handleDelete.bind(this, index)}>Delete</button>
                 </Row>
               </td>
               </tr>
               )}
             )}
           </tbody>
-        </Table>
+        </Table> 
       </div>
     );
   }
