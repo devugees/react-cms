@@ -3,6 +3,8 @@ import './ViewTable.css';
 import { Table, Row } from "reactstrap";
 import axios from 'axios';
 
+let itemsWithId;
+
 class ViewTable extends Component {
 
   constructor(props) {
@@ -38,29 +40,16 @@ class ViewTable extends Component {
       items = props.items
       }
     }
-
     this.state = {
       items,
       keys,
       fields: []
     };
   }
-
-   itemsWithId;
-   
-   componentWillReceiveProps = (nextProps, prevState) => {
-    this.itemsWithId = JSON.parse(JSON.stringify(nextProps.items));
-    if(nextProps.newItems) {
-      console.log(nextProps.newItems)
-      nextProps.newItems.map((item)=> {delete item.id})
-      this.setState({items: nextProps.newItems})
-    }
-    
-  };
-
+  
   handleEdit = (index, machineName) => {
     this.props.toggle()
-    const itemId = this.itemsWithId[index].id
+    const itemId = itemsWithId[index].id
     console.log(itemId)
     console.log(this.state.items)
     let items = this.state.items[index]
@@ -77,15 +66,22 @@ class ViewTable extends Component {
         } else {
         // this.props.editEntrie(this.editedEntrie, this.props.editingItem.item.index);
          this.setState({entries: this.props.item})
-        
         }
       })  
       .catch(error => {
         console.error('Error:', error)
       })
-      
-         console.log(this.state.entries)
     }
+
+  static getDerivedStateFromProps(props, state) {
+    itemsWithId = JSON.parse(JSON.stringify(props.items));
+    if(props.newItems) {
+      console.log(props.newItems)
+      props.newItems.map((item)=> {delete item.id})
+      return {items: props.newItems}
+    }
+    return null;  
+  };
 
   render() {
     return (
