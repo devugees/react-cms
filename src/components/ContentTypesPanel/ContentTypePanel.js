@@ -78,8 +78,8 @@ import axios from 'axios';
             </Row>
 
             <Row>
-            <Button type="submit" className="btn" >Save</Button>
-            <Button className="btn">Cancel</Button>
+            <Button type="submit" className="btn mt-2 btn btn-outline-success btn-md" >Save</Button>
+            <Button className="btn ml-2 mt-2 btn btn-outline-secondary btn-md" >Cancel</Button>
             </Row>
 
           </Form>
