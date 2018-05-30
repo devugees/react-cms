@@ -13,7 +13,7 @@ handelChange = e => {
     console.log(this.newEntrie);
 }
 
-handelFormSubmit = event => {
+handelFormSubmit   = event => {
     event.preventDefault();
     const newEntrieObj = {
         contentTypeId: this.props.contentTypeId,
@@ -44,6 +44,30 @@ render() {
 
 return (
     <div className='boxs' >
+        <Form style={styleForm} onSubmit={this.handelFormSubmit}>
+        {this.props.fields.map( (object,index) => {
+        return (
+         <div key={index}>
+           <FormGroup style={styleFormGroups} className='FormGroup'>
+             <Label for="exampleEmail">{object.fieldLabel}</Label>
+             <input 
+              name={object.machineName}
+              type={object.type} 
+              required={object.required}
+              className={object.cssClasses}
+              onChange={this.handelChange} />
+           </FormGroup>
+        </div>
+            )
+          })
+        }
+            {/*
+              <FormGroup>
+              <Label for="exampleText">Text Area</Label>
+              <Input type="textarea" name="text" id="exampleText" />
+              </FormGroup>
+              
+          */}
            <Button type="submit" className="btn btn-md btn-outline-primary mr-3">AddNew Post</Button>
         </Form>
     </div>
