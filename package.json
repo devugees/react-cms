@@ -6,12 +6,17 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.0.0",
+    "codemirror": "^5.37.0",
+    "concurrently": "^3.5.1",
     "cors": "^2.8.4",
     "express-fileupload": "^0.4.0",
     "gh-pages": "^1.1.0",
+    "jwt-decode": "^2.2.0",
     "material-ui": "^0.20.0",
     "react": "^16.3.1",
+    "react-codemirror2": "^5.0.0",
     "react-dom": "^16.3.1",
+    "react-fontawesome": "^1.6.1",
     "react-icons": "^2.2.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
@@ -21,6 +26,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "server": "npm run start --prefix backend",
+    "dev": "concurrently \"npm run start\" \"npm run server\"",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "react-scripts build&&gh-pages -d build"
