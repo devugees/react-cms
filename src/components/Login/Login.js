@@ -5,7 +5,7 @@ import axios from 'axios';
 import {Link, browserHistory} from 'react-router-dom';
 import PrivatRoute from '../PrivatRoute/PrivatRoute';
 import setAuthToken from '../../setauthtoken/setAuthToken';
-import jwtDecode from 'jwt-decode';
+
 
 
  class Login extends Component { 
@@ -62,14 +62,8 @@ import jwtDecode from 'jwt-decode';
 
                 this.setState({loginData: Logindatacopy1
                 });
-                 const decoded = jwtDecode(token);
-                  this.props.tokenDecoded(decoded);
+         
                 this.props.handleLoginSuccess(Logindatacopy1);
-
-                
-
-                
-                
               } 
             }).catch(function(error) {
               console.log("Error: ", error);

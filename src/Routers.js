@@ -8,6 +8,7 @@ import AddEntrie from './components/ContentTypesPanel/AddEntrie/AddEntrie';
 import Structure from './components/ContentTypesPanel/Structure/Structure';
 import LandingPage from './components/LandingPage/LandingPage';
 import PrivatRoute from './components/PrivatRoute/PrivatRoute';
+import jwtDecode from 'jwt-decode';
 
 
 class Routers extends Component {
@@ -20,12 +21,19 @@ class Routers extends Component {
         }
 
    componentWillMount = () => {
-      const tokenStr = localStorage.getItem('token');
+
+    if(localStorage.getItem('token')) {
+      const tokenStr = jwtDecode(localStorage.getItem('token'));
+      console.log(tokenStr)
       if(tokenStr) {
          this.setState({
           authenticated: true
          })
+       } else {
+          this.setState({ authenticated: false });
        }
+    } 
+    
     }
 /*
  componentWillMount = () => {
@@ -51,7 +59,6 @@ class Routers extends Component {
    const login = ()=> ( 
       <Login 
         history={this.props.history}
-        
         handleLoginSuccess={this.handleLoginSucess.bind(this)}
         
         />)
