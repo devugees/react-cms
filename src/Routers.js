@@ -20,20 +20,18 @@ class Routers extends Component {
          
         }
 
-   componentWillMount = () => {
-
+    static getDerivedStateFromProps(nextProps, prevState) {
     if(localStorage.getItem('token')) {
       const tokenStr = jwtDecode(localStorage.getItem('token'));
       console.log(tokenStr)
       if(tokenStr) {
-         this.setState({
-          authenticated: true
-         })
-       } else {
-          this.setState({ authenticated: false });
+          return { authenticated: true };
+         
+         } else {
+           return { authenticated: false };
        }
-    } 
-    
+     } 
+     return null;
     }
 /*
  componentWillMount = () => {
