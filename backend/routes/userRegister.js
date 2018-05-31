@@ -8,7 +8,7 @@ module.exports = (app) => {
     app.post('/register', (req, res) => {
 
         if (!req.body.email && !req.body.password) {
-            res.status(400).send({ message: "admin can not be empty" });
+            res.status(400).send({ message: "email can not be empty" });
         }
 
         bcrypt.genSalt(10, function(err, salt) {
@@ -23,7 +23,7 @@ module.exports = (app) => {
                     "email": user.email,
                     "password": user.password,
                     "token": user.token,
-                    "role": "admin"
+                    "role": "user"
                 });
                 userInfo.save((err) => {
                     if (err) {

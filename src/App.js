@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 import Routers from './Routers';
 import FileUploader from './components/FileUploader/FileUploader.js';
@@ -9,10 +10,9 @@ class App extends Component {
 
 render() {
 	return (
-		<div>
-		<style></style>
-			<Routers/>
-		</div>
+			<Router>
+			  <Routers/>
+			</Router>
 		);
 	}
 }
