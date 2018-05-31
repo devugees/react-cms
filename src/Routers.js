@@ -69,6 +69,10 @@ class Routers extends Component {
                 <div className="sub">
 
                   <Switch>
+                     <Route
+                     exact path="/" component={LandingPage} />
+                 </Switch>
+                  <Switch>
                      <PrivatRoute
                       authenticated={this.state.authenticated}
                       exact path="/Administration/" component={Administration} />
