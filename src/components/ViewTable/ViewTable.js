@@ -49,13 +49,19 @@ class ViewTable extends Component {
   }
   
   handleEdit = (index, machineName) => {
-    this.props.toggle()
+    console.log("index",index)
+    
+    if(index) {
+    //this.props.toggle();
+    this.props.toggle2();
+
     const itemId = itemsWithId[index].id
     const item = this.state.items[index]
-    console.log(item)
-
-    console.log(itemId)
     this.props.bringEntrie(itemId,item)
+    } else if(machineName) {
+
+    }
+   
   }
 
   handleDelete = index => {
@@ -82,6 +88,7 @@ class ViewTable extends Component {
   };
 
   render() {
+
     return (
       <div className="ViewTable">
         <Table striped>

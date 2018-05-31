@@ -66,64 +66,65 @@ class Routers extends Component {
    console.log(this.state.authenticated);
     return (
              <div>
+             <Switch>
                 <Route  exact path="/login" component={login} />
                 <Route  exact path="/registration" component={Registration} />
                 <Route  exact path="/" component={LandingPage} />
-                <div className="sub">
+                
 
-                  <Switch>
+                 
                      <Route
                      exact path="/" component={LandingPage} />
-                 </Switch>
-                  <Switch>
+                 
+                 
                      <PrivatRoute
                       authenticated={this.state.authenticated}
                       exact path="/Administration/" component={Administration} />
-                 </Switch>
+                 
 
-                    <Switch>
+                   
                        <PrivatRoute  
                         authenticated={this.state.authenticated}
                         path="/AddEntrie" component={AddEntrie} />
-                    </Switch>
+                    
 
-                    <Switch>
+                   
                        <PrivatRoute  
                         authenticated={this.state.authenticated}
                         exact path="/CustomeCode/" component={CustomeCode} />
-                    </Switch>
+                    
 
-                    <Switch>
+                   
                     <PrivatRoute 
                         authenticated={this.state.authenticated}
                      path="/Administration/main/:activeLink" component={Administration} />
-                    </Switch>
+                    
 
-                    <Switch>
+                   
                         <PrivatRoute  
                         authenticated={this.state.authenticated}
                         path="/Administration/Structure/:id" component={Administration} />
-                    </Switch>
+                    
 
-                    <Switch>
+                   
                        <PrivatRoute 
                         authenticated={this.state.authenticated}
                         path="/Administration/ContentType/:id" component={Administration} />
-                    </Switch>
+                    
 
-                   <Switch>
+                  
                       <PrivatRoute 
                         authenticated={this.state.authenticated}
                         path="/Administration/Categories/:id" component={Administration} />
-                   </Switch>
-                    <Switch>
+                   
+                   
                       <PrivatRoute 
                         authenticated={this.state.authenticated}
                        path="/Administration/view/:id" component={Administration} />
                    </Switch>
 
                   </div>
-                </div>
+                
  
              
              );

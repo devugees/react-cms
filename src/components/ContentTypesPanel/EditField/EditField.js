@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './EditEntrie.css';
+//import './EditEntrie.css';
 import axios from 'axios';
 import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Container, Row, Col } from 'reactstrap';
 
-class EditEntrie extends Component { 
+class EditField extends Component { 
 
   editedEntrie = {}
 
@@ -45,13 +45,19 @@ class EditEntrie extends Component {
                   <div key={index}>
                    <FormGroup style={styleFormGroups} className='FormGroup'>
                    <Label for="exampleEmail">{object.fieldLabel}</Label>
-                   <input 
+                   <input
+                    fieldLabel={object.fieldLabel} 
                     name={object.machineName}
                     type={object.type} 
+                    typeOption={object.typeOption}
+                    unique={object.unique} 
+                    visible={object.visible} 
                     required={object.required}
+                    cssClasses={object.cssClasses}
+                    customCss={object.customCss}
                     className={object.cssClasses}
-                    onChange={this.handelChange} 
-                    defaultValue={this.props.itemWillBeEdited[object.machineName]}
+                    onChange={this.handelChange}
+                    //defaultValue={this.props.itemWillBeEdited[object.machineName]}
                     />
                     </FormGroup>
                   </div>
@@ -68,4 +74,4 @@ class EditEntrie extends Component {
         }
     };
 
-export default EditEntrie;
+export default EditField;

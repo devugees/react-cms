@@ -1,22 +1,37 @@
 import React, { Component } from 'react';
-import { Button,Container, Row, Form } from 'reactstrap';
-
+import { Button,Container, Row, Form, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import TopHeader from '../../Administration/HeaderComponent/HeaderComponent';
 import DashBoard from '../../Administration/dashBoard/dashBoard';
 import AddField from '../../SiteStructure/AddField/AddField';
 import ViewTable from '../../ViewTable/ViewTable';
+import EditField from '../EditField/EditField';
 
 
 class Structure extends Component {
 
   constructor(props) {
-    console.log('props', props)
-    super() 
+    super();
     this.state = {
     fields: [props.fields],
-    fieldsKeys:{FieldLabel:"",MachineName:"",Type:"",TypeOption:"",Unique:"",Visible:"",Required:"",CssClasses:"",CustomCss:""}
+    fieldsKeys:{ 
+      FieldLabel:"",
+      MachineName:"",Type:"",
+      TypeOption:"",Unique:"",
+      Visible:"",Required:"",
+      CssClasses:"",
+      CustomCss:"",
+     },
+    modal: false
     }  
+    this.toggle2 = this.toggle2.bind(this);
   }
+
+  toggle2() {
+    console.log("it is click")
+      this.setState({
+        modal: !this.state.modal
+     });
+    }
 
   componentWillMount = () => {
     this.setState({
@@ -35,6 +50,7 @@ class Structure extends Component {
       fields.push(field);
       this.setState({fields:fields})
     }
+
   handelSubmit = () => {
 
   }
@@ -43,10 +59,18 @@ class Structure extends Component {
    const colstyle ={padding: '0',margin:'0 0 0 0', height: 'auto'};
 	    return (
 	      <div>
+        <Modal isOpen={this.state.modal} toggle2={this.toggle2} className={this.props.className}>
+          <ModalHeader toggle2={this.toggle2}>Modal title</ModalHeader>
+          <ModalBody>
+            <EditField itemWillBeEdited={this.itemWillBeEdited} bringItem={this.bringItem} editingItem={this.editingItem} fields={this.props.fields} />
+          </ModalBody>
+        </Modal>
+
+
         <Container className='ContentSetting'>
           <Form onSubmit={this.handelSubmit}>
             <Row>
-            <ViewTable items={this.state.fields} keys={this.state.fieldsKeys}/>
+            <ViewTable toggle2={this.toggle2} items={this.state.fields} keys={this.state.fieldsKeys}/>
             </Row>
 
             <Row>
@@ -66,3 +90,13 @@ class Structure extends Component {
 }
 
 export default Structure;
+
+/*
+
+<EditField toggle2={this.toggle}
+            itemWillBeEdited={this.itemWillBeEdited}
+            bringItem={this.bringItem}
+            editingItem={this.editingItem}
+            fields={this.props.fields} /> 
+
+            */

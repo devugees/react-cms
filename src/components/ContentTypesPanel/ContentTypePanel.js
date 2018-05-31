@@ -95,13 +95,12 @@ itemWillBeEdited = {};
      }
  
   render() {
- 
     return (
       <div className="ContentTypePanel">
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
           <ModalBody>
-            <EditEntrie toggle={this.toggle} itemWillBeEdited ={this.itemWillBeEdited} bringItem={this.bringItem} editingItem={this.editingItem} fields={this.props.fields} />
+            <EditEntrie toggle={this.toggle} itemWillBeEdited={this.itemWillBeEdited} bringItem={this.bringItem} editingItem={this.editingItem} fields={this.props.fields} />
           </ModalBody>
         </Modal>
 
