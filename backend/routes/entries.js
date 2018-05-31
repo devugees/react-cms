@@ -42,25 +42,37 @@ module.exports = (app) => {
 
 
     //Update > EntryByid
-    app.put('/api/entries/:entrieId', (req, res) => {
-        console.log(req.params.entrieId)
+app.put('/api/entries/:entrieId', (req, res) => {
+        console.log(req.params.entrieId);
+        /* nebras soultion: console.log(req.params.entrieId)
+        let content ={};
+        let objectKeys = Object.keys(req.body)
+        for (attr in req.body) {
+            content[attr] = req.body[attr]
+        }
+        console.log("contentcontent ",content)
+        Entries.findById(req.params.entrieId, (err, entre) => {
+            if (!entre) {
+                console.log(err)
+                return res.send({ message: 'No Entry found' })
+            }
+            entre.content = content */
 
         Entries.findById(req.params.entrieId, (err, entre) => {
             if (!entre) {
                 console.log(err)
                 return res.send({ message: 'No Entry found' })
-
             }
+            const content = {};
             for (attr in req.body) {
-                entre[attr] = req.body[attr];
+                content[attr] = req.body[attr];
             }
+            entre.content = content;
             entre.save((err, date) => {
                 if (err) {
-                    console.log(err)
                     res.send(err);
                 }
-                console.log(entre);
-                res.send(entre)
+                res.send(date)
             })
 
         });

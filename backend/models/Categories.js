@@ -8,5 +8,5 @@ const Categories = new Schema({
   discreption: String
 });
 
-const Categories = mongoose.model('categories', Categories);
-module.exports = Categories;
+const Categorie = mongoose.model('allcategories', Categories);
+module.exports = Categorie;
