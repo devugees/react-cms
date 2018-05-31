@@ -44,6 +44,8 @@ module.exports = (app) => {
     //Update > EntryByid
     app.put('/api/entries/:entrieId', (req, res) => {
         console.log(req.params.entrieId)
+        console.log("req.bodyreq.bodyreq.body",req.body)
+
 
         Entries.findById(req.params.entrieId, (err, entre) => {
             if (!entre) {
@@ -52,7 +54,8 @@ module.exports = (app) => {
 
             }
             for (attr in req.body) {
-                entre[attr] = req.body[attr];
+                entre.content[attr] = req.body[attr];
+                console.log(' entre.content',  entre.content)
             }
             entre.save((err, date) => {
                 if (err) {
@@ -60,7 +63,7 @@ module.exports = (app) => {
                     res.send(err);
                 }
                 console.log(entre);
-                res.send(entre)
+                res.send(date)
             })
 
         });
