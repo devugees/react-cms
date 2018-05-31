@@ -1,5 +1,8 @@
 const Categories = require('../models/Categories');
+const  jwt = require('jsonwebtoken');
+const  VerifyToken = require('../config/VerifyToken');
 
+const serversignature = 'mysignature';
 module.exports = (app) => {
 	// get all Categories
  app.get('/api/allcategories', (req, res) => {
@@ -14,12 +17,17 @@ module.exports = (app) => {
     });
 
   // add new Categories
- app.post('/api/createcategories', (req, res) => {
+ app.post('/api/createcategories/:contentTypeId', VerifyToken,(req, res) => {
+
+    jwt.verify(req.token, serversignature, (err1, authData) => {
+        if(err1) {
+          throw err1;
+        }
         if (!req.body.name && !req.body.discreption) {
             res.status(400).send({ message: "Categories can not be empty" });
               }
                 newCategories = new Categories({
-                	contentTypeId: req.body.contentTypeId,
+                	contentTypeId: req.params.contentTypeId,
                     "name": req.body.name,
                     "discreption": req.body.discreption
                     
@@ -31,12 +39,17 @@ module.exports = (app) => {
                     return res.send(categories)
                 });
             });
+            });
 
 
 
     //Update > categories
-app.put('/api/updatecategories/:categoriesId', (req, res) => {
+app.post('/api/updatecategories/:categoriesId', VerifyToken,(req, res) => {
 
+   jwt.verify(req.token, serversignature, (err1, authData) => {
+        if(err1) {
+          throw err1;
+        }
         console.log(req.params.categoriesId);
         Categories.findById(req.params.categoriesId, (err, categorie) => {
             if (!categorie) {
@@ -55,13 +68,17 @@ app.put('/api/updatecategories/:categoriesId', (req, res) => {
             })
 
         });
+        });
     });
 
 
 // delete categoris
-app.delete('/api/deletecategories/:categoriesId', (req, res) => {
-        console.log(req.params.categoriesId)
+app.delete('/api/deletecategories/:categoriesId', VerifyToken,(req, res) => {
 
+  jwt.verify(req.token, serversignature, (err1, authData) => {
+        if(err1) {
+          throw err1;
+        }
         Categories.remove({_id: req.params.categoriesId}, (err) => {
             if (err) {
                 console.log(err)
@@ -69,6 +86,7 @@ app.delete('/api/deletecategories/:categoriesId', (req, res) => {
             }
                   res.send({message: "Categories deleted successfully!"})
         });
+      });  
     });
 
 }
