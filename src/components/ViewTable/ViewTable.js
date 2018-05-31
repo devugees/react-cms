@@ -3,12 +3,13 @@ import './ViewTable.css';
 import { Table, Row } from "reactstrap";
 import axios from 'axios';
 
-let itemsWithId;
+let itemsWithId = [];
 
 class ViewTable extends Component {
 
   constructor(props) {
     super(props);
+    itemsWithId = JSON.parse(JSON.stringify(props.items));
     let keysObjWithOutId;
     let keysObj ={};
     let keys = [];
@@ -46,41 +47,37 @@ class ViewTable extends Component {
       fields: []
     };
   }
+
+
   
   handleEdit = (index, machineName) => {
     this.props.toggle()
     const itemId = itemsWithId[index].id
     console.log(itemId)
-    console.log(this.state.items)
-    let items = this.state.items[index]
-    items = {...this.state.items[index], index: index}
-    this.props.bringItem(items, itemId)
+    this.props.bringEntrieId(itemId)
   }
 
   handleDelete = index => {
-    this.props.deleteEntrie(index)
-    axios.delete(`http://localhost:5000/api/entries/${this.props.keys.id}`)
+    let items = [...this.state.items]
+    console.log("itemsWithId[index].id",itemsWithId[index].id)
+    axios.delete(`http://localhost:5000/api/entries/${itemsWithId[index].id}`)
     .then(response => {
       if(response.data.message) {
           console.error(response.data.message)
-        } else {
-        // this.props.editEntrie(this.editedEntrie, this.props.editingItem.item.index);
-         this.setState({entries: this.props.item})
         }
       })  
       .catch(error => {
         console.error('Error:', error)
       })
+      this.props.deleteEntrie(index)
     }
 
   static getDerivedStateFromProps(props, state) {
     itemsWithId = JSON.parse(JSON.stringify(props.items));
-    if(props.newItems) {
-      console.log(props.newItems)
-      props.newItems.map((item)=> {delete item.id})
-      return {items: props.newItems}
+     props.items.map((item)=> {delete item.id})
+    return {
+      items:props.items
     }
-    return null;  
   };
 
   render() {

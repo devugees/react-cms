@@ -14,19 +14,16 @@ class EditEntrie extends Component {
 
   handelFormSubmit = event => {
       event.preventDefault();
-      axios.put(`http://localhost:5000/api/entries/${this.props.editingItem.itemId}`)
+      this.props.bringItem(this.editedEntrie);
+      axios.put(`http://localhost:5000/api/entries/${this.props.editingItem.id}`, this.props.editingItem.item)
       .then(response => {
         if(response.data.message) {
           console.error(response.data.message)
-        } else {
-        this.props.editEntrie(this.editedEntrie, this.props.editingItem.item.index);
-        this.setState({editingItem: this.props.item}) 
-        }
+        } 
       })  
       .catch(error => {
         console.error('Error:', error)
       })
-      
     }
     
   render() {

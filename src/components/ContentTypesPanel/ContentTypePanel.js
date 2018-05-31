@@ -74,20 +74,25 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
    deleteEntrie = index => {
     console.log(index)
     let entries = [...this.state.entries]   
-    entries.splice(1,index)
+    entries.splice(index,1)
     this.setState({entries})
   }
-   
-    editingItem = {};
 
-    bringItem = (item, itemId) => {
+  bringEntrieId = id => {
+    this.editingItem.id = id
+  }
+   
+    editingItem = {
+      item: {},
+      id: ''
+    };
+
+    bringItem = (item) => {
       this.editingItem.item = item; 
-      this.editingItem.itemId = itemId; 
-      console.log(this.editingItem)
      }
  
   render() {    
-   
+ 
     console.log(this.state.entries)
  
     return (
@@ -95,15 +100,14 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
           <ModalBody>
-            <EditEntrie toggle={this.toggle} editEntrie={this.editEntrie} editingItem={this.editingItem} fields={this.props.fields} contentTypeId={this.props.id} />
+            <EditEntrie toggle={this.toggle} bringItem={this.bringItem} editingItem={this.editingItem} fields={this.props.fields} />
           </ModalBody>
         </Modal>
 
         <h1>Hoii </h1>
         {this.state.entries.length > 0 && 
         <ViewTable
-        newItems={this.state.entrie}
-        bringItem={this.bringItem}
+        bringEntrieId={this.bringEntrieId}
         deleteEntrie={this.deleteEntrie}
         toggle={this.toggle}
         items={this.state.entries}
