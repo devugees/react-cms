@@ -4,8 +4,22 @@ import './AddEntrie.css';
 import axios from 'axios';
 
 class AddEntrie extends Component { 
-
+      state = {
+        categories: []
+      }
 newEntrie = {}
+
+componentWillMount() {
+   axios.get('http://localhost:5000/api/allcategories')
+          .then((response) => {
+               console.log(response)
+                      return {
+                  categories:response
+                }
+            }).catch((error) => {
+              console.log("Error: ", error);
+            });
+  };
 
 handelChange = e => {
     let inputName = e.target.name;
@@ -30,6 +44,15 @@ handelFormSubmit   = event => {
       });
       this.props.addEntrie(newEntrieObj.content);
 }
+
+
+
+
+
+ handlSubmit() {
+  console.log('cliked');
+  
+        }
 
 render() {
     const styleFormGroups = {
@@ -61,13 +84,21 @@ return (
             )
           })
         }
-            {/*
+            
               <FormGroup>
-              <Label for="exampleText">Text Area</Label>
-              <Input type="textarea" name="text" id="exampleText" />
+               <Label for="exampleSelect">Type</Label>
+                      <Input  
+                      name="type" 
+                      type="select" 
+                      id="exampleSelect" 
+                      innerRef={this.typeRef}
+                      >
+                          <option>{this.state.categories.name}</option>
+                         
+                      </Input>
               </FormGroup>
               
-          */}
+          
            <Button type="submit" className="btn btn-md btn-outline-primary mr-3">AddNew Post</Button>
         </Form>
     </div>
