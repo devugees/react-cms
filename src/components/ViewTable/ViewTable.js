@@ -1,98 +1,118 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import './ViewTable.css';
 import { Table, Row } from "reactstrap";
-import "./ViewTable.css";
+import axios from 'axios';
+
+let itemsWithId = [];
 
 class ViewTable extends Component {
-  state = {};
 
-  itemsWithId;
-  componentWillReceiveProps = (nextProps, prevState) => {
-    this.itemsWithId = JSON.parse(JSON.stringify(nextProps.items));
-  };
-
-  handleEdit(index, machineName) {
-    /* Nebras: I have done so much work to reach here
-     so now we have the id of the entrie/contentType
-     so we can use it to edit in the backend 
-     and we have the machineName so we use it to edit the filed in the backend
-
-     We need to do the same for delete but we don't delete we just archive the entrie or make the filied not visable
-     */
-  
-    console.log(this.itemsWithId[index].id);
-  }
-
-  render() {
-    let keysObj = {};
+  constructor(props) {
+    super(props);
+    itemsWithId = JSON.parse(JSON.stringify(props.items));
+    let keysObjWithOutId;
+    let keysObj ={};
     let keys = [];
     let items = [];
-
-    if (this.props.keys) {
-      if (this.props.keys.id) {
-        keysObj = { ...this.props.keys };
-        delete keysObj.id;
+    let newItems = [];
+    console.log(props)
+    if(props.keys) {
+      if(props.keys.id){
+        keysObj = {...props.keys}
+        delete keysObj.id
       } else {
-        keysObj = this.props.keys;
+      keysObj = props.keys;
       }
     }
 
     keys = Object.keys(keysObj);
 
-    if (this.props.items[0]) {
-      if (this.props.items[0].id) {
-        items = this.props.items;
-        items.map(item => {
-          delete item.id;
-        });
-      } else {
-        items = this.props.items;
+    if(props.items[0]){
+      if(props.items[0].id){
+        items = props.items
+        items.map((item)=> {
+          delete item.id
+        })
+        this.setState({
+          items,
+          keys
+        })
+    } else {
+      items = props.items
       }
     }
+    this.state = {
+      items,
+      keys,
+      fields: []
+    };
+  }
+  
+  handleEdit = (index, machineName) => {
+    this.props.toggle()
+    const itemId = itemsWithId[index].id
+    const item = this.state.items[index]
+    console.log(item)
 
-    console.log("items", items);
+    console.log(itemId)
+    this.props.bringEntrie(itemId,item)
+  }
 
+  handleDelete = index => {
+    let items = [...this.state.items]
+    console.log("itemsWithId[index].id",itemsWithId[index].id)
+    axios.delete(`http://localhost:5000/api/entries/${itemsWithId[index].id}`)
+    .then(response => {
+      if(response.data.message) {
+          console.error(response.data.message)
+        }
+      })  
+      .catch(error => {
+        console.error('Error:', error)
+      })
+      this.props.deleteEntrie(index)
+    }
+
+  static getDerivedStateFromProps(props, state) {
+    itemsWithId = JSON.parse(JSON.stringify(props.items));
+     props.items.map((item)=> {delete item.id})
+    return {
+      items:props.items
+    }
+  };
+
+  render() {
     return (
       <div className="ViewTable">
         <Table striped>
           <thead>
             <tr>
-              {keys.map((object, index) => {
-                return <th key={index}>{object}</th>;
+              {this.state.keys.map((object, index) => {
+                return <th key={index}>{object}</th>
               })}
               <th>Controllers</th>
             </tr>
           </thead>
           <tbody>
-            {items.map((object, index) => {
-              return (
-                <tr key={index}>
-                  {Object.values(object).map((string, index2) => {
-                    return <td key={index2}>{string.toString()}</td>;
-                  })}
-                  <td>
-                    <Row>
-                      <button className="mr-2 btn-outline-info btn-sm"
-                        onClick={this.handleEdit.bind(
-                          this,
-                          index,
-                          object.machineName
-                        )}
-                      >
-                        Edit
-                      </button>
-                      <button className='btn btn-outline-danger btn-sm'>Delete</button>
-                    </Row>
-                  </td>
-                </tr>
-              );
-              {
-                /* <tr>
-           
-            </tr>*/
-              }
-            })}
+          {this.state.items.map((object, index) => {
+            return (
+              <tr key={index}>
+              {Object.values(object).map((string, index2) => {
+               return (
+                <td key={index2}>{string.toString()}</td>
+                )}
+               )}
+              <td>
+                <Row>
+                  <button className="mr-2 btn-outline-info btn-sm" onClick={this.handleEdit.bind(this, index, object.machineName)}>Edit</button>
+                  <button className='btn btn-outline-danger btn-sm' onClick={this.handleDelete.bind(this, index)}>Delete</button>
+                </Row>
+              </td>
+              </tr>
+              )}
+            )}
           </tbody>
-        </Table>
+        </Table> 
       </div>
     );
   }
