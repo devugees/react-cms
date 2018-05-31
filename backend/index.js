@@ -38,6 +38,7 @@ require('./routes/newContentType')(app);
 require('./routes/contentTypes')(app);
 require('./routes/entries')(app);
 require('./routes/Users')(app);
+require('./routes/Categories')(app);
 
 
 
