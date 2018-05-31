@@ -58,6 +58,7 @@ app.put('/api/entries/:entrieId', (req, res) => {
             }
             entre.content = content */
 
+
         Entries.findById(req.params.entrieId, (err, entre) => {
             if (!entre) {
                 console.log(err)
