@@ -47,14 +47,15 @@ class ViewTable extends Component {
       fields: []
     };
   }
-
-
   
   handleEdit = (index, machineName) => {
     this.props.toggle()
     const itemId = itemsWithId[index].id
+    const item = this.state.items[index]
+    console.log(item)
+
     console.log(itemId)
-    this.props.bringEntrieId(itemId)
+    this.props.bringEntrie(itemId,item)
   }
 
   handleDelete = index => {

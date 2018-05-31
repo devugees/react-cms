@@ -51,27 +51,22 @@ class EditEntrie extends Component {
                     required={object.required}
                     className={object.cssClasses}
                     onChange={this.handelChange}
-                    placeholder={this.props.editingItem.item[object.machineName]} />
+                    //placeholder={this.props.editingItem.item[object.machineName]} 
+                    defaultValue={this.props.itemWillBeEdited[object.machineName]}
+                    />
                     </FormGroup>
                   </div>
-                  )
-                })
-              }
-              {/*
-                <FormGroup>
-                <Label for="exampleText">Text Area</Label>
-                <Input type="textarea" name="text" id="exampleText" />
-                </FormGroup>
-                
-            */}
-            <div className="btns">
-              <Button type="submit" color="primary" className="btn mt-2 btn btn-outline-success btn-md" onClick={this.props.toggle}>Save Changes</Button>
-              <Button className="btn ml-2 mt-2 btn btn-outline-secondary btn-md" onClick={this.props.toggle}>Cancel</Button>
-            </div>
-            </Form>
+                    )
+                  })
+                }
+                  <div className="btns">
+                    <Button type="submit" color="primary" className="btn mt-2 btn btn-outline-success btn-md" onClick={this.props.toggle}>Save Changes</Button>
+                    <Button className="btn ml-2 mt-2 btn btn-outline-secondary btn-md" onClick={this.props.toggle}>Cancel</Button>
+                  </div>
+          </Form>
         </div>
-        )
-      }
-  };
+          )
+        }
+    };
 
 export default EditEntrie;

@@ -77,9 +77,12 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
     entries.splice(index,1)
     this.setState({entries})
   }
+itemWillBeEdited = {};
 
-  bringEntrieId = id => {
+  bringEntrie = (id,item) => {
     this.editingItem.id = id
+    console.log(item)
+    this.itemWillBeEdited = item
   }
    
     editingItem = {
@@ -91,23 +94,21 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
       this.editingItem.item = item; 
      }
  
-  render() {    
- 
-    console.log(this.state.entries)
+  render() {
  
     return (
       <div className="ContentTypePanel">
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
           <ModalBody>
-            <EditEntrie toggle={this.toggle} bringItem={this.bringItem} editingItem={this.editingItem} fields={this.props.fields} />
+            <EditEntrie toggle={this.toggle} itemWillBeEdited ={this.itemWillBeEdited} bringItem={this.bringItem} editingItem={this.editingItem} fields={this.props.fields} />
           </ModalBody>
         </Modal>
 
         <h1>Hoii </h1>
         {this.state.entries.length > 0 && 
         <ViewTable
-        bringEntrieId={this.bringEntrieId}
+        bringEntrie={this.bringEntrie}
         deleteEntrie={this.deleteEntrie}
         toggle={this.toggle}
         items={this.state.entries}
