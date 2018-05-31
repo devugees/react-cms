@@ -12,10 +12,10 @@ newEntrie = {}
 componentWillMount() {
    axios.get('http://localhost:5000/api/allcategories')
           .then((response) => {
-               console.log(response)
-                      return {
-                  categories:response
-                }
+               console.log(response.data)
+                      this.setState({
+                        categories: response.data.data
+                      })
             }).catch((error) => {
               console.log("Error: ", error);
             });
@@ -93,7 +93,7 @@ return (
                       id="exampleSelect" 
                       innerRef={this.typeRef}
                       >
-                          <option>{this.state.categories.name}</option>
+                          <option></option>
                          
                       </Input>
               </FormGroup>
