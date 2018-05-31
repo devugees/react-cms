@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-
 import './App.css';
 import Administration from './components/Administration/Administration';
 import Login from './components/Login/Login';
+import Registration from './components/Registration/Registration';
 import CustomeCode from './components/Appearance/CustomeCode/CustomeCode';
 import AddEntrie from './components/ContentTypesPanel/AddEntrie/AddEntrie';
 import Structure from './components/ContentTypesPanel/Structure/Structure';
@@ -66,6 +67,8 @@ class Routers extends Component {
     return (
              <div>
                 <Route  exact path="/login" component={login} />
+                <Route  exact path="/registration" component={Registration} />
+                <Route  exact path="/" component={LandingPage} />
                 <div className="sub">
 
                   <Switch>

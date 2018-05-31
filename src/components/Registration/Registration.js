@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
-import './Login.css';
+import './Registration.css';
 import axios from 'axios';
 import {Link, browserHistory} from 'react-router-dom';
 import PrivatRoute from '../PrivatRoute/PrivatRoute';
@@ -16,7 +16,7 @@ import setAuthToken from '../../setauthtoken/setAuthToken';
           registerData: {
             email: "",
             password: "",
-            role: false,
+            role: "user",
             isAuthenticated: false
           }
         }
@@ -29,7 +29,7 @@ import setAuthToken from '../../setauthtoken/setAuthToken';
         const registerDataCopy = {
           ...this.state.registerData
         };
-        DataCopy[event.target.name] = event.target.value;
+        registerDataCopy[event.target.name] = event.target.value;
         this.setState({registerData: registerDataCopy});
     
       };
@@ -40,8 +40,9 @@ import setAuthToken from '../../setauthtoken/setAuthToken';
             email: this.state.registerData.email,
             password: this.state.registerData.password
           };
+          console.log(data)
 
-         axios.post('http://localhost:5000/registration', data)
+         axios.post('http://localhost:5000/register', data)
               .then((response) => {
                  const { token } = response.data;
 
@@ -63,7 +64,7 @@ import setAuthToken from '../../setauthtoken/setAuthToken';
                 this.setState({loginData: Registration
                 });
          
-                this.props.handleLoginSuccess(Registration);
+                this.props.handleRegistrationSuccess(Registration);
               } 
             }).catch(function(error) {
               console.log("Error: ", error);
@@ -79,14 +80,13 @@ import setAuthToken from '../../setauthtoken/setAuthToken';
             <Container className="Registration">
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
-                        <Input type="text" name="username" id="userName" placeholder="Username" onChange ={this.handleChange} />
-                        <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" onChange ={this.handleChange}/>
-                        <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" onChange ={this.handleChange} />
+                        <Input type="email" name="email" id="exampleEmail" placeholder="Email" onChange ={this.handleChange}/>
+                        <Input type="password" name="password" id="examplePassword" placeholder="password" onChange ={this.handleChange} />
                     </FormGroup>
                     <FormGroup className="checkbox">
                         <Label>
-                        <Input type="checkbox" />{' '}
-                        Accept Privacy Policy
+                            <Input type="checkbox" />{' '}
+                            Accept the Privacy Policy
                         </Label>
                     </FormGroup>
                     <Button>Submit</Button>
