@@ -5,3 +5,19 @@
   margin: 0;
   padding: 0;
 }
+
+
+:root {
+	--black: #000000;
+	--white: #ffffff;
+	--red: #ee204d;
+	--green: #1cac78;
+	--blue: #1f75fe;
+	--bluegray: #6699cc;
+	--yellow: #fce883;
+	--gray: #95918c;
+	--granitegray: #676767;
+	--bluegreen: #0d98ba;
+	--cerulean: #1dacd6;
+	--sonicsilver: #757575;
+}

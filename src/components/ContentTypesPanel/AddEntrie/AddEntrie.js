@@ -5,8 +5,6 @@ import axios from 'axios';
 
 class AddEntrie extends Component { 
 
-
-    
 newEntrie = {}
 
 handelChange = e => {
@@ -15,7 +13,7 @@ handelChange = e => {
     console.log(this.newEntrie);
 }
 
-handelFormSubmit = (event) => {
+handelFormSubmit   = event => {
     event.preventDefault();
     const newEntrieObj = {
         contentTypeId: this.props.contentTypeId,
@@ -23,30 +21,30 @@ handelFormSubmit = (event) => {
         archived: false
     }
     console.log("newEntrieObj",newEntrieObj)
-    axios.post('http://localhost:5000/api/newentries', newEntrieObj )
-               .then((response) => {
-                 console.log(response)
-                 
-                }).catch(function(error) {
-                  console.log("Error: ", error);
-                });
-                this.props.addEntrie(newEntrieObj.content);
+    axios.post('http://localhost:5000/api/newentries', newEntrieObj)
+     .then((response) => {
+       console.log(response)
+       
+      }).catch(function(error) {
+        console.log("Error: ", error);
+      });
+      this.props.addEntrie(newEntrieObj.content);
 }
 
-  render() {
-    const styleFormGroups={
+render() {
+    const styleFormGroups = {
         width: '250px', 
         float:"left",
         margin:"15px",
         padding:"15px",
-    }
-    const styleForm={
+     }
+    const styleForm = {
         width: "90%",
-    }
+      }
 
-  return(
+return (
     <div className='boxs' >
-      <Form style={styleForm} onSubmit={this.handelFormSubmit}>
+        <Form style={styleForm} onSubmit={this.handelFormSubmit}>
         {this.props.fields.map( (object,index) => {
         return (
          <div key={index}>
@@ -70,7 +68,7 @@ handelFormSubmit = (event) => {
               </FormGroup>
               
           */}
-           <Button type="submit" className="btn">AddNew Post</Button>
+           <Button type="submit" className="btn btn-md btn-outline-primary mr-3">AddNew Post</Button>
         </Form>
     </div>
       )

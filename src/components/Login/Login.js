@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
 import './Login.css';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import {Link, browserHistory} from 'react-router-dom';
 import PrivatRoute from '../PrivatRoute/PrivatRoute';
+import setAuthToken from '../../setauthtoken/setAuthToken';
+
 
 
  class Login extends Component { 
@@ -41,22 +43,30 @@ import PrivatRoute from '../PrivatRoute/PrivatRoute';
 
          axios.post('http://localhost:5000/login', data)
               .then((response) => {
+                 const { token } = response.data;
 
-              if(response.data.role === 'admin') {
+              if(response.data.role) {
                 
                 // set the token in localStorage
                 const token = response.data.token;
                 localStorage.setItem('token', token);
 
+                 // set token to header
+                //setAuthToken(token);
+
                 const Logindatacopy1 = {...this.state.loginData};
                 Logindatacopy1.role = true ;
                 Logindatacopy1.isAuthenticated = true;
+                   
+                console.log(Logindatacopy1)
 
                 this.setState({loginData: Logindatacopy1
                 });
-                this.props.history.push("/administration");
-                
-              }
+
+         
+                this.props.handleLoginSuccess(Logindatacopy1);
+              } 
+
             }).catch(function(error) {
               console.log("Error: ", error);
             });

@@ -20,6 +20,7 @@ module.exports = (app) => {
                 guideLines: req.body.guideLines,
                 fields: req.body.fields
             });
+            
             contentTypes.save((err) => {
                 if (err) {
                     return res.send(err);
