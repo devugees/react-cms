@@ -49,11 +49,15 @@ class ViewTable extends Component {
   }
   
   handleEdit = (index, machineName) => {
+    // checking which edit modal shut pop up 
+    // depending on which component you'e open it from
+    // bug: redirect(navigate) at the Structure edit function to...
     console.log("index",index)
+    console.log("machineName",machineName)
+
     
     if(index) {
-    //this.props.toggle();
-    this.props.toggle2();
+    this.props.toggle();
 
     const itemId = itemsWithId[index].id
     const item = this.state.items[index]
