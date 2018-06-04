@@ -2,24 +2,25 @@ import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Container, Row, Col } from 'reactstrap';
 import './AddEntrie.css';
 import axios from 'axios';
+import Select from 'react-select';
 
 class AddEntrie extends Component { 
-      state = {
-        categories: []
+
+  constructor(props) {
+      super(props);
+      console.log(props)
+        this.state = {
+          categories: [],
+          loading: false
       }
+    }
+
 newEntrie = {}
 
-componentWillMount() {
-   axios.get('http://localhost:5000/api/allcategories')
-          .then((response) => {
-               console.log(response.data)
-                      this.setState({
-                        categories: response.data.data
-                      })
-            }).catch((error) => {
-              console.log("Error: ", error);
-            });
-  };
+ componentWillReceiveProps = (nextProps, prevState) => {
+    let categoriesObject = nextProps.categorie;
+    this.setState({ categories: categoriesObject, loading: true});
+  }
 
 handelChange = e => {
     let inputName = e.target.name;
@@ -47,14 +48,19 @@ handelFormSubmit   = event => {
 
 
 
-
-
- handlSubmit() {
-  console.log('cliked');
-  
-        }
-
 render() {
+
+  const categoriesProp = (
+           <div>
+              <Label for="exampleSelect">categories</Label>
+                 <Input type="select" name="select" id="exampleSelect">)
+                  {this.state.categories.map(item => (
+                     <option>{item.name}</option>
+                    ))}
+                 </Input>
+                </div>
+          );
+
     const styleFormGroups = {
         width: '250px', 
         float:"left",
@@ -64,7 +70,9 @@ render() {
     const styleForm = {
         width: "90%",
       }
-
+if(!this.state.loading){
+  return <div>loading .....</div>
+}
 return (
     <div className='boxs' >
         <Form style={styleForm} onSubmit={this.handelFormSubmit}>
@@ -80,25 +88,16 @@ return (
               className={object.cssClasses}
               onChange={this.handelChange} />
            </FormGroup>
+          
         </div>
             )
           })
         }
-            
-              <FormGroup>
-               <Label for="exampleSelect">Type</Label>
-                      <Input  
-                      name="type" 
-                      type="select" 
-                      id="exampleSelect" 
-                      innerRef={this.typeRef}
-                      >
-                          <option></option>
-                         
-                      </Input>
-              </FormGroup>
-              
-          
+
+             {categoriesProp ? categoriesProp
+           
+                 : null}
+
            <Button type="submit" className="btn btn-md btn-outline-primary mr-3">AddNew Post</Button>
         </Form>
     </div>
