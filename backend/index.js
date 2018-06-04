@@ -39,6 +39,8 @@ require('./routes/contentTypes')(app);
 require('./routes/entries')(app);
 require('./routes/Users')(app);
 require('./routes/Categories')(app);
+require('./routes/upload')(app);
+
 
 
 

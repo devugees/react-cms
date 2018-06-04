@@ -10,6 +10,8 @@ import Structure from './components/ContentTypesPanel/Structure/Structure';
 import LandingPage from './components/LandingPage/LandingPage';
 import PrivatRoute from './components/PrivatRoute/PrivatRoute';
 import jwtDecode from 'jwt-decode';
+import FileUploader from './components/FileUploader/FileUploader';
+
 
 
 class Routers extends Component {
@@ -65,65 +67,61 @@ class Routers extends Component {
 
    console.log(this.state.authenticated);
     return (
-             <div>
-                <Route  exact path="/login" component={login} />
-                <Route  exact path="/registration" component={Registration} />
-                <Route  exact path="/" component={LandingPage} />
-                <div className="sub">
 
-                  <Switch>
-                     <Route
-                     exact path="/" component={LandingPage} />
-                 </Switch>
-                  <Switch>
-                     <PrivatRoute
-                      authenticated={this.state.authenticated}
-                      exact path="/Administration/" component={Administration} />
-                 </Switch>
+          <Switch>
+            <Route  exact path="/login" component={login} />
+            <Route  exact path="/registration" component={Registration} />
+            <Route  exact path="/" component={LandingPage} />
+            <Route  exact path="/FileUploader" component={FileUploader} />
 
-                    <Switch>
-                       <PrivatRoute  
-                        authenticated={this.state.authenticated}
-                        path="/AddEntrie" component={AddEntrie} />
-                    </Switch>
+        
+             <PrivatRoute
+              authenticated={this.state.authenticated}
+              exact path="/Administration/" component={Administration} />
+        
 
-                    <Switch>
-                       <PrivatRoute  
-                        authenticated={this.state.authenticated}
-                        exact path="/CustomeCode/" component={CustomeCode} />
-                    </Switch>
+            
+               <PrivatRoute  
+                authenticated={this.state.authenticated}
+                path="/AddEntrie" component={AddEntrie} />
+            
 
-                    <Switch>
-                    <PrivatRoute 
-                        authenticated={this.state.authenticated}
-                     path="/Administration/main/:activeLink" component={Administration} />
-                    </Switch>
+            
+               <PrivatRoute  
+                authenticated={this.state.authenticated}
+                exact path="/CustomeCode/" component={CustomeCode} />
+            
 
-                    <Switch>
-                        <PrivatRoute  
-                        authenticated={this.state.authenticated}
-                        path="/Administration/Structure/:id" component={Administration} />
-                    </Switch>
+            
+            <PrivatRoute 
+                authenticated={this.state.authenticated}
+             path="/Administration/main/:activeLink" component={Administration} />
+            
 
-                    <Switch>
-                       <PrivatRoute 
-                        authenticated={this.state.authenticated}
-                        path="/Administration/ContentType/:id" component={Administration} />
-                    </Switch>
+            
+                <PrivatRoute  
+                authenticated={this.state.authenticated}
+                path="/Administration/Structure/:id" component={Administration} />
+            
 
-                   <Switch>
-                      <PrivatRoute 
-                        authenticated={this.state.authenticated}
-                        path="/Administration/Categories/:id" component={Administration} />
-                   </Switch>
-                    <Switch>
-                      <PrivatRoute 
-                        authenticated={this.state.authenticated}
-                       path="/Administration/view/:id" component={Administration} />
-                   </Switch>
+            
+               <PrivatRoute 
+                authenticated={this.state.authenticated}
+                path="/Administration/ContentType/:id" component={Administration} />
+            
 
-                  </div>
-                </div>
+           
+              <PrivatRoute 
+                authenticated={this.state.authenticated}
+                path="/Administration/Categories/:id" component={Administration} />
+           
+            
+              <PrivatRoute 
+                authenticated={this.state.authenticated}
+               path="/Administration/view/:id" component={Administration} />
+           </Switch>
+
+                
  
              
              );
