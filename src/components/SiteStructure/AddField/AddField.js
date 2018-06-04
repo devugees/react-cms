@@ -15,6 +15,7 @@ import axios from 'axios';
         customCsslRef = React.createRef();
 
   handelClick = (e) => {
+
     e.preventDefault();
     const field = {
         fieldLabel: this.fieldLabelRef.current.value,
@@ -28,9 +29,8 @@ import axios from 'axios';
         customCss: this.customCsslRef.current.value
         }
     this.props.addFields(field);
-    //
     console.log('fields are', field)
-    axios.put(`http://localhost:5000/api/contenttypes/${this.props.id}`, field)
+    /*axios.put(`http://localhost:5000/api/contenttypes/${this.props.id}`, field)
               .then((response) => {
                 console.log('response is', response);
               if(response.status === 200 ) {
@@ -40,7 +40,7 @@ import axios from 'axios';
               }
             }).catch((error) => {
               console.log("Error: ", error);
-            });
+            });*/
           };
 
   
