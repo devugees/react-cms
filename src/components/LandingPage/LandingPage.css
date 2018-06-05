@@ -3,7 +3,6 @@
 }
 
 .Jumbotron {
-    background-image: url('./image/kino.jpg');
     background-size: cover;
     color: white;
     height: 30em;
