@@ -15,14 +15,18 @@ import {
     Jumbotron,
     Col,
     DropdownItem } from 'reactstrap';
+import Menu from './LayoutComponents/Menu';
+import Slide from './LayoutComponents/Slide';
+import IconBox from './LayoutComponents/IconBox';
+import Post from './LayoutComponents/Post';
+import Footer from './LayoutComponents/Footer';
 import './LandingPage.css';
 import axios from 'axios';
-import * as Icon from 'react-icons/lib/fa';
-
+//import * as Icon from 'react-icons/lib/fa';
 
 class LandingPage extends Component {
 
-
+/*
     constructor(props) {
         super(props);
     
@@ -37,6 +41,7 @@ class LandingPage extends Component {
         isOpen: !this.state.isOpen
         });
       }
+    */ 
 
       theme ={ 
         sections:[
@@ -151,24 +156,24 @@ class LandingPage extends Component {
               }
     
   render() {
-console.log(Icon)
+
     const landingPage = {
         margin: '0',
         padding: '0'
       };
-      
+      /*
     const postBox = {
         margin: '0', 
         padding: '0',
         marginTop: '1em'
       };
-
+*/
     const  hrBorder = {
       margin: '0em 25em',
       borderColor: 'grey',
       marginTop: '2em'
-    }
-
+    } 
+/*
     const android = <Icon.FaAndroid size='120' className="Icon" />
     const github = <Icon.FaGithubAlt size='120' className="Icon" />
     const paw = <Icon.FaPaw size='120' className="Icon" />
@@ -190,13 +195,15 @@ console.log(Icon)
         text: "Consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
       }
     ]
+    */
     
 
  
 
     return (
       <Container style={landingPage} fluid>
-        <Navbar className="Navbar" dark expand="md">
+      <Menu />
+        {/* <Navbar className="Navbar" dark expand="md">
           <NavbarBrand href="/">KinoView</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -209,23 +216,31 @@ console.log(Icon)
               </NavItem>
             </Nav>
           </Collapse>
-        </Navbar>
-        
-        <Jumbotron fluid className="Jumbotron">
+    </Navbar> */}
+        <Slide />
+        {/*<Jumbotron fluid className="Jumbotron">
             <Container fluid>
             <h1 className="display-3">Welcome to the LandingPage</h1>
             <p className="lead">React CMS !</p>
             </Container>
-        </Jumbotron>
+          </Jumbotron> */}
 
         {/* <Row style={landingPage}>
           <Col className="Box">
             <Icon.FaAndroid size='120' className="Icon" />
             <h3>Lorem ipsum</h3>
-            <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-          </Col>
-          <Col className="Box">
-            <Icon.FaGithubAlt size='120' className="Icon" />
+            <p><footer >
+          <p>Consectetuer</p>
+        </footer>t ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+          </Col<footer >
+          <p>Consectetuer</p>
+        </footer>
+          <Col <footer >
+          <p>Consectetuer</p>
+        </footer>
+            <Ic<footer >
+          <p>Consectetuer</p>
+        </footer>
             <h3>Nam liber</h3>
             <p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
           </Col>
@@ -235,8 +250,8 @@ console.log(Icon)
             <p>Consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
           </Col>
     </Row> */}
-
-   
+    <IconBox />
+   {/*
         <Row style={landingPage}> 
           {columns.map(column => {
             console.log(column)
@@ -246,12 +261,15 @@ console.log(Icon)
                 <h3>{column.title}</h3>
                 <p>{column.text}</p>
                </Col>  
-            )
+            )<footer >
+          <p>Consectetuer</p>
+        </footer>
           })}      
         </Row>       
- 
+ */}
         <hr style={hrBorder}/>
-        <Row style={postBox} className="text-center">
+        <Post />
+        {/*<Row style={postBox} className="text-center">
             <Col sm="8">
               <h3>Duis autem</h3>
               <p>Consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
@@ -270,12 +288,12 @@ console.log(Icon)
               <h3>Duis autem</h3>
               <p>Consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
             </Col>
-        </Row>
+        </Row> */}
 
-        <footer >
+        {/*<footer >
           <p>Consectetuer</p>
-        </footer>
-
+        </footer>*/}
+        <Footer />
       </Container>
     );
   }
