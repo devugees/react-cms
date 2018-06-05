@@ -6,6 +6,11 @@ import './FileUploader.css';
 
 export default class FileUploader extends Component {
 
+
+
+      nameRef = React.createRef()
+
+
     constructor(props) {
         super(props);
           this.state = {
@@ -19,12 +24,12 @@ export default class FileUploader extends Component {
     
       handleUploadImage(e) {
         e.preventDefault();
-    console.log(this.fileRef)
+        console.log(this.fileRef)
         const data = new FormData();
         data.append('file', this.fileRef.current.files[0]);
         data.append('filename', this.nameRef.current.value);
-    
-        axios.post('http://localhost:8000/upload', data)
+        console.log("data",data);
+        axios.post('http://localhost:5000/api/upload', data)
           .then(function (response) {
         this.setState({ imageURL: `http://localhost:8000/${data.file}`, uploadStatus: true });
           })
