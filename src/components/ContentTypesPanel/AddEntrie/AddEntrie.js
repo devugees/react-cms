@@ -3,6 +3,9 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
 import './AddEntrie.css';
 import axios from 'axios';
 import Select from 'react-select';
+import 'react-select/dist/react-select.css';
+
+
 
 class AddEntrie extends Component { 
 
@@ -11,8 +14,11 @@ class AddEntrie extends Component {
       console.log(props)
         this.state = {
           categories: [],
+          value: [],
+          crazy: false,
           loading: false
       }
+      this.handleSelectChange = this.handleSelectChange.bind(this);
     }
 
 newEntrie = {}
@@ -46,10 +52,36 @@ handelFormSubmit   = event => {
       this.props.addEntrie(newEntrieObj.content);
 }
 
+handleSelectChange(value) {
+    console.log('You have selected: ', value);
+    this.setState({ value });
+  }
 
 
 render() {
 
+  const options = this.state.categories.map((item, index) => (
+                      {
+                        label: item.name,
+                        value: index
+                       }
+                    ))
+     
+     console.log(options);
+     
+  const categoriesProp = (
+                    <div className="section">
+                        <h3 className="section-heading">{options.label}</h3>
+                          <Select
+                               multi
+                               joinValues 
+                               value={this.state.value}
+                               placeholder="Select your favourite(s)"
+                               options={options} 
+                               onChange={this.handleSelectChange} />
+                          </div>
+                       );  
+              /*
   const categoriesProp = (
            <div>
               <Label for="exampleSelect">categories</Label>
@@ -59,7 +91,7 @@ render() {
                     ))}
                  </Input>
                 </div>
-          );
+          );*/
 
     const styleFormGroups = {
         width: '250px', 
@@ -70,9 +102,7 @@ render() {
     const styleForm = {
         width: "90%",
       }
-if(!this.state.loading){
-  return <div>loading .....</div>
-}
+
 return (
     <div className='boxs' >
         <Form style={styleForm} onSubmit={this.handelFormSubmit}>
