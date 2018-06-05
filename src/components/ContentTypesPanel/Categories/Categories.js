@@ -13,7 +13,7 @@ class Categories extends Component {
         this.state = {
          categories:[],
          name:'',
-         discreption:'',
+         description:'',
          id:'',
          displayInputs: false,
          displayInputsAdd: false
@@ -41,7 +41,7 @@ handleToggleEditInput(index, categories) {
    this.setState(prevState => ({
        displayInputs: !prevState.displayInputs,
         name: categories.name,
-        discreption: categories.discreption,
+        description: categories.description,
        id: categories._id
       }));
   }
@@ -72,7 +72,7 @@ handleDelete(index, categories) {
 handleSubmitAdd() {
    const newdata = {
          	name: this.state.name,
-         	discreption: this.state.discreption
+         	description: this.state.description
             }
             const tokenStr = localStorage.getItem('token');
 		     const categoriesId = this.props.id;
@@ -90,7 +90,7 @@ handleSubmitAdd() {
   handleSubmitEdit() {
    const newdata = {
          	name: this.state.name,
-         	discreption: this.state.discreption
+         	description: this.state.description
             }
 	         console.log(newdata);
 	         const tokenStr = localStorage.getItem('token');
@@ -120,7 +120,7 @@ handleSubmitAdd() {
 	          <thead>
 	            <tr>
 	              <th>name</th>
-	              <th>discreption</th>
+	              <th>description</th>
 	            </tr>
 	          </thead>
 	          <tbody>
@@ -135,7 +135,7 @@ handleSubmitAdd() {
         <td>
           <Input
             placeholder=""
-            name="discreption"
+            name="description"
             onChange={this.onChange}
           />
           </td>
@@ -162,7 +162,7 @@ handleSubmitAdd() {
 	          <thead>
 	            <tr>
 	              <th>name</th>
-	              <th>discreption</th>
+	              <th>description</th>
 	            </tr>
 	          </thead>
 	          <tbody>
@@ -178,8 +178,8 @@ handleSubmitAdd() {
         <td>
           <Input
             placeholder=""
-            name="discreption"
-            value={this.state.discreption}
+            name="description"
+            value={this.state.description}
             onChange={this.onChange}
           />
           </td>
@@ -227,7 +227,7 @@ handleSubmitAdd() {
 	          <thead>
 	            <tr>
 	              <th>name</th>
-	              <th>discreption</th>
+	              <th>description</th>
 	            </tr>
 	          </thead>
 	          <tbody>
@@ -235,7 +235,7 @@ handleSubmitAdd() {
 	              return (
                    <tr>
                     <td>{categories.name}</td>
-                    <td>{categories.discreption}</td>
+                    <td>{categories.description}</td>
                     <td>
                       <button
 		                    type="button"
