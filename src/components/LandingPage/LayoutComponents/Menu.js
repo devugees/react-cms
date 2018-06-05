@@ -8,9 +8,7 @@ import {
     NavItem,
     NavLink } from 'reactstrap';
 import '../LandingPage.css';
-
-
-
+import { link } from 'fs';
 
 export default class Menu extends React.Component {
 
@@ -19,6 +17,16 @@ export default class Menu extends React.Component {
     
         this.toggle = this.toggle.bind(this);
         this.state = {
+          title: 'Reapress',
+          menuItems:  [{
+              url: '/' ,
+              name: 'Home'  
+            },
+            {
+              url: 'http://localhost:3000/Login',
+              name: 'Login'
+            }
+          ],
           isOpen: false
         };
       }
@@ -32,16 +40,15 @@ export default class Menu extends React.Component {
     render(){
       return (
         <Navbar className="Navbar" dark expand="md">
-          <NavbarBrand href="/">KinoView</NavbarBrand>
+          <NavbarBrand href="/">{this.state.title}</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/components/">Home</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/login">Login</NavLink>
-              </NavItem>
+              {this.state.menuItems.map( (item) => {
+                return( <NavItem>
+                  <NavLink href={item.url}>{item.name}</NavLink>
+                </NavItem> )
+              })}
             </Nav>
           </Collapse>
         </Navbar>
