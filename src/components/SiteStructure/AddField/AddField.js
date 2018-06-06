@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
+import FileUploader from '../../FileUploader/FileUploader';
 import './AddField.css';
+import axios from 'axios';
 
  class AddField extends Component { 
+              
 
         fieldLabelRef = React.createRef();
         typeOptRef = React.createRef();
@@ -26,11 +29,13 @@ import './AddField.css';
         cssClasses: this.cssClassNameRef.current.value,
         customCss: this.customCsslRef.current.value
         }
+       
     this.props.addFields(field);
-
-  }
+    
+          };
 
     render() {
+        
         return(
             <div className="addfield">
             <h4 className="header">Add Your Content Fields</h4>
@@ -46,7 +51,11 @@ import './AddField.css';
                         <Col>
                             <FormGroup>
                                 <Label for="exampleSelect">Type</Label>
-                                <Input name="type" type="select" id="exampleSelect" innerRef={this.typeRef}>
+                                <Input  
+                                      name="type"
+                                      type="select"
+                                      id="exampleSelect"
+                                      innerRef={this.typeRef}>
                                     <option>Button</option>
                                     <option>Checkbox</option>
                                     <option>Color</option>
@@ -90,7 +99,7 @@ import './AddField.css';
                             </FormGroup>
                         </Col>
                     </Row>
-                    <Row>
+                    <Row className='d-inline-flex text-center float-right w-50'>
                         <Col>
                             <FormGroup check inline>
                                     <Label check>
@@ -112,7 +121,7 @@ import './AddField.css';
                                 </Label>
                             </FormGroup>
                         </Col>
-                         <Button onClick={this.handelClick} className="btn">Add</Button>
+                         <Button onClick={this.handelClick} className="btn btn-md btn-outline-primary mr-3">Add</Button>
                     </Row>
                 </Form>
             </Container>

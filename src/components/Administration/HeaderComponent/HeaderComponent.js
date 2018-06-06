@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './HeaderComponent.css';
+import {Link} from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -11,7 +12,8 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem
+   } from 'reactstrap';
 
   class TopHeader extends Component {
 
@@ -20,14 +22,20 @@ import {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      logout: ''
     };
+    //localStorage.getItme("token")
   }
 
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
+  }
+
+   logOut() {
+    localStorage.removeItem("token");
   }
 
   render() {
@@ -68,9 +76,9 @@ import {
               </NavItem>
             </Nav>
 
-          <NavbarBrand style={fontSize} className="ml-auto" href="/">
+          <NavbarBrand style={fontSize} className="ml-auto">
               <UncontrolledDropdown>
-                <DropdownToggle style={textColor} nav caret>
+                <DropdownToggle style={textColor} caret>
                   My Account
                 </DropdownToggle>
                 <DropdownMenu right>
@@ -78,10 +86,10 @@ import {
                     <img alt='User Img' src='https://i.ebayimg.com/images/g/oawAAOSwi0RX0uyP/s-l300.jpg' />
                   </DropdownItem>
                   <DropdownItem>
-                    <NavLink  href="#"> My Account </NavLink>
+                    <NavLink className='gfgfgfg' href="#"> My Account </NavLink>
                   </DropdownItem>
                   <DropdownItem>
-                    <NavLink  href="#"> Sign out </NavLink>
+                    <NavLink className='gf58585g' onClick={this.logOut}> <Link to="/login">Sign out </Link></NavLink>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

@@ -35,13 +35,13 @@ newContentTypeObj = {}
               }else{
                 alert("there is a problem")
               }
-            }).catch(function(error) {
+            }).catch((error) => {
               console.log("Error: ", error);
             });
           };
 
     addFields = (field) => {
-      const fields = this.state.fields;
+      const fields = [...this.state.fields];
       fields.push(field);
       this.setState({fields:fields})
     }
@@ -91,9 +91,9 @@ newContentTypeObj = {}
              <Row>
             <ViewTable items={this.state.fields} keys={this.state.fieldsKeys}/>
             </Row>
-            <Row>
-            <Button type="submit" className="btn" >Save</Button>
-            <Button className="btn">Cancel</Button>
+            <Row className='float-right'>
+            <Button type="submit" className="btn mt-2 btn btn-outline-success btn-md">Save</Button>
+            <Button className="btn ml-2 mt-2 btn btn-outline-secondary btn-md">Cancel</Button>
             </Row>
           </Form>
         </Container>

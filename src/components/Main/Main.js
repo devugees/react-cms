@@ -20,12 +20,7 @@ import ContentTypePanel from '../ContentTypesPanel/ContentTypePanel';
 import Structure from '../ContentTypesPanel/Structure/Structure';
 import Categories from '../ContentTypesPanel/Categories/Categories';
 import View from '../ContentTypesPanel/View/View';
-
-
 import PageNotFound from '../PageNotFound/PageNotFound';
-
-
-
 
 class Main extends Component {
 
@@ -45,6 +40,7 @@ class Main extends Component {
     })
 
     let components = {
+      "View": <View  id={this.props.activeLink.split('/')[3]} />,
       "NewContentType": <NewContentType/>,
       "Sitestatus": <Sitestatus/>,
       "Update": <Update/>,
@@ -63,8 +59,9 @@ class Main extends Component {
       "Plugins": <Plugins/>,
       "ContentType": <ContentTypePanel fields={fields} contenttypes={this.props.contenttypes} id={this.props.activeLink.split('/')[3]} />,
       "Structure": <Structure fields={fields} id={this.props.activeLink.split('/')[3]} />,
+      
       "Categories": <Categories id={this.props.activeLink.split('/')[3]}/>,
-      "View": <View id={this.props.activeLink.split('/')[3]} />,
+     
     }
 
 

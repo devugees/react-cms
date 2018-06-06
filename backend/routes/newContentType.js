@@ -1,4 +1,6 @@
 const ContentTypes = require('../models/ContentTypes');
+const Categories = require('../models/Categories');
+
 
 
 module.exports = (app) => {
@@ -20,11 +22,32 @@ module.exports = (app) => {
                 guideLines: req.body.guideLines,
                 fields: req.body.fields
             });
+
+            categorie = new Categories ({
+                contentTypeId:contentTypes._id,
+                name: "Uncategorized",
+                description: "Uncategorized " + contentTypes.title
+            })
+
+
+
+            console.log("contentTypes",contentTypes._id)
             contentTypes.save((err) => {
                 if (err) {
-                    return res.send(err);
+                    return res.send({'err': 'couldnot save the contentypes'+ err});
                 }
-               return res.status(200).send({message: "regist created successfully!",success: 0})
+
+               categorie.save((err1) => {
+                if (err1) {
+                    return res.send({'err': 'couldnot save the categorie'+ err1});
+                }
+
+               return res.status(200).send({
+                    'message': categorie.name + " categorie created successfully!",
+                    'message2': contentTypes.title + " created successfully!"
+                    })
+              });
+               
             });
         }
     });
