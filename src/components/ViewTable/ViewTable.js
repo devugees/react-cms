@@ -54,11 +54,11 @@ class ViewTable extends Component {
     // bug: redirect(navigate) at the Structure edit function to...
     console.log("index",index)
     console.log("machineName",machineName)
+    console.log(this.props)
 
-    
+  
     if(index) {
     this.props.toggle();
-
     const itemId = itemsWithId[index].id
     const item = this.state.items[index]
     this.props.bringEntrie(itemId,item)

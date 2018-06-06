@@ -19,10 +19,11 @@ class EditEntrie extends Component {
       .then(response => {
         if(response.data.message) {
           console.error(response.data.message)
-        } 
+        }
+        this.props.bringEntries(this.props.editingItem.item) 
       })  
       .catch(error => {
-        console.error('Error:', error)
+        console.error('Error occured:', error)
       })
     }
     

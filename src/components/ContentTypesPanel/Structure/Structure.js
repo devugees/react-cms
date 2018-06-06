@@ -5,6 +5,7 @@ import DashBoard from '../../Administration/dashBoard/dashBoard';
 import AddField from '../../SiteStructure/AddField/AddField';
 import ViewTable from '../../ViewTable/ViewTable';
 import EditField from '../EditField/EditField';
+import axios from 'axios';
 
 
 class Structure extends Component {
@@ -23,16 +24,37 @@ class Structure extends Component {
      },
     modal: false
     }  
-    this.toggle2 = this.toggle2.bind(this);
+    this.toggle = this.toggle.bind(this);
+    this.bringEntries = this.bringEntries.bind(this);
+    
   }
 
-  toggle2() {
+  toggle() {
     console.log("it is click")
       this.setState({
         modal: !this.state.modal
      });
     }
+    bringEntries = nextProps => {
+      let entries = [];
+      let contentObj;
+      let entriesKeys = {};
 
+      axios.get(`http://localhost:5000/api/entries/${nextProps.id}`)
+     .then((response) => {
+      response.data.map((entrie) => {
+        contentObj = {...entrie.content}
+        contentObj.id = entrie._id
+        entries.push(contentObj)
+      })
+      this.setState({
+        entries: entries,
+        entriesKeys: entries[0]
+      })
+      }).catch(function(error) {
+        console.error("Error: ", error);
+      });
+    }
   componentWillMount = () => {
     this.setState({
       fields: this.props.fields,
@@ -59,18 +81,19 @@ class Structure extends Component {
    const colstyle ={padding: '0',margin:'0 0 0 0', height: 'auto'};
 	    return (
 	      <div>
-        <Modal isOpen={this.state.modal} toggle2={this.toggle2} className={this.props.className}>
-          <ModalHeader toggle2={this.toggle2}>Modal title</ModalHeader>
-          <ModalBody>
-            <EditField itemWillBeEdited={this.itemWillBeEdited} bringItem={this.bringItem} editingItem={this.editingItem} fields={this.props.fields} />
-          </ModalBody>
-        </Modal>
+          <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+            <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+            <ModalBody>
+              <EditField toggle={this.toggle} itemWillBeEdited={this.itemWillBeEdited} bringItem={this.bringItem} 
+              bringEntrie={this.props.bringEntrie} editingItem={this.editingItem} fields={this.props.fields} />
+            </ModalBody>
+          </Modal>
 
 
-        <Container className='ContentSetting'>
-          <Form onSubmit={this.handelSubmit}>
+        {/*<Container className='ContentSetting'>
+          <Form onSubmit={this.handelSubmit}>*/}
             <Row>
-            <ViewTable toggle2={this.toggle2} items={this.state.fields} keys={this.state.fieldsKeys}/>
+            <ViewTable toggle={this.toggle} items={this.state.fields}  bringEntrie={this.bringEntrie}  keys={this.state.fieldsKeys}/>
             </Row>
 
             <Row>
@@ -78,12 +101,13 @@ class Structure extends Component {
             </Row>
 
             <Row className='float-right'>
-            <Button type="submit" className="btn mt-2 btn btn-outline-success btn-md" >Save</Button>
-            <Button className="btn ml-2 mt-2 btn btn-outline-secondary btn-md">Cancel</Button>
+           {/* <Button type="submit" className="btn mt-2 btn btn-outline-success btn-md" >Save</Button>
+            <Button className="btn ml-2 mt-2 btn btn-outline-secondary btn-md">Cancel</Button>*/}
             </Row>
-
+ {/*
           </Form>
         </Container>
+        */}
         </div>
     );
   }
