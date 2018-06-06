@@ -87,7 +87,7 @@ class Slider extends Component {
         > 
       
           <img 
-               style={{height: '500px', marginTop: 50}}
+               style={{height: '500px', marginTop: 0, marginBottom: 30}}
                src={item.src} 
                alt={item.altText}
                  />
