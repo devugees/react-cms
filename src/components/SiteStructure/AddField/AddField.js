@@ -5,10 +5,7 @@ import './AddField.css';
 import axios from 'axios';
 
  class AddField extends Component { 
-              state = {
-                type: '',
-                toggleUploder: false
-              }
+              
 
         fieldLabelRef = React.createRef();
         typeOptRef = React.createRef();
@@ -34,35 +31,13 @@ import axios from 'axios';
         }
        
     this.props.addFields(field);
-    /*axios.put(`http://localhost:5000/api/contenttypes/${this.props.id}`, field)
-              .then((response) => {
-                console.log('response is', response);
-              if(response.status === 200 ) {
-                alert("your contentType is submaited")
-              }else{
-                alert("there is a problem")
-              }
-            }).catch((error) => {
-              console.log("Error: ", error);
-            });*/
+    
           };
 
-onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
     render() {
-        let uplodecomponent;
-        if(this.state.type === 'Image') {
-            uplodecomponent = <FileUploader />
-        } else {
-            uplodecomponent = null;
-        }
+        
         return(
             <div className="addfield">
-            <div className="col-md-12">
-             <h4 className="text-center">Uplode File</h4>
-                 {uplodecomponent}
-                </div>
             <h4 className="header">Add Your Content Fields</h4>
             <Container className="AddField">
                 <Form onSubmit={this.handelSubmit}>
@@ -80,9 +55,7 @@ onChange(e) {
                                       name="type"
                                       type="select"
                                       id="exampleSelect"
-                                      innerRef={this.typeRef}
-                                      onChange={this.onChange.bind(this)}
-                                       >
+                                      innerRef={this.typeRef}>
                                     <option>Button</option>
                                     <option>Checkbox</option>
                                     <option>Color</option>

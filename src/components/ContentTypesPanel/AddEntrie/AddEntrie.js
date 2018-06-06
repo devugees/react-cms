@@ -4,6 +4,8 @@ import './AddEntrie.css';
 import axios from 'axios';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import FileUploader from '../../FileUploader/FileUploader';
+
 
 
 
@@ -58,7 +60,17 @@ handleSelectChange(value) {
   }
 
 
+
 render() {
+
+   let uplodecomponent;
+        if(this.state.type === 'Image') {
+            uplodecomponent = <FileUploader />
+        } else {
+            uplodecomponent = null;
+        }
+
+
 
   const options = this.state.categories.map((item, index) => (
                       {
@@ -102,13 +114,21 @@ render() {
     const styleForm = {
         width: "90%",
       }
-
+console.log(this.props.fields[3]);
 return (
     <div className='boxs' >
         <Form style={styleForm} onSubmit={this.handelFormSubmit}>
         {this.props.fields.map( (object,index) => {
-        return (
-         <div key={index}>
+          {object.type = "Image" ? (
+
+            <FormGroup style={styleFormGroups} className='FormGroup'>
+             <Label for="exampleEmail">{object.fieldLabel}</Label>
+             <FileUploader/>
+           </FormGroup>
+           ) :
+
+          (
+           <div key={index}>
            <FormGroup style={styleFormGroups} className='FormGroup'>
              <Label for="exampleEmail">{object.fieldLabel}</Label>
              <input 
@@ -118,9 +138,8 @@ return (
               className={object.cssClasses}
               onChange={this.handelChange} />
            </FormGroup>
-          
-        </div>
-            )
+           </div>
+          )}
           })
         }
 
