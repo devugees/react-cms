@@ -6,60 +6,73 @@ import image1 from '../../uploads/Screenshot from 2018-01-14 10-23-03.png'
 
 export default class FileUploader extends Component {
 
-      nameRef = React.createRef()
-    constructor(props) {
-        super(props);
-          this.state = {
-            uploadStatus: false,
+    constructor() {
+        super();
+        this.state = {
+          description: '',
+          selectedFile: '',
+        };
+      }
+
+      onChange = (e) => {
+        const state = this.state;
+
+        switch (e.target.name) {
+          case 'selectedFile':
+            state.selectedFile = e.target.files[0];
+            break;
+          default:
+            state[e.target.name] = e.target.value;
+        }
+
+        this.setState(state);
+      }
+
+      onSubmit = (e) => {
+
             imagesArry: [],
-          }
-        this.handleUploadImage = this.handleUploadImage.bind(this);
-      }
-    
-      fileRef = React.createRef()
-      nameRef = React.createRef()
-    
-componentWillMount() {
-  console.log('onClicked')
-   axios.get('http://localhost:5000/api/getimages')
-          .then(response => this.setState({imagesArry: response.data})
-          )
-          .catch(function (error) {
-            console.log(error);
-          });
-}
-
-      handleUploadImage(e) {
         e.preventDefault();
-   // get all  selected image from server 
-  
+        const { description, selectedFile } = this.state;
+        let formData = new FormData();
 
-        console.log('the ref is'+ this.fileRef.current.files)
-        const data = new FormData();
-        data.append('file', this.fileRef.current.files[0]);
-        data.append('filename', this.nameRef.current.value);
-        console.log("data",data);
-        axios.post('http://localhost:5000/api/upload', data)
-          .then(function (response) {
-        this.setState({ imageURL: `http://localhost:8000/${data.file}`, uploadStatus: true });
-          })
-          .catch(function (error) {
-            console.log(error);
+        formData.append('description', description);
+        formData.append('selectedFile', selectedFile);
+
+        axios.post('http://localhost:5000/api/upload', formData)
+          .then((result) => {
+            // access results...
           });
       }
-  
-      
-   render() {
+
+      render() {
+        const { description, selectedFile } = this.state;
+        return (
+          <form onSubmit={this.onSubmit}>
+            <input
+              type="text"
+              name="description"
+              value={description}
+              onChange={this.onChange}
+            />
+            <input
+              type="file"
+              name="selectedFile"
+              onChange={this.onChange}
+            />
+            <button type="submit">Submit</button>
+          </form>
+        );
+      }
  const allimages = (
               <div className="container">
                 <div className="row">
                     <div className="col-md-12">
                         <div className="thumbnail">
-                       {this.state.imagesArry.map(image => (
                             <img src={require('../../uploads/'+image)} 
                             alt="Lights" 
-                            style={{width: '30%', height: 250, margin: 20}}
+                       {this.state.imagesArry.map(image => (
                              /> )) }
+                            style={{width: '30%', height: 250, margin: 20}}
                             <div className="caption">
                         </div>
                     </div>
@@ -67,35 +80,4 @@ componentWillMount() {
                     </div>
                     </div>
              )
-
-
-
-     return(
-      <div>
-        <Container className="FileUploader">
-            <Form onSubmit={this.handleUploadImage}>
-                <Row>
-                    <Col lg="6" md="6" sm="12">
-                        <FormGroup>
-                            <Input  
-                                   className="form-control"
-                                   name="file" 
-                                   innerRef={this.fileRef} 
-                                   type="file" 
-                                   onClick={this.gitUploadedImage}/>
-                        </FormGroup>
-                    </Col>
-                    <Col lg="6" md="6" sm="12">
-                        <FormGroup>
-                            <Input className="form-control" innerRef={this.nameRef} type="text" placeholder="Optional name for the file" />
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Button className="btn float-right" type>Upload </Button>
-            </Form>
-       </Container>
-           {allimages}
-       </div>
-     )
-   }
  }

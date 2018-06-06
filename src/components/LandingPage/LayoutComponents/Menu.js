@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
     Collapse,
     Navbar,
@@ -8,7 +8,6 @@ import {
     NavItem,
     NavLink } from 'reactstrap';
 import '../LandingPage.css';
-import { link } from 'fs';
 
 export default class Menu extends React.Component {
 
