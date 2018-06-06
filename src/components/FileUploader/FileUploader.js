@@ -15,7 +15,8 @@ export default class FileUploader extends Component {
           modal: false,
           ToggleImage: true,
           Toggleform: false,
-          path: ''
+          border: '',
+          path: 'http://stevemullenmedia.com/portfolio/sketch-ruler/'
         }
         this.toggle = this.toggle.bind(this);
         this.toggleNew = this.toggleNew.bind(this);
@@ -82,7 +83,8 @@ toggleForm(e) {
   handleimage(e) {
    let imagPth = e.target.src;
   this.setState({
-      path: imagPth
+      path: imagPth,
+      border: '2px solid red'
     });
   }
  
@@ -92,8 +94,9 @@ toggleForm(e) {
         
         const allimages = (
                     <div className="thumbnail">
-                   {this.state.imagesArry.map(image => (
+                   {this.state.imagesArry.map((image, index) => (
                         <img src={require('../../uploads/'+image)} 
+                        key={index}
                         alt="Lights" 
                         style={{width: '20%', height: '150px', margin: 20}}
                         onClick={this.handleimage.bind(this)}
@@ -123,14 +126,22 @@ toggleForm(e) {
             <Button className="btn btn-primary" onClick={this.toggle}>SelecteFile</Button>
               <Modal isOpen={this.state.modal} toggle={this.toggle} style={{maxWidth: 1000}}>
                 <ModalHeader toggle={this.toggle}>
+                <div className="ml-5">
+               {!this.state.Toggleform ? (<img  src={this.state.path}
+                        alt="iamge" 
+                        style={{
+                          width: '70px',
+                          height: '60px',
+                          position: 'absolute',
+                          top:5,
+                          right: 100,
+                          border: `${this.state.border}`
+
+                        }} />) : null}
+                </div>
                  <Button  color="light" onClick={this.toggleForm}>Uplode New</Button>
                  <Button  color="light" onClick={this.toggleNew}>Media Library</Button>
                 </ModalHeader>
-                <div className="">
-                <img  src={this.state.path}
-                        alt="iamge" 
-                        style={{width: '50px', height: '50px', float: 'right'}} />
-                </div>
                 <hr /> 
                   {this.state.ToggleImage ? allimages : null}
                   {this.state.Toggleform ? uploderForm : null}
