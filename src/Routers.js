@@ -10,6 +10,9 @@ import Structure from './components/ContentTypesPanel/Structure/Structure';
 import LandingPage from './components/LandingPage/LandingPage';
 import PrivatRoute from './components/PrivatRoute/PrivatRoute';
 import jwtDecode from 'jwt-decode';
+import FileUploader from './components/FileUploader/FileUploader';
+import Slider from './components/Slider/Slider';
+
 
 
 class Routers extends Component {
@@ -65,65 +68,56 @@ class Routers extends Component {
 
    console.log(this.state.authenticated);
     return (
-             <div>
-             <Switch>
-                <Route  exact path="/login" component={login} />
-                <Route  exact path="/registration" component={Registration} />
-                <Route  exact path="/" component={LandingPage} />
-                
 
-                 
-                     <Route
-                     exact path="/" component={LandingPage} />
-                 
-                 
-                     <PrivatRoute
-                      authenticated={this.state.authenticated}
-                      exact path="/Administration/" component={Administration} />
-                 
+          <Switch>
 
-                   
-                       <PrivatRoute  
-                        authenticated={this.state.authenticated}
-                        path="/AddEntrie" component={AddEntrie} />
-                    
+            <Route  exact path="/login" component={login} />
+            <Route  exact path="/registration" component={Registration} />
+            <Route  exact path="/" component={LandingPage} />
+            <Route  exact path="/FileUploader" component={FileUploader} />
+            <Route  exact path="/slider" component={Slider} />
 
-                   
-                       <PrivatRoute  
-                        authenticated={this.state.authenticated}
-                        exact path="/CustomeCode/" component={CustomeCode} />
-                    
+        
+            <PrivatRoute
+              authenticated={this.state.authenticated}
+              exact path="/Administration/" component={Administration} />
+        
+             <PrivatRoute  
+                authenticated={this.state.authenticated}
+                path="/AddEntrie" component={AddEntrie} />
 
-                   
-                    <PrivatRoute 
-                        authenticated={this.state.authenticated}
-                     path="/Administration/main/:activeLink" component={Administration} />
-                    
+             <PrivatRoute  
+                authenticated={this.state.authenticated}
+                exact path="/CustomeCode/" component={CustomeCode} />
+            
+             <PrivatRoute 
+                authenticated={this.state.authenticated}
+                path="/Administration/main/:activeLink" component={Administration} />
+            
 
-                   
-                        <PrivatRoute  
-                        authenticated={this.state.authenticated}
-                        path="/Administration/Structure/:id" component={Administration} />
-                    
+            
+                <PrivatRoute  
+                authenticated={this.state.authenticated}
+                path="/Administration/Structure/:id" component={Administration} />
+            
 
-                   
-                       <PrivatRoute 
-                        authenticated={this.state.authenticated}
-                        path="/Administration/ContentType/:id" component={Administration} />
-                    
+            
+               <PrivatRoute 
+                authenticated={this.state.authenticated}
+                path="/Administration/ContentType/:id" component={Administration} />
+            
 
-                  
-                      <PrivatRoute 
-                        authenticated={this.state.authenticated}
-                        path="/Administration/Categories/:id" component={Administration} />
-                   
-                   
-                      <PrivatRoute 
-                        authenticated={this.state.authenticated}
-                       path="/Administration/view/:id" component={Administration} />
-                   </Switch>
+           
+              <PrivatRoute 
+                authenticated={this.state.authenticated}
+                path="/Administration/Categories/:id" component={Administration} />
+           
+            
+              <PrivatRoute 
+                authenticated={this.state.authenticated}
+               path="/Administration/view/:id" component={Administration} />
+           </Switch>
 
-                  </div>
                 
  
              

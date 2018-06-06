@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
+import FileUploader from '../../FileUploader/FileUploader';
 import './AddField.css';
 import axios from 'axios';
 
  class AddField extends Component { 
+              state = {
+                type: '',
+                toggleUploder: false
+              }
 
         fieldLabelRef = React.createRef();
         typeOptRef = React.createRef();
@@ -27,10 +32,9 @@ import axios from 'axios';
         cssClasses: this.cssClassNameRef.current.value,
         customCss: this.customCsslRef.current.value
         }
+       
     this.props.addFields(field);
-    //
-    console.log('fields are', field)
-    axios.put(`http://localhost:5000/api/contenttypes/${this.props.id}`, field)
+    /*axios.put(`http://localhost:5000/api/contenttypes/${this.props.id}`, field)
               .then((response) => {
                 console.log('response is', response);
               if(response.status === 200 ) {
@@ -40,14 +44,25 @@ import axios from 'axios';
               }
             }).catch((error) => {
               console.log("Error: ", error);
-            });
+            });*/
           };
 
-  
-
+onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
     render() {
+        let uplodecomponent;
+        if(this.state.type === 'Image') {
+            uplodecomponent = <FileUploader />
+        } else {
+            uplodecomponent = null;
+        }
         return(
             <div className="addfield">
+            <div className="col-md-12">
+             <h4 className="text-center">Uplode File</h4>
+                 {uplodecomponent}
+                </div>
             <h4 className="header">Add Your Content Fields</h4>
             <Container className="AddField">
                 <Form onSubmit={this.handelSubmit}>
@@ -61,7 +76,13 @@ import axios from 'axios';
                         <Col>
                             <FormGroup>
                                 <Label for="exampleSelect">Type</Label>
-                                <Input name="type" type="select" id="exampleSelect" innerRef={this.typeRef}>
+                                <Input  
+                                      name="type"
+                                      type="select"
+                                      id="exampleSelect"
+                                      innerRef={this.typeRef}
+                                      onChange={this.onChange.bind(this)}
+                                       >
                                     <option>Button</option>
                                     <option>Checkbox</option>
                                     <option>Color</option>
