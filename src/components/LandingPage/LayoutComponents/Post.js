@@ -18,7 +18,7 @@ export default class Post extends React.Component {
             image: '',
             title: 'Duis autem',
             text: 'Consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
-            isSetting:true
+            isSetting:false
         }
     
     }
