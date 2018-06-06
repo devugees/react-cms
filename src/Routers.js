@@ -11,6 +11,7 @@ import LandingPage from './components/LandingPage/LandingPage';
 import PrivatRoute from './components/PrivatRoute/PrivatRoute';
 import jwtDecode from 'jwt-decode';
 import FileUploader from './components/FileUploader/FileUploader';
+import Slider from './components/Slider/Slider';
 
 
 
@@ -69,33 +70,29 @@ class Routers extends Component {
     return (
 
           <Switch>
+
             <Route  exact path="/login" component={login} />
             <Route  exact path="/registration" component={Registration} />
             <Route  exact path="/" component={LandingPage} />
             <Route  exact path="/FileUploader" component={FileUploader} />
+            <Route  exact path="/slider" component={Slider} />
 
         
-             <PrivatRoute
+            <PrivatRoute
               authenticated={this.state.authenticated}
               exact path="/Administration/" component={Administration} />
         
-
-            
-               <PrivatRoute  
+             <PrivatRoute  
                 authenticated={this.state.authenticated}
                 path="/AddEntrie" component={AddEntrie} />
-            
 
-            
-               <PrivatRoute  
+             <PrivatRoute  
                 authenticated={this.state.authenticated}
                 exact path="/CustomeCode/" component={CustomeCode} />
             
-
-            
-            <PrivatRoute 
+             <PrivatRoute 
                 authenticated={this.state.authenticated}
-             path="/Administration/main/:activeLink" component={Administration} />
+                path="/Administration/main/:activeLink" component={Administration} />
             
 
             

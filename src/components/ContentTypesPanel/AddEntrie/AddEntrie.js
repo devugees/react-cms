@@ -2,10 +2,31 @@ import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Container, Row, Col } from 'reactstrap';
 import './AddEntrie.css';
 import axios from 'axios';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
+
+
 
 class AddEntrie extends Component { 
 
+  constructor(props) {
+      super(props);
+      console.log(props)
+        this.state = {
+          categories: [],
+          value: [],
+          crazy: false,
+          loading: false
+      }
+      this.handleSelectChange = this.handleSelectChange.bind(this);
+    }
+
 newEntrie = {}
+
+ componentWillReceiveProps = (nextProps, prevState) => {
+    let categoriesObject = nextProps.categorie;
+    this.setState({ categories: categoriesObject, loading: true});
+  }
 
 handelChange = e => {
     let inputName = e.target.name;
@@ -31,7 +52,47 @@ handelFormSubmit   = event => {
       this.props.addEntrie(newEntrieObj.content);
 }
 
+handleSelectChange(value) {
+    console.log('You have selected: ', value);
+    this.setState({ value });
+  }
+
+
 render() {
+
+  const options = this.state.categories.map((item, index) => (
+                      {
+                        label: item.name,
+                        value: index
+                       }
+                    ))
+     
+     console.log(options);
+     
+  const categoriesProp = (
+                    <div className="section">
+                        <h3 className="section-heading">{options.label}</h3>
+                          <Select
+                               multi
+                               joinValues 
+                               value={this.state.value}
+                               placeholder="Select your favourite(s)"
+                               options={options} 
+                               onChange={this.handleSelectChange} />
+                          </div>
+                       );  
+              /*
+  const categoriesProp = (
+           <div>
+              <Label for="exampleSelect">categories</Label>
+                 <Input type="select" name="select" id="exampleSelect">)
+                  {this.state.categories.map(item => (
+                     <option>{item.name}</option>
+                    ))}
+                 </Input>
+                </div>
+          );*/
+
     const styleFormGroups = {
         width: '250px', 
         float:"left",
@@ -57,17 +118,16 @@ return (
               className={object.cssClasses}
               onChange={this.handelChange} />
            </FormGroup>
+          
         </div>
             )
           })
         }
-            {/*
-              <FormGroup>
-              <Label for="exampleText">Text Area</Label>
-              <Input type="textarea" name="text" id="exampleText" />
-              </FormGroup>
-              
-          */}
+
+             {categoriesProp ? categoriesProp
+           
+                 : null}
+
            <Button type="submit" className="btn btn-md btn-outline-primary mr-3">AddNew Post</Button>
         </Form>
     </div>
