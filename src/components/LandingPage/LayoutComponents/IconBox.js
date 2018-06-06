@@ -1,14 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
     Form,
     Input,
     Row,
     Col } from 'reactstrap';
 import '../LandingPage.css';
-import * as Icon from 'react-icons/lib/fa';
-
-
-
 
 export default class IconBox extends React.Component {
 

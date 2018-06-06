@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
     Container,
     Jumbotron,
@@ -6,10 +6,6 @@ import {
     Form } from 'reactstrap';
 import '../LandingPage.css';
 import kinoImage from '../image/kino.jpg';
-import toolImage from '../image/tool.jpg';
-
-
-let imagePath ='../image/tool.jpg';
 
 export default class Slide extends React.Component {
     
