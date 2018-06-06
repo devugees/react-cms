@@ -6,7 +6,8 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const fileUpload = require('express-fileupload')
+const multer = require('multer');
+const path = require('path');
 
 
 
@@ -28,8 +29,8 @@ mongoose.connection.once('open', () => {
     console.log("Successfully connected to the database");
 });
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use(fileUpload());
 
 
 //import aminlogin route form adminlogin
