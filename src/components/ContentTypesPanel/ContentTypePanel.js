@@ -13,6 +13,7 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
       super(props);
         this.state = {
           entries:[],
+          categories: [],
           entriesKeys :{},
           modal: false
         };
@@ -48,7 +49,15 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
 
     componentWillMount = () => {
       this.bringEntries(this.props)
-     }
+      axios.get('http://localhost:5000/api/allcategories')
+          .then((response) => {
+                      this.setState({
+                        categories: response.data
+                      })
+            }).catch((error) => {
+              console.log("Error: ", error);
+            });
+  }
 
     componentWillReceiveProps = (nextProps, prevState) => {
       this.bringEntries(nextProps)
@@ -95,7 +104,6 @@ itemWillBeEdited = {};
      }
  
   render() {
- 
     return (
       <div className="ContentTypePanel">
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
@@ -114,7 +122,13 @@ itemWillBeEdited = {};
         items={this.state.entries}
         keys={this.state.entriesKeys}/>
         }
-        <AddEntrie fields={this.props.fields} contentTypeId={this.props.id} addEntrie={this.addEntrie}/>
+        <AddEntrie  
+        fields={this.props.fields} 
+        contentTypeId={this.props.id}
+        addEntrie={this.addEntrie}
+        categorie={this.state.categories}
+
+         />
       </div>
     );
   }

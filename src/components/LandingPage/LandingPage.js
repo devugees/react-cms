@@ -216,7 +216,7 @@ class LandingPage extends Component {
               </NavItem>
             </Nav>
           </Collapse>
-    </Navbar> */}
+        </Navbar> */}
         <Slide />
         {/*<Jumbotron fluid className="Jumbotron">
             <Container fluid>
@@ -266,8 +266,8 @@ class LandingPage extends Component {
         </footer>
           })}      
         </Row>       
- */}
-        <hr style={hrBorder}/>
+ 
+        <hr style={hrBorder}/>*/}
         <Post />
         {/*<Row style={postBox} className="text-center">
             <Col sm="8">

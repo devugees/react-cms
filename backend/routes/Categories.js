@@ -23,13 +23,13 @@ module.exports = (app) => {
         if(err1) {
           throw err1;
         }
-        if (!req.body.name && !req.body.discreption) {
+        if (!req.body.name && !req.body.description) {
             res.status(400).send({ message: "Categories can not be empty" });
               }
                 newCategories = new Categories({
                 	contentTypeId: req.params.contentTypeId,
                     "name": req.body.name,
-                    "discreption": req.body.discreption
+                    "description": req.body.description
                     
                 });
                 newCategories.save((err, categories) => {

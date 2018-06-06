@@ -1,21 +1,54 @@
 import React, { Component } from 'react';
 import {
     Container,
-    Jumbotron, } from 'reactstrap';
+    Jumbotron,
+    Input,
+    Form } from 'reactstrap';
 import '../LandingPage.css';
+import kinoImage from '../image/kino.jpg';
+import toolImage from '../image/tool.jpg';
 
 
-
+let imagePath ='../image/tool.jpg';
 
 export default class Slide extends React.Component {
+    
+
+    constructor(props) {
+    super(props);
+
+    this.state = {
+        background: kinoImage,
+        title: 'Welcome to the LandingPage',
+        text: 'React CMS !',
+        isSetting:false
+    }
+
+    }
+
     render(){
-      return (
-        <Jumbotron fluid className="Jumbotron">
-            <Container fluid>
-                <h1 className="display-3">Welcome to the LandingPage</h1>
-                <p className="lead">React CMS !</p>
-            </Container>
-        </Jumbotron>
-      );
+
+        const style={
+            backgroundImage: `url(${this.state.background})`
+        }
+
+        if(!this.state.isSetting){
+            return (
+                <Jumbotron fluid className="Jumbotron" style={style}>
+                    <Container fluid>
+                        <h1 className="display-3">{this.state.title}</h1>
+                        <p className="lead">{this.state.text}</p>
+                    </Container>
+                </Jumbotron>
+                );
+            }else{
+                return (
+                <Form>
+                    <Input onChange={this.state.background} placeholder="Choose Image" />
+                    <Input onChange={this.state.title} placeholder="Title" />
+                    <Input onChange={this.state.text} placeholder="Text" />
+                </Form>
+                )
+            }
     }
 }
