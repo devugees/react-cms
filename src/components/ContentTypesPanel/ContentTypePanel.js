@@ -4,7 +4,7 @@ import AddEntrie from './AddEntrie/AddEntrie';
 import EditEntrie from './EditEntrie/EditEntrie';
 import ViewTable from '../ViewTable/ViewTable'
 import axios from 'axios';
-import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Container, Row, Col, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {  Modal, ModalHeader, ModalBody } from 'reactstrap';
 
  
   class ContentTypePanel extends Component {
@@ -29,14 +29,13 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
     bringEntries = nextProps => {
       let entries = [];
       let contentObj;
-      let entriesKeys = {};
 
       axios.get(`http://localhost:5000/api/entries/${nextProps.id}`)
      .then((response) => {
       response.data.map((entrie) => {
         contentObj = {...entrie.content}
         contentObj.id = entrie._id
-        entries.push(contentObj)
+        return entries.push(contentObj)
       })
       this.setState({
         entries: entries,
