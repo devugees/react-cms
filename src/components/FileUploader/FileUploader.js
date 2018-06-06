@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
+import { Button, Form, FormGroup, Modal,Label, Input, Container, Row, Col, ModalFooter ,ModalBody, ModalHeader} from 'reactstrap';
 import './FileUploader.css';
-import image1 from '../../uploads/Screenshot from 2018-01-14 10-23-03.png'
 
 export default class FileUploader extends Component {
 
@@ -11,8 +10,27 @@ export default class FileUploader extends Component {
         this.state = {
           description: '',
           selectedFile: '',
-        };
+          imagesArry: [],
+          name: 'MediaLibrary',
+          modal: false,
+          ToggleImage: true,
+          Toggleform: false,
+          path: ''
+        }
+        this.toggle = this.toggle.bind(this);
+        this.toggleNew = this.toggleNew.bind(this);
+        this.toggleForm = this.toggleForm.bind(this);
+       
       }
+      componentDidMount() {
+       
+           axios.get('http://localhost:5000/api/getimages')
+                .then(response => this.setState({imagesArry: response.data})
+            )
+            .catch(function (error) {
+              console.log(error);
+            });
+    }
 
       onChange = (e) => {
         const state = this.state;
@@ -29,8 +47,6 @@ export default class FileUploader extends Component {
       }
 
       onSubmit = (e) => {
-
-            imagesArry: [],
         e.preventDefault();
         const { description, selectedFile } = this.state;
         let formData = new FormData();
@@ -44,40 +60,89 @@ export default class FileUploader extends Component {
           });
       }
 
+      toggle() {
+    this.setState({
+      modal: !this.state.modal
+    });
+  }
+
+  toggleNew(e) {
+    this.setState({
+      Toggleform: false,
+      ToggleImage: true
+    });
+  }
+toggleForm(e) {
+    this.setState({
+      ToggleImage: false,
+      Toggleform: true
+    });
+  }
+
+  handleimage(e) {
+   let imagPth = e.target.src;
+  this.setState({
+      path: imagPth
+    });
+  }
+ 
       render() {
+       console.log(this.state.path)
         const { description, selectedFile } = this.state;
+        
+        const allimages = (
+                    <div className="thumbnail">
+                   {this.state.imagesArry.map(image => (
+                        <img src={require('../../uploads/'+image)} 
+                        alt="Lights" 
+                        style={{width: '20%', height: '150px', margin: 20}}
+                        onClick={this.handleimage.bind(this)}
+                         /> 
+                         )) }
+                    </div>
+                 )
+        const uploderForm = (
+                <form onSubmit={this.onSubmit} className="w-75 mt-3">
+                  <input
+                    type="text"
+                    name="description"
+                    value={description}
+                    onChange={this.onChange}
+                  />
+                  <input
+                    type="file"
+                    name="selectedFile"
+                    onChange={this.onChange}
+                  />
+                  <button type="submit">Submit</button>
+             </form>
+          )
+
         return (
-          <form onSubmit={this.onSubmit}>
-            <input
-              type="text"
-              name="description"
-              value={description}
-              onChange={this.onChange}
-            />
-            <input
-              type="file"
-              name="selectedFile"
-              onChange={this.onChange}
-            />
-            <button type="submit">Submit</button>
-          </form>
+          <div>
+            <Button className="btn btn-primary" onClick={this.toggle}>SelecteFile</Button>
+              <Modal isOpen={this.state.modal} toggle={this.toggle} style={{maxWidth: 1000}}>
+                <ModalHeader toggle={this.toggle}>
+                 <Button  color="light" onClick={this.toggleForm}>Uplode New</Button>
+                 <Button  color="light" onClick={this.toggleNew}>Media Library</Button>
+                </ModalHeader>
+                <div className="">
+                <img  src={this.state.path}
+                        alt="iamge" 
+                        style={{width: '50px', height: '50px', float: 'right'}} />
+                </div>
+                <hr /> 
+                  {this.state.ToggleImage ? allimages : null}
+                  {this.state.Toggleform ? uploderForm : null}
+                 
+                  
+                <ModalFooter>
+                  <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
+                  <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                </ModalFooter>
+              </Modal>
+          
+          </div>
         );
       }
- const allimages = (
-              <div className="container">
-                <div className="row">
-                    <div className="col-md-12">
-                        <div className="thumbnail">
-                            <img src={require('../../uploads/'+image)} 
-                            alt="Lights" 
-                       {this.state.imagesArry.map(image => (
-                             /> )) }
-                            style={{width: '30%', height: 250, margin: 20}}
-                            <div className="caption">
-                        </div>
-                    </div>
-                    </div>
-                    </div>
-                    </div>
-             )
  }

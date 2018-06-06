@@ -47,7 +47,7 @@ function checkFileType(file, cb){
           Files will be saved in the 'uploads' directory. Make
           sure this directory already exists!
         */
-        cb(null, '../public/uploads');
+        cb(null, '../src/uploads');
       },
       filename: (req, file, cb) => {
         /*
