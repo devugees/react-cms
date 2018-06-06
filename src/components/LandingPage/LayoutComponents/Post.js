@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
     Row,
     Col,
@@ -43,7 +43,7 @@ export default class Post extends React.Component {
                 <hr style={hrBorder} />
                 <Row style={postBox} className="text-center">
                     <Col sm="4">
-                        <img src={Image} />
+                        <img src={Image} alt="tool"/>
                     </Col>
                     <Col sm="8">
                         <h3>{this.state.title}</h3>
