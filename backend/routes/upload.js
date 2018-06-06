@@ -1,6 +1,8 @@
 const  jwt = require('jsonwebtoken');
 const  VerifyToken = require('../config/VerifyToken');
 const multer = require('multer');
+const fs = require('fs');
+const path = require('path');
 
 
 const serversignature = 'mysignature';
@@ -59,4 +61,13 @@ function checkFileType(file, cb){
   });
 });
 
+
+app.get('/api/getimages', (req, res) => {
+
+var images = fs.readdirSync('../src/uploads');
+res.send(images);
+});
+
 }
+
+
