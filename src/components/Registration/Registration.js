@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input, Container } from "reactstrap";
 import "./Registration.css";
 import axios from "axios";
-import { Link, browserHistory } from "react-router-dom";
-import PrivatRoute from "../PrivatRoute/PrivatRoute";
 //import setAuthToken from '../../setauthtoken/setAuthToken';
 
 class Registration extends Component {
@@ -40,7 +38,7 @@ class Registration extends Component {
     axios
       .post("http://localhost:5000/register", data)
       .then(response => {
-        const { token } = response.data;
+        //const { token } = response.data;
 
         if (response.data.role) {
           // set the token in localStorage
@@ -69,8 +67,6 @@ class Registration extends Component {
   }
 
   render() {
-    const buttonStyle = { width: "100%" };
-
     return (
       <Container className="Registration">
         <Form onSubmit={this.handleSubmit}>

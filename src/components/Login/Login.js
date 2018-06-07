@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input, Container } from "reactstrap";
 import "./Login.css";
 import axios from "axios";
-import { Link, browserHistory } from "react-router-dom";
-import PrivatRoute from "../PrivatRoute/PrivatRoute";
 //import setAuthToken from '../../setauthtoken/setAuthToken';
 
 class Login extends Component {
@@ -39,7 +37,7 @@ class Login extends Component {
     axios
       .post("http://localhost:5000/login", data)
       .then(response => {
-        const { token } = response.data;
+        //const { token } = response.data;
 
         if (response.data.role) {
           // set the token in localStorage
