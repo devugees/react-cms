@@ -52,7 +52,7 @@ import {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav  style={fontSize} navbar>
               <NavItem>
-                <NavLink style={textColor} href="/">Go to Website</NavLink>
+                <Link style={textColor} to="/">Go to Web Site</Link>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle style={textColor} nav caret>
