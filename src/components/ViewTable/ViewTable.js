@@ -3,78 +3,35 @@ import './ViewTable.css';
 import { Table, Row } from "reactstrap";
 import axios from 'axios';
 
-let itemsWithId = [];
+
+
 
 class ViewTable extends Component {
 
   constructor(props) {
     super(props);
-    itemsWithId = props.itemsWithId;
-    let keysObjWithOutId;
-    let keysObj ={};
-    let keys = [];
-    let items = [];
-    let newItems = [];
-    console.log(props)
-    if(props.keys) {
-      if(props.keys.id){
-        keysObj = {...props.keys}
-        delete keysObj.id
-      } else {
-      keysObj = props.keys;
-      }
-    }
+    
+    let keys = Object.keys(props.keys)
+    keys.pop()
 
-    keys = Object.keys(keysObj);
-
-    if(props.items[0]){
-      if(props.items[0].id){
-        items = props.items
-        items.map((item)=> {
-          delete item.id
-        })
-        
-        this.setState({
-          items,
-          keys
-        })
-    } else {
-      items = props.items
-      }
-    }
+    let items = props.items
     this.state = {
       items,
       keys,
-      fields: []
     };
   }
   
   handleEdit = (index, machineName) => {
-    // checking which edit modal shut pop up 
-    // depending on which component you'e open it from
-    // bug: redirect(navigate) at the Structure edit function to...
-    console.log("index",index)
-    console.log("machineName",machineName)
-
-  
     if(!machineName) {
     this.props.toggle();
-    console.log("itemsWithId",itemsWithId)
-    
-    const itemId = itemsWithId[index].id
-    console.log("itemId",itemId)
-    const item = this.state.items[index]
-    this.props.bringEntrie(itemId,item,index)
-    } else if(machineName) {
-
-    }
+    const item = this.props.items[index]
+    this.props.bringItemWillBeEditedFromViewTable(item,index)
+    } 
    
   }
 
   handleDelete = index => {
-    let items = [...this.state.items]
-    console.log("itemsWithId[index].id",itemsWithId[index].id)
-    axios.delete(`http://localhost:5000/api/entries/${itemsWithId[index].id}`)
+    axios.delete(`http://localhost:5000/api/entries/${this.props.items[index].id}`)
     .then(response => {
       if(response.data.message) {
           console.error(response.data.message)
@@ -83,48 +40,56 @@ class ViewTable extends Component {
       .catch(error => {
         console.error('Error:', error)
       })
-      this.props.deleteEntrie(index)
+      this.props.deleteEntrieFromState(index)
     }
 
   static getDerivedStateFromProps(props, state) {
-    itemsWithId = props.itemsWithId;
-     props.items.map((item)=> {delete item.id})
-    return {
-      items:props.items
-    }
+    
   };
 
   render() {
 
-    return (
-      <div className="ViewTable">
-        <Table striped>
-          <thead>
-            <tr>
-              {this.state.keys.map((object, index) => {
-                return <th key={index}>{object}</th>
-              })}
-              <th>Controllers</th>
-            </tr>
-          </thead>
-          <tbody>
-          {this.state.items.map((object, index) => {
+    const renderedKeys = this.state.keys.map((key, index) => {
+                return <th key={index}>{key}</th>
+              })
+
+    let renderedItems 
+    let values
+      if(this.state.items) {
+        renderedItems = this.state.items.map((item, index) => {
+          values = Object.values(item)
+          values.pop();
             return (
               <tr key={index}>
-              {Object.values(object).map((string, index2) => {
+              { 
+                values.map((string, index2) => {
                return (
                 <td key={index2}>{string.toString()}</td>
                 )}
                )}
               <td>
                 <Row>
-                  <button className="mr-2 btn-outline-info btn-sm" onClick={this.handleEdit.bind(this, index, object.machineName)}>Edit</button>
+                  <button className="mr-2 btn-outline-info btn-sm" onClick={this.handleEdit.bind(this, index, item.machineName)}>Edit</button>
                   <button className='btn btn-outline-danger btn-sm' onClick={this.handleDelete.bind(this, index)}>Delete</button>
                 </Row>
               </td>
               </tr>
               )}
-            )}
+            )
+      }
+
+    return (
+      <div className="ViewTable">
+        <Table striped>
+          <thead>
+            <tr>
+              {renderedKeys}
+              <th>Controllers</th>
+            </tr>
+          </thead>
+          <tbody>
+          {renderedItems}
+            
           </tbody>
         </Table> 
       </div>

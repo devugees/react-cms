@@ -42,7 +42,7 @@ class Slider extends Component {
 
 
       activeIndex: 0 
-    },
+    }
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
     this.goToIndex = this.goToIndex.bind(this);
@@ -87,7 +87,7 @@ class Slider extends Component {
         > 
       
           <img 
-               style={{height: '500px', marginTop: 50}}
+               style={{height: '500px', marginTop: 0, marginBottom: 30}}
                src={item.src} 
                alt={item.altText}
                  />

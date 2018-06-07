@@ -1,6 +1,7 @@
 const  jwt = require('jsonwebtoken');
 const  VerifyToken = require('../config/VerifyToken');
 const multer = require('multer');
+const fs = require('fs');
 const path = require('path');
 const uuidv4 = require('uuid/v4');
 
@@ -46,7 +47,7 @@ function checkFileType(file, cb){
           Files will be saved in the 'uploads' directory. Make
           sure this directory already exists!
         */
-        cb(null, '../public/uploads');
+        cb(null, '../src/uploads');
       },
       filename: (req, file, cb) => {
         /*
@@ -99,4 +100,12 @@ function checkFileType(file, cb){
   });
 });*/
 
+
+app.get('/api/getimages', (req, res) => {
+var images = fs.readdirSync('../src/uploads');
+res.send(images);
+});
+
 }
+
+

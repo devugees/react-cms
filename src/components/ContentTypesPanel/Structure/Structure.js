@@ -7,9 +7,7 @@ import ViewTable from '../../ViewTable/ViewTable';
 import EditField from '../EditField/EditField';
 import axios from 'axios';
 
-
 class Structure extends Component {
-
   constructor(props) {
     super();
     this.state = {
@@ -57,15 +55,15 @@ class Structure extends Component {
     }
   componentWillMount = () => {
     this.setState({
-      fields: this.props.fields,
-    })
-   }
+      fields: this.props.fields
+    });
+  };
 
   componentWillReceiveProps = (nextProps, prevState) => {
     this.setState({
-      fields: nextProps.fields,
-    })
-  }
+      fields: nextProps.fields
+    });
+  };
 
   addFields = (field) => {
       const fields = this.state.fields;
@@ -97,7 +95,7 @@ class Structure extends Component {
             </Row>
 
             <Row>
-            <AddField addFields={this.addFields} id={this.props.id}/>
+              <AddField addFields={this.addFields} id={this.props.id} />
             </Row>
 
             <Row className='float-right'>
