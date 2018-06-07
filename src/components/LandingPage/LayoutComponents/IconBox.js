@@ -10,6 +10,7 @@ export default class IconBox extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log(props);
 
     this.state = {
         iconTop: '',
@@ -26,18 +27,27 @@ export default class IconBox extends React.Component {
         padding: '0'
       };
 
-      
+
       if(!this.state.isSetting){
         return (
-          <Row style={landingPage}> 
+          <Row className="py-5" style={landingPage}>
             <Col className="Box">
               {this.state.icon}
-              <h3>{this.state.title}</h3>
+              <h2>{this.state.title}</h2>
               <p>{this.state.text}</p>
-            </Col>   
-          </Row>  
+              <Row>
+                {this.props.icons && this.props.icons.map(item => (
+                  <Col sm="4" xs="12">
+                     <i className={"fa fa-5x " + item.icon}>{item.name}</i>
+                     <h2>{item.title}</h2>
+                     <p>{item.text}</p>
+                     </Col>
+                    ))}
+                    </Row>
+            </Col>
+          </Row>
         );
-      } else { return( 
+      } else { return(
       <Form>
           <Input onChange={this.state.iconTop} placeholder="Choose Icon" />
           <Input onChange={this.state.title} placeholder="Title" />
@@ -45,6 +55,6 @@ export default class IconBox extends React.Component {
         </Form>
         )
       }
-      
+
     }
 }
