@@ -87,7 +87,7 @@ class ViewTable extends Component {
     }
 
   static getDerivedStateFromProps(props, state) {
-    itemsWithId = JSON.parse(JSON.stringify(props.items));
+    itemsWithId = props.itemsWithId;
      props.items.map((item)=> {delete item.id})
     return {
       items:props.items
