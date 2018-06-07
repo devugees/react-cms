@@ -12,19 +12,12 @@ class AppearanceForm extends Component {
     const style = { marginBottom: '1em' }
     const btnFile = { marginBottom: '1em', height: '2em' }
 
-    //const options = this.props.categories.map((item, index) => (
-      //{
-        //label: item.name,
-        //value: index
-       //}
-    //))
-
     return (
       <Form onSubmit={this.props.handleSubmit}>
           <Row>
             <Col>
               <h3>Menu</h3>
-              <Input style={style} placeholder="Website Title" />
+              <Input  defaultValue={this.props.form.websitetitle} name="websitetitle" style={style} placeholder="Website Title" />
               <Select
                 style={style}
                 multi
@@ -63,7 +56,7 @@ class AppearanceForm extends Component {
             </Col>
             <Col>
               <h3>Footer</h3>
-              <Input name="footertext" style={style} placeholder="Copyright" />
+              <Input defaultValue={this.props.form.footertext} name="footertext" style={style} placeholder="Copyright" />
               <Select
                 style={style}
                 multi
@@ -80,4 +73,3 @@ class AppearanceForm extends Component {
 }
 
 export default AppearanceForm;
-

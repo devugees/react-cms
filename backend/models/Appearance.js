@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const AppearanceSchema = new Schema({
+  websitetitle: String,
   menuItems: Array,
   icon1: {
     icon: String,
@@ -18,8 +19,8 @@ const AppearanceSchema = new Schema({
     title: String,
     text: String
   },
-  footerText: String,
-  footerItems: Array
+  footertext: String,
+  footeritems: Array
 });
 
 const Appearance = mongoose.model('Appearance', AppearanceSchema);

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Form, Row, Col, Input, Button, } from 'reactstrap';
-import Select from 'react-select';
 import axios from 'axios';
 import AppearanceForm from './AppearanceForm';
 
@@ -19,7 +17,6 @@ class Custome extends Component {
     fetch('http://localhost:5000/api/appearance')
       .then(resp => resp.json())
       .then((data) => {
-          console.log(data);
           this.setState({
             form: data[0]
           })
@@ -36,19 +33,18 @@ class Custome extends Component {
     let form = {};
     for (var i = 0; i < event.target.elements.length; i++) {
       if(event.target.elements[i].value !== "" && event.target.elements[i].name !== ""){
-        console.log(event.target.elements[i].value);
         form[event.target.elements[i].name] = event.target.elements[i].value
       }
     }
     axios.post('http://localhost:5000/api/appearance', form)
      .then((response) => {
-       console.log(response)
+       // TODO here should come a successmessage
+       console.log(response.data)
 
       }).catch(function(error) {
         console.log("Error: ", error);
       });
 
-    console.log(form);
   }
 
   render() {
