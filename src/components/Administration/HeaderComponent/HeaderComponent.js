@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './HeaderComponent.css';
 import {Link} from 'react-router-dom';
 import {
@@ -12,88 +12,96 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
-   } from 'reactstrap';
+  DropdownItem,
+} from 'reactstrap';
 
-  class TopHeader extends Component {
-
-  constructor(props) {
-    super(props);
+class TopHeader extends Component {
+  constructor() {
+    super();
 
     this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false,
-      logout: ''
+      logout: '',
     };
     //localStorage.getItme("token")
   }
 
   toggle() {
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen: !this.state.isOpen,
     });
   }
 
-   logOut() {
-    localStorage.removeItem("token");
+  logOut() {
+    localStorage.removeItem('token');
   }
 
   render() {
-  const fontSize ={fontSize:'.9rem'};
+    const fontSize = {fontSize: '.9rem'};
 
-  const style ={backgroundColor: '#555', height: '3rem', fontSize: '1rem'};
+    const style = {backgroundColor: '#555', height: '3rem', fontSize: '1rem'};
 
-  const textColor ={color: '#fff'};
+    const textColor = {color: '#fff'};
 
     return (
       <div className="top">
         <Navbar style={style} light expand="md">
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav  style={fontSize} navbar>
+            <Nav style={fontSize} navbar>
               <NavItem>
-                <Link style={textColor} to="/">Go to Web Site</Link>
+                <Link style={textColor} to="/">
+                  Go to Web Site
+                </Link>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle style={textColor} nav caret>
                   New
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>
-                    Option 1
-                  </DropdownItem>
-                  <DropdownItem>
-                    Option 2
-                  </DropdownItem>
+                  <DropdownItem>Option 1</DropdownItem>
+                  <DropdownItem>Option 2</DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
-                  </DropdownItem>
+                  <DropdownItem>Reset</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem>
-                <Link style={textColor} to="/Administration/main/NewContentType">Create Node</Link>
+                <Link
+                  style={textColor}
+                  to="/Administration/main/NewContentType">
+                  Create Node
+                </Link>
               </NavItem>
             </Nav>
 
-          <NavbarBrand style={fontSize} className="ml-auto">
+            <NavbarBrand style={fontSize} className="ml-auto">
               <UncontrolledDropdown>
                 <DropdownToggle style={textColor} caret>
                   My Account
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
-                    <img alt='User Img' src='https://i.ebayimg.com/images/g/oawAAOSwi0RX0uyP/s-l300.jpg' />
+                    <img
+                      alt="User Img"
+                      src="https://i.ebayimg.com/images/g/oawAAOSwi0RX0uyP/s-l300.jpg"
+                    />
                   </DropdownItem>
                   <DropdownItem>
-                    <NavLink className='gfgfgfg' href="#"> My Account </NavLink>
+                    <NavLink className="gfgfgfg" href="#">
+                      {' '}
+                      My Account{' '}
+                    </NavLink>
                   </DropdownItem>
                   <DropdownItem>
-                    <NavLink className='gf58585g' onClick={this.logOut}> <Link to="/login">Sign out </Link></NavLink>
+                    <NavLink className="gf58585g" onClick={this.logOut}>
+                      {' '}
+                      <Link to="/login">Sign out </Link>
+                    </NavLink>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-          </NavbarBrand>
+            </NavbarBrand>
           </Collapse>
         </Navbar>
       </div>
