@@ -1,17 +1,52 @@
-import React, { Component } from "react";
-import { Form, Row, Col, Input } from "reactstrap";
-import Select from "react-select";
+import React, { Component } from 'react';
+import axios from 'axios';
+import AppearanceForm from './AppearanceForm';
 
 class Custome extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      categories: [],
-      value: [],
-      crazy: false,
-      loading: false
-    };
+      this.state = {
+        categories: [],
+        value: [],
+        crazy: false,
+        form: false,
+        loading: false
+    }
   }
+  componentDidMount() {
+    fetch('http://localhost:5000/api/appearance')
+      .then(resp => resp.json())
+      .then((data) => {
+          this.setState({
+            form: data[0]
+          })
+        })
+      .catch(() => {
+        console.log(
+          'No internet connection found. App is running in offline mode.'
+        );
+      });
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+    let form = {};
+    for (var i = 0; i < event.target.elements.length; i++) {
+      if(event.target.elements[i].value !== "" && event.target.elements[i].name !== ""){
+        form[event.target.elements[i].name] = event.target.elements[i].value
+      }
+    }
+    axios.post('http://localhost:5000/api/appearance', form)
+     .then((response) => {
+       // TODO here should come a successmessage
+       console.log(response.data)
+
+      }).catch(function(error) {
+        console.log("Error: ", error);
+      });
+
+  }
+
   render() {
     const style = { marginBottom: "1em" };
     const btnFile = { marginBottom: "1em", height: "2em" };
@@ -22,64 +57,8 @@ class Custome extends Component {
     }));
 
     return (
-      <Form>
-        <Row>
-          <Col>
-            <h3>Menu</h3>
-            <Input style={style} placeholder="Website Title" />
-            <Select
-              style={style}
-              multi
-              joinValues
-              value={this.state.value}
-              placeholder="Choose Pages for Menu"
-              options={options}
-              onChange={this.handleSelectChange}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <h3>IconBox Left </h3>
-            <Input style={style} placeholder="Icon Name" />
-            <Input style={style} placeholder="Title" />
-            <Input style={style} placeholder="Text" />
-          </Col>
-          <Col>
-            <h3>IconBox Center</h3>
-            <Input style={style} placeholder="Icon Name" />
-            <Input style={style} placeholder="Title" />
-            <Input style={style} placeholder="Text" />
-          </Col>
-          <Col>
-            <h3>IconBox Right</h3>
-            <Input style={style} placeholder="Icon Name" />
-            <Input style={style} placeholder="Title" />
-            <Input style={style} placeholder="Text" />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <h3>Post</h3>
-            <Input style={btnFile} type="file" name="file" id="exampleFile" />
-            <Input style={style} placeholder="Title" />
-            <Input style={style} placeholder="Text" />
-          </Col>
-          <Col>
-            <h3>Footer</h3>
-            <Input style={style} placeholder="Copyright" />
-            <Select
-              style={style}
-              multi
-              joinValues
-              value={this.state.value}
-              placeholder="Choose Pages for Footer"
-              options={options}
-              onChange={this.handleSelectChange}
-            />
-          </Col>
-        </Row>
-      </Form>
+      this.state.form &&
+        <AppearanceForm handleSubmit={this.handleSubmit} form={this.state.form}/>
     );
   }
 }
