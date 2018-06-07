@@ -5,11 +5,14 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
 
 class EditEntrie extends Component { 
 
-  editedEntrie = {}
-
+  editedEntrie = {...this.props.itemWillBeEdited }
+ 
   handelChange = event => {
+    console.log(this.editedEntrie)
       let inputName = event.target.name;
       this.editedEntrie[inputName] = event.target.value;
+    console.log("after the change" ,this.editedEntrie)
+      
   }
 
   handelFormSubmit = event => {

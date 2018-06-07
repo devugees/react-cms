@@ -13,6 +13,7 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
       super(props);
         this.state = {
           entries:[],
+          entriesWithId:[],
           categories: [],
           entriesKeys :{},
           modal: false
@@ -38,8 +39,10 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
         contentObj.id = entrie._id
         entries.push(contentObj)
       })
+      let entriesWithId = JSON.parse(JSON.stringify(entries))
       this.setState({
         entries: entries,
+        entriesWithId : entriesWithId,
         entriesKeys: entries[0]
       })
       }).catch(function(error) {
@@ -88,19 +91,24 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
   }
 itemWillBeEdited = {};
 
-  bringEntrie = (id,item) => {
+  bringEntrie = (id,item,index) => {
     this.editingItem.id = id
+    this.editingItem.index = index
     console.log(item)
     this.itemWillBeEdited = item
   }
    
-    editingItem = {
-      item: {},
-      id: ''
-    };
+    editingItem = {};
 
-    bringItem = (item) => {
-      this.editingItem.item = item; 
+    bringItem = (item,index) => {
+      let entries = {...this.state.entries}
+      let newItem = item 
+     console.log("entriebefores",entries)
+      
+      entries[index] = item
+     console.log("entries",entries)
+     console.log("newItem",newItem)
+
      }
  
   render() {
@@ -109,7 +117,7 @@ itemWillBeEdited = {};
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
           <ModalBody>
-            <EditEntrie toggle={this.toggle} itemWillBeEdited={this.itemWillBeEdited} bringItem={this.bringItem} bringEntries={this.bringEntries}editingItem={this.editingItem} fields={this.props.fields} />
+            <EditEntrie toggle={this.toggle} itemWillBeEdited={this.itemWillBeEdited} bringItem={this.bringItem} bringEntries={this.bringEntries} editingItem={this.editingItem} fields={this.props.fields} />
           </ModalBody>
         </Modal>
 
@@ -120,7 +128,9 @@ itemWillBeEdited = {};
         deleteEntrie={this.deleteEntrie}
         toggle={this.toggle}
         items={this.state.entries}
-        keys={this.state.entriesKeys}/>
+        itemsWithId= {this.state.entriesWithId}
+        keys={this.state.entriesKeys}
+        />
         }
         <AddEntrie  
         fields={this.props.fields} 

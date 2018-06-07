@@ -9,7 +9,7 @@ class ViewTable extends Component {
 
   constructor(props) {
     super(props);
-    itemsWithId = JSON.parse(JSON.stringify(props.items));
+    itemsWithId = props.itemsWithId;
     let keysObjWithOutId;
     let keysObj ={};
     let keys = [];
@@ -33,6 +33,7 @@ class ViewTable extends Component {
         items.map((item)=> {
           delete item.id
         })
+        
         this.setState({
           items,
           keys
@@ -54,14 +55,16 @@ class ViewTable extends Component {
     // bug: redirect(navigate) at the Structure edit function to...
     console.log("index",index)
     console.log("machineName",machineName)
-    console.log(this.props)
 
   
-    if(index) {
+    if(!machineName) {
     this.props.toggle();
+    console.log("itemsWithId",itemsWithId)
+    
     const itemId = itemsWithId[index].id
+    console.log("itemId",itemId)
     const item = this.state.items[index]
-    this.props.bringEntrie(itemId,item)
+    this.props.bringEntrie(itemId,item,index)
     } else if(machineName) {
 
     }
