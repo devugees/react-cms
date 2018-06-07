@@ -1,30 +1,13 @@
 import React, { Component } from 'react';
 import { Container } from 'reactstrap';
 import Menu from './LayoutComponents/Menu';
-import Slide from './LayoutComponents/Slide';
+import Slider from '../Slider/Slider';
 import IconBox from './LayoutComponents/IconBox';
 import Post from './LayoutComponents/Post';
 import Footer from './LayoutComponents/Footer';
 import './LandingPage.css';
 
 class LandingPage extends Component {
-
-/*
-    constructor(props) {
-        super(props);
-    
-        this.toggle = this.toggle.bind(this);
-        this.state = {
-          isOpen: false
-        };
-      }
-    
-      toggle() {
-      this.setState({
-        isOpen: !this.state.isOpen
-        });
-      }
-    */ 
 
       theme ={ 
         sections:[
@@ -148,7 +131,7 @@ class LandingPage extends Component {
     return (
       <Container style={landingPage} fluid>
         <Menu />
-        <Slide />
+        <Slider />
         <IconBox />
         <Post />
         <Footer />

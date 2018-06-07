@@ -10,11 +10,9 @@ class ViewTable extends Component {
   constructor(props) {
     super(props);
     itemsWithId = JSON.parse(JSON.stringify(props.items));
-    let keysObjWithOutId;
     let keysObj ={};
     let keys = [];
     let items = [];
-    let newItems = [];
     console.log(props)
     if(props.keys) {
       if(props.keys.id){
@@ -31,7 +29,7 @@ class ViewTable extends Component {
       if(props.items[0].id){
         items = props.items
         items.map((item)=> {
-          delete item.id
+          return delete item.id
         })
         this.setState({
           items,
@@ -59,7 +57,6 @@ class ViewTable extends Component {
   }
 
   handleDelete = index => {
-    let items = [...this.state.items]
     console.log("itemsWithId[index].id",itemsWithId[index].id)
     axios.delete(`http://localhost:5000/api/entries/${itemsWithId[index].id}`)
     .then(response => {
@@ -75,7 +72,7 @@ class ViewTable extends Component {
 
   static getDerivedStateFromProps(props, state) {
     itemsWithId = JSON.parse(JSON.stringify(props.items));
-     props.items.map((item)=> {delete item.id})
+     props.items.map((item)=> delete item.id)
     return {
       items:props.items
     }
