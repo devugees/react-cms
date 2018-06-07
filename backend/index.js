@@ -65,17 +65,13 @@ app.post('/upload', (req, res, next) => {
 
 
 app.get('/', (req, res) => {
-	res.send('the app is wotking')
+  res.send('the app is wotking')
 });
 
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-	console.log('the srver is runing on port:' + PORT)
+  console.log('the srver is runing on port:' + PORT)
 });
 
-// FileUploader 
-
-
-
-
+// FileUploader
