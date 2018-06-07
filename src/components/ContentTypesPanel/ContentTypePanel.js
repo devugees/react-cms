@@ -46,9 +46,14 @@ import {  Modal, ModalHeader, ModalBody } from 'reactstrap';
       });
     }
 
-    componentWillMount = () => {
+    componentDidMount = () => {
       this.bringEntries(this.props)
-      axios.get('http://localhost:5000/api/allcategories')
+      
+  }
+
+    componentWillReceiveProps = (nextProps, prevState) => {
+      this.bringEntries(nextProps)
+      axios.get(`http://localhost:5000/api/categories/${nextProps.id}`)
           .then((response) => {
                       this.setState({
                         categories: response.data
@@ -56,10 +61,6 @@ import {  Modal, ModalHeader, ModalBody } from 'reactstrap';
             }).catch((error) => {
               console.log("Error: ", error);
             });
-  }
-
-    componentWillReceiveProps = (nextProps, prevState) => {
-      this.bringEntries(nextProps)
     }
  
     addEntrie = content => {

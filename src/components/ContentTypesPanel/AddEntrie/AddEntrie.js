@@ -1,99 +1,92 @@
-import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Container, Row, Col } from 'reactstrap';
-import './AddEntrie.css';
-import axios from 'axios';
-import Select from 'react-select';
-import 'react-select/dist/react-select.css';
-import FileUploader from '../../FileUploader/FileUploader';
+import React, { Component } from "react";
+import { Button, Form, FormGroup, Label } from "reactstrap";
+import "./AddEntrie.css";
+import axios from "axios";
+import Select from "react-select";
+import "react-select/dist/react-select.css";
+import FileUploader from "../../FileUploader/FileUploader";
 
-
-
-
-class AddEntrie extends Component { 
-
+class AddEntrie extends Component {
   constructor(props) {
-      super(props);
-      console.log(props)
-        this.state = {
-          categories: [],
-          value: [],
-          crazy: false,
-          loading: false
-      }
-      this.handleSelectChange = this.handleSelectChange.bind(this);
-    }
-
-newEntrie = {}
-
- componentWillReceiveProps = (nextProps, prevState) => {
-    let categoriesObject = nextProps.categorie;
-    this.setState({ categories: categoriesObject, loading: true});
+    super(props);
+    console.log(props);
+    this.state = {
+      categories: [],
+      value: [],
+      crazy: false,
+      loading: false
+    };
+    this.handleSelectChange = this.handleSelectChange.bind(this);
   }
 
-handelChange = e => {
+  newEntrie = {};
+
+  componentWillReceiveProps = (nextProps, prevState) => {
+    let categoriesObject = nextProps.categorie;
+    this.setState({ categories: categoriesObject, loading: true });
+  };
+
+  handelChange = e => {
     let inputName = e.target.name;
     this.newEntrie[inputName] = e.target.value;
     console.log(this.newEntrie);
-}
+  };
 
-handelFormSubmit   = event => {
+  handelFormSubmit = event => {
     event.preventDefault();
     const newEntrieObj = {
-        contentTypeId: this.props.contentTypeId,
-        content: this.newEntrie,
-        archived: false
-    }
-    console.log("newEntrieObj",newEntrieObj)
-    axios.post('http://localhost:5000/api/newentries', newEntrieObj)
-     .then((response) => {
-       console.log(response)
-       
-      }).catch(function(error) {
+      contentTypeId: this.props.contentTypeId,
+      content: this.newEntrie,
+      archived: false
+    };
+    console.log("newEntrieObj", newEntrieObj);
+    axios
+      .post("http://localhost:5000/api/newentries", newEntrieObj)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(function(error) {
         console.log("Error: ", error);
       });
-      this.props.addEntrie(newEntrieObj.content);
-}
+    this.props.addEntrie(newEntrieObj.content);
+  };
 
-handleSelectChange(value) {
-    console.log('You have selected: ', value);
+  handleSelectChange(value) {
+    console.log("You have selected: ", value);
     this.setState({ value });
   }
 
-
-
-render() {
-
+  render() {
+    /*
    let uplodecomponent;
         if(this.state.type === 'Image') {
             uplodecomponent = <FileUploader />
         } else {
             uplodecomponent = null;
         }
+*/
 
+    const options = this.state.categories.map((item, index) => ({
+      label: item.name,
+      value: index
+    }));
 
+    console.log(options);
 
-  const options = this.state.categories.map((item, index) => (
-                      {
-                        label: item.name,
-                        value: index
-                       }
-                    ))
-     
-     console.log(options);
-     
-  const categoriesProp = (
-                    <div className="section">
-                        <h3 className="section-heading">{options.label}</h3>
-                          <Select
-                               multi
-                               joinValues 
-                               value={this.state.value}
-                               placeholder="Select your favourite(s)"
-                               options={options} 
-                               onChange={this.handleSelectChange} />
-                          </div>
-                       );  
-              /*
+    const categoriesProp = (
+      <div className="section">
+        <h3 className="section-heading">{options.label}</h3>
+        <Select
+          multi
+          joinValues
+          value={this.state.value}
+          placeholder="Select your favourite(s)"
+          options={options}
+          onChange={this.handleSelectChange}
+        />
+      </div>
+    );
+    /*
   const categoriesProp = (
            <div>
               <Label for="exampleSelect">categories</Label>
@@ -106,17 +99,17 @@ render() {
           );*/
 
     const styleFormGroups = {
-        width: '250px', 
-        float:"left",
-        margin:"15px",
-        padding:"15px",
-     }
+      width: "250px",
+      float: "left",
+      margin: "15px",
+      padding: "15px"
+    };
     const styleForm = {
-        width: "90%",
-      }
-console.log(this.props.fields[3]);
-return (
-    <div className='boxs' >
+      width: "90%"
+    };
+    console.log(this.props.fields[3]);
+    return (
+      <div className="boxs">
         <Form style={styleForm} onSubmit={this.handelFormSubmit}>
         {this.props.fields.map( (object,index) => 
           (
@@ -141,9 +134,9 @@ return (
 
            <Button type="submit" className="btn btn-md btn-outline-primary mr-3">AddNew Post</Button>
         </Form>
-    </div>
-      )
-    }
-};
+      </div>
+    );
+  }
+}
 
 export default AddEntrie;
