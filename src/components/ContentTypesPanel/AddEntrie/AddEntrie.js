@@ -118,15 +118,7 @@ console.log(this.props.fields[3]);
 return (
     <div className='boxs' >
         <Form style={styleForm} onSubmit={this.handelFormSubmit}>
-        {this.props.fields.map( (object,index) => {
-          {object.type = "Image" ? (
-
-            <FormGroup style={styleFormGroups} className='FormGroup'>
-             <Label for="exampleEmail">{object.fieldLabel}</Label>
-             <FileUploader/>
-           </FormGroup>
-           ) :
-
+        {this.props.fields.map( (object,index) => 
           (
            <div key={index}>
            <FormGroup style={styleFormGroups} className='FormGroup'>
@@ -139,8 +131,8 @@ return (
               onChange={this.handelChange} />
            </FormGroup>
            </div>
-          )}
-          })
+          )
+          )
         }
 
              {categoriesProp ? categoriesProp

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Button, Form, FormGroup, Modal,Label, Input, Container, Row, Col, ModalFooter ,ModalBody, ModalHeader} from 'reactstrap';
+import { InputGroup, InputGroupText, InputGroupAddon, Button, Form, FormGroup, Modal,Label, Input, Container, Row, Col, ModalFooter ,ModalBody, ModalHeader} from 'reactstrap';
 import './FileUploader.css';
 
 export default class FileUploader extends Component {
@@ -15,8 +15,9 @@ export default class FileUploader extends Component {
           modal: false,
           ToggleImage: true,
           Toggleform: false,
+          ShowImageinput: false,
           border: '',
-          path: 'http://stevemullenmedia.com/portfolio/sketch-ruler/'
+          path: ''
         }
         this.toggle = this.toggle.bind(this);
         this.toggleNew = this.toggleNew.bind(this);
@@ -84,7 +85,8 @@ toggleForm(e) {
    let imagPth = e.target.src;
   this.setState({
       path: imagPth,
-      border: '2px solid red'
+      border: '2px solid red',
+      ShowImageinput: true
     });
   }
  
@@ -123,7 +125,27 @@ toggleForm(e) {
 
         return (
           <div>
-            <Button className="btn btn-primary" onClick={this.toggle}>SelecteFile</Button>
+         <div >
+         {this.state.ShowImageinput ? (<img  src={this.state.path}
+                       
+                        style={{
+                          width: '100px',
+                          height: '100px',
+                         
+                          border: `${this.state.border}`
+
+                        }} />) : null}
+            <InputGroup style={{width:'250px', margin: '5px auto'}}>
+                <Input  
+                       type="text"
+                        name="description"
+                        value={this.state.path}
+                        onChange={this.onChange} />
+                <InputGroupAddon addonType="append">
+                   <Button className="btn btn-primary" onClick={this.toggle}>SelecteFile</Button>
+                </InputGroupAddon>
+              </InputGroup>
+           </div>
               <Modal isOpen={this.state.modal} toggle={this.toggle} style={{maxWidth: 1000}}>
                 <ModalHeader toggle={this.toggle}>
                 <div className="ml-5">
