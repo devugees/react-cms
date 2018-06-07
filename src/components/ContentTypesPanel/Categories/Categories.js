@@ -19,27 +19,34 @@ class Categories extends Component {
     this.handleSubmitEdit = this.handleSubmitEdit.bind(this);
   }
 
-  componentWillMount = () => {
-    axios
-      .get("http://localhost:5000/api/allcategories")
-      .then(response => {
-        console.log(response);
-        this.setState({
-          categories: response.data
-        });
-      })
-      .catch(error => {
-        console.log("Error: ", error);
-      });
-  };
+
+
+  bringingCategoriesDb = nextProps => {
+      console.log("componentDidMount");
+      axios.get(`http://localhost:5000/api/categories/${nextProps.id}`)
+      .then((response) => {
+        console.log(response)
+     this.setState({
+      categories: response.data
+     })
+    }).catch((error) => {
+      console.log("Error: ", error);
+    });
+  }
+
+
+  componentWillReceiveProps = (nextProps, prevState) => {
+    this.bringingCategoriesDb(nextProps)
+  }
+
 
   handleToggleEditInput(index, categories) {
-    this.setState(prevState => ({
-      displayInputs: !prevState.displayInputs,
-      name: categories.name,
-      description: categories.description,
-      id: categories._id
-    }));
+   this.setState(prevState => ({
+       displayInputs: !prevState.displayInputs,
+        name: categories.name,
+        description: categories.description,
+       id: categories._id
+      }));
   }
 
   handleToggleAddInput() {
@@ -48,37 +55,37 @@ class Categories extends Component {
     }));
   }
 
-  //
+//
   handleDelete(index, categories) {
-    const tokenStr = localStorage.getItem("token");
-    console.log(categories);
-    axios
-      .delete(`http://localhost:5000/api/deletecategories/${categories}`, {
-        headers: { Authorization: `Bearer ${tokenStr}` }
-      })
-      .then(response => this.componentWillMount())
-      .catch(error => {
-        console.log("Error: ", error);
-      });
+    const tokenStr = localStorage.getItem('token');
+      console.log(categories);
+    axios.delete(`http://localhost:5000/api/deletecategories/${categories}`,
+               {headers: 
+                  {"Authorization" : `Bearer ${tokenStr}`}
+                }
+             )
+          .then((response) => this.componentWillMount()
+           
+        ).catch((error) => {
+          console.log("Error: ", error);
+        });
   }
 
   handleSubmitAdd() {
-    const newdata = {
-      name: this.state.name,
-      description: this.state.description
-    };
-    const tokenStr = localStorage.getItem("token");
-    const categoriesId = this.props.id;
-    axios
-      .post(
-        `http://localhost:5000/api/createcategories/${categoriesId}`,
-        newdata,
-        {
-          headers: { Authorization: `Bearer ${tokenStr}` }
-        }
-      )
-      .then(response => this.componentWillMount())
-      .catch(err => console.log(err));
+   const newdata = {
+         	name: this.state.name,
+         	description: this.state.description
+            }
+            const tokenStr = localStorage.getItem('token');
+		     const categoriesId = this.props.id;
+		     axios.post(`http://localhost:5000/api/createcategories/${categoriesId}`,
+		          newdata,
+                  {headers: 
+                     {"Authorization" : `Bearer ${tokenStr}`}
+                   }
+		     	)
+             .then(response => this.componentWillMount())
+             .catch(err => console.log(err));
   }
 
   handleSubmitEdit() {
