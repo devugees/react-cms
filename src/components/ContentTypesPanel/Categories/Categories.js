@@ -22,22 +22,31 @@ class Categories extends Component {
           this.onChange = this.onChange.bind(this);
           this.handleSubmitEdit = this.handleSubmitEdit.bind(this);
           
-        }
+  }
+
+  bringingCategoriesDb = nextProps => {
+      console.log("componentDidMount");
+      axios.get(`http://localhost:5000/api/categories/${nextProps.id}`)
+      .then((response) => {
+        console.log(response)
+     this.setState({
+      categories: response.data
+     })
+    }).catch((error) => {
+      console.log("Error: ", error);
+    });
+  }
     
- componentWillMount = () => {
-     axios.get('http://localhost:5000/api/allcategories')
-          .then((response) => {
-          	console.log(response)
-         this.setState({
-          categories: response.data
-         })
-        }).catch((error) => {
-          console.log("Error: ", error);
-        });
+ componentDidMount = () => {
+  
     }
 
+  componentWillReceiveProps = (nextProps, prevState) => {
+    this.bringingCategoriesDb(nextProps)
+  }
 
-handleToggleEditInput(index, categories) {
+
+  handleToggleEditInput(index, categories) {
    this.setState(prevState => ({
        displayInputs: !prevState.displayInputs,
         name: categories.name,
@@ -54,8 +63,8 @@ handleToggleEditInput(index, categories) {
   }
 
 //
-handleDelete(index, categories) {
-  const tokenStr = localStorage.getItem('token');
+  handleDelete(index, categories) {
+    const tokenStr = localStorage.getItem('token');
       console.log(categories);
     axios.delete(`http://localhost:5000/api/deletecategories/${categories}`,
                {headers: 
@@ -69,7 +78,7 @@ handleDelete(index, categories) {
         });
   }
 
-handleSubmitAdd() {
+  handleSubmitAdd() {
    const newdata = {
          	name: this.state.name,
          	description: this.state.description

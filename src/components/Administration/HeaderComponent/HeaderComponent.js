@@ -52,7 +52,7 @@ import {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav  style={fontSize} navbar>
               <NavItem>
-                <NavLink style={textColor} href="/components/">Go to Website</NavLink>
+                <NavLink style={textColor} href="/">Go to Website</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle style={textColor} nav caret>
@@ -72,7 +72,7 @@ import {
                 </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem>
-                <NavLink style={textColor} href="/Administration/main/NewContentType">Create Node</NavLink>
+                <Link style={textColor} to="/Administration/main/NewContentType">Create Node</Link>
               </NavItem>
             </Nav>
 
