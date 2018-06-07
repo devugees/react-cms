@@ -5,13 +5,28 @@ const  VerifyToken = require('../config/VerifyToken');
 const serversignature = 'mysignature';
 module.exports = (app) => {
 	// get all Categories
- app.get('/api/allcategories', (req, res) => {
+ app.get('/api/categories/allcategories', (req, res) => {
 
         Categories.find((err, data) => {
             if (err) {
                 return res.send(err);
             }
            // console.log(data)
+            return res.send(data)
+        });
+    });
+
+
+ app.get('/api/categories/:contentTypeId', (req, res) => {
+        console.log(req.params.contentTypeId)
+
+        Categories.find({ 'contentTypeId': req.params.contentTypeId }, (err, data) => {
+            if (err) {
+                console.log(err)
+
+                return res.send(err);
+            }
+            console.log(data)
             return res.send(data)
         });
     });
@@ -23,13 +38,13 @@ module.exports = (app) => {
         if(err1) {
           throw err1;
         }
-        if (!req.body.name && !req.body.discreption) {
+        if (!req.body.name && !req.body.description) {
             res.status(400).send({ message: "Categories can not be empty" });
               }
                 newCategories = new Categories({
                 	contentTypeId: req.params.contentTypeId,
                     "name": req.body.name,
-                    "discreption": req.body.discreption
+                    "description": req.body.description
                     
                 });
                 newCategories.save((err, categories) => {

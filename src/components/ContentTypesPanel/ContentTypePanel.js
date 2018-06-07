@@ -4,7 +4,7 @@ import AddEntrie from './AddEntrie/AddEntrie';
 import EditEntrie from './EditEntrie/EditEntrie';
 import ViewTable from '../ViewTable/ViewTable'
 import axios from 'axios';
-import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Container, Row, Col, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {  Modal, ModalHeader, ModalBody } from 'reactstrap';
 
  
   class ContentTypePanel extends Component {
@@ -13,6 +13,7 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
       super(props);
         this.state = {
           entries:[],
+          categories: [],
           entriesKeys :{},
           modal: false
         };
@@ -28,14 +29,13 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
     bringEntries = nextProps => {
       let entries = [];
       let contentObj;
-      let entriesKeys = {};
 
       axios.get(`http://localhost:5000/api/entries/${nextProps.id}`)
      .then((response) => {
       response.data.map((entrie) => {
         contentObj = {...entrie.content}
         contentObj.id = entrie._id
-        entries.push(contentObj)
+        return entries.push(contentObj)
       })
       this.setState({
         entries: entries,
@@ -46,12 +46,21 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText, Containe
       });
     }
 
-    componentWillMount = () => {
+    componentDidMount = () => {
       this.bringEntries(this.props)
-     }
+      
+  }
 
     componentWillReceiveProps = (nextProps, prevState) => {
       this.bringEntries(nextProps)
+      axios.get(`http://localhost:5000/api/categories/${nextProps.id}`)
+          .then((response) => {
+                      this.setState({
+                        categories: response.data
+                      })
+            }).catch((error) => {
+              console.log("Error: ", error);
+            });
     }
  
     addEntrie = content => {
@@ -95,7 +104,6 @@ itemWillBeEdited = {};
      }
  
   render() {
- 
     return (
       <div className="ContentTypePanel">
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
@@ -114,7 +122,13 @@ itemWillBeEdited = {};
         items={this.state.entries}
         keys={this.state.entriesKeys}/>
         }
-        <AddEntrie fields={this.props.fields} contentTypeId={this.props.id} addEntrie={this.addEntrie}/>
+        <AddEntrie  
+        fields={this.props.fields} 
+        contentTypeId={this.props.id}
+        addEntrie={this.addEntrie}
+        categorie={this.state.categories}
+
+         />
       </div>
     );
   }

@@ -1,11 +1,14 @@
 const  jwt = require('jsonwebtoken');
 const  VerifyToken = require('../config/VerifyToken');
 const multer = require('multer');
+const fs = require('fs');
+const path = require('path');
+const uuidv4 = require('uuid/v4');
 
 
 const serversignature = 'mysignature';
 module.exports = (app) => {
-    const storage = multer.diskStorage({
+    /*const storage = multer.diskStorage({
       destination: '../public/uploads/',
       filename: function(req, file, cb){
         cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
@@ -36,8 +39,46 @@ function checkFileType(file, cb){
     cb('Error: Images Only!');
   }
 }
+*/
 
-  app.post('/api/upload',(req, res) => {
+ const storage = multer.diskStorage({
+      destination: (req, file, cb) => {
+        /*
+          Files will be saved in the 'uploads' directory. Make
+          sure this directory already exists!
+        */
+        cb(null, '../src/uploads');
+      },
+      filename: (req, file, cb) => {
+        /*
+          uuidv4() will generate a random ID that we'll use for the
+          new filename. We use path.extname() to get
+          the extension from the original file name and add that to the new
+          generated ID. These combined will create the file name used
+          to save the file on the server and will be available as
+          req.file.pathname in the router handler.
+        */
+        const newFilename = `${uuidv4()}${path.extname(file.originalname)}`;
+        cb(null, newFilename);
+      },
+    });
+    // create the multer instance that will be used to upload/save the file
+    const upload = multer({ storage });
+
+  
+    app.post('/api/upload', upload.single('selectedFile'), (req, res) => {
+      /*
+        We now have a new req.file object here. At this point the file has been saved
+        and the req.file.filename value will be the name returned by the
+        filename() function defined in the diskStorage configuration. Other form fields
+        are available here in req.body.
+      */
+      res.send();
+    });
+  
+
+
+  /*app.post('/api/upload',(req, res) => {
     console.log("req",req);
   upload(req, res, (err) => {
     if(err){
@@ -57,6 +98,14 @@ function checkFileType(file, cb){
       }
     }
   });
+});*/
+
+
+app.get('/api/getimages', (req, res) => {
+var images = fs.readdirSync('../src/uploads');
+res.send(images);
 });
 
 }
+
+
