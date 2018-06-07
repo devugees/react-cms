@@ -1,28 +1,25 @@
-import React, { Component } from 'react';
-import { Table, Input, Button, Row } from "reactstrap";
-import axios from 'axios';
-import TopHeader from '../../Administration/HeaderComponent/HeaderComponent';
-import DashBoard from '../../Administration/dashBoard/dashBoard';
-
-
+import React, { Component } from "react";
+import { Table, Input } from "reactstrap";
+import axios from "axios";
+//import TopHeader from "../../Administration/HeaderComponent/HeaderComponent";
+//import DashBoard from "../../Administration/dashBoard/dashBoard";
 
 class Categories extends Component {
-
-	constructor(props) {
-        super(props);
-        this.state = {
-         categories:[],
-         name:'',
-         description:'',
-         id:'',
-         displayInputs: false,
-         displayInputsAdd: false
-        
-          }
-          this.onChange = this.onChange.bind(this);
-          this.handleSubmitEdit = this.handleSubmitEdit.bind(this);
-          
+  constructor(props) {
+    super(props);
+    this.state = {
+      categories: [],
+      name: "",
+      description: "",
+      id: "",
+      displayInputs: false,
+      displayInputsAdd: false
+    };
+    this.onChange = this.onChange.bind(this);
+    this.handleSubmitEdit = this.handleSubmitEdit.bind(this);
   }
+
+
 
   bringingCategoriesDb = nextProps => {
       console.log("componentDidMount");
@@ -36,10 +33,7 @@ class Categories extends Component {
       console.log("Error: ", error);
     });
   }
-    
- componentDidMount = () => {
-  
-    }
+
 
   componentWillReceiveProps = (nextProps, prevState) => {
     this.bringingCategoriesDb(nextProps)
@@ -55,11 +49,10 @@ class Categories extends Component {
       }));
   }
 
-
   handleToggleAddInput() {
-   this.setState(prevState => ({
-       displayInputsAdd: !prevState.displayInputsAdd,
-      }));
+    this.setState(prevState => ({
+      displayInputsAdd: !prevState.displayInputsAdd
+    }));
   }
 
 //
@@ -95,26 +88,27 @@ class Categories extends Component {
              .catch(err => console.log(err));
   }
 
-
   handleSubmitEdit() {
-   const newdata = {
-         	name: this.state.name,
-         	description: this.state.description
-            }
-	         console.log(newdata);
-	         const tokenStr = localStorage.getItem('token');
-	         console.log(tokenStr);
+    const newdata = {
+      name: this.state.name,
+      description: this.state.description
+    };
+    console.log(newdata);
+    const tokenStr = localStorage.getItem("token");
+    console.log(tokenStr);
 
-		     const categoriesId = this.state.id;
-		     axios.post(`http://localhost:5000/api/updatecategories/${categoriesId}`, newdata,
-                 {headers: 
-                     {"Authorization" : `Bearer ${tokenStr}`}
-                   })
-             .then(response => this.componentWillMount())
-             .catch(err => console.log(err));
+    const categoriesId = this.state.id;
+    axios
+      .post(
+        `http://localhost:5000/api/updatecategories/${categoriesId}`,
+        newdata,
+        {
+          headers: { Authorization: `Bearer ${tokenStr}` }
+        }
+      )
+      .then(response => this.componentWillMount())
+      .catch(err => console.log(err));
   }
-
-
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -125,156 +119,157 @@ class Categories extends Component {
     if (this.state.displayInputsAdd) {
       addNewCategoriesInputs = (
         <div>
-         <Table striped>
-	          <thead>
-	            <tr>
-	              <th>name</th>
-	              <th>description</th>
-	            </tr>
-	          </thead>
-	          <tbody>
-        	<tr>
-        <td>
-          <Input
-            placeholder=""
-            name="name"
-            onChange={this.onChange}
-          />
-        </td> 
-        <td>
-          <Input
-            placeholder=""
-            name="description"
-            onChange={this.onChange}
-          />
-          </td>
-          <td>
-          	<button   
-          	onClick={this.handleSubmitAdd.bind(this)} 
-            className="btn btn-primary">
-            Submit</button>
-          </td>
-          </tr>
-          </tbody>
-        </Table>
+          <Table striped>
+            <thead>
+              <tr>
+                <th>name</th>
+                <th>description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Input placeholder="" name="name" onChange={this.onChange} />
+                </td>
+                <td>
+                  <Input
+                    placeholder=""
+                    name="description"
+                    onChange={this.onChange}
+                  />
+                </td>
+                <td>
+                  <button
+                    onClick={this.handleSubmitAdd.bind(this)}
+                    className="btn btn-primary"
+                  >
+                    Submit
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </Table>
         </div>
       );
     }
 
-
-
-  	let socialInputs;
+    let socialInputs;
     if (this.state.displayInputs) {
       socialInputs = (
         <div>
-         <Table striped>
-	          <thead>
-	            <tr>
-	              <th>name</th>
-	              <th>description</th>
-	            </tr>
-	          </thead>
-	          <tbody>
-        	<tr>
-        <td>
-          <Input
-            placeholder=""
-            name="name"
-            value={this.state.name}
-            onChange={this.onChange}
-          />
-        </td> 
-        <td>
-          <Input
-            placeholder=""
-            name="description"
-            value={this.state.description}
-            onChange={this.onChange}
-          />
-          </td>
-          <td>
-          	<button   
-          	onClick={this.handleSubmitEdit} 
-            className="btn btn-primary">
-            Submit</button>
-          </td>
-          </tr>
-          </tbody>
-        </Table>
+          <Table striped>
+            <thead>
+              <tr>
+                <th>name</th>
+                <th>description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Input
+                    placeholder=""
+                    name="name"
+                    value={this.state.name}
+                    onChange={this.onChange}
+                  />
+                </td>
+                <td>
+                  <Input
+                    placeholder=""
+                    name="description"
+                    value={this.state.description}
+                    onChange={this.onChange}
+                  />
+                </td>
+                <td>
+                  <button
+                    onClick={this.handleSubmitEdit}
+                    className="btn btn-primary"
+                  >
+                    Submit
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </Table>
         </div>
       );
     }
-  	return (
-	      <div className="container">
-	      <div className="mt-4 mb-5">
-            <Table striped>
-	          <thead>
-	            <tr>
-	              <th className="text-center h1">All Categories</th>
-	            </tr>
-	          </thead>
-	          <tbody>
-	           <tr>
-                    <td>
-                      <button
-		                    type="button"
-		                    onClick={this.handleToggleAddInput.bind(this)}
-		                    className="btn btn-primary ml-1">
-                        Add New categorie
-                      </button>
-                     </td>
-                </tr>
-          </tbody>
-        </Table>
-         <div>
-        {addNewCategoriesInputs}
-        </div>
+    return (
+      <div className="container">
+        <div className="mt-4 mb-5">
+          <Table striped>
+            <thead>
+              <tr>
+                <th className="text-center h1">All Categories</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <button
+                    type="button"
+                    onClick={this.handleToggleAddInput.bind(this)}
+                    className="btn btn-primary ml-1"
+                  >
+                    Add New categorie
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+          <div>{addNewCategoriesInputs}</div>
         </div>
 
-           <div className="mt-4">
-	        <Table striped>
-	          <thead>
-	            <tr>
-	              <th>name</th>
-	              <th>description</th>
-	            </tr>
-	          </thead>
-	          <tbody>
-	            {this.state.categories.map((categories, index) => {
-	              return (
-                   <tr>
+        <div className="mt-4">
+          <Table striped>
+            <thead>
+              <tr>
+                <th>name</th>
+                <th>description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.categories.map((categories, index) => {
+                return (
+                  <tr>
                     <td>{categories.name}</td>
                     <td>{categories.description}</td>
                     <td>
                       <button
-		                    type="button"
-		                    onClick={this.handleToggleEditInput.bind(this,
-		                    index, categories)}
-		                    className="btn btn-primary ml-1">
+                        type="button"
+                        onClick={this.handleToggleEditInput.bind(
+                          this,
+                          index,
+                          categories
+                        )}
+                        className="btn btn-primary ml-1"
+                      >
                         Edit
                       </button>
-                     
-                      <button   onClick={this.handleDelete.bind(
+
+                      <button
+                        onClick={this.handleDelete.bind(
                           this,
                           index,
                           categories._id
-                        )} 
-                      className="btn btn-danger">
-                         Delete</button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
-         <div>
-        {socialInputs}
-        </div>
+                        )}
+                        className="btn btn-danger"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+          <div>{socialInputs}</div>
         </div>
       </div>
     );
   }
 }
-
 
 export default Categories;
