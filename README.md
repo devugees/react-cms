@@ -3,15 +3,18 @@
 We believe in dynamic!  
 Everything's in relation to one another.  
 
->_For every action,there is an equal and opposite reaction._  
+
+>_For every action,there is an equal and opposite reaction._ 
 -- **Isaac Newton**  
+
 
 You want to master your Content Management System, instead of vice versa?!  
 **REACT CMS** 
 - gives you the freedom of creating a dynamic CMS
 - build whatever you want, whenever you want
 - from Front-end to Back-end
-- customize your CSS
+- customize your CSS  
+
 
 ## Getting started
 1. git clone https://github.com/devugees/react-cms.git
