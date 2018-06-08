@@ -1,9 +1,11 @@
 # Component Management System 
 
-We believe in dynamic! 
+We believe in dynamic!  
+
 Everything's in relation to one another. 
 
->_For every action,there is an equal and opposite reaction._
+>_For every action,there is an equal and opposite reaction._  
+
 -- **Isaac Newton**  
 
 You want to master your Content Management System, instead of vice versa?! 
@@ -17,8 +19,10 @@ You want to master your Content Management System, instead of vice versa?!
 1. git clone https://github.com/devugees/react-cms.git
 2. `cd react-cms`
 3. Install Front-end `yarn install` or `npm install` from root folder
-4. Install Back-end 
--- `cd backend`
+4. Install Back-end  
+
+-- `cd backend`  
+
 -- `yarn install` or `npm install`
 5. `cd ../` into root folder
 6. `yarn dev` or `npm dev` 
