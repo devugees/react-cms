@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import { Table, Input } from "reactstrap";
-import axios from "axios";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {Table, Input} from 'reactstrap';
+import axios from 'axios';
 //import TopHeader from "../../Administration/HeaderComponent/HeaderComponent";
 //import DashBoard from "../../Administration/dashBoard/dashBoard";
 
@@ -9,9 +10,9 @@ class Categories extends Component {
     super(props);
     this.state = {
       categories: [],
-      name: "",
-      description: "",
-      id: "",
+      name: '',
+      description: '',
+      id: '',
       displayInputs: false,
       displayInputsAdd: false
     };
@@ -19,34 +20,36 @@ class Categories extends Component {
     this.handleSubmitEdit = this.handleSubmitEdit.bind(this);
   }
 
-
+  static PropTypes = {
+    id: PropTypes.string
+  };
 
   bringingCategoriesDb = nextProps => {
-      console.log("componentDidMount");
-      axios.get(`http://localhost:5000/api/categories/${nextProps.id}`)
-      .then((response) => {
-        console.log(response)
-     this.setState({
-      categories: response.data
-     })
-    }).catch((error) => {
-      console.log("Error: ", error);
-    });
-  }
-
+    console.log('componentDidMount');
+    axios
+      .get(`http://localhost:5000/api/categories/${nextProps.id}`)
+      .then(response => {
+        console.log(response);
+        this.setState({
+          categories: response.data
+        });
+      })
+      .catch(error => {
+        console.log('Error: ', error);
+      });
+  };
 
   componentWillReceiveProps = (nextProps, prevState) => {
-    this.bringingCategoriesDb(nextProps)
-  }
-
+    this.bringingCategoriesDb(nextProps);
+  };
 
   handleToggleEditInput(index, categories) {
-   this.setState(prevState => ({
-       displayInputs: !prevState.displayInputs,
-        name: categories.name,
-        description: categories.description,
-       id: categories._id
-      }));
+    this.setState(prevState => ({
+      displayInputs: !prevState.displayInputs,
+      name: categories.name,
+      description: categories.description,
+      id: categories._id
+    }));
   }
 
   handleToggleAddInput() {
@@ -55,37 +58,37 @@ class Categories extends Component {
     }));
   }
 
-//
+  //
   handleDelete(index, categories) {
     const tokenStr = localStorage.getItem('token');
-      console.log(categories);
-    axios.delete(`http://localhost:5000/api/deletecategories/${categories}`,
-               {headers: 
-                  {"Authorization" : `Bearer ${tokenStr}`}
-                }
-             )
-          .then((response) => this.componentWillMount()
-           
-        ).catch((error) => {
-          console.log("Error: ", error);
-        });
+    console.log(categories);
+    axios
+      .delete(`http://localhost:5000/api/deletecategories/${categories}`, {
+        headers: {Authorization: `Bearer ${tokenStr}`}
+      })
+      .then(response => this.componentWillMount())
+      .catch(error => {
+        console.log('Error: ', error);
+      });
   }
 
   handleSubmitAdd() {
-   const newdata = {
-         	name: this.state.name,
-         	description: this.state.description
-            }
-            const tokenStr = localStorage.getItem('token');
-		     const categoriesId = this.props.id;
-		     axios.post(`http://localhost:5000/api/createcategories/${categoriesId}`,
-		          newdata,
-                  {headers: 
-                     {"Authorization" : `Bearer ${tokenStr}`}
-                   }
-		     	)
-             .then(response => this.componentWillMount())
-             .catch(err => console.log(err));
+    const newdata = {
+      name: this.state.name,
+      description: this.state.description
+    };
+    const tokenStr = localStorage.getItem('token');
+    const categoriesId = this.props.id;
+    axios
+      .post(
+        `http://localhost:5000/api/createcategories/${categoriesId}`,
+        newdata,
+        {
+          headers: {Authorization: `Bearer ${tokenStr}`}
+        }
+      )
+      .then(response => this.componentWillMount())
+      .catch(err => console.log(err));
   }
 
   handleSubmitEdit() {
@@ -94,7 +97,7 @@ class Categories extends Component {
       description: this.state.description
     };
     console.log(newdata);
-    const tokenStr = localStorage.getItem("token");
+    const tokenStr = localStorage.getItem('token');
     console.log(tokenStr);
 
     const categoriesId = this.state.id;
@@ -103,7 +106,7 @@ class Categories extends Component {
         `http://localhost:5000/api/updatecategories/${categoriesId}`,
         newdata,
         {
-          headers: { Authorization: `Bearer ${tokenStr}` }
+          headers: {Authorization: `Bearer ${tokenStr}`}
         }
       )
       .then(response => this.componentWillMount())
@@ -111,7 +114,7 @@ class Categories extends Component {
   }
 
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({[e.target.name]: e.target.value});
   }
 
   render() {
@@ -141,8 +144,7 @@ class Categories extends Component {
                 <td>
                   <button
                     onClick={this.handleSubmitAdd.bind(this)}
-                    className="btn btn-primary"
-                  >
+                    className="btn btn-primary">
                     Submit
                   </button>
                 </td>
@@ -185,8 +187,7 @@ class Categories extends Component {
                 <td>
                   <button
                     onClick={this.handleSubmitEdit}
-                    className="btn btn-primary"
-                  >
+                    className="btn btn-primary">
                     Submit
                   </button>
                 </td>
@@ -211,8 +212,7 @@ class Categories extends Component {
                   <button
                     type="button"
                     onClick={this.handleToggleAddInput.bind(this)}
-                    className="btn btn-primary ml-1"
-                  >
+                    className="btn btn-primary ml-1">
                     Add New categorie
                   </button>
                 </td>
@@ -244,8 +244,7 @@ class Categories extends Component {
                           index,
                           categories
                         )}
-                        className="btn btn-primary ml-1"
-                      >
+                        className="btn btn-primary ml-1">
                         Edit
                       </button>
 
@@ -255,8 +254,7 @@ class Categories extends Component {
                           index,
                           categories._id
                         )}
-                        className="btn btn-danger"
-                      >
+                        className="btn btn-danger">
                         Delete
                       </button>
                     </td>
