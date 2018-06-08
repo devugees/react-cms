@@ -4,8 +4,8 @@ We believe in dynamic!
 Everything's in relation to one another.  
 
 
->_For every action,there is an equal and opposite reaction._ 
--- **Isaac Newton**  
+>_For every action,there is an equal and opposite reaction._  
+-- Isaac Newton  
 
 
 You want to master your Content Management System, instead of vice versa?!  
