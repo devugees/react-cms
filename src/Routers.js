@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { BrowserRouter as Route, Switch, withRouter } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import "./App.css";
 import Administration from "./components/Administration/Administration";
 import Login from "./components/Login/Login";
 import Registration from "./components/Registration/Registration";
 import CustomeCode from "./components/Appearance/CustomeCode/CustomeCode";
 import AddEntrie from "./components/ContentTypesPanel/AddEntrie/AddEntrie";
-//import Structure from "./components/ContentTypesPanel/Structure/Structure";
+//import Structure from './components/ContentTypesPanel/Structure/Structure';
 import LandingPage from "./components/LandingPage/LandingPage";
 import PrivatRoute from "./components/PrivatRoute/PrivatRoute";
 import jwtDecode from "jwt-decode";

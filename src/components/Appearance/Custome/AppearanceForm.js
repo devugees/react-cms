@@ -30,21 +30,21 @@ class AppearanceForm extends Component {
           <Row>
             <Col>
               <h3>IconBox Left </h3>
-              <input defaultValue={this.props.form.icon1.icon} name="licon" style={style} placeholder="Icon Name" />
-              <input defaultValue={this.props.form.icon1.title} name="ltitle" style={style} placeholder="Title" />
-              <input defaultValue={this.props.form.icon1.text} name="ltext" style={style} placeholder="Text" />
+              <Input defaultValue={this.props.form.icon1.icon} name="licon" style={style} placeholder="Icon Name" />
+              <Input defaultValue={this.props.form.icon1.title} name="ltitle" style={style} placeholder="Title" />
+              <Input defaultValue={this.props.form.icon1.text} name="ltext" style={style} placeholder="Text" />
             </Col>
             <Col>
               <h3>IconBox Center</h3>
-              <input defaultValue={this.props.form.icon2.icon} name="cicon" style={style} placeholder="Icon Name" />
-              <input defaultValue={this.props.form.icon2.title} name="ctitle" style={style} placeholder="Title" />
-              <input defaultValue={this.props.form.icon2.text} name="ctext" style={style} placeholder="Text" />
+              <Input defaultValue={this.props.form.icon2.icon} name="cicon" style={style} placeholder="Icon Name" />
+              <Input defaultValue={this.props.form.icon2.title} name="ctitle" style={style} placeholder="Title" />
+              <Input defaultValue={this.props.form.icon2.text} name="ctext" style={style} placeholder="Text" />
             </Col>
             <Col>
               <h3>IconBox Right</h3>
-              <input defaultValue={this.props.form.icon3.icon} name="ricon" style={style} placeholder="Icon Name" />
-              <input defaultValue={this.props.form.icon3.title} name="rtitle" style={style} placeholder="Title" />
-              <input defaultValue={this.props.form.icon3.text} name="rtext" style={style} placeholder="Text" />
+              <Input defaultValue={this.props.form.icon3.icon} name="ricon" style={style} placeholder="Icon Name" />
+              <Input defaultValue={this.props.form.icon3.title} name="rtitle" style={style} placeholder="Title" />
+              <Input defaultValue={this.props.form.icon3.text} name="rtext" style={style} placeholder="Text" />
             </Col>
           </Row>
           <Row>
