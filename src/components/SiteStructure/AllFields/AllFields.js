@@ -1,25 +1,30 @@
-import React, { Component } from "react";
-import "./AllFields.css";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import './AllFields.css';
 //import AddField from '../AddField/AddField';
-import ViewTable from "../../ViewTable/ViewTable";
+import ViewTable from '../../ViewTable/ViewTable';
 
 class AllFields extends Component {
   constructor(props) {
     super(props);
     this.state = {
       fieldsKeys: {
-        FieldLabel: "",
-        MachineName: "",
-        Type: "",
-        TypeOption: "",
-        Unique: "",
-        Visible: "",
-        Required: "",
-        CssClasses: "",
-        CustomCss: ""
+        FieldLabel: '',
+        MachineName: '',
+        Type: '',
+        TypeOption: '',
+        Unique: '',
+        Visible: '',
+        Required: '',
+        CssClasses: '',
+        CustomCss: ''
       }
     };
   }
+
+  static PropTypes = {
+    allFields: PropTypes.array
+  };
 
   render() {
     return (
