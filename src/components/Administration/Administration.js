@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import TopHeader from './HeaderComponent/HeaderComponent';
 import DashBoard from './dashBoard/dashBoard';
 import {Row, Col} from 'reactstrap';
@@ -8,27 +7,23 @@ import './Administration.css';
 import axios from 'axios';
 
 class Administration extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      contentTypes: []
+      contentTypes: [],
     };
   }
-
-  static PropTypes = {
-    activeLink: PropTypes.string
-  };
 
   componentWillMount = () => {
     axios
       .get('http://localhost:5000/api/contenttypes')
       .then(response => {
         this.setState({
-          contentTypes: response.data
+          contentTypes: response.data,
         });
       })
       .catch(function(error) {
-        console.log('Error: ', error);
+        console.error('Error: ', error);
       });
   };
 

@@ -1,30 +1,35 @@
-import React, { Component } from "react";
-import { Button, Container, Row, Form } from "reactstrap";
-
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {Button, Container, Row, Form} from 'reactstrap';
 //import TopHeader from '../../Administration/HeaderComponent/HeaderComponent';
 //import DashBoard from '../../Administration/dashBoard/dashBoard';
-import AddField from "../../SiteStructure/AddField/AddField";
-import ViewTable from "../../ViewTable/ViewTable";
+import AddField from '../../SiteStructure/AddField/AddField';
+import ViewTable from '../../ViewTable/ViewTable';
 
 class Structure extends Component {
   constructor(props) {
-    console.log("props", props);
+    console.log('props', props);
     super();
     this.state = {
       fields: [props.fields],
       fieldsKeys: {
-        FieldLabel: "",
-        MachineName: "",
-        Type: "",
-        TypeOption: "",
-        Unique: "",
-        Visible: "",
-        Required: "",
-        CssClasses: "",
-        CustomCss: ""
+        FieldLabel: '',
+        MachineName: '',
+        Type: '',
+        TypeOption: '',
+        Unique: '',
+        Visible: '',
+        Required: '',
+        CssClasses: '',
+        CustomCss: ''
       }
     };
   }
+
+  static PropTypes = {
+    fields: PropTypes.array,
+    id: PropTypes.string
+  };
 
   componentWillMount = () => {
     this.setState({
@@ -41,7 +46,7 @@ class Structure extends Component {
   addFields = field => {
     const fields = this.state.fields;
     fields.push(field);
-    this.setState({ fields: fields });
+    this.setState({fields: fields});
   };
   handelSubmit = () => {};
 
@@ -65,8 +70,7 @@ class Structure extends Component {
             <Row className="float-right">
               <Button
                 type="submit"
-                className="btn mt-2 btn btn-outline-success btn-md"
-              >
+                className="btn mt-2 btn btn-outline-success btn-md">
                 Save
               </Button>
               <Button className="btn ml-2 mt-2 btn btn-outline-secondary btn-md">

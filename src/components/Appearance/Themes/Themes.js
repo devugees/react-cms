@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-
+import React, {Component} from 'react';
 
 class Themes extends Component {
   render() {
     return (
       <div>
-       <h1> hallo from Themes</h1>
+        <h1> hallo from Themes</h1>
       </div>
     );
   }
