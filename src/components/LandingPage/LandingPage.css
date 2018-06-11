@@ -3,7 +3,6 @@
 }
 
 .Jumbotron {
-    background-image: url('./image/kino.jpg');
     background-size: cover;
     color: white;
     height: 30em;
@@ -39,13 +38,4 @@
 img {
     width: 100%;
     height: auto;
-}
-
-footer {
-    width: 100%;
-    height: 3em;
-    margin-top: 1em;
-    text-align: center;
-    color: white;
-    background-color: #1a517f;
 }
