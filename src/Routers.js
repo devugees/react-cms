@@ -19,35 +19,19 @@ class Routers extends Component {
         this.state = {
             authenticated: false
           }
-         
         }
 
     static getDerivedStateFromProps(nextProps, prevState) {
     if(localStorage.getItem('token')) {
       const tokenStr = jwtDecode(localStorage.getItem('token'));
-      console.log(tokenStr)
       if(tokenStr) {
           return { authenticated: true };
-         
          } else {
            return { authenticated: false };
        }
      } 
      return null;
     }
-/*
- componentWillMount = () => {
-    this.handToken()
-    }
- tokenDecoded={this.handToken.bind(this)}
-
-    handToken(decoded) {
-      console.log({decoded.iat});
-      if(decoded) {
-        this.setState({authenticated: true})
-      }
-    }
-    */
 
     handleLoginSucess(loginData) {
       this.setState({authenticated: loginData.isAuthenticated});
@@ -59,9 +43,7 @@ class Routers extends Component {
    const login = ()=> ( 
       <Login 
         history={this.props.history}
-        handleLoginSuccess={this.handleLoginSucess.bind(this)}
-        
-        />)
+        handleLoginSuccess={this.handleLoginSucess.bind(this)} />)
   
 
    console.log(this.state.authenticated);
