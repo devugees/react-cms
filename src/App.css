@@ -21,3 +21,6 @@
 	--cerulean: #1dacd6;
 	--sonicsilver: #757575;
 }
+html, body, #root {
+  height: 100%;
+}

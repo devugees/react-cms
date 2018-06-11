@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input, Container } from "reactstrap";
 import "./Login.css";
 import axios from "axios";
+import jwtDecode from 'jwt-decode';
 //import setAuthToken from '../../setauthtoken/setAuthToken';
 
 class Login extends Component {
@@ -19,6 +20,14 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+    componentDidMount() {
+      if(localStorage.getItem('token')) {
+        const tokenStr = jwtDecode(localStorage.getItem('token'));
+        if(tokenStr) {
+            this.props.history.push("/Administration");
+         }
+      }
+    }
   handleChange(event) {
     const loginDataCopy = {
       ...this.state.loginData
@@ -66,24 +75,24 @@ class Login extends Component {
   }
 
   render() {
-    const buttonStyle = { width: "100%" };
-
     return (
-      <Container className="Login">
-        <Form className="form-signin" onSubmit={this.handleSubmit}>
-          <h2>Login</h2>
+      <Container className="Login h-100 d-flex justify-content-center flex-column">
+        <Form className="col-md-4 offset-md-4" onSubmit={this.handleSubmit}>
+          <h2 className="mb-3">Login</h2>
           <FormGroup>
             <Input
               type="email"
               name="email"
-              placeholder="email"
+              placeholder="Email"
               className="email"
               onChange={this.handleChange}
             />
+          </FormGroup>
+          <FormGroup>
             <Input
               type="password"
               name="password"
-              placeholder="password"
+              placeholder="Password"
               className="email"
               onChange={this.handleChange}
             />
@@ -93,9 +102,14 @@ class Login extends Component {
               <Input type="checkbox" /> Remember me
             </Label>
           </FormGroup>
-          <Button style={buttonStyle} type="submit" value="login">
+          <Button type="submit" value="login">
             Login
           </Button>
+          <FormGroup>
+            <a className="mr-2" href="/Registration">Register</a>
+            <a className="mr-2" href="/">Back</a>
+          </FormGroup>
+
         </Form>
       </Container>
     );
