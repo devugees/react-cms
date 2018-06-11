@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import './ViewTable.css';
-import { Table, Row } from "reactstrap";
+import {Table, Row} from 'reactstrap';
 import axios from 'axios';
 
 
 
 
 class ViewTable extends Component {
-
   constructor(props) {
     super(props);
-    
-    let keys = Object.keys(props.keys)
-    keys.pop()
 
-    let items = props.items
-    this.state = {
-      items,
-      keys,
-    };
   }
-  
+
+  static PropTypes = {
+    bringEntrie: PropTypes.func,
+    deleteEntrie: PropTypes.func,
+    toggle: PropTypes.func,
+    items: PropTypes.array,
+    keys: PropTypes.object
+  };
+
   handleEdit = (index, machineName) => {
     if(!machineName) {
     this.props.toggle();
@@ -31,12 +31,13 @@ class ViewTable extends Component {
   }
 
   handleDelete = index => {
-    axios.delete(`http://localhost:5000/api/entries/${this.props.items[index].id}`)
+    axios.delete(`http://localhost:5000/api/entries/${this.props.itemsWithId[index]._id}`)
     .then(response => {
+      console.log(response);
       if(response.data.message) {
           console.error(response.data.message)
         }
-      })  
+      })
       .catch(error => {
         console.error('Error:', error)
       })
@@ -47,25 +48,57 @@ class ViewTable extends Component {
     
   };
 
+renderedKeys
+renderedItems
+
   render() {
 
-    const renderedKeys = this.state.keys.map((key, index) => {
+    this.renderedKeys = Object.keys(this.props.keys).map((key, index) => {
                 return <th key={index}>{key}</th>
               })
 
-    let renderedItems 
+    this.renderedItems 
     let values
-      if(this.state.items) {
-        renderedItems = this.state.items.map((item, index) => {
+      if(this.props.items.length > 0) {
+        console.log("this.state.items",this.props.items);
+        this.renderedItems = this.props.items.map((item, index) => {
           values = Object.values(item)
-          values.pop();
             return (
               <tr key={index}>
               { 
                 values.map((string, index2) => {
-               return (
-                <td key={index2}>{string.toString()}</td>
-                )}
+
+                  if( Array.isArray(string) )
+                    {
+                    return ( 
+                    string.map((categorie,index3)=> {
+                        console.log(categorie.label);
+                        return (
+                              <td key={index3}> {categorie.label} </td>
+                              )
+                      })
+
+                     )
+                       
+                    } else if (typeof string === "string"){
+                      if (string.endsWith("jpeg"|"jpg"|"png"|"gif")) {
+                        return (
+                          <td key={index2}><img  src={string}
+                        style={{
+                          width: '100px',
+                          height: '100px',
+                        }} /> </td>
+                        )
+                      }
+                      else {
+                      return (
+                              <td key={index2}>{string.toString()}</td>
+                              )
+                    }
+                    }
+                    
+
+               }
                )}
               <td>
                 <Row>
@@ -78,20 +111,22 @@ class ViewTable extends Component {
             )
       }
 
+    
+console.log("renderedItems",this.renderedItems);
     return (
       <div className="ViewTable">
         <Table striped>
           <thead>
             <tr>
-              {renderedKeys}
+              {this.renderedKeys}
               <th>Controllers</th>
             </tr>
           </thead>
           <tbody>
-          {renderedItems}
+          {this.renderedItems}
             
           </tbody>
-        </Table> 
+        </Table>
       </div>
     );
   }

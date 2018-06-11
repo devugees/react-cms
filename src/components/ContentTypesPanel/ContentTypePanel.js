@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import './ContentTypePanel.css';
 import AddEntrie from './AddEntrie/AddEntrie';
 import EditEntrie from './EditEntrie/EditEntrie';
-import ViewTable from '../ViewTable/ViewTable'
+import ViewTable from '../ViewTable/ViewTable';
 import axios from 'axios';
-import {  Modal, ModalHeader, ModalBody } from 'reactstrap';
+import {Modal, ModalHeader, ModalBody} from 'reactstrap';
 
  
   class ContentTypePanel extends Component {
@@ -13,6 +14,7 @@ import {  Modal, ModalHeader, ModalBody } from 'reactstrap';
     super(props);
       this.state = {
         entries:[],
+        entriesWithId:[],
         categories: [],
         entriesKeys :{},
         modal: false
@@ -28,6 +30,7 @@ import {  Modal, ModalHeader, ModalBody } from 'reactstrap';
 
   bringEntries = nextProps => {
     let entries = [];
+    let entriesWithId= []
     let contentObj;
 
     axios.get(`http://localhost:5000/api/entries/${nextProps.id}`)
@@ -35,10 +38,15 @@ import {  Modal, ModalHeader, ModalBody } from 'reactstrap';
     response.data.map((entrie) => {
       contentObj = {...entrie.content}
       contentObj._id = entrie._id
-      return entries.push(contentObj)
+      entries.push(contentObj)
+      entriesWithId = JSON.parse(JSON.stringify(entries))
+    })
+    entries.map((entrie)=> {
+     delete entrie._id
     })
     this.setState({
       entries: entries,
+      entriesWithId: entriesWithId,
       entriesKeys: entries[0]
     })
     }).catch(function(error) {
@@ -69,9 +77,8 @@ import {  Modal, ModalHeader, ModalBody } from 'reactstrap';
     this.bringEntries(nextProps)
     this.bringCategories(nextProps)
     }
-    
   }
- 
+
   addNewEntrieToState = content => {  /* Adding the New Entrie to the state from the AddEntrie Componnent  */
      let stateEntries = this.state.entries 
      stateEntries.push(content)
@@ -91,47 +98,64 @@ import {  Modal, ModalHeader, ModalBody } from 'reactstrap';
 
   bringItemWillBeEditedFromViewTable = (item,index) => {
     this.itemWillBeEdited.index = index
-    this.itemWillBeEdited = item
+    this.itemWillBeEdited.item = item
+    this.itemWillBeEdited._id = this.state.entriesWithId[index]._id
     console.log("itemWillBeEdited",this.itemWillBeEdited);
   }
    
 
   AddEditedItemToState = (item,index) => {
+    console.log("item" ,item);
       let entries = {...this.state.entries}
-      let newItem = item
-      newItem.pop();       
-      entries[index] = item
+      let entriesWithId = {...this.state.entriesWithId}
+      let newItem = item    
+      entries[index] = newItem
+      entriesWithId[index] = newItem
       console.log("AddEditedItemToState",entries[index]);
-      this.setState({entries})
-  
+      this.setState({
+        entries:entries
+      })
+      console.log("this.state.entries",this.state.entries);
   }
  
   render() {
     return (
       <div className="ContentTypePanel">
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
           <ModalBody>
-            <EditEntrie toggle={this.toggle} itemWillBeEdited={this.itemWillBeEdited} AddEditedItemToState={this.AddEditedItemToState}  fields={this.props.fields} />
+            <EditEntrie
+             toggle={this.toggle}
+             categorie={this.state.categories}
+             itemWillBeEdited={this.itemWillBeEdited}
+             AddEditedItemToState={this.AddEditedItemToState}
+             fields={this.props.fields}
+             contentTypeId={this.props.id}
+              />
+
           </ModalBody>
         </Modal>
 
         <h1>Hoii </h1>
-        {this.state.entries.length > 0 && 
+        
         <ViewTable
         bringItemWillBeEditedFromViewTable={this.bringItemWillBeEditedFromViewTable}
         deleteEntrieFromState={this.deleteEntrieFromState}
         toggle={this.toggle}
         items={this.state.entries}
+        itemsWithId={this.state.entriesWithId}
         keys={this.state.entriesKeys}
         />
-        }
+        
         <AddEntrie  
         fields={this.props.fields} 
         contentTypeId={this.props.id}
         addNewEntrieToState={this.addNewEntrieToState}
         categorie={this.state.categories}
-
+        action = "Add"
          />
       </div>
     );

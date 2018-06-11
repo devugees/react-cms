@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Main.css';
 import Sitestatus from '../SiteOverView/Sitestatus/Sitestatus';
 import Update from '../SiteOverView/Update/Update';
@@ -23,6 +24,10 @@ import View from '../ContentTypesPanel/View/View';
 import PageNotFound from '../PageNotFound/PageNotFound';
 
 class Main extends Component {
+
+  static PropTypes = {
+   contenttypes: PropTypes.array
+  }
 
   render() {
     let fields =[];
@@ -59,71 +64,14 @@ class Main extends Component {
       "Plugins": <Plugins/>,
       "ContentType": <ContentTypePanel fields={fields} contenttypes={this.props.contenttypes} id={this.props.activeLink.split('/')[3]} />,
       "Structure": <Structure fields={fields} id={this.props.activeLink.split('/')[3]} />,
-      
       "Categories": <Categories id={this.props.activeLink.split('/')[3]}/>,
-     
     }
 
-
-    let linkMain = this.props.activeLink.split('/')[3];
-    let linkSecound = this.props.activeLink.split('/')[2];
-    let component = components[linkMain] || components[linkSecound] || <PageNotFound/>
-    return (<div>{component}</div>)
-  /*
-    const Links = [NewContentType,ContentTypesList,SettingsComponent,FieldTypes,AllFields]
-    const activatedLink = this.props.activeLink.split('/')[2]
-    console.log(activatedLink)
-    let workingLink = "";
-    for (var i = 0; i < Links.length; i++) {
-      if (Links[i] === activatedLink ) {
-        return workingLink = activatedLink;
-      }
-    }
-    return ( `<div> <${workingLink}/> </div>`);
-
-
-  ----------------------------------
-
-    if(this.props.activeLink === "/Administration/main/NewContentType") {
-      return ( <div> <NewContentType/> </div>);
-    } else if(this.props.activeLink === "/Administration/main/ContentTypesList") {
-      return (<div> <ContentTypesList/> </div>);
-    }  else if(this.props.activeLink === "/Administration/main/SettingsComponent"){
-      return (<div> <SettingsComponent/> </div>);
-    }  else if(this.props.activeLink === "/Administration/main/FieldTypes"){
-      return (<div> <FieldTypes/> </div>);
-    }  else if(this.props.activeLink === "/Administration/main/AllFields"){
-      return (<div> <AllFields/> </div>);
-    } else if(this.props.activeLink === "/Administration/main/Themes"){
-      return (<div> <Themes/> </div>);
-    } else if(this.props.activeLink === "/Administration/main/CustomeCode"){
-      return (<div> <CustomeCode/> </div>);
-    } else if(this.props.activeLink === "/Administration/main/Custome"){
-      return (<div> <Custome/> </div>);
-    } else if(this.props.activeLink === "/Administration/main/Editor"){
-      return (<div> <Editor/> </div>);
-    } else if(this.props.activeLink === "/Administration/main/Blocks"){
-      return (<div> <Blocks/> </div>);
-    } else if(this.props.activeLink === "/Administration/main/Plugins"){
-      return (<div> <Plugins/> </div>);
-    } else if(this.props.activeLink === "/Administration/main/AllUsers"){
-      return (<div> <AllUsers/> </div>);
-    } else if(this.props.activeLink === "/Administration/main/Roles"){
-      return (<div> <Roles/> </div>);
-    } else if(this.props.activeLink === "/Administration/main/Sitestatus"){
-      return (<div> <Sitestatus/> </div>);
-    } else if(this.props.activeLink === "/Administration/main/Update"){
-      return (<div> <Update/> </div>);
-    }  else {
-      return (
-        <div className='Main'>
-        Hi
-        </div>
-        );
-      }
-*/
+      let linkMain = this.props.activeLink.split('/')[3];
+      let linkSecound = this.props.activeLink.split('/')[2];
+      let component = components[linkMain] || components[linkSecound] || <PageNotFound/>
+      return (<div>{component}</div>)
     };
   }
-
 
 export default Main;

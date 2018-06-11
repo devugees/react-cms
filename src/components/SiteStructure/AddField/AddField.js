@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {
   Button,
   Form,
@@ -8,8 +9,8 @@ import {
   Container,
   Row,
   Col
-} from "reactstrap";
-import "./AddField.css";
+} from 'reactstrap';
+import './AddField.css';
 //import axios from 'axios';
 
 class AddField extends Component {
@@ -22,13 +23,18 @@ class AddField extends Component {
   cssClassNameRef = React.createRef();
   customCsslRef = React.createRef();
 
+  static PropTypes = {
+    addFields: PropTypes.array,
+    id: PropTypes.string
+  };
+
   handelClick = e => {
     e.preventDefault();
     const field = {
       fieldLabel: this.fieldLabelRef.current.value,
       machineName: this.fieldLabelRef.current.value
         .toLowerCase()
-        .replace(/\s/g, ""),
+        .replace(/\s/g, ''),
       type: this.typeRef.current.value,
       typeOption: this.typeOptRef.current.value,
       unique: this.uniqueRef.current.checked,
@@ -61,8 +67,7 @@ class AddField extends Component {
                     name="type"
                     type="select"
                     id="exampleSelect"
-                    innerRef={this.typeRef}
-                  >
+                    innerRef={this.typeRef}>
                     <option>Button</option>
                     <option>Checkbox</option>
                     <option>Color</option>
@@ -129,7 +134,7 @@ class AddField extends Component {
                       name="required"
                       type="checkbox"
                       innerRef={this.requiredRef}
-                    />{" "}
+                    />{' '}
                     Required
                   </Label>
                 </FormGroup>
@@ -141,7 +146,7 @@ class AddField extends Component {
                       name="unique"
                       type="checkbox"
                       innerRef={this.uniqueRef}
-                    />{" "}
+                    />{' '}
                     Unique
                   </Label>
                 </FormGroup>
@@ -153,15 +158,14 @@ class AddField extends Component {
                       name="visible"
                       type="checkbox"
                       innerRef={this.visibleRef}
-                    />{" "}
+                    />{' '}
                     Visible
                   </Label>
                 </FormGroup>
               </Col>
               <Button
                 onClick={this.handelClick}
-                className="btn btn-md btn-outline-primary mr-3"
-              >
+                className="btn btn-md btn-outline-primary mr-3">
                 Add
               </Button>
             </Row>

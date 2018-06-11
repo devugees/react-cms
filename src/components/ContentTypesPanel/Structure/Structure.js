@@ -6,6 +6,9 @@ import AddField from '../../SiteStructure/AddField/AddField';
 import ViewTable from '../../ViewTable/ViewTable';
 import EditField from '../EditField/EditField';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+
+
 
 class Structure extends Component {
   constructor(props) {
@@ -53,6 +56,12 @@ class Structure extends Component {
         console.error("Error: ", error);
       });
     }
+
+  static PropTypes = {
+    fields: PropTypes.array,
+    id: PropTypes.string
+  };
+
   componentWillMount = () => {
     this.setState({
       fields: this.props.fields
