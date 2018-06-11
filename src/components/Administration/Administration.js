@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import TopHeader from './HeaderComponent/HeaderComponent';
 import DashBoard from './dashBoard/dashBoard';
 import {Row, Col} from 'reactstrap';
@@ -14,7 +15,11 @@ class Administration extends Component {
     };
   }
 
-  componentWillMount = () => {
+  static PropTypes = {
+    activeLink: PropTypes.string
+  };
+   //NewHook
+  componentDidMount = () => {
     axios
       .get('http://localhost:5000/api/contenttypes')
       .then(response => {
@@ -33,7 +38,8 @@ class Administration extends Component {
       <div className="Administration">
         <Row style={colstyle}>
           <Col style={colstyle}>
-            <TopHeader />
+            <TopHeader history={this.props.history}/>
+        
           </Col>
         </Row>
         <Row style={colstyle}>

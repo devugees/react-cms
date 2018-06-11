@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, FormGroup, Label, Input, Container } from "reactstrap";
+import { FormFeedback, Button, Form, FormGroup, Label, Input, Container } from "reactstrap";
 import "./Registration.css";
 import axios from "axios";
 //import setAuthToken from '../../setauthtoken/setAuthToken';
@@ -12,6 +12,7 @@ class Registration extends Component {
         email: "",
         password: "",
         role: "user",
+        passwordCheck: true,
         isAuthenticated: false
       }
     };
@@ -24,7 +25,11 @@ class Registration extends Component {
       ...this.state.registerData
     };
     registerDataCopy[event.target.name] = event.target.value;
-    this.setState({ registerData: registerDataCopy });
+    if(registerDataCopy.password !== "" && registerDataCopy.password2 !== "" && registerDataCopy.password !== registerDataCopy.password2){
+      this.setState({passwordCheck: true, registerData: registerDataCopy })
+    } else {
+      this.setState({passwordCheck: false, registerData: registerDataCopy })
+    }
   }
 
   handleSubmit(e) {
@@ -68,8 +73,9 @@ class Registration extends Component {
 
   render() {
     return (
-      <Container className="Registration">
-        <Form onSubmit={this.handleSubmit}>
+      <Container className="Login h-100 d-flex justify-content-center flex-column">
+        <Form className="col-md-4 offset-md-4" onSubmit={this.handleSubmit}>
+          <h2 className="mb-3">Register</h2>
           <FormGroup>
             <Input
               type="email"
@@ -78,20 +84,39 @@ class Registration extends Component {
               placeholder="Email"
               onChange={this.handleChange}
             />
+          </FormGroup>
+          <FormGroup>
             <Input
               type="password"
               name="password"
-              id="examplePassword"
+              id="password"
               placeholder="password"
               onChange={this.handleChange}
             />
           </FormGroup>
+          <FormGroup>
+            <Input
+              type="password"
+              name="password2"
+              id="password2"
+              invalid={this.state.passwordCheck}
+              placeholder="Repeat Password"
+              onChange={this.handleChange}
+            />
+            <FormFeedback>Passwords do not match</FormFeedback>
+            </FormGroup>
           <FormGroup className="checkbox">
             <Label>
               <Input type="checkbox" /> Accept the Privacy Policy
             </Label>
           </FormGroup>
-          <Button>Submit</Button>
+          <FormGroup>
+            <Button>Register</Button>
+          </FormGroup>
+          <FormGroup>
+            <a className="mr-2" href="/Login">Login</a>
+            <a className="mr-2" href="/">Back</a>
+          </FormGroup>
         </Form>
       </Container>
     );
