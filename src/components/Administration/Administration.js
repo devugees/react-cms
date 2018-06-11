@@ -33,7 +33,8 @@ class Administration extends Component {
       <div className="Administration">
         <Row style={colstyle}>
           <Col style={colstyle}>
-            <TopHeader />
+            <TopHeader history={this.props.history}/>
+        
           </Col>
         </Row>
         <Row style={colstyle}>
