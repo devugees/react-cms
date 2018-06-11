@@ -1,10 +1,11 @@
-import React, { Component } from "react";
-import { Button, Form, FormGroup, Label } from "reactstrap";
-import "./AddEntrie.css";
-import axios from "axios";
-import Select from "react-select";
-import "react-select/dist/react-select.css";
-import FileUploader from "../../FileUploader/FileUploader";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {Button, Form, FormGroup, Label} from 'reactstrap';
+import './AddEntrie.css';
+import axios from 'axios';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
+import FileUploader from '../../FileUploader/FileUploader';
 
 class AddEntrie extends Component {
   constructor(props) {
@@ -19,11 +20,18 @@ class AddEntrie extends Component {
     this.handleSelectChange = this.handleSelectChange.bind(this);
   }
 
+  static PropTypes = {
+    categorie: PropTypes.array,
+    contentTypeId: PropTypes.string,
+    fields: PropTypes.array,
+    addEntrie: PropTypes.func
+  };
+
   newEntrie = {};
 //NewHook
     static getDerivedStateFromProps = (nextProps, prevState) => {
     let categoriesObject = nextProps.categorie;
-    this.setState({ categories: categoriesObject, loading: true });
+    this.setState({categories: categoriesObject, loading: true});
   };
 
   handelChange = e => {
@@ -39,21 +47,21 @@ class AddEntrie extends Component {
       content: this.newEntrie,
       archived: false
     };
-    console.log("newEntrieObj", newEntrieObj);
+    console.log('newEntrieObj', newEntrieObj);
     axios
-      .post("http://localhost:5000/api/newentries", newEntrieObj)
+      .post('http://localhost:5000/api/newentries', newEntrieObj)
       .then(response => {
         console.log(response);
       })
       .catch(function(error) {
-        console.log("Error: ", error);
+        console.log('Error: ', error);
       });
     this.props.addEntrie(newEntrieObj.content);
   };
 
   handleSelectChange(value) {
-    console.log("You have selected: ", value);
-    this.setState({ value });
+    console.log('You have selected: ', value);
+    this.setState({value});
   }
 
   render() {
@@ -99,29 +107,40 @@ class AddEntrie extends Component {
           );*/
 
     const styleFormGroups = {
-      width: "250px",
-      float: "left",
-      margin: "15px",
-      padding: "15px"
+      width: '250px',
+      float: 'left',
+      margin: '15px',
+      padding: '15px'
     };
     const styleForm = {
-      width: "90%"
+      width: '90%'
     };
-    console.log(this.props.fields[3]);
-    return (
-      <div className="boxs">
-        <Form style={styleForm} onSubmit={this.handelFormSubmit}>
-          {this.props.fields.map((object, index) => {
-            {
-              object.type = "Image" ? (
-                <FormGroup style={styleFormGroups} className="FormGroup">
-                  <Label for="exampleEmail">{object.fieldLabel}</Label>
-                  <FileUploader />
-                </FormGroup>
-              ) : (
-                <div key={index}>
+
+ let allFields = this.props.fields.map((object, index) => {
+          if(object.fieldLabel === 'Image' && object.type === 'Image' && object.machineName === 'Image') {
+            return(
+               <div className="col-md-6 mt-1">
+                 <div>
+                    Uplode Photo</div>
+                    <div><FileUploader /></div>
+                  </div>
+              )
+          } else if(object.fieldLabel === 'categories'
+                       && object.type === 'categories' 
+                       && object.machineName === 'categories') {
+            return( 
+              <div className="col-md-6">
+                 <Label >
+                    categories</Label>
+                    <div>{categoriesProp}</div>
+                    </div>
+                    )
+          }
+               return(<div key={index}>
+
                   <FormGroup style={styleFormGroups} className="FormGroup">
-                    <Label for="exampleEmail">{object.fieldLabel}</Label>
+                    <Label for="exampleEmail">
+                    {object.fieldLabel}</Label>
                     <input
                       name={object.machineName}
                       type={object.type}
@@ -130,16 +149,25 @@ class AddEntrie extends Component {
                       onChange={this.handelChange}
                     />
                   </FormGroup>
-                </div>
-              );
-            }
-          })}
+                </div>)
+           
+          })
 
-          {categoriesProp ? categoriesProp : null}
-
-          <Button type="submit" className="btn btn-md btn-outline-primary mr-3">
+    console.log(this.props.fields[3]);
+    return (
+      <div className="boxs">
+        <Form style={styleForm} onSubmit={this.handelFormSubmit}>
+        <div className="container">
+           <div className="row">
+               {allFields}
+               </div>
+           </div>
+           <div className="mt-5">
+           <hr />
+          <Button type="submit" className="btn  btn-outline-primary mt-3">
             AddNew Post
           </Button>
+          </div>
         </Form>
       </div>
     );
