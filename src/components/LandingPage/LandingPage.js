@@ -5,6 +5,7 @@ import Slider from '../Slider/Slider';
 import IconBox from './LayoutComponents/IconBox';
 import Post from './LayoutComponents/Post';
 import Footer from './LayoutComponents/Footer';
+import LayoutComponents from './LayoutComponents/LayoutComponents';
 import './LandingPage.css';
 
 class LandingPage extends Component {
@@ -145,10 +146,8 @@ class LandingPage extends Component {
 
         <div className="py-5 bg-light">
         <Container>
-          <Post />
-          <Post />
-          <Post />
-          </Container>
+            <LayoutComponents/>
+         </Container>
         </div>
         <Footer />
       </React.Fragment>
