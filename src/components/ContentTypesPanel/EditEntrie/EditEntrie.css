@@ -1,0 +1,15 @@
+.boxs input{
+  margin-right: 100px;
+}
+
+.btns {
+  position: absolute;
+  right:  0;
+  bottom: 1rem;
+  display: flex;
+  
+}
+
+.btns Button {
+  margin-right: .7rem;
+}
