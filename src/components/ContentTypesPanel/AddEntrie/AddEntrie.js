@@ -28,10 +28,10 @@ class AddEntrie extends Component {
   };
 
   newEntrie = {};
-//NewHook
-    static getDerivedStateFromProps = (nextProps, prevState) => {
-    let categoriesObject = nextProps.categorie;
-    this.setState({categories: categoriesObject, loading: true});
+  //NewHook
+  static getDerivedStateFromProps = (nextProps, prevState) => {
+     let categoriesObject = nextProps.categorie;
+    return categoriesObject
   };
 
   handelChange = e => {

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import TopHeader from './HeaderComponent/HeaderComponent';
 import DashBoard from './dashBoard/dashBoard';
 import {Row, Col} from 'reactstrap';
