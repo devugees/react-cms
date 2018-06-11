@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import "./EditEntrie.css";
-import axios from "axios";
-import { Button, Form, FormGroup, Label } from "reactstrap";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import './EditEntrie.css';
+import axios from 'axios';
+import {Button, Form, FormGroup, Label} from 'reactstrap';
 
 class EditEntrie extends Component {
   editedEntrie = {};
@@ -25,19 +26,28 @@ class EditEntrie extends Component {
         }
       })
       .catch(error => {
-        console.error("Error:", error);
+        console.error('Error:', error);
       });
+  };
+
+  static PropTypes = {
+    editingItem: PropTypes.shape({
+      item: PropTypes.object
+    }),
+    fields: PropTypes.array,
+    itemWillBeEdited: PropTypes.object,
+    bringItem: PropTypes.func
   };
 
   render() {
     const styleFormGroups = {
-      width: "250px",
-      float: "left",
-      margin: "15px",
-      padding: "15px"
+      width: '250px',
+      float: 'left',
+      margin: '15px',
+      padding: '15px'
     };
     const styleForm = {
-      width: "90%"
+      width: '90%'
     };
 
     return (
@@ -68,14 +78,12 @@ class EditEntrie extends Component {
               type="submit"
               color="primary"
               className="btn mt-2 btn btn-outline-success btn-md"
-              onClick={this.props.toggle}
-            >
+              onClick={this.props.toggle}>
               Save Changes
             </Button>
             <Button
               className="btn ml-2 mt-2 btn btn-outline-secondary btn-md"
-              onClick={this.props.toggle}
-            >
+              onClick={this.props.toggle}>
               Cancel
             </Button>
           </div>

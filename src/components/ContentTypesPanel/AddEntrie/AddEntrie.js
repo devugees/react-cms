@@ -1,10 +1,11 @@
-import React, { Component } from "react";
-import { Button, Form, FormGroup, Label } from "reactstrap";
-import "./AddEntrie.css";
-import axios from "axios";
-import Select from "react-select";
-import "react-select/dist/react-select.css";
-import FileUploader from "../../FileUploader/FileUploader";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {Button, Form, FormGroup, Label} from 'reactstrap';
+import './AddEntrie.css';
+import axios from 'axios';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
+import FileUploader from '../../FileUploader/FileUploader';
 
 class AddEntrie extends Component {
   constructor(props) {
@@ -19,11 +20,18 @@ class AddEntrie extends Component {
     this.handleSelectChange = this.handleSelectChange.bind(this);
   }
 
+  static PropTypes = {
+    categorie: PropTypes.array,
+    contentTypeId: PropTypes.string,
+    fields: PropTypes.array,
+    addEntrie: PropTypes.func
+  };
+
   newEntrie = {};
 
   componentWillReceiveProps = (nextProps, prevState) => {
     let categoriesObject = nextProps.categorie;
-    this.setState({ categories: categoriesObject, loading: true });
+    this.setState({categories: categoriesObject, loading: true});
   };
 
   handelChange = e => {
@@ -39,21 +47,21 @@ class AddEntrie extends Component {
       content: this.newEntrie,
       archived: false
     };
-    console.log("newEntrieObj", newEntrieObj);
+    console.log('newEntrieObj', newEntrieObj);
     axios
-      .post("http://localhost:5000/api/newentries", newEntrieObj)
+      .post('http://localhost:5000/api/newentries', newEntrieObj)
       .then(response => {
         console.log(response);
       })
       .catch(function(error) {
-        console.log("Error: ", error);
+        console.log('Error: ', error);
       });
     this.props.addEntrie(newEntrieObj.content);
   };
 
   handleSelectChange(value) {
-    console.log("You have selected: ", value);
-    this.setState({ value });
+    console.log('You have selected: ', value);
+    this.setState({value});
   }
 
   render() {
@@ -99,15 +107,14 @@ class AddEntrie extends Component {
           );*/
 
     const styleFormGroups = {
-      width: "250px",
-      float: "left",
-      margin: "15px",
-      padding: "15px"
+      width: '250px',
+      float: 'left',
+      margin: '15px',
+      padding: '15px'
     };
     const styleForm = {
-      width: "90%"
+      width: '90%'
     };
-
 
  let allFields = this.props.fields.map((object, index) => {
           if(object.fieldLabel === 'Image' && object.type === 'Image' && object.machineName === 'Image') {
@@ -130,6 +137,7 @@ class AddEntrie extends Component {
                     )
           }
                return(<div key={index}>
+
                   <FormGroup style={styleFormGroups} className="FormGroup">
                     <Label for="exampleEmail">
                     {object.fieldLabel}</Label>
