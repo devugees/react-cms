@@ -35,7 +35,7 @@ class Categories extends Component {
   }
 
 
-  componentWillReceiveProps = (nextProps, prevState) => {
+  static getDerivedStateFromProps = (nextProps, prevState) => {
     this.bringingCategoriesDb(nextProps)
   }
 

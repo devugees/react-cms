@@ -18,8 +18,8 @@ class Administration extends Component {
   static PropTypes = {
     activeLink: PropTypes.string
   };
-
-  componentWillMount = () => {
+   //NewHook
+  componentDidMount = () => {
     axios
       .get('http://localhost:5000/api/contenttypes')
       .then(response => {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {UnControlled as CodeMirror} from 'react-codemirror2';
+import { Button } from 'reactstrap';
 require('codemirror/mode/xml/xml');
 require('codemirror/mode/javascript/javascript');
 
@@ -19,6 +20,7 @@ class CustomeCode extends Component {
   onChange={(editor, data, value) => {
   }}
 />
+    <Button color="primary">Save</Button>{' '}
      </div>
      
     );

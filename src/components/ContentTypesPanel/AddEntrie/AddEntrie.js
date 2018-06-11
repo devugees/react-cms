@@ -20,8 +20,8 @@ class AddEntrie extends Component {
   }
 
   newEntrie = {};
-
-  componentWillReceiveProps = (nextProps, prevState) => {
+//NewHook
+    static getDerivedStateFromProps = (nextProps, prevState) => {
     let categoriesObject = nextProps.categorie;
     this.setState({ categories: categoriesObject, loading: true });
   };
