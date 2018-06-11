@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {Form, Row, Col, Input, Button} from 'reactstrap';
 import Select from 'react-select';
 import axios from 'axios';
+import HandleContentTypeView from './apperanceContentTypecomponent/HandleContentTypeView';
+
 
 class AppearanceForm extends Component {
   constructor(props) {
@@ -18,6 +20,7 @@ class AppearanceForm extends Component {
     const btnFile = {marginBottom: '1em', height: '2em'};
 
     return (
+      <div>
       <Form onSubmit={this.props.handleSubmit}>
         <Row>
           <Col>
@@ -130,6 +133,10 @@ class AppearanceForm extends Component {
         </Row>
         <Button type="submit">Submit</Button>
       </Form>
+            <div className="mt-4">
+             <HandleContentTypeView contenttypeData={this.props.contentTypeData} />
+           </div>
+      </div>
     );
   }
 }
