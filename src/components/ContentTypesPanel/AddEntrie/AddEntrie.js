@@ -115,21 +115,32 @@ class AddEntrie extends Component {
     const styleForm = {
       width: '90%'
     };
-    console.log(this.props.fields[3]);
-    return (
-      <div className="boxs">
-        <Form style={styleForm} onSubmit={this.handelFormSubmit}>
-          {this.props.fields.map((object, index) => {
-            {
-              object.type = 'Image' ? (
-                <FormGroup style={styleFormGroups} className="FormGroup">
-                  <Label for="exampleEmail">{object.fieldLabel}</Label>
-                  <FileUploader />
-                </FormGroup>
-              ) : (
-                <div key={index}>
+
+ let allFields = this.props.fields.map((object, index) => {
+          if(object.fieldLabel === 'Image' && object.type === 'Image' && object.machineName === 'Image') {
+            return(
+               <div className="col-md-6 mt-1">
+                 <div>
+                    Uplode Photo</div>
+                    <div><FileUploader /></div>
+                  </div>
+              )
+          } else if(object.fieldLabel === 'categories'
+                       && object.type === 'categories' 
+                       && object.machineName === 'categories') {
+            return( 
+              <div className="col-md-6">
+                 <Label >
+                    categories</Label>
+                    <div>{categoriesProp}</div>
+                    </div>
+                    )
+          }
+               return(<div key={index}>
+
                   <FormGroup style={styleFormGroups} className="FormGroup">
-                    <Label for="exampleEmail">{object.fieldLabel}</Label>
+                    <Label for="exampleEmail">
+                    {object.fieldLabel}</Label>
                     <input
                       name={object.machineName}
                       type={object.type}
@@ -138,16 +149,25 @@ class AddEntrie extends Component {
                       onChange={this.handelChange}
                     />
                   </FormGroup>
-                </div>
-              );
-            }
-          })}
+                </div>)
+           
+          })
 
-          {categoriesProp ? categoriesProp : null}
-
-          <Button type="submit" className="btn btn-md btn-outline-primary mr-3">
+    console.log(this.props.fields[3]);
+    return (
+      <div className="boxs">
+        <Form style={styleForm} onSubmit={this.handelFormSubmit}>
+        <div className="container">
+           <div className="row">
+               {allFields}
+               </div>
+           </div>
+           <div className="mt-5">
+           <hr />
+          <Button type="submit" className="btn  btn-outline-primary mt-3">
             AddNew Post
           </Button>
+          </div>
         </Form>
       </div>
     );
