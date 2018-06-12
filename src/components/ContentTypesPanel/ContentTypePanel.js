@@ -106,8 +106,8 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
 
   AddEditedItemToState = (item,index) => {
     console.log("item" ,item);
-      let entries = {...this.state.entries}
-      let entriesWithId = {...this.state.entriesWithId}
+      let entries = [...this.state.entries]
+      let entriesWithId = [...this.state.entriesWithId]
       let newItem = item    
       entries[index] = newItem
       entriesWithId[index] = newItem

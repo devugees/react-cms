@@ -52,6 +52,8 @@ renderedKeys
 renderedItems
 
   render() {
+    console.log(this.props.items);
+    console.log("type",typeof this.props.items)
 
     this.renderedKeys = Object.keys(this.props.keys).map((key, index) => {
                 return <th key={index}>{key}</th>
@@ -59,10 +61,14 @@ renderedItems
 
     this.renderedItems 
     let values
-      if(this.props.items.length > 0) {
+    
+    console.log('len', this.props.items.length);
+    if(this.props.items.length > 0) {
         console.log("this.state.items",this.props.items);
+        
         this.renderedItems = this.props.items.map((item, index) => {
           values = Object.values(item)
+          console.log('item inside map', item);
             return (
               <tr key={index}>
               { 
@@ -81,7 +87,7 @@ renderedItems
                      )
                        
                     } else if (typeof string === "string"){
-                      if (string.endsWith("jpeg"|"jpg"|"png"|"gif")) {
+                      if (string.endsWith(".jpeg")|| string.endsWith(".jpg") || string.endsWith(".gif") , string.endsWith(".png") ) {
                         return (
                           <td key={index2}><img  src={string}
                         style={{
@@ -112,7 +118,7 @@ renderedItems
       }
 
     
-console.log("renderedItems",this.renderedItems);
+    console.log("renderedItems",this.renderedItems);
     return (
       <div className="ViewTable">
         <Table striped>

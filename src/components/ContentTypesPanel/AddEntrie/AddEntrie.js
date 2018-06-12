@@ -100,6 +100,7 @@ class AddEntrie extends Component {
           options={options}
           onChange={this.handleSelectChange}
         />
+        
       </div>
     );
     const styleFormGroups = {

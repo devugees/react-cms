@@ -7,22 +7,24 @@ import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import FileUploader from '../../FileUploader/FileUploader';
 
+
+let selectedCategorie ;
 class EditEntrie extends Component {
   constructor(props) {
     super(props);
     let categories = [];
     let selectedFile;
 
-    if(this.itemWillBeEdited.item.categories){
-      categories = this.itemWillBeEdited.item.categories
+    if(this.props.itemWillBeEdited.item.categories){
+      selectedCategorie = this.props.itemWillBeEdited.item.categories
     }
-    if(this.itemWillBeEdited.item.Image) {
-      selectedFile = this.itemWillBeEdited.item.Image
+    if(this.props.itemWillBeEdited.item.Image) {
+      selectedFile = this.props.itemWillBeEdited.item.Image
     }
     this.state = {
-      categories: categories,
+      categories: props.categorie,
       selectedFile: selectedFile,
-      value: [],
+      value: selectedCategorie ,
       crazy: false,
       loading: false
     };
@@ -52,8 +54,6 @@ class EditEntrie extends Component {
   };
  
   handelFormSubmit = event => {
-    this.editedEntrie.categories = this.state.value;
-    this.editedEntrie[this.state.selectedFile.fieldLabel]= this.state.selectedFile.fileUrl;
     console.log("editedEntrie",this.editedEntrie)
     event.preventDefault();
     this.props.AddEditedItemToState(this.editedEntrie,this.props.itemWillBeEdited.index);
@@ -85,7 +85,7 @@ class EditEntrie extends Component {
       label: item.name,
       value: index
     }));
-
+console.log("selectedCategorie",selectedCategorie);
     const categoriesProp = (
       <div className="section">
         <h3 className="section-heading">{options.label}</h3>
@@ -115,7 +115,7 @@ class EditEntrie extends Component {
                <div className="col-md-6 mt-1">
                  <div>
                     Uplode Photo</div>
-                    <div><FileUploader /></div>
+                    <div><FileUploader path={this.props.itemWillBeEdited.item.image} /></div>
                   </div>
               )
           } else if(object.fieldLabel === 'categories'
