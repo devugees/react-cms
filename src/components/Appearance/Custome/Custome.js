@@ -60,12 +60,16 @@ class Custome extends Component {
     }));
 
     return (
+     
       this.state.form && (
         <AppearanceForm
+          contentTypeData={this.props.contenttypes}
           handleSubmit={this.handleSubmit}
           form={this.state.form}
         />
       )
+    
+     
     );
   }
 }
