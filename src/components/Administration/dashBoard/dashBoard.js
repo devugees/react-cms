@@ -9,7 +9,7 @@ class dashBord extends Component {
     contentTypes: this.props.contenttypes
   };
 
-  static PropTypes = {
+  static propTypes = {
     contenttypes: PropTypes.array
   };
 

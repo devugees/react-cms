@@ -28,10 +28,10 @@ class AddEntrie extends Component {
   };
 
   newEntrie = {};
-
-  componentWillReceiveProps = (nextProps, prevState) => {
-    let categoriesObject = nextProps.categorie;
-    this.setState({categories: categoriesObject, loading: true});
+  //NewHook
+  static getDerivedStateFromProps = (nextProps, prevState) => {
+     let categoriesObject = nextProps.categorie;
+    return categoriesObject
   };
   bringFileUrl = (fileUrl,fieldLabel) =>{
     console.log("fileUrl",fileUrl);
