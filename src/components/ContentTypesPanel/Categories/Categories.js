@@ -20,9 +20,7 @@ class Categories extends Component {
     this.handleSubmitEdit = this.handleSubmitEdit.bind(this);
   }
 
-  static PropTypes = {
-    id: PropTypes.string
-  };
+
 
   bringingCategoriesDb = nextProps => {
     console.log('componentDidMount');
@@ -39,9 +37,10 @@ class Categories extends Component {
       });
   };
 
-  componentWillReceiveProps = (nextProps, prevState) => {
-    this.bringingCategoriesDb(nextProps);
-  };
+  static getDerivedStateFromProps = (nextProps, prevState) => {
+    this.bringingCategoriesDb(nextProps)
+  }
+
 
   handleToggleEditInput(index, categories) {
     this.setState(prevState => ({
@@ -97,7 +96,7 @@ class Categories extends Component {
       description: this.state.description
     };
     console.log(newdata);
-    const tokenStr = localStorage.getItem('token');
+    const tokenStr = localStorage.getItem("token");
     console.log(tokenStr);
 
     const categoriesId = this.state.id;
@@ -106,7 +105,7 @@ class Categories extends Component {
         `http://localhost:5000/api/updatecategories/${categoriesId}`,
         newdata,
         {
-          headers: {Authorization: `Bearer ${tokenStr}`}
+          headers: { Authorization: `Bearer ${tokenStr}` }
         }
       )
       .then(response => this.componentWillMount())
@@ -114,7 +113,7 @@ class Categories extends Component {
   }
 
   onChange(e) {
-    this.setState({[e.target.name]: e.target.value});
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
