@@ -138,9 +138,6 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
 
           </ModalBody>
         </Modal>
-
-        <h1>Hoii </h1>
-        
         <ViewTable
         bringItemWillBeEditedFromViewTable={this.bringItemWillBeEditedFromViewTable}
         deleteEntrieFromState={this.deleteEntrieFromState}
