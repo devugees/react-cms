@@ -52,17 +52,16 @@ renderedKeys
 renderedItems
 
   render() {
-    console.log(this.props.items);
-    console.log("type",typeof this.props.items)
+
+    if (!this.props.keys) {
+      return null
+    }
 
     this.renderedKeys = Object.keys(this.props.keys).map((key, index) => {
                 return <th key={index}>{key}</th>
-              })
+    })
 
-    this.renderedItems 
     let values
-    
-    console.log('len', this.props.items.length);
     if(this.props.items.length > 0) {
         console.log("this.state.items",this.props.items);
         
@@ -116,9 +115,8 @@ renderedItems
               )}
             )
       }
-
     
-    console.log("renderedItems",this.renderedItems);
+
     return (
       <div className="ViewTable" style={{overflowY: 'scroll', webkitOverflowScrolling: 'touch', height: '95vh'}}>
         <Table striped>
