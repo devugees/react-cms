@@ -89,7 +89,7 @@ class ViewTable extends Component {
 
   render() {
     return (
-      <div className="ViewTable">
+      <div className="ViewTable" style={{overflowY: 'scroll', webkitOverflowScrolling: 'touch', height: '95vh'}}>
         <Table striped>
           <thead>
             <tr>

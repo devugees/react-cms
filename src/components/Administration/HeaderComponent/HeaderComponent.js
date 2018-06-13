@@ -27,7 +27,7 @@ class TopHeader extends Component {
 
   render() {
     const fontSize = {fontSize: '.9rem'};
-    const style = {backgroundColor: '#555', height: '3rem', fontSize: '1rem'};
+    const style = {backgroundColor: '#555', height: '3rem', fontSize: '1em', marginTop: 'auto'};
     const textColor = {color: '#fff'};
     return (
       <div className="top">
@@ -61,7 +61,7 @@ class TopHeader extends Component {
             </Nav>
 
             <NavbarBrand style={fontSize} className="ml-auto">
-              <Button onClick={this.handleLogout}>Sign out </Button>
+              <Button style={{fontSize: '1em'}} onClick={this.handleLogout}>Sign out </Button>
 
               {/* <UncontrolledDropdown>
                 <DropdownToggle style={textColor} caret>
