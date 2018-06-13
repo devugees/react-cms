@@ -5,7 +5,7 @@ import {Container, Row, Col} from 'reactstrap';
 class LayoutComponents extends Component {
   state = {
     content: [],
-    contentType: this.props.contentType
+    contentTypes: this.props.contentType
   };
 
   static propTypes = {
@@ -14,7 +14,7 @@ class LayoutComponents extends Component {
 
   /*Lifecycle gets refactored sonn */
   componentDidMount() {
-    const {id} = this.state.contentType.contentType;
+    const {id} = this.state.contentTypes.contentType;
     let content = [];
     let contentObj;
 
@@ -35,7 +35,7 @@ class LayoutComponents extends Component {
   }
 
   render() {
-    const {fields} = this.state.contentType;
+    const {fields} = this.state.contentTypes;
     let cols = [];
 
     this.state.content.map((comp, index) => {

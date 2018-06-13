@@ -10,6 +10,9 @@ import FileUploader from '../../FileUploader/FileUploader';
 class AddEntrie extends Component {
   constructor(props) {
     super(props);
+
+    console.log("props",props);
+
     this.state = {
       categories: [],
       value: [],
@@ -28,11 +31,22 @@ class AddEntrie extends Component {
   };
 
   newEntrie = {};
-  //NewHook
-  static getDerivedStateFromProps = (nextProps, prevState) => {
-     let categoriesObject = nextProps.categorie;
-    return categoriesObject
+  
+
+  
+
+  componentDidMount = () => {
+    console.log("this.props",this.props);
   };
+
+  componentDidUpdate (nextProps, prevState) {
+   
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    return {categories: props.categorie}
+  };
+  
   bringFileUrl = (fileUrl,fieldLabel) =>{
     console.log("fileUrl",fileUrl);
     let selectedFile = {
@@ -83,11 +97,17 @@ class AddEntrie extends Component {
 
   render() {
 
-
-    const options = this.state.categories.map((item, index) => ({
+    let options = [];
+    if (this.state.categories) {
+      console.log(this.state.categories);
+      options = this.state.categories.map((item, index) => ({
       label: item.name,
       value: index
     }));
+      console.log("options",options);
+
+    }
+    
 
     const categoriesProp = (
       <div className="section">
