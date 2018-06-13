@@ -31,7 +31,7 @@ class EditEntrie extends Component {
     this.handleSelectChange = this.handleSelectChange.bind(this);
   }
 
-  static PropTypes = {
+  static propTypes = {
     categorie: PropTypes.array,
     contentTypeId: PropTypes.string,
     fields: PropTypes.array,
