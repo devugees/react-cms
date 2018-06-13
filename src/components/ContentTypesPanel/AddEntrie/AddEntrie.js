@@ -7,6 +7,9 @@ import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import FileUploader from '../../FileUploader/FileUploader';
 
+
+let newEntrie = {};
+
 class AddEntrie extends Component {
   constructor(props) {
     super(props);
@@ -30,7 +33,7 @@ class AddEntrie extends Component {
     addEntrie: PropTypes.func
   };
 
-  newEntrie = {};
+  
   
 
   
@@ -44,6 +47,9 @@ class AddEntrie extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
+    props.fields.map( field => {
+      newEntrie[field.machineName]='';
+    })
     return {categories: props.categorie}
   };
   
@@ -59,23 +65,26 @@ class AddEntrie extends Component {
   }
   handelChange = e => {
     let inputName = e.target.name;
-    this.newEntrie[inputName] = e.target.value;
-    console.log(this.newEntrie);
+    newEntrie[inputName] = e.target.value;
+    console.log(newEntrie);
   };
 
   handelFormSubmit = event => {
+    console.log(newEntrie);
     event.preventDefault();
     if (this.state.value.length > 0 ) {
-      this.newEntrie.categories = this.state.value
+      console.log(newEntrie);
+      newEntrie.categories = this.state.value
     }
-    console.log();
-    if (this.state.selectedFile.fileUrl.length > 0 ) {
-      this.newEntrie.image= this.state.selectedFile.fileUrl
+    if (this.state.selectedFile.fileUrl ) {
+         console.log(newEntrie);
+      newEntrie.image= this.state.selectedFile.fileUrl
     }
-    
-    const newEntrieObj = {
+       console.log(newEntrie);
+       let theNewestEntrie = {...newEntrie}
+    let newEntrieObj = {
       contentTypeId: this.props.contentTypeId,
-      content: this.newEntrie,
+      content: theNewestEntrie,
       archived: false
     };
     console.log('newEntrieObj', newEntrieObj);
@@ -91,7 +100,6 @@ class AddEntrie extends Component {
   };
 
   handleSelectChange(value) {
-    console.log('You have selected: ', value);
     this.setState({value});
   }
 
@@ -99,13 +107,10 @@ class AddEntrie extends Component {
 
     let options = [];
     if (this.state.categories) {
-      console.log(this.state.categories);
       options = this.state.categories.map((item, index) => ({
       label: item.name,
       value: index
     }));
-      console.log("options",options);
-
     }
     
 

@@ -63,11 +63,10 @@ renderedItems
 
     let values
     if(this.props.items.length > 0) {
-        console.log("this.state.items",this.props.items);
+       
         
         this.renderedItems = this.props.items.map((item, index) => {
           values = Object.values(item)
-          console.log('item inside map', item);
             return (
               <tr key={index}>
               { 
@@ -77,7 +76,6 @@ renderedItems
                     {
                     return ( 
                     string.map((categorie,index3)=> {
-                        console.log(categorie.label);
                         return (
                               <td key={index3}> {categorie.label} </td>
                               )

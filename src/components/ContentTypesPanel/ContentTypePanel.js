@@ -38,6 +38,11 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
     let entries = [];
     let entriesWithId= []
     let contentObj;
+    let entriesKeys ={}
+
+    nextProps.fields.map( field => {
+      entriesKeys[field.machineName] = '';
+    })
 
     axios.get(`http://localhost:5000/api/entries/${nextProps.id}`)
    .then((response) => {
@@ -53,7 +58,7 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
     this.setState({
       entries: entries,
       entriesWithId: entriesWithId,
-      entriesKeys: entries[0]
+      entriesKeys: entriesKeys
     })
     }).catch(function(error) {
       console.error("Error: ", error);
