@@ -15,7 +15,7 @@ class Administration extends Component {
     };
   }
 
-  static PropTypes = {
+  static propTypes = {
     activeLink: PropTypes.string
   };
    //NewHook
