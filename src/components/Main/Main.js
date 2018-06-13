@@ -44,7 +44,8 @@ class Main extends Component {
       }
     })
 
-    let components = {
+    if (fields.length != 0) {
+      let components = {
       "View": <View  id={this.props.activeLink.split('/')[3]} />,
       "NewContentType": <NewContentType/>,
       "Sitestatus": <Sitestatus/>,
@@ -71,6 +72,10 @@ class Main extends Component {
       let linkSecound = this.props.activeLink.split('/')[2];
       let component = components[linkMain] || components[linkSecound] || <PageNotFound/>
       return (<div>{component}</div>)
+    }
+    else return null
+
+    
     };
   }
 
