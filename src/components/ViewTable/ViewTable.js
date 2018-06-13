@@ -13,7 +13,7 @@ class ViewTable extends Component {
 
   }
 
-  static PropTypes = {
+  static propTypes = {
     bringEntrie: PropTypes.func,
     deleteEntrie: PropTypes.func,
     toggle: PropTypes.func,
