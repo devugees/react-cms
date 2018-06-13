@@ -83,7 +83,8 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
   }
 
   componentWillReceiveProps = (nextProps, prevState) => {
-
+    console.log("New props")
+    console.log(this.state);
     if(nextProps.id != this.props.id) {
     this.bringEntries(nextProps)
     this.bringCategories(nextProps)

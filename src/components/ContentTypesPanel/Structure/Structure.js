@@ -36,6 +36,7 @@ class Structure extends Component {
         modal: !this.state.modal
      });
     }
+
     bringEntries = nextProps => {
       let entries = [];
       let contentObj;
@@ -80,7 +81,25 @@ class Structure extends Component {
       this.setState({fields:fields})
     }
 
-  handelSubmit = () => {
+  handelSubmit = (event) => {
+    event.preventDefault();
+    const fieldsObj = {
+      fields: this.state.fields
+    }
+    console.log(fieldsObj)
+    axios
+      .post(`http://localhost:5000/api/contenttypes/${this.props.id}`, fieldsObj)
+      .then(response => {
+        console.log(response);
+        if (response.status === 200) {
+          alert("your contentType is submaited");
+        } else {
+          alert("there is a problem");
+        }
+      })
+      .catch(error => {
+        console.log("Error: ", error);
+      });
 
   }
  
@@ -96,9 +115,7 @@ class Structure extends Component {
             </ModalBody>
           </Modal>
 
-
-        {/*<Container className='ContentSetting'>
-          <Form onSubmit={this.handelSubmit}>*/}
+          <Form onSubmit={this.handelSubmit}>
             <Row>
             <ViewTable toggle={this.toggle} items={this.state.fields}  bringEntrie={this.bringEntrie}  keys={this.state.fieldsKeys}/>
             </Row>
@@ -108,13 +125,11 @@ class Structure extends Component {
             </Row>
 
             <Row className='float-right'>
-           {/* <Button type="submit" className="btn mt-2 btn btn-outline-success btn-md" >Save</Button>
-            <Button className="btn ml-2 mt-2 btn btn-outline-secondary btn-md">Cancel</Button>*/}
+            <Button type="submit" className="btn mt-2 btn btn-outline-success btn-md" >Save</Button>
+            <Button className="btn ml-2 mt-2 btn btn-outline-secondary btn-md">Cancel</Button>
             </Row>
- {/*
+
           </Form>
-        </Container>
-        */}
         </div>
     );
   }

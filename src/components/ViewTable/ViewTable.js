@@ -71,7 +71,6 @@ renderedItems
               <tr key={index}>
               { 
                 values.map((string, index2) => {
-
                   if( Array.isArray(string) )
                     {
                     return ( 
@@ -93,11 +92,16 @@ renderedItems
                         }} /> </td>
                         )
                       }
-                      else {
+                      else  {
+                        
                       return (
                               <td key={index2}>{string.toString()}</td>
                               )
                     }
+                    } else if (typeof string === "boolean") {
+                      return (
+                              <td key={index2}>{string.toString()}</td>
+                              )
                     }
                     
 
@@ -112,6 +116,9 @@ renderedItems
               </tr>
               )}
             )
+      }
+      else {
+        this.renderedItems = null
       }
     
 

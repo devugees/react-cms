@@ -22,10 +22,9 @@ module.exports = (app) => {
                 console.log(err)
                 return res.send({ message: 'No contenttype found' })
             }
-            console.log()
-            for (attr in req.body) {
-                contenttype[attr] = req.body[attr];
-            }
+
+            contenttype.fields = req.body.fields;
+          
             contenttype.save((err, date) => {
                 if (err) {
                     console.log(err)
@@ -37,6 +36,9 @@ module.exports = (app) => {
 
         });
     });
+
+    
+
 
     //Delete > ContentTypes
     app.delete('/api/contenttypes/:contenttypesId', (req, res) => {
