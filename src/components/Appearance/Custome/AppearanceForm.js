@@ -19,7 +19,7 @@ class AppearanceForm extends Component {
 
               }
   
-  static PropTypes = {
+  static propTypes = {
     handleSubmit: PropTypes.func,
   };
  incremnetContentTyps = () => {

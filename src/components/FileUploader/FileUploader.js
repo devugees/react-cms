@@ -5,8 +5,12 @@ import './FileUploader.css';
 
 export default class FileUploader extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        let path ='';
+        if(props.path){
+          path= props.path
+        }
         this.state = {
           description: '',
           selectedFile: '',
@@ -17,7 +21,7 @@ export default class FileUploader extends Component {
           Toggleform: false,
           ShowImageinput: false,
           border: '',
-          path: ''
+          path: path
         }
         this.toggle = this.toggle.bind(this);
         this.toggleNew = this.toggleNew.bind(this);
@@ -44,22 +48,30 @@ export default class FileUploader extends Component {
           default:
             state[e.target.name] = e.target.value;
         }
-
+        
         this.setState(state);
       }
 
-      onSubmit = (e) => {
+      onClick = (e) => {
         e.preventDefault();
         const { description, selectedFile } = this.state;
         let formData = new FormData();
 
         formData.append('description', description);
         formData.append('selectedFile', selectedFile);
+    
+        /*let request = new XMLHttpRequest();
+        request.open('POST','http://localhost:5000/api/upload');
+        request.send(formData)*/
 
         axios.post('http://localhost:5000/api/upload', formData)
           .then((result) => {
-            // access results...
-          });
+            console.log(result)
+         })
+        .catch(function(error) {
+        console.log('Error: ', error);
+        });
+          
       }
 
       toggle() {
@@ -88,6 +100,7 @@ toggleForm(e) {
       border: '2px solid red',
       ShowImageinput: true
     });
+  this.props.bringFileUrl(imagPth,this.props.fieldLabel)
   }
  
       render() {
@@ -97,7 +110,7 @@ toggleForm(e) {
         const allimages = (
                     <div className="thumbnail">
                    {this.state.imagesArry.map((image, index) => (
-                        <img src={require('../../uploads/'+image)} 
+                        <img src={require('../../../backend/uploads/'+image)} 
                         key={index}
                         alt="Lights" 
                         style={{width: '20%', height: '150px', margin: 20}}
@@ -107,7 +120,7 @@ toggleForm(e) {
                     </div>
                  )
         const uploderForm = (
-                <form onSubmit={this.onSubmit} className="w-75 mt-3">
+                <div>
                   <input
                     type="text"
                     name="description"
@@ -119,8 +132,8 @@ toggleForm(e) {
                     name="selectedFile"
                     onChange={this.onChange}
                   />
-                  <button type="submit">Submit</button>
-             </form>
+                  <button  onClick={this.onClick} >Upload</button>
+                  </div>
           )
 
         return (

@@ -25,7 +25,7 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 
 class Main extends Component {
 
-  static PropTypes = {
+  static propTypes = {
    contenttypes: PropTypes.array
   }
 

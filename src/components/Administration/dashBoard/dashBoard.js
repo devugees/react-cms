@@ -63,7 +63,7 @@ class dashBord extends Component {
     );
 
     return (
-      <div className="style FontColor">
+      <div className="style FontColor" style={{overflowY: 'scroll', webkitOverflowScrolling: 'touch', maxHeight: '95vh'}}>
         <strong>Dashbord</strong>
         <Nav className="color" vertical>
           <NavItem>

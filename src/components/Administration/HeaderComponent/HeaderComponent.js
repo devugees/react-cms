@@ -26,42 +26,39 @@ class TopHeader extends Component {
   }
 
   render() {
-    const fontSize = {fontSize: '.9rem'};
-    const style = {backgroundColor: '#555', height: '3rem', fontSize: '1rem'};
-    const textColor = {color: '#fff'};
+    const marginRight = {marginRight: '1em'}
+
     return (
-      <div className="top">
-        <Navbar style={style} light expand="md">
+      <div className="top" style={{display: 'inline'}}>
+        <Navbar className="Navbar" dark expand="md">
+          <NavbarBrand href="/">Dashbord</NavbarBrand>
+
+
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav style={fontSize} navbar>
-              <NavItem>
-                <Link style={textColor} to="/">
-                  Go to Web Site
-                </Link>
-              </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle style={textColor} nav caret>
-                  New
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>Option 1</DropdownItem>
-                  <DropdownItem>Option 2</DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>Reset</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-              <NavItem>
-                <Link
-                  style={textColor}
-                  to="/Administration/main/NewContentType">
-                  Create Node
-                </Link>
-              </NavItem>
-            </Nav>
+            <Nav className="ml-auto" navbar>
+        
+        <NavbarBrand style={{display:'flex', padding: '.6em 0 0 0', margin: '0'}}>
+              <NavItem style={marginRight}><Link to="/">Go to Web Site</Link></NavItem>
+              <NavItem style={marginRight}><Link to="/Administration/main/NewContentType">Create Node</Link></NavItem>
+        </NavbarBrand>
+       
+        <NavbarBrand>
+        <UncontrolledDropdown nav inNavbar>
+          <DropdownToggle nav caret>New</DropdownToggle>
+            <DropdownMenu right>
+              <DropdownItem>Option 1</DropdownItem>
+              <DropdownItem>Option 2</DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem>Reset</DropdownItem>
+            </DropdownMenu>
+        </UncontrolledDropdown>
+        </NavbarBrand>
+        
+        <NavbarBrand>
+          <Button style={marginRight} onClick={this.handleLogout}>Sign out </Button>
+        </NavbarBrand>
 
-            <NavbarBrand style={fontSize} className="ml-auto">
-              <Button onClick={this.handleLogout}>Sign out </Button>
 
               {/* <UncontrolledDropdown>
                 <DropdownToggle style={textColor} caret>
@@ -83,7 +80,10 @@ class TopHeader extends Component {
                 </DropdownMenu>
               </UncontrolledDropdown>
               */}
-            </NavbarBrand>
+
+
+
+            </Nav>
           </Collapse>
         </Navbar>
       </div>

@@ -23,7 +23,7 @@ class AddField extends Component {
   cssClassNameRef = React.createRef();
   customCsslRef = React.createRef();
 
-  static PropTypes = {
+  static propTypes = {
     addFields: PropTypes.array,
     id: PropTypes.string
   };
