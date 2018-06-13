@@ -1,10 +1,12 @@
 .Administration {
 	margin: 0;
 	padding: 0;
-	width: 100%;
+	height: auto;
+	width: auto;
+
 }
 
 .Board{
 //	background-color: #275;
-	padding: 0.7rem;
+	// padding: 0.7rem 0 0 0;
 }

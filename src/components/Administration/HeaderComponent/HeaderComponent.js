@@ -27,7 +27,7 @@ class TopHeader extends Component {
 
   render() {
     const fontSize = {fontSize: '.9rem'};
-    const style = {backgroundColor: '#555', height: '3rem', fontSize: '1em', marginTop: 'auto'};
+    const style = {backgroundColor: '#555', height: '5vh', fontSize: '1em'};
     const textColor = {color: '#fff'};
     return (
       <div className="top">
