@@ -10,17 +10,20 @@ import FileUploader from '../../FileUploader/FileUploader';
 class AddEntrie extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
+
+    console.log("props",props);
+
     this.state = {
       categories: [],
       value: [],
+      selectedFile: {},
       crazy: false,
       loading: false
     };
     this.handleSelectChange = this.handleSelectChange.bind(this);
   }
 
-  static PropTypes = {
+  static propTypes = {
     categorie: PropTypes.array,
     contentTypeId: PropTypes.string,
     fields: PropTypes.array,
@@ -28,12 +31,32 @@ class AddEntrie extends Component {
   };
 
   newEntrie = {};
-  //NewHook
-  static getDerivedStateFromProps = (nextProps, prevState) => {
-     let categoriesObject = nextProps.categorie;
-    return categoriesObject
+  
+
+  
+
+  componentDidMount = () => {
+    console.log("this.props",this.props);
   };
 
+  componentDidUpdate (nextProps, prevState) {
+   
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    return {categories: props.categorie}
+  };
+  
+  bringFileUrl = (fileUrl,fieldLabel) =>{
+    console.log("fileUrl",fileUrl);
+    let selectedFile = {
+      fieldLabel:fieldLabel,
+      fileUrl:fileUrl
+    }
+    this.setState({
+      selectedFile: selectedFile
+    })
+  }
   handelChange = e => {
     let inputName = e.target.name;
     this.newEntrie[inputName] = e.target.value;
@@ -42,6 +65,14 @@ class AddEntrie extends Component {
 
   handelFormSubmit = event => {
     event.preventDefault();
+    if (this.state.value.length > 0 ) {
+      this.newEntrie.categories = this.state.value
+    }
+    console.log();
+    if (this.state.selectedFile.fileUrl.length > 0 ) {
+      this.newEntrie.image= this.state.selectedFile.fileUrl
+    }
+    
     const newEntrieObj = {
       contentTypeId: this.props.contentTypeId,
       content: this.newEntrie,
@@ -56,7 +87,7 @@ class AddEntrie extends Component {
       .catch(function(error) {
         console.log('Error: ', error);
       });
-    this.props.addEntrie(newEntrieObj.content);
+    this.props.addNewEntrieToState(newEntrieObj.content);
   };
 
   handleSelectChange(value) {
@@ -65,21 +96,18 @@ class AddEntrie extends Component {
   }
 
   render() {
-    /*
-   let uplodecomponent;
-        if(this.state.type === 'Image') {
-            uplodecomponent = <FileUploader />
-        } else {
-            uplodecomponent = null;
-        }
-*/
 
-    const options = this.state.categories.map((item, index) => ({
+    let options = [];
+    if (this.state.categories) {
+      console.log(this.state.categories);
+      options = this.state.categories.map((item, index) => ({
       label: item.name,
       value: index
     }));
+      console.log("options",options);
 
-    console.log(options);
+    }
+    
 
     const categoriesProp = (
       <div className="section">
@@ -92,20 +120,9 @@ class AddEntrie extends Component {
           options={options}
           onChange={this.handleSelectChange}
         />
+        
       </div>
     );
-    /*
-  const categoriesProp = (
-           <div>
-              <Label for="exampleSelect">categories</Label>
-                 <Input type="select" name="select" id="exampleSelect">)
-                  {this.state.categories.map(item => (
-                     <option>{item.name}</option>
-                    ))}
-                 </Input>
-                </div>
-          );*/
-
     const styleFormGroups = {
       width: '250px',
       float: 'left',
@@ -122,7 +139,7 @@ class AddEntrie extends Component {
                <div className="col-md-6 mt-1">
                  <div>
                     Uplode Photo</div>
-                    <div><FileUploader /></div>
+                    <div><FileUploader bringFileUrl={this.bringFileUrl} fieldLabel={object.fieldLabel} /></div>
                   </div>
               )
           } else if(object.fieldLabel === 'categories'
@@ -153,9 +170,9 @@ class AddEntrie extends Component {
            
           })
 
-    console.log(this.props.fields[3]);
     return (
       <div className="boxs">
+      <h3> {this.props.action} Entrie </h3>
         <Form style={styleForm} onSubmit={this.handelFormSubmit}>
         <div className="container">
            <div className="row">
