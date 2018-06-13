@@ -57,7 +57,7 @@ class Structure extends Component {
       });
     }
 
-  static PropTypes = {
+  static propTypes = {
     fields: PropTypes.array,
     id: PropTypes.string
   };
