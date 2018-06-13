@@ -15,7 +15,7 @@ class Administration extends Component {
     };
   }
 
-  static PropTypes = {
+  static propTypes = {
     activeLink: PropTypes.string
   };
    //NewHook
@@ -43,11 +43,10 @@ class Administration extends Component {
           </Col>
         </Row>
         <Row style={colstyle}>
-          <Col style={colstyle} lg="2">
+          <Col style={colstyle} md="1.5">
             <DashBoard contenttypes={this.state.contentTypes} />
           </Col>
-          {/*<h1>HHH</h1>*/}
-          <Col className="hhh" lg="9">
+          <Col className="Board" md="10">
             <Main
               contenttypes={this.state.contentTypes}
               className="Main"

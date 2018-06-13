@@ -25,7 +25,7 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 
 class Main extends Component {
 
-  static PropTypes = {
+  static propTypes = {
    contenttypes: PropTypes.array
   }
 
@@ -55,7 +55,7 @@ class Main extends Component {
       "AllFields": <AllFields allFields={allTheFields} />,
       "Themes": <Themes/>,
       "CustomeCode": <CustomeCode/>,
-      "Custome": <Custome/>,
+      "Custome": <Custome contenttypes={this.props.contenttypes}/>,
       "Editor": <Editor/>,
       "Blocks": <Blocks/>,
       "Menues": <Menues/>,

@@ -1,32 +1,63 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import {Button, Container, Row, Form} from 'reactstrap';
-//import TopHeader from '../../Administration/HeaderComponent/HeaderComponent';
-//import DashBoard from '../../Administration/dashBoard/dashBoard';
+import React, { Component } from 'react';
+import { Button,Container, Row, Form, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import TopHeader from '../../Administration/HeaderComponent/HeaderComponent';
+import DashBoard from '../../Administration/dashBoard/dashBoard';
 import AddField from '../../SiteStructure/AddField/AddField';
 import ViewTable from '../../ViewTable/ViewTable';
+import EditField from '../EditField/EditField';
+import axios from 'axios';
+import PropTypes from 'prop-types';
+
+
 
 class Structure extends Component {
   constructor(props) {
-    console.log('props', props);
     super();
     this.state = {
-      fields: [props.fields],
-      fieldsKeys: {
-        FieldLabel: '',
-        MachineName: '',
-        Type: '',
-        TypeOption: '',
-        Unique: '',
-        Visible: '',
-        Required: '',
-        CssClasses: '',
-        CustomCss: ''
-      }
-    };
+    fields: [props.fields],
+    fieldsKeys:{ 
+      FieldLabel:"",
+      MachineName:"",Type:"",
+      TypeOption:"",Unique:"",
+      Visible:"",Required:"",
+      CssClasses:"",
+      CustomCss:"",
+     },
+    modal: false
+    }  
+    this.toggle = this.toggle.bind(this);
+    this.bringEntries = this.bringEntries.bind(this);
+    
   }
 
-  static PropTypes = {
+  toggle() {
+    console.log("it is click")
+      this.setState({
+        modal: !this.state.modal
+     });
+    }
+    bringEntries = nextProps => {
+      let entries = [];
+      let contentObj;
+      let entriesKeys = {};
+
+      axios.get(`http://localhost:5000/api/entries/${nextProps.id}`)
+     .then((response) => {
+      response.data.map((entrie) => {
+        contentObj = {...entrie.content}
+        contentObj.id = entrie._id
+        entries.push(contentObj)
+      })
+      this.setState({
+        entries: entries,
+        entriesKeys: entries[0]
+      })
+      }).catch(function(error) {
+        console.error("Error: ", error);
+      });
+    }
+
+  static propTypes = {
     fields: PropTypes.array,
     id: PropTypes.string
   };
@@ -43,45 +74,60 @@ class Structure extends Component {
     });
   };
 
-  addFields = field => {
-    const fields = this.state.fields;
-    fields.push(field);
-    this.setState({fields: fields});
-  };
-  handelSubmit = () => {};
+  addFields = (field) => {
+      const fields = this.state.fields;
+      fields.push(field);
+      this.setState({fields:fields})
+    }
 
-  render() {
-    //const colstyle ={padding: '0',margin:'0 0 0 0', height: 'auto'};
-    return (
-      <div>
-        <Container className="ContentSetting">
-          <Form onSubmit={this.handelSubmit}>
+  handelSubmit = () => {
+
+  }
+ 
+	render() {
+   const colstyle ={padding: '0',margin:'0 0 0 0', height: 'auto'};
+	    return (
+	      <div>
+          <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+            <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+            <ModalBody>
+              <EditField toggle={this.toggle} itemWillBeEdited={this.itemWillBeEdited} bringItem={this.bringItem} 
+              bringEntrie={this.props.bringEntrie} editingItem={this.editingItem} fields={this.props.fields} />
+            </ModalBody>
+          </Modal>
+
+
+        {/*<Container className='ContentSetting'>
+          <Form onSubmit={this.handelSubmit}>*/}
             <Row>
-              <ViewTable
-                items={this.state.fields}
-                keys={this.state.fieldsKeys}
-              />
+            <ViewTable toggle={this.toggle} items={this.state.fields}  bringEntrie={this.bringEntrie}  keys={this.state.fieldsKeys}/>
             </Row>
 
             <Row>
               <AddField addFields={this.addFields} id={this.props.id} />
             </Row>
 
-            <Row className="float-right">
-              <Button
-                type="submit"
-                className="btn mt-2 btn btn-outline-success btn-md">
-                Save
-              </Button>
-              <Button className="btn ml-2 mt-2 btn btn-outline-secondary btn-md">
-                Cancel
-              </Button>
+            <Row className='float-right'>
+           {/* <Button type="submit" className="btn mt-2 btn btn-outline-success btn-md" >Save</Button>
+            <Button className="btn ml-2 mt-2 btn btn-outline-secondary btn-md">Cancel</Button>*/}
             </Row>
+ {/*
           </Form>
         </Container>
-      </div>
+        */}
+        </div>
     );
   }
 }
 
 export default Structure;
+
+/*
+
+<EditField toggle2={this.toggle}
+            itemWillBeEdited={this.itemWillBeEdited}
+            bringItem={this.bringItem}
+            editingItem={this.editingItem}
+            fields={this.props.fields} /> 
+
+            */

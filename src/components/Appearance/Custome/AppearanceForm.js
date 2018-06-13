@@ -3,21 +3,61 @@ import PropTypes from 'prop-types';
 import {Form, Row, Col, Input, Button} from 'reactstrap';
 import Select from 'react-select';
 import axios from 'axios';
+import randomstring from 'randomstring';
+import HandleContentTypeView from './apperanceContentTypecomponent/HandleContentTypeView';
+
 
 class AppearanceForm extends Component {
   constructor(props) {
     super(props);
-  }
+    this.state= {
+       pictures: [
+                   {id: randomstring.generate(5)}
+                   ],
+                 }
+                 showcomponent: false
 
-  static PropTypes = {
+              }
+  
+  static propTypes = {
     handleSubmit: PropTypes.func,
   };
+ incremnetContentTyps = () => {
+  const newPic = {
+        id: randomstring.generate(5)
+      };
+      const pictures = [...this.state.pictures, newPic];
+      this.setState({
+        pictures: pictures,
+        showcomponent: true,
+      })
+}
+
+removeContentTyps = (key) => {
+    const picIndex = this.state.pictures.findIndex((pic) => {
+      return key === pic.id;
+    });
+
+    const pictures = [...this.state.pictures];
+    pictures.splice(picIndex, 1);
+
+    this.setState({
+      pictures: pictures
+    });
+  }
 
   render() {
     const style = {marginBottom: '1em'};
     const btnFile = {marginBottom: '1em', height: '2em'};
-
-    return (
+    let HandleContentType =this.state.pictures.map((p, index) => (
+                  <HandleContentTypeView 
+                      remove={() => {this.removeContentTyps(p.id)}} 
+                       contenttypeData={this.props.contentTypeData} 
+                       key={index} 
+                          />
+                 ))
+  return (
+      <div>
       <Form onSubmit={this.props.handleSubmit}>
         <Row>
           <Col>
@@ -128,8 +168,22 @@ class AppearanceForm extends Component {
             />
           </Col>
         </Row>
-        <Button type="submit">Submit</Button>
       </Form>
+       
+         <div className="row">
+         <div className="col-md-12">
+              <Button className="ml-2" onClick={this.incremnetContentTyps} color="primary">AddContent</Button>
+              <Button onClick={this.removeContentTyps} color="primary">RemoveContent</Button>
+         </div>
+         </div>
+           
+             <div className="col-md-4">
+               <HandleContentTypeView contenttypeData={this.props.contentTypeData}/>
+                 {this.state.showcomponent? HandleContentType : null}
+           </div>
+        
+           <Button type="submit">Submit</Button>
+      </div>
     );
   }
 }

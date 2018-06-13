@@ -22,7 +22,7 @@ class AllFields extends Component {
     };
   }
 
-  static PropTypes = {
+  static propTypes = {
     allFields: PropTypes.array
   };
 
