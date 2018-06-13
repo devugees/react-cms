@@ -33,24 +33,25 @@ class Administration extends Component {
   };
 
   render() {
-    const colstyle = {padding: '0', margin: '0 0 0 0', height: 'auto'};
+    const colstyle = {padding: '0', margin: '0 0 0 0'};
     return (
-      <div className="Administration">
+      <div className="Administration" >
         <Row style={colstyle}>
-          <Col style={colstyle}>
+          <Col style={colstyle} >
             <TopHeader history={this.props.history}/>
         
           </Col>
         </Row>
-        <Row style={colstyle}>
-          <Col style={colstyle} md="1.5">
+        <Row style={colstyle} >
+          <Col md="2" style={colstyle} >
             <DashBoard contenttypes={this.state.contentTypes} />
           </Col>
-          <Col className="Board" md="10">
+          <Col className="Board" md="10" style={colstyle} >
             <Main
               contenttypes={this.state.contentTypes}
               className="Main"
               activeLink={this.props.match.url}
+
             />
           </Col>
         </Row>

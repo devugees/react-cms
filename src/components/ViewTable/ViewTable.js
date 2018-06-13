@@ -123,7 +123,7 @@ renderedItems
     
 
     return (
-      <div className="ViewTable" style={{overflowY: 'scroll', webkitOverflowScrolling: 'touch', height: '95vh'}}>
+      <div className="ViewTable" style={{overflowY: 'scroll', webkitOverflowScrolling: 'touch', maxHeight: '50vh'}}>
         <Table striped>
           <thead>
             <tr>
