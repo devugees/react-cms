@@ -120,7 +120,7 @@ renderedItems
     
     console.log("renderedItems",this.renderedItems);
     return (
-      <div className="ViewTable">
+      <div className="ViewTable" style={{overflowY: 'scroll', webkitOverflowScrolling: 'touch', height: '95vh'}}>
         <Table striped>
           <thead>
             <tr>
