@@ -21,6 +21,12 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
       };
       this.toggle = this.toggle.bind(this);
   }
+   
+  static propTypes = {
+   contenttypes: PropTypes.array,
+   fields: PropTypes.array,
+   id: PropTypes.string
+ };
 
   toggle() {
     this.setState({
