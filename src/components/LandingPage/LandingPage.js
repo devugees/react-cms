@@ -10,123 +10,197 @@ import './LandingPage.css';
 
 class LandingPage extends Component {
   state = {
-    form: ""
-  }
-  theme = {
-    sections: [{
-      layout: {
-        columns: 1,
-      },
-      style: {
-        background: {
-          image: "",
-          color: "",
-          video: ""
+    form: '',
+    contentTypes: [
+      {
+        contentType: {
+          id: '5b0202dc93aec4148ef87ea1',
+          name: 'Posts-test'
         },
+        fields: [
+          {
+            key: 'image',
+            element: 'img'
+          },
+          {
+            key: 'body',
+            element: 'p'
+          },
+          {
+            key: 'title',
+            element: 'h'
+          }
+        ],
+        numperOfPosts: 4,
+        viewType: 'Grid',
+        columns: 3
       },
-      advanced: {
-        margin: "",
-        padding: "",
-        cssID: "",
-        cssClasses: ""
+      {
+        contentType: {
+          id: '5b0202dc93aec4148ef87ea1',
+          name: 'Posts-test'
+        },
+        fields: [
+          {
+            key: 'image',
+            element: 'img'
+          },
+          {
+            key: 'body',
+            element: 'p'
+          },
+          {
+            key: 'title',
+            element: 'h'
+          }
+        ],
+        numperOfPosts: 4,
+        viewType: 'Grid',
+        columns: 3
       },
-    }, ],
-  }
+      {
+        contentType: {
+          id: '5b0202dc93aec4148ef87ea1',
+          name: 'Posts-test'
+        },
+        fields: [
+          {
+            key: 'image',
+            element: 'img'
+          },
+          {
+            key: 'body',
+            element: 'p'
+          },
+          {
+            key: 'title',
+            element: 'h'
+          }
+        ],
+        numperOfPosts: 4,
+        viewType: 'Grid',
+        columns: 3
+      }
+    ]
+  };
+  theme = {
+    sections: [
+      {
+        layout: {
+          columns: 1
+        },
+        style: {
+          background: {
+            image: '',
+            color: '',
+            video: ''
+          }
+        },
+        advanced: {
+          margin: '',
+          padding: '',
+          cssID: '',
+          cssClasses: ''
+        }
+      }
+    ]
+  };
 
   section = {
     layout: {
       columns: {
-        fieldLabel: "columns",
-        type: "number",
-        visible: true,
+        fieldLabel: 'columns',
+        type: 'number',
+        visible: true
       }
     },
     style: {
       background: {
-        fieldLabel: "background",
-        type: "select",
-        typeOption: "image,color,video",
-        visible: true,
+        fieldLabel: 'background',
+        type: 'select',
+        typeOption: 'image,color,video',
+        visible: true
       }
     },
     advanced: {
       margin: {
-        fieldLabel: "margin",
-        type: "number"
+        fieldLabel: 'margin',
+        type: 'number'
       },
       padding: {
-        fieldLabel: "padding",
-        type: "number"
+        fieldLabel: 'padding',
+        type: 'number'
       },
       cssID: {
-        fieldLabel: "cssID",
-        type: "text"
+        fieldLabel: 'cssID',
+        type: 'text'
       },
       cssClasses: {
-        fieldLabel: "cssClasses",
-        type: "text"
+        fieldLabel: 'cssClasses',
+        type: 'text'
       }
-    },
-  }
+    }
+  };
 
   box = {
-    elements: [{
-      layout: {
-        columns: 1,
-      },
-      head: {
-        top: {
-          image: "",
-          icon: ""
+    elements: [
+      {
+        layout: {
+          columns: 1
         },
-      },
-      text: {
-        h3: "",
-        p: ""
+        head: {
+          top: {
+            image: '',
+            icon: ''
+          }
+        },
+        text: {
+          h3: '',
+          p: ''
+        }
       }
-    }]
-  }
+    ]
+  };
 
   element = {
     layout: {
       columns: {
-        fieldLabel: "columns",
-        type: "number",
-        visible: true,
+        fieldLabel: 'columns',
+        type: 'number',
+        visible: true
       }
     },
     head: {
       top: {
-        fieldLabel: "head",
-        type: "select",
-        typeOption: "image,icon"
+        fieldLabel: 'head',
+        type: 'select',
+        typeOption: 'image,icon'
       }
     },
     text: {
       h3: {
-        fieldLabel: "h3",
-        type: "text"
+        fieldLabel: 'h3',
+        type: 'text'
       },
       p: {
-        fieldLabel: "p",
-        type: "text"
+        fieldLabel: 'p',
+        type: 'text'
       }
-    },
-  }
-
+    }
+  };
 
   generateTheme = {
-    sections: [],
-  }
-  componentWillMount(){
+    sections: []
+  };
+  componentWillMount() {
     fetch('http://localhost:5000/api/appearance')
       .then(resp => resp.json())
-      .then((data) => {
-          this.setState({
-            form: data[0],
-            icons: [data[0].icon1, data[0].icon2, data[0].icon3]
-          })
-        })
+      .then(data => {
+        this.setState({
+          form: data[0],
+          icons: [data[0].icon1, data[0].icon2, data[0].icon3]
+        });
+      })
       .catch(() => {
         console.log(
           'No internet connection found. App is running in offline mode.'
@@ -134,20 +208,21 @@ class LandingPage extends Component {
       });
   }
   render() {
-
-
     return (
-        <React.Fragment>
+      <React.Fragment>
         <Menu />
         <Slider />
         <Container>
-        <IconBox icons={this.state.icons}/>
+          <IconBox icons={this.state.icons} />
         </Container>
 
         <div className="py-5 bg-light">
-        <Container>
-            <LayoutComponents/>
-         </Container>
+          <Container>
+            {this.state.contentTypes.map((content, index) => {
+              console.log('here', content);
+              return <LayoutComponents key={index} contentType={content} />
+            })}
+          </Container>
         </div>
         <Footer />
       </React.Fragment>

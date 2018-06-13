@@ -37,7 +37,7 @@ class Categories extends Component {
       });
   };
 
-  static getDerivedStateFromProps = (nextProps, prevState) => {
+  static getDerivedStateFromProps (nextProps, prevState) {
     this.bringingCategoriesDb(nextProps)
   }
 
