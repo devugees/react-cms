@@ -91,19 +91,26 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
     }
   }
 
-  addNewEntrieToState = content => {  /* Adding the New Entrie to the state from the AddEntrie Componnent  */
-     let stateEntries = this.state.entries 
-     stateEntries.push(content)
+  addNewEntrieToState = (entrie,entrieWithId) => {  /* Adding the New Entrie to the state from the AddEntrie Componnent  */
+     let stateEntries = [...this.state.entries]
+     let stateEntriesWithId = [...this.state.entriesWithId] 
+
+     stateEntries.push(entrie)
+     stateEntriesWithId.push(entrieWithId)
      this.setState({
-      entries: stateEntries
+      entries: stateEntries,
+      entriesWithId: stateEntriesWithId
     })
   }
 
   deleteEntrieFromState = index => {
     console.log(index)
     let entries = [...this.state.entries]   
+    let entriesWithId = [...this.state.entriesWithId]   
+
     entries.splice(index,1)
-    this.setState({entries})
+    entriesWithId.splice(index,1)
+    this.setState({entries,entriesWithId})
   }
 
   itemWillBeEdited = {};

@@ -31,7 +31,10 @@ class ViewTable extends Component {
   }
 
   handleDelete = index => {
-    axios.delete(`http://localhost:5000/api/entries/${this.props.itemsWithId[index]._id}`)
+
+    let itemId = this.props.itemsWithId[index]._id
+    console.log(itemId);
+    axios.delete(`http://localhost:5000/api/entries/${itemId}`)
     .then(response => {
       console.log(response);
       if(response.data.message) {

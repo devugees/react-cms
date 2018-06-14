@@ -91,12 +91,15 @@ class AddEntrie extends Component {
     axios
       .post('http://localhost:5000/api/newentries', newEntrieObj)
       .then(response => {
-        console.log(response);
+        let entrieRes = response.data.entries.content
+        let entrieResWithId = JSON.parse(JSON.stringify(entrieRes))
+        entrieResWithId._id = response.data.entries._id
+        this.props.addNewEntrieToState(entrieRes,entrieResWithId);
       })
       .catch(function(error) {
         console.log('Error: ', error);
       });
-    this.props.addNewEntrieToState(newEntrieObj.content);
+    
   };
 
   handleSelectChange(value) {
