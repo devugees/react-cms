@@ -31,7 +31,10 @@ class ViewTable extends Component {
   }
 
   handleDelete = index => {
-    axios.delete(`http://localhost:5000/api/entries/${this.props.itemsWithId[index]._id}`)
+
+    let itemId = this.props.itemsWithId[index]._id
+    console.log(itemId);
+    axios.delete(`http://localhost:5000/api/entries/${itemId}`)
     .then(response => {
       console.log(response);
       if(response.data.message) {
@@ -63,21 +66,18 @@ renderedItems
 
     let values
     if(this.props.items.length > 0) {
-        console.log("this.state.items",this.props.items);
+       
         
         this.renderedItems = this.props.items.map((item, index) => {
           values = Object.values(item)
-          console.log('item inside map', item);
             return (
               <tr key={index}>
               { 
                 values.map((string, index2) => {
-
                   if( Array.isArray(string) )
                     {
                     return ( 
                     string.map((categorie,index3)=> {
-                        console.log(categorie.label);
                         return (
                               <td key={index3}> {categorie.label} </td>
                               )
@@ -95,11 +95,16 @@ renderedItems
                         }} /> </td>
                         )
                       }
-                      else {
+                      else  {
+                        
                       return (
                               <td key={index2}>{string.toString()}</td>
                               )
                     }
+                    } else if (typeof string === "boolean") {
+                      return (
+                              <td key={index2}>{string.toString()}</td>
+                              )
                     }
                     
 
@@ -114,6 +119,9 @@ renderedItems
               </tr>
               )}
             )
+      }
+      else {
+        this.renderedItems = null
       }
     
 

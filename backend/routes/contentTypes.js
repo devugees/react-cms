@@ -22,10 +22,9 @@ module.exports = (app) => {
                 console.log(err)
                 return res.send({ message: 'No contenttype found' })
             }
-            console.log()
-            for (attr in req.body) {
-                contenttype[attr] = req.body[attr];
-            }
+
+            contenttype.fields = req.body.fields;
+          
             contenttype.save((err, date) => {
                 if (err) {
                     console.log(err)
@@ -37,6 +36,32 @@ module.exports = (app) => {
 
         });
     });
+    // update fields 
+    app.put('/api/contenttypes/fields/:contenttypesId', (req, res) => {
+        console.log(req.params.contenttypesId)
+
+        ContentTypes.findById(req.params.contenttypesId, (err, contenttype) => {
+            if (!contenttype) {
+                console.log(err)
+                return res.send({ message: 'No contenttype found' })
+            }
+
+            contenttype.fields = req.body.fields;
+          
+            contenttype.save((err, date) => {
+                if (err) {
+                    console.log(err)
+                    res.send(err);
+                }
+                console.log(contenttype);
+                res.send(contenttype)
+            })
+
+        });
+    });
+
+    
+
 
     //Delete > ContentTypes
     app.delete('/api/contenttypes/:contenttypesId', (req, res) => {
