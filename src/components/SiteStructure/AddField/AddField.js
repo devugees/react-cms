@@ -68,6 +68,7 @@ class AddField extends Component {
                     type="select"
                     id="exampleSelect"
                     innerRef={this.typeRef}>
+                    <option>Text</option>
                     <option>Button</option>
                     <option>Checkbox</option>
                     <option>Color</option>
@@ -85,10 +86,11 @@ class AddField extends Component {
                     <option>Reset</option>
                     <option>Search</option>
                     <option>Telephone</option>
-                    <option>Text</option>
                     <option>Time</option>
                     <option>Url</option>
                     <option>Week</option>
+                    <option>Select</option>
+                    <option>Textarea</option>
                   </Input>
                 </FormGroup>
               </Col>
