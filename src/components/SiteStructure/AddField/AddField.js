@@ -43,7 +43,7 @@ class AddField extends Component {
       cssClasses: this.cssClassNameRef.current.value,
       customCss: this.customCsslRef.current.value
     };
-
+    console.log(field);
     this.props.addFields(field);
   };
 

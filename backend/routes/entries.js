@@ -19,7 +19,7 @@ module.exports = (app) => {
                 if (err) {
                     return res.send(err);
                 }
-                return res.send({ message: "regist created successfully!" })
+                return res.send({ entries })
             });
         }
     });

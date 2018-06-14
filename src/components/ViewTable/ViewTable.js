@@ -63,21 +63,18 @@ renderedItems
 
     let values
     if(this.props.items.length > 0) {
-        console.log("this.state.items",this.props.items);
+       
         
         this.renderedItems = this.props.items.map((item, index) => {
           values = Object.values(item)
-          console.log('item inside map', item);
             return (
               <tr key={index}>
               { 
                 values.map((string, index2) => {
-
                   if( Array.isArray(string) )
                     {
                     return ( 
                     string.map((categorie,index3)=> {
-                        console.log(categorie.label);
                         return (
                               <td key={index3}> {categorie.label} </td>
                               )
@@ -95,11 +92,16 @@ renderedItems
                         }} /> </td>
                         )
                       }
-                      else {
+                      else  {
+                        
                       return (
                               <td key={index2}>{string.toString()}</td>
                               )
                     }
+                    } else if (typeof string === "boolean") {
+                      return (
+                              <td key={index2}>{string.toString()}</td>
+                              )
                     }
                     
 
@@ -115,10 +117,13 @@ renderedItems
               )}
             )
       }
+      else {
+        this.renderedItems = null
+      }
     
 
     return (
-      <div className="ViewTable" style={{overflowY: 'scroll', webkitOverflowScrolling: 'touch', height: '95vh'}}>
+      <div className="ViewTable" style={{overflowY: 'scroll', webkitOverflowScrolling: 'touch', maxHeight: '50vh'}}>
         <Table striped>
           <thead>
             <tr>
