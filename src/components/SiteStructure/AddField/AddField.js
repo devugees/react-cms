@@ -14,6 +14,7 @@ import './AddField.css';
 //import axios from 'axios';
 
 class AddField extends Component {
+
   fieldLabelRef = React.createRef();
   typeOptRef = React.createRef();
   typeRef = React.createRef();

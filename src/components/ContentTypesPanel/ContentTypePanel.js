@@ -70,48 +70,6 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
             console.log("Error: ", error);
           });
   }
-/*
-  static getDerivedStateFromProps(props, state) {
-   
-   let entries = [];
-   let entriesWithId= []
-   let contentObj;
-   let categories
-    console.log("proooops",props)
-    axios.get(`http://localhost:5000/api/entries/${props.id}`)
-   .then((response) => {
-    response.data.map((entrie) => {
-      console.log("response",response)
-      contentObj = {...entrie.content}
-      contentObj._id = entrie._id
-      entries.push(contentObj)
-      entriesWithId = JSON.parse(JSON.stringify(entries))
-    })
-    entries.map((entrie)=> {
-     delete entrie._id
-
-    })
-    }).catch(function(error) {
-      console.error("Error: ", error);
-    });
-
-    axios.get(`http://localhost:5000/api/categories/${props.id}`)
-        .then((response) => {
-      console.log("response",response)
-
-          categories = response.data
-          console.log("categories axios:",categories)
-          
-          }).catch((error) => {
-            console.log("Error: ", error);
-    });
-console.log("entries:",entries)
-console.log("entriesWithId:",entriesWithId)
-console.log("categories:",categories)
-
-    return {entries:entries,entriesWithId: entriesWithId,categories:categories}
-  };*/
-
 
   componentDidMount = () => {
     this.bringEntries(this.props)
@@ -191,7 +149,6 @@ console.log("categories:",categories)
           <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
           <ModalBody>
             <EditEntrie
-             toggle={this.toggle}
              categorie={this.state.categories}
              itemWillBeEdited={this.itemWillBeEdited}
              AddEditedItemToState={this.AddEditedItemToState}

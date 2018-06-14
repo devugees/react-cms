@@ -11,8 +11,9 @@ import PropTypes from 'prop-types';
 
 
 class Structure extends Component {
+
   constructor(props) {
-    super();
+    super(props);
     this.state = {
     fields: [props.fields],
     fieldsKeys:{ 
@@ -26,8 +27,6 @@ class Structure extends Component {
     modal: false
     }  
     this.toggle = this.toggle.bind(this);
-    this.bringEntries = this.bringEntries.bind(this);
-    
   }
 
   toggle() {
@@ -37,58 +36,49 @@ class Structure extends Component {
      });
     }
 
-    bringEntries = nextProps => {
-      let entries = [];
-      let contentObj;
-      let entriesKeys = {};
-
-      axios.get(`http://localhost:5000/api/entries/${nextProps.id}`)
-     .then((response) => {
-      response.data.map((entrie) => {
-        contentObj = {...entrie.content}
-        contentObj.id = entrie._id
-        entries.push(contentObj)
-      })
-      this.setState({
-        entries: entries,
-        entriesKeys: entries[0]
-      })
-      }).catch(function(error) {
-        console.error("Error: ", error);
-      });
-    }
-
   static propTypes = {
     fields: PropTypes.array,
     id: PropTypes.string
   };
 
-  componentWillMount = () => {
-    this.setState({
-      fields: this.props.fields
-    });
-  };
-
-  componentWillReceiveProps = (nextProps, prevState) => {
-    this.setState({
-      fields: nextProps.fields
-    });
+  static getDerivedStateFromProps(props, state) {
+      return {fields: props.fields}
   };
 
   addFields = (field) => {
-      const fields = this.state.fields;
+      const fields = [...this.state.fields];
       fields.push(field);
       this.setState({fields:fields})
-    }
+  }
+  editFields = (field,index) => {
+      const fields = [...this.state.fields];
+      fields[index] = field;
+      this.setState({fields:fields})
+  }
 
-  handelSubmit = (event) => {
+itemWillBeEdited = {};
+
+  bringItemWillBeEditedFromViewTable = (item,index) => {
+    this.itemWillBeEdited.index = index
+    this.itemWillBeEdited.item = item
+    console.log("itemWillBeEdited",this.itemWillBeEdited);
+  }
+
+  deleteFieldFromState = index => {
+    const fields = [...this.state.fields];
+    fields.splice(index,1)
+    this.setState({fields})
+  }
+
+
+  handelClick = (event) => {
     event.preventDefault();
     const fieldsObj = {
       fields: this.state.fields
     }
     console.log(fieldsObj)
     axios
-      .post(`http://localhost:5000/api/contenttypes/fields/${this.props.id}`, fieldsObj)
+      .put(`http://localhost:5000/api/contenttypes/fields/${this.props.id}`, fieldsObj)
       .then(response => {
         console.log(response);
         if (response.status === 200) {
@@ -110,14 +100,21 @@ class Structure extends Component {
           <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
             <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
             <ModalBody>
-              <EditField toggle={this.toggle} itemWillBeEdited={this.itemWillBeEdited} bringItem={this.bringItem} 
-              bringEntrie={this.props.bringEntrie} editingItem={this.editingItem} fields={this.props.fields} />
+              <EditField
+                toggle={this.toggle}
+                editFields={this.editFields}
+                itemWillBeEdited={this.itemWillBeEdited}
+                fields={this.props.fields} />
             </ModalBody>
           </Modal>
 
-          <Form onSubmit={this.handelSubmit}>
             <Row>
-            <ViewTable toggle={this.toggle} items={this.state.fields}  bringEntrie={this.bringEntrie}  keys={this.state.fieldsKeys}/>
+            <ViewTable 
+              deleteFieldFromState={this.deleteFieldFromState}
+              bringItemWillBeEditedFromViewTable={this.bringItemWillBeEditedFromViewTable}
+              toggle={this.toggle}
+              items={this.state.fields}
+              keys={this.state.fieldsKeys}/>
             </Row>
 
             <Row>
@@ -125,11 +122,9 @@ class Structure extends Component {
             </Row>
 
             <Row className='float-right'>
-            <Button type="submit" className="btn mt-2 btn btn-outline-success btn-md" >Save</Button>
+            <Button type="submit" className="btn mt-2 btn btn-outline-success btn-md"  onClick={this.handelClick} >Save</Button>
             <Button className="btn ml-2 mt-2 btn btn-outline-secondary btn-md">Cancel</Button>
             </Row>
-
-          </Form>
         </div>
     );
   }
@@ -137,12 +132,4 @@ class Structure extends Component {
 
 export default Structure;
 
-/*
 
-<EditField toggle2={this.toggle}
-            itemWillBeEdited={this.itemWillBeEdited}
-            bringItem={this.bringItem}
-            editingItem={this.editingItem}
-            fields={this.props.fields} /> 
-
-            */
