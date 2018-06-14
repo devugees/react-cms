@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Container } from 'reactstrap';
+import React, {Component} from 'react';
+import {Container} from 'reactstrap';
 import Menu from './LayoutComponents/Menu';
 import Slider from '../Slider/Slider';
 import IconBox from './LayoutComponents/IconBox';
@@ -28,7 +28,7 @@ class LandingPage extends Component {
           },
           {
             key: 'title',
-            element: 'h'
+            element: 't'
           }
         ],
         numperOfPosts: 4,
@@ -220,7 +220,7 @@ class LandingPage extends Component {
           <Container>
             {this.state.contentTypes.map((content, index) => {
               console.log('here', content);
-              return <LayoutComponents key={index} contentType={content} />
+              return <LayoutComponents key={index} contentType={content} />;
             })}
           </Container>
         </div>

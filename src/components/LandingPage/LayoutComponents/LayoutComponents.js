@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import {Container, Row, Col} from 'reactstrap';
+import {Row, Col} from 'reactstrap';
 class LayoutComponents extends Component {
   state = {
     content: [],
@@ -38,22 +38,27 @@ class LayoutComponents extends Component {
     const {fields} = this.state.contentTypes;
     let cols = [];
 
-    this.state.content.map((comp, index) => {
+    this.state.content.map((con, index) => {
+      let style = {
+        border: '.5px solid rgba(0, 0 , 0, .2)',
+        padding: '.5rem',
+        margin: '.5rem'
+      };
       return cols.push(
-        <Col key={index}>
+        <Col sm="2" md="4" key={index} style={style}>
           {fields.map((field, i) => {
-            if (field.element == 'img') {
+            if (field.element == 'h') {
+              return <h5 key={i}>{con.title}</h5>;
+            } else if (field.element == 'img') {
               return (
                 <img
-                  style={{height: '150px', width: '150px'}}
-                  src={comp.image}
+                  style={{height: '100px', width: '100px'}}
+                  src={con.image}
                   key={i}
                 />
               );
             } else if (field.element == 'p') {
-              return <p key={i}>{comp.body}</p>;
-            } else if (field.element == 'h') {
-              return <h3 key={i}>{comp.title}</h3>;
+              return <p key={i}>{con.body}</p>;
             }
           })}
         </Col>
