@@ -38,12 +38,7 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
     let entries = [];
     let entriesWithId= []
     let contentObj;
-    let entriesKeys ={}
-
-    nextProps.fields.map( field => {
-      entriesKeys[field.machineName] = '';
-    })
-
+    
     axios.get(`http://localhost:5000/api/entries/${nextProps.id}`)
    .then((response) => {
     response.data.map((entrie) => {
@@ -58,7 +53,6 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
     this.setState({
       entries: entries,
       entriesWithId: entriesWithId,
-      entriesKeys: entriesKeys
     })
     }).catch(function(error) {
       console.error("Error: ", error);
@@ -76,20 +70,63 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
             console.log("Error: ", error);
           });
   }
+/*
+  static getDerivedStateFromProps(props, state) {
+   
+   let entries = [];
+   let entriesWithId= []
+   let contentObj;
+   let categories
+    console.log("proooops",props)
+    axios.get(`http://localhost:5000/api/entries/${props.id}`)
+   .then((response) => {
+    response.data.map((entrie) => {
+      console.log("response",response)
+      contentObj = {...entrie.content}
+      contentObj._id = entrie._id
+      entries.push(contentObj)
+      entriesWithId = JSON.parse(JSON.stringify(entries))
+    })
+    entries.map((entrie)=> {
+     delete entrie._id
+
+    })
+    }).catch(function(error) {
+      console.error("Error: ", error);
+    });
+
+    axios.get(`http://localhost:5000/api/categories/${props.id}`)
+        .then((response) => {
+      console.log("response",response)
+
+          categories = response.data
+          console.log("categories axios:",categories)
+          
+          }).catch((error) => {
+            console.log("Error: ", error);
+    });
+console.log("entries:",entries)
+console.log("entriesWithId:",entriesWithId)
+console.log("categories:",categories)
+
+    return {entries:entries,entriesWithId: entriesWithId,categories:categories}
+  };*/
+
 
   componentDidMount = () => {
     this.bringEntries(this.props)
     this.bringCategories(this.props)  
   }
 
-  componentWillReceiveProps = (nextProps, prevState) => {
+  componentDidUpdate = (prevProps, prevState) => {
     console.log("New props")
     console.log(this.state);
-    if(nextProps.id != this.props.id) {
-    this.bringEntries(nextProps)
-    this.bringCategories(nextProps)
+    if(prevProps.id != this.props.id) {
+    this.bringEntries(this.props)
+    this.bringCategories(this.props)
     }
   }
+
 
   addNewEntrieToState = (entrie,entrieWithId) => {  /* Adding the New Entrie to the state from the AddEntrie Componnent  */
      let stateEntries = [...this.state.entries]
@@ -138,6 +175,13 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
   }
  
   render() {
+    console.log("rendered")
+    let entriesKeys ={}
+
+    this.props.fields.map( field => {
+      entriesKeys[field.machineName] = '';
+    })
+
     return (
       <div className="ContentTypePanel">
         <Modal
@@ -163,7 +207,7 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
         toggle={this.toggle}
         items={this.state.entries}
         itemsWithId={this.state.entriesWithId}
-        keys={this.state.entriesKeys}
+        keys={entriesKeys}
         />
         
         <AddEntrie  
