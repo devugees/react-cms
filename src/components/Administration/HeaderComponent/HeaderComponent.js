@@ -27,37 +27,47 @@ class TopHeader extends Component {
 
   render() {
     const marginRight = {marginRight: '1em'}
-
+    const textStyle = {color: 'black', fontSize: '14px', fontWeight: 'bold'}
+    const linkStyle = {textDecoration: 'none'}
     return (
       <div className="top" style={{display: 'inline'}}>
-        <Navbar className="Navbar" dark expand="md">
-          <NavbarBrand href="/">Dashbord</NavbarBrand>
+        <Navbar className="Navbar" dark expand="md" style={{background: '#85C1E9', height: '5vh', zIndex: 100}}>
+          <NavbarBrand style={textStyle} href="/">Dashbord</NavbarBrand>
 
 
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
         
-        <NavbarBrand style={{display:'flex', padding: '.6em 0 0 0', margin: '0'}}>
-              <NavItem style={marginRight}><Link to="/">Go to Web Site</Link></NavItem>
-              <NavItem style={marginRight}><Link to="/Administration/main/NewContentType">Create Node</Link></NavItem>
+        <NavbarBrand style={{display:'flex', padding: '0', margin: 'auto'}}>
+              <NavItem style={marginRight}><Link style={linkStyle, textStyle} to="/">Go to Web Site</Link></NavItem>
+              <NavItem style={marginRight}><Link style={linkStyle, textStyle} to="/Administration/main/NewContentType">Create Node</Link></NavItem>
         </NavbarBrand>
-       
         <NavbarBrand>
-        <UncontrolledDropdown nav inNavbar>
-          <DropdownToggle nav caret>New</DropdownToggle>
-            <DropdownMenu right>
-              <DropdownItem>Option 1</DropdownItem>
-              <DropdownItem>Option 2</DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>Reset</DropdownItem>
-            </DropdownMenu>
-        </UncontrolledDropdown>
-        </NavbarBrand>
-        
-        <NavbarBrand>
-          <Button style={marginRight} onClick={this.handleLogout}>Sign out </Button>
-        </NavbarBrand>
+                <UncontrolledDropdown nav inNavbar>
+                  <DropdownToggle nav caret style={linkStyle, textStyle} >
+                    New
+                  </DropdownToggle>
+                  <DropdownMenu right>
+                    {this.props.contentTypes.map((content, index) => {
+                      return (
+                        <DropdownItem>
+                          <Link
+                            style={linkStyle, textStyle}
+                            to={`/Administration/ContentType/${content._id}`}
+                            key={index}>
+                            {content.title}
+                          </Link>
+                        </DropdownItem>
+                      );
+                    })}
+                    <DropdownItem>
+                      <Link style={linkStyle, textStyle}  to="/Administration/main/AllUsers">Users</Link>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+          </NavbarBrand>
+          <Button style={{padding: '0.1em 0.4em', margin: '3% 0', fontSize: '14px', height: '1%'}} onClick={this.handleLogout}>Sign out </Button>
 
 
               {/* <UncontrolledDropdown>

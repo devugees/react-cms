@@ -36,16 +36,8 @@ class Categories extends Component {
       });
   };
 
-  componentDidMount = () => {
-    this.bringingCategoriesDb(this.props)
-  };
-
-   componentDidUpdate (nextProps, prevState) {
-    console.log(this.bringingCategoriesDb);
-    if (nextProps.id) {
-      this.bringingCategoriesDb(nextProps)
-    }
-    
+  static getDerivedStateFromProps(nextProps, prevState) {
+    this.bringingCategoriesDb(nextProps)
   }
 
 

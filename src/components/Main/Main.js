@@ -25,35 +25,49 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 
 class Main extends Component {
 
+  state = {
+    fields: [],
+    allTheFields: []
+  }
+
   static propTypes = {
    contenttypes: PropTypes.array
   }
 
-  render() {
+  static getDerivedStateFromProps(props, state) {
+    
     let fields =[];
     let allTheFields =[];
-    let contentTypesObj = this.props.contenttypes;
+    let contentTypesObj = props.contenttypes;
 
     contentTypesObj.map((contentType) => {
       contentType.fields.map((field) => {
         allTheFields.push(field)
 
+
       })
-      if (this.props.activeLink.split('/')[3] === contentType._id) {
+      if (props.activeLink.split('/')[3] === contentType._id) {
         fields = contentType.fields
       }
     })
 
-    if (fields.length != 0) {
+
+    return {fields: fields,allTheFields: allTheFields}                                                                                                                                                                                                                                                                                                  
+  };
+
+  render() {
+
+
+    
       let components = {
-      "View": <View  id={this.props.activeLink.split('/')[3]} />,
+      "View": <View  id={this.props.activeLink.split('/')[3]} />,                                                                           
       "NewContentType": <NewContentType/>,
-      "Sitestatus": <Sitestatus/>,
+      "Sitestatus": <Sitestatus/>,                            
       "Update": <Update/>,
       "ContentTypesList": <ContentTypesList contenttypes={this.props.contenttypes} />,
       "SettingsComponent": <SettingsComponent/>,
-      "FieldTypes": <FieldTypes/>,
-      "AllFields": <AllFields allFields={allTheFields} />,
+      "FieldTypes": <FieldTypes/>,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+      "AllFields": <AllFields allFields={this.state.allTheFields} />,
       "Themes": <Themes/>,
       "CustomeCode": <CustomeCode/>,
       "Custome": <Custome contenttypes={this.props.contenttypes}/>,
@@ -63,8 +77,8 @@ class Main extends Component {
       "AllUsers": <AllUsers/>,
       "Roles": <Roles/>,
       "Plugins": <Plugins/>,
-      "ContentType": <ContentTypePanel fields={fields} contenttypes={this.props.contenttypes} id={this.props.activeLink.split('/')[3]} />,
-      "Structure": <Structure fields={fields} id={this.props.activeLink.split('/')[3]} />,
+      "ContentType": <ContentTypePanel fields={this.state.fields} contenttypes={this.props.contenttypes} id={this.props.activeLink.split('/')[3]} />,
+      "Structure": <Structure fields={this.state.fields} id={this.props.activeLink.split('/')[3]} />,
       "Categories": <Categories id={this.props.activeLink.split('/')[3]}/>,
     }
 
@@ -72,11 +86,10 @@ class Main extends Component {
       let linkSecound = this.props.activeLink.split('/')[2];
       let component = components[linkMain] || components[linkSecound] || <PageNotFound/>
       return (<div>{component}</div>)
-    }
-    else return null
+    
 
     
-    };
+    }
   }
 
 export default Main;

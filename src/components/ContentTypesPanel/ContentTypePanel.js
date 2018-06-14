@@ -38,12 +38,7 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
     let entries = [];
     let entriesWithId= []
     let contentObj;
-    let entriesKeys ={}
-
-    nextProps.fields.map( field => {
-      entriesKeys[field.machineName] = '';
-    })
-
+    
     axios.get(`http://localhost:5000/api/entries/${nextProps.id}`)
    .then((response) => {
     response.data.map((entrie) => {
@@ -58,7 +53,6 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
     this.setState({
       entries: entries,
       entriesWithId: entriesWithId,
-      entriesKeys: entriesKeys
     })
     }).catch(function(error) {
       console.error("Error: ", error);
@@ -82,28 +76,36 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
     this.bringCategories(this.props)  
   }
 
-  componentWillReceiveProps = (nextProps, prevState) => {
+  componentDidUpdate = (prevProps, prevState) => {
     console.log("New props")
     console.log(this.state);
-    if(nextProps.id != this.props.id) {
-    this.bringEntries(nextProps)
-    this.bringCategories(nextProps)
+    if(prevProps.id != this.props.id) {
+    this.bringEntries(this.props)
+    this.bringCategories(this.props)
     }
   }
 
-  addNewEntrieToState = content => {  /* Adding the New Entrie to the state from the AddEntrie Componnent  */
-     let stateEntries = this.state.entries 
-     stateEntries.push(content)
+
+  addNewEntrieToState = (entrie,entrieWithId) => {  /* Adding the New Entrie to the state from the AddEntrie Componnent  */
+     let stateEntries = [...this.state.entries]
+     let stateEntriesWithId = [...this.state.entriesWithId] 
+
+     stateEntries.push(entrie)
+     stateEntriesWithId.push(entrieWithId)
      this.setState({
-      entries: stateEntries
+      entries: stateEntries,
+      entriesWithId: stateEntriesWithId
     })
   }
 
   deleteEntrieFromState = index => {
     console.log(index)
     let entries = [...this.state.entries]   
+    let entriesWithId = [...this.state.entriesWithId]   
+
     entries.splice(index,1)
-    this.setState({entries})
+    entriesWithId.splice(index,1)
+    this.setState({entries,entriesWithId})
   }
 
   itemWillBeEdited = {};
@@ -131,6 +133,13 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
   }
  
   render() {
+    console.log("rendered")
+    let entriesKeys ={}
+
+    this.props.fields.map( field => {
+      entriesKeys[field.machineName] = '';
+    })
+
     return (
       <div className="ContentTypePanel">
         <Modal
@@ -140,7 +149,6 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
           <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
           <ModalBody>
             <EditEntrie
-             toggle={this.toggle}
              categorie={this.state.categories}
              itemWillBeEdited={this.itemWillBeEdited}
              AddEditedItemToState={this.AddEditedItemToState}
@@ -156,7 +164,7 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
         toggle={this.toggle}
         items={this.state.entries}
         itemsWithId={this.state.entriesWithId}
-        keys={this.state.entriesKeys}
+        keys={entriesKeys}
         />
         
         <AddEntrie  

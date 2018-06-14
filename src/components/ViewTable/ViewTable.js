@@ -22,16 +22,19 @@ class ViewTable extends Component {
   };
 
   handleEdit = (index, machineName) => {
-    if(!machineName) {
     this.props.toggle();
     const item = this.props.items[index]
     this.props.bringItemWillBeEditedFromViewTable(item,index)
-    } 
+
    
   }
 
-  handleDelete = index => {
-    axios.delete(`http://localhost:5000/api/entries/${this.props.itemsWithId[index]._id}`)
+  handleDelete = (index, machineName) => {
+
+    if(!machineName) {
+    let itemId = this.props.itemsWithId[index]._id
+    console.log(itemId);
+    axios.delete(`http://localhost:5000/api/entries/${itemId}`)
     .then(response => {
       console.log(response);
       if(response.data.message) {
@@ -42,11 +45,11 @@ class ViewTable extends Component {
         console.error('Error:', error)
       })
       this.props.deleteEntrieFromState(index)
-    }
+      }else {
+        this.props.deleteFieldFromState(index)
+      }
 
-  static getDerivedStateFromProps(props, state) {
-    
-  };
+    }
 
 renderedKeys
 renderedItems
@@ -110,7 +113,7 @@ renderedItems
               <td>
                 <Row>
                   <button className="mr-2 btn-outline-info btn-sm" onClick={this.handleEdit.bind(this, index, item.machineName)}>Edit</button>
-                  <button className='btn btn-outline-danger btn-sm' onClick={this.handleDelete.bind(this, index)}>Delete</button>
+                  <button className='btn btn-outline-danger btn-sm' onClick={this.handleDelete.bind(this, index,item.machineName)}>Delete</button>
                 </Row>
               </td>
               </tr>
