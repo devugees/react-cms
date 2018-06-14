@@ -45,7 +45,7 @@ class TopHeader extends Component {
         </NavbarBrand>
         <NavbarBrand>
                 <UncontrolledDropdown nav inNavbar>
-                  <DropdownToggle nav caret>
+                  <DropdownToggle nav caret style={linkStyle, textStyle} >
                     New
                   </DropdownToggle>
                   <DropdownMenu right>
@@ -53,6 +53,7 @@ class TopHeader extends Component {
                       return (
                         <DropdownItem>
                           <Link
+                            style={linkStyle, textStyle}
                             to={`/Administration/ContentType/${content._id}`}
                             key={index}>
                             {content.title}
@@ -61,7 +62,7 @@ class TopHeader extends Component {
                       );
                     })}
                     <DropdownItem>
-                      <Link to="/Administration/main/AllUsers">Users</Link>
+                      <Link style={linkStyle, textStyle}  to="/Administration/main/AllUsers">Users</Link>
                     </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
