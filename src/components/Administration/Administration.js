@@ -34,6 +34,7 @@ class Administration extends Component {
 
   render() {
     const colstyle = {padding: '0', margin: '0 0 0 0'};
+    const padding = {padding: '1em', margin: 0}
     return (
       <div className="Administration" >
         <Row style={colstyle}>
@@ -46,7 +47,7 @@ class Administration extends Component {
           <Col md="2" style={colstyle} >
             <DashBoard contenttypes={this.state.contentTypes} />
           </Col>
-          <Col className="Board" md="10" style={colstyle} >
+          <Col className="Board" md="10" style={padding} >
             <Main
               contenttypes={this.state.contentTypes}
               className="Main"
