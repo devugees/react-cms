@@ -88,7 +88,7 @@ class Structure extends Component {
     }
     console.log(fieldsObj)
     axios
-      .post(`http://localhost:5000/api/contenttypes/${this.props.id}`, fieldsObj)
+      .post(`http://localhost:5000/api/contenttypes/fields/${this.props.id}`, fieldsObj)
       .then(response => {
         console.log(response);
         if (response.status === 200) {
