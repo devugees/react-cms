@@ -26,42 +26,49 @@ class TopHeader extends Component {
   }
 
   render() {
-    const fontSize = {fontSize: '.9rem'};
-    const style = {backgroundColor: '#555', height: '3rem', fontSize: '1rem'};
-    const textColor = {color: '#fff'};
+    const marginRight = {marginRight: '1em'}
+    const textStyle = {color: 'black', fontSize: '14px', fontWeight: 'bold'}
+    const linkStyle = {textDecoration: 'none'}
     return (
-      <div className="top">
-        <Navbar style={style} light expand="md">
+      <div className="top" style={{display: 'inline'}}>
+        <Navbar className="Navbar" dark expand="md" style={{background: '#85C1E9', height: '5vh', zIndex: 100}}>
+          <NavbarBrand style={textStyle} href="/">Dashbord</NavbarBrand>
+
+
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav style={fontSize} navbar>
-              <NavItem>
-                <Link style={textColor} to="/">
-                  Go to Web Site
-                </Link>
-              </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle style={textColor} nav caret>
-                  New
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>Option 1</DropdownItem>
-                  <DropdownItem>Option 2</DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>Reset</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-              <NavItem>
-                <Link
-                  style={textColor}
-                  to="/Administration/main/NewContentType">
-                  Create Node
-                </Link>
-              </NavItem>
-            </Nav>
+            <Nav className="ml-auto" navbar>
+        
+        <NavbarBrand style={{display:'flex', padding: '0', margin: 'auto'}}>
+              <NavItem style={marginRight}><Link style={linkStyle, textStyle} to="/">Go to Web Site</Link></NavItem>
+              <NavItem style={marginRight}><Link style={linkStyle, textStyle} to="/Administration/main/NewContentType">Create Node</Link></NavItem>
+        </NavbarBrand>
+        <NavbarBrand>
+                <UncontrolledDropdown nav inNavbar>
+                  <DropdownToggle nav caret style={linkStyle, textStyle} >
+                    New
+                  </DropdownToggle>
+                  <DropdownMenu right>
+                    {this.props.contentTypes.map((content, index) => {
+                      return (
+                        <DropdownItem>
+                          <Link
+                            style={linkStyle, textStyle}
+                            to={`/Administration/ContentType/${content._id}`}
+                            key={index}>
+                            {content.title}
+                          </Link>
+                        </DropdownItem>
+                      );
+                    })}
+                    <DropdownItem>
+                      <Link style={linkStyle, textStyle}  to="/Administration/main/AllUsers">Users</Link>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+          </NavbarBrand>
+          <Button style={{padding: '0.1em 0.4em', margin: '3% 0', fontSize: '14px', height: '1%'}} onClick={this.handleLogout}>Sign out </Button>
 
-            <NavbarBrand style={fontSize} className="ml-auto">
-              <Button onClick={this.handleLogout}>Sign out </Button>
 
               {/* <UncontrolledDropdown>
                 <DropdownToggle style={textColor} caret>
@@ -83,7 +90,10 @@ class TopHeader extends Component {
                 </DropdownMenu>
               </UncontrolledDropdown>
               */}
-            </NavbarBrand>
+
+
+
+            </Nav>
           </Collapse>
         </Navbar>
       </div>

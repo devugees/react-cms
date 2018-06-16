@@ -15,7 +15,7 @@ class Administration extends Component {
     };
   }
 
-  static PropTypes = {
+  static propTypes = {
     activeLink: PropTypes.string
   };
    //NewHook
@@ -33,30 +33,23 @@ class Administration extends Component {
   };
 
   render() {
-    const colstyle = {padding: '0', margin: '0 0 0 0', height: 'auto'};
-    return (
-      <div className="Administration">
+    const colstyle = {padding: '0', margin: '0 0 0 0'};
+    const padding = {padding: '1em', margin: 0}
+    return <div className="Administration">
         <Row style={colstyle}>
           <Col style={colstyle}>
-            <TopHeader history={this.props.history}/>
-        
+          <TopHeader history={this.props.history} contentTypes={this.state.contentTypes}/>
           </Col>
         </Row>
         <Row style={colstyle}>
-          <Col style={colstyle} lg="2">
+          <Col md="2" style={colstyle}>
             <DashBoard contenttypes={this.state.contentTypes} />
           </Col>
-          {/*<h1>HHH</h1>*/}
-          <Col className="hhh" lg="9">
-            <Main
-              contenttypes={this.state.contentTypes}
-              className="Main"
-              activeLink={this.props.match.url}
-            />
+          <Col className="Board" md="10" style={padding}>
+            <Main contenttypes={this.state.contentTypes} className="Main" activeLink={this.props.match.url} />
           </Col>
         </Row>
-      </div>
-    );
+      </div>;
   }
 }
 

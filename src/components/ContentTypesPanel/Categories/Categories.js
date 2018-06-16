@@ -23,7 +23,6 @@ class Categories extends Component {
 
 
   bringingCategoriesDb = nextProps => {
-    console.log('componentDidMount');
     axios
       .get(`http://localhost:5000/api/categories/${nextProps.id}`)
       .then(response => {
@@ -37,7 +36,7 @@ class Categories extends Component {
       });
   };
 
-  static getDerivedStateFromProps = (nextProps, prevState) => {
+  static getDerivedStateFromProps(nextProps, prevState) {
     this.bringingCategoriesDb(nextProps)
   }
 

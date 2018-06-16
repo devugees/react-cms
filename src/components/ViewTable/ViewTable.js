@@ -4,49 +4,16 @@ import './ViewTable.css';
 import {Table, Row} from 'reactstrap';
 import axios from 'axios';
 
-let itemsWithId = [];
+
+
 
 class ViewTable extends Component {
   constructor(props) {
     super(props);
-    itemsWithId = JSON.parse(JSON.stringify(props.items));
-    let keysObj = {};
-    let keys = [];
-    let items = [];
-    console.log(props);
-    if (props.keys) {
-      if (props.keys.id) {
-        keysObj = {...props.keys};
-        delete keysObj.id;
-      } else {
-        keysObj = props.keys;
-      }
-    }
 
-    keys = Object.keys(keysObj);
-
-    if (props.items[0]) {
-      if (props.items[0].id) {
-        items = props.items;
-        items.map(item => {
-          return delete item.id;
-        });
-        this.setState({
-          items,
-          keys
-        });
-      } else {
-        items = props.items;
-      }
-    }
-    this.state = {
-      items,
-      keys,
-      fields: []
-    };
   }
 
-  static PropTypes = {
+  static propTypes = {
     bringEntrie: PropTypes.func,
     deleteEntrie: PropTypes.func,
     toggle: PropTypes.func,
@@ -56,77 +23,120 @@ class ViewTable extends Component {
 
   handleEdit = (index, machineName) => {
     this.props.toggle();
-    const itemId = itemsWithId[index].id;
-    const item = this.state.items[index];
-    console.log(item);
+    const item = this.props.items[index]
+    this.props.bringItemWillBeEditedFromViewTable(item,index)
 
+   
+  }
+
+  handleDelete = (index, machineName) => {
+
+    if(!machineName) {
+    let itemId = this.props.itemsWithId[index]._id
     console.log(itemId);
-    this.props.bringEntrie(itemId, item);
-  };
-
-  handleDelete = index => {
-    console.log('itemsWithId[index].id', itemsWithId[index].id);
-    axios
-      .delete(`http://localhost:5000/api/entries/${itemsWithId[index].id}`)
-      .then(response => {
-        if (response.data.message) {
-          console.error(response.data.message);
+    axios.delete(`http://localhost:5000/api/entries/${itemId}`)
+    .then(response => {
+      console.log(response);
+      if(response.data.message) {
+          console.error(response.data.message)
         }
       })
       .catch(error => {
-        console.error('Error:', error);
-      });
-    this.props.deleteEntrie(index);
-  };
+        console.error('Error:', error)
+      })
+      this.props.deleteEntrieFromState(index)
+      }else {
+        this.props.deleteFieldFromState(index)
+      }
 
-  static getDerivedStateFromProps(props, state) {
-    itemsWithId = JSON.parse(JSON.stringify(props.items));
-    props.items.map(item => delete item.id);
-    return {
-      items: props.items
-    };
-  }
+    }
+
+renderedKeys
+renderedItems
 
   render() {
+
+    if (!this.props.keys) {
+      return null
+    }
+
+    this.renderedKeys = Object.keys(this.props.keys).map((key, index) => {
+                return <th key={index}>{key}</th>
+    })
+
+    let values
+    if(this.props.items.length > 0) {
+       
+        
+        this.renderedItems = this.props.items.map((item, index) => {
+          values = Object.values(item)
+            return (
+              <tr key={index}>
+              { 
+                values.map((string, index2) => {
+                  if( Array.isArray(string) )
+                    {
+                    return ( 
+                    string.map((categorie,index3)=> {
+                        return (
+                              <td key={index3}> {categorie.label} </td>
+                              )
+                      })
+
+                     )
+                       
+                    } else if (typeof string === "string"){
+                      if (string.endsWith(".jpeg")|| string.endsWith(".jpg") || string.endsWith(".gif") , string.endsWith(".png") ) {
+                        return (
+                          <td key={index2}><img  src={string}
+                        style={{
+                          width: '100px',
+                          height: '100px',
+                        }} /> </td>
+                        )
+                      }
+                      else  {
+                        
+                      return (
+                              <td key={index2}>{string.toString()}</td>
+                              )
+                    }
+                    } else if (typeof string === "boolean") {
+                      return (
+                              <td key={index2}>{string.toString()}</td>
+                              )
+                    }
+                    
+
+               }
+               )}
+              <td>
+                <Row>
+                  <button className="mr-2 btn-outline-info btn-sm" onClick={this.handleEdit.bind(this, index, item.machineName)}>Edit</button>
+                  <button className='btn btn-outline-danger btn-sm' onClick={this.handleDelete.bind(this, index,item.machineName)}>Delete</button>
+                </Row>
+              </td>
+              </tr>
+              )}
+            )
+      }
+      else {
+        this.renderedItems = null
+      }
+    
+
     return (
-      <div className="ViewTable">
+      <div className="ViewTable" style={{overflowY: 'scroll', webkitOverflowScrolling: 'touch', maxHeight: '50vh'}}>
         <Table striped>
           <thead>
             <tr>
-              {this.state.keys.map((object, index) => {
-                return <th key={index}>{object}</th>;
-              })}
+              {this.renderedKeys}
               <th>Controllers</th>
             </tr>
           </thead>
           <tbody>
-            {this.state.items.map((object, index) => {
-              return (
-                <tr key={index}>
-                  {Object.values(object).map((string, index2) => {
-                    return <td key={index2}>{string.toString()}</td>;
-                  })}
-                  <td>
-                    <Row>
-                      <button
-                        className="mr-2 btn-outline-info btn-sm"
-                        onClick={this.handleEdit.bind(
-                          this,
-                          index,
-                          object.machineName
-                        )}>
-                        Edit
-                      </button>
-                      <button
-                        className="btn btn-outline-danger btn-sm"
-                        onClick={this.handleDelete.bind(this, index)}>
-                        Delete
-                      </button>
-                    </Row>
-                  </td>
-                </tr>
-              );
-            })}
+          {this.renderedItems}
+            
           </tbody>
         </Table>
       </div>

@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import {Form, Row, Col, Input, Button} from 'reactstrap';
-import Select from 'react-select';
-import axios from 'axios';
-import randomstring from 'randomstring';
-import HandleContentTypeView from './apperanceContentTypecomponent/HandleContentTypeView';
-
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Form, Row, Col, Input, Button } from "reactstrap";
+import Select from "react-select";
+import axios from "axios";
+import randomstring from "randomstring";
+import HandleContentTypeView from "./apperanceContentTypecomponent/HandleContentTypeView";
+import FileUploader from "../../FileUploader/FileUploader";
 
 class AppearanceForm extends Component {
   constructor(props) {
@@ -15,10 +15,8 @@ class AppearanceForm extends Component {
                  }
                  showcomponent: false
 
-              }
-  
-  static PropTypes = {
-    handleSubmit: PropTypes.func,
+  static propTypes = {
+    handleSubmit: PropTypes.func
   };
  incremnetContentTyps = () => {
   const newPic = {
@@ -42,7 +40,7 @@ removeContentTyps = (key) => {
     this.setState({
       contentTypesArr: contentTypesArr
     });
-  }
+  };
 
   render() {
     const style = {marginBottom: '1em'};

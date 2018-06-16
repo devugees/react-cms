@@ -14,6 +14,7 @@ import './AddField.css';
 //import axios from 'axios';
 
 class AddField extends Component {
+
   fieldLabelRef = React.createRef();
   typeOptRef = React.createRef();
   typeRef = React.createRef();
@@ -23,7 +24,7 @@ class AddField extends Component {
   cssClassNameRef = React.createRef();
   customCsslRef = React.createRef();
 
-  static PropTypes = {
+  static propTypes = {
     addFields: PropTypes.array,
     id: PropTypes.string
   };
@@ -43,7 +44,7 @@ class AddField extends Component {
       cssClasses: this.cssClassNameRef.current.value,
       customCss: this.customCsslRef.current.value
     };
-
+    console.log(field);
     this.props.addFields(field);
   };
 
@@ -68,6 +69,7 @@ class AddField extends Component {
                     type="select"
                     id="exampleSelect"
                     innerRef={this.typeRef}>
+                    <option>Text</option>
                     <option>Button</option>
                     <option>Checkbox</option>
                     <option>Color</option>
@@ -85,10 +87,11 @@ class AddField extends Component {
                     <option>Reset</option>
                     <option>Search</option>
                     <option>Telephone</option>
-                    <option>Text</option>
                     <option>Time</option>
                     <option>Url</option>
                     <option>Week</option>
+                    <option>Select</option>
+                    <option>Textarea</option>
                   </Input>
                 </FormGroup>
               </Col>
