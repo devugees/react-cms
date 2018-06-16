@@ -14,10 +14,12 @@ class AppearanceForm extends Component {
        contentTypesArr: [],
                  }
                  showcomponent: false
+                }
 
   static propTypes = {
     handleSubmit: PropTypes.func
   };
+
  incremnetContentTyps = () => {
   const newPic = {
         id: randomstring.generate(5)
@@ -45,13 +47,18 @@ removeContentTyps = (key) => {
   render() {
     const style = {marginBottom: '1em'};
     const btnFile = {marginBottom: '1em', height: '2em'};
+    const brdJumbo = { border: "1px solid grey" };
+    const h3Brd = {
+      marginTop: " -17px",
+      marginLeft: "5px",
+      background: "white"
+    };
     let HandleContentType =this.state.contentTypesArr.map((p, index) => (
-                 
                   <div className="col-md-4">
-                   <HandleContentTypeView 
-                       remove={() => {this.removeContentTyps(p.id)}} 
-                       contenttypeData={this.props.contentTypeData} 
-                       key={index} 
+                    <HandleContentTypeView 
+                               remove={() => {this.removeContentTyps(p.id)}}
+                               contenttypeData={this.props.contentTypeData} 
+                               key={index} 
                            />
                   </div>
                  ))
@@ -77,7 +84,38 @@ removeContentTyps = (key) => {
             />
           </Col>
         </Row>
-        <Row>
+
+        <Row style={brdJumbo}>
+            <h3 style={h3Brd}> Slider </h3>
+            <Row>
+              <Col>
+                <h5>Slide 1 </h5>
+                <FileUploader style={style} bringFileUrl={this.bringFileUrl} />
+                <Input style={style} placeholder="Title" />
+                <Input style={style} placeholder="Text" />
+              </Col>
+              <Col>
+                <h5>Slide 2 </h5>
+                <FileUploader bringFileUrl={this.bringFileUrl} />
+                <Input style={style} placeholder="Title" />
+                <Input style={style} placeholder="Text" />
+              </Col>
+              <Col>
+                <h5>Slide 3 </h5>
+                <FileUploader bringFileUrl={this.bringFileUrl} />
+                <Input style={style} placeholder="Title" />
+                <Input style={style} placeholder="Text" />
+              </Col>
+              <Col>
+                <h5>Slide 4 </h5>
+                <FileUploader bringFileUrl={this.bringFileUrl} />
+                <Input style={style} placeholder="Title" />
+                <Input style={style} placeholder="Text" />
+              </Col>
+            </Row>
+          </Row>
+          <Row>
+          
           <Col>
             <h3>IconBox Left </h3>
             <input
@@ -167,19 +205,19 @@ removeContentTyps = (key) => {
             />
           </Col>
         </Row>
-      </Form>
-       <div className="container" >
+         <div className="container" >
          <div className="row">
-         <div className="col-md-12">
+           <div className="col-md-12">
               <Button className="ml-2" onClick={this.incremnetContentTyps} color="primary">AddContent</Button>
-              <Button onClick={this.removeContentTyps} color="primary">RemoveContent</Button>
          </div>
          </div>
-           
          <div className="row">
                  {this.state.showcomponent? HandleContentType : null}
           </div>
         </div>
+         <Button className="mt-4" type="submit">Submit</Button>
+      </Form>
+      
       </div>
     );
   }
