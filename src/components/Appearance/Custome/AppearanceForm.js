@@ -11,9 +11,7 @@ class AppearanceForm extends Component {
   constructor(props) {
     super(props);
     this.state= {
-       pictures: [
-                   {id: randomstring.generate(5)}
-                   ],
+       contentTypesArr: [],
                  }
                  showcomponent: false
 
@@ -26,35 +24,38 @@ class AppearanceForm extends Component {
   const newPic = {
         id: randomstring.generate(5)
       };
-      const pictures = [...this.state.pictures, newPic];
+      const contentTypesArr = [...this.state.contentTypesArr, newPic];
       this.setState({
-        pictures: pictures,
+        contentTypesArr: contentTypesArr,
         showcomponent: true,
       })
 }
 
 removeContentTyps = (key) => {
-    const picIndex = this.state.pictures.findIndex((pic) => {
+    const picIndex = this.state.contentTypesArr.findIndex((pic) => {
       return key === pic.id;
     });
 
-    const pictures = [...this.state.pictures];
-    pictures.splice(picIndex, 1);
+    const contentTypesArr = [...this.state.contentTypesArr];
+    contentTypesArr.splice(picIndex, 1);
 
     this.setState({
-      pictures: pictures
+      contentTypesArr: contentTypesArr
     });
   }
 
   render() {
     const style = {marginBottom: '1em'};
     const btnFile = {marginBottom: '1em', height: '2em'};
-    let HandleContentType =this.state.pictures.map((p, index) => (
-                  <HandleContentTypeView 
-                      remove={() => {this.removeContentTyps(p.id)}} 
+    let HandleContentType =this.state.contentTypesArr.map((p, index) => (
+                 
+                  <div className="col-md-4">
+                   <HandleContentTypeView 
+                       remove={() => {this.removeContentTyps(p.id)}} 
                        contenttypeData={this.props.contentTypeData} 
                        key={index} 
-                          />
+                           />
+                  </div>
                  ))
   return (
       <div>
@@ -169,7 +170,7 @@ removeContentTyps = (key) => {
           </Col>
         </Row>
       </Form>
-       
+       <div className="container" >
          <div className="row">
          <div className="col-md-12">
               <Button className="ml-2" onClick={this.incremnetContentTyps} color="primary">AddContent</Button>
@@ -177,12 +178,10 @@ removeContentTyps = (key) => {
          </div>
          </div>
            
-             <div className="col-md-4">
-               <HandleContentTypeView contenttypeData={this.props.contentTypeData}/>
+         <div className="row">
                  {this.state.showcomponent? HandleContentType : null}
-           </div>
-        
-           <Button type="submit">Submit</Button>
+          </div>
+        </div>
       </div>
     );
   }
