@@ -6,6 +6,8 @@ import IconBox from './LayoutComponents/IconBox';
 import Post from './LayoutComponents/Post';
 import Footer from './LayoutComponents/Footer';
 import LayoutComponents from './LayoutComponents/LayoutComponents';
+
+
 import './LandingPage.css';
 
 class LandingPage extends Component {
@@ -22,14 +24,14 @@ class LandingPage extends Component {
             key: 'image',
             element: 'img'
           },
+              {
+                key: 'title',
+                element: 'h'
+              },
           {
             key: 'body',
             element: 'p'
           },
-          {
-            key: 'title',
-            element: 't'
-          }
         ],
         numperOfPosts: 4,
         viewType: 'Grid',
@@ -46,13 +48,13 @@ class LandingPage extends Component {
             element: 'img'
           },
           {
+            key: 'title',
+            element: 'h'
+          },
+          {
             key: 'body',
             element: 'p'
           },
-          {
-            key: 'title',
-            element: 'h'
-          }
         ],
         numperOfPosts: 4,
         viewType: 'Grid',
@@ -69,13 +71,13 @@ class LandingPage extends Component {
             element: 'img'
           },
           {
+            key: 'title',
+            element: 'h'
+          },
+          {
             key: 'body',
             element: 'p'
           },
-          {
-            key: 'title',
-            element: 'h'
-          }
         ],
         numperOfPosts: 4,
         viewType: 'Grid',
@@ -83,6 +85,8 @@ class LandingPage extends Component {
       }
     ]
   };
+
+/*
   theme = {
     sections: [
       {
@@ -192,6 +196,8 @@ class LandingPage extends Component {
   generateTheme = {
     sections: []
   };
+
+*/
   componentWillMount() {
     fetch('http://localhost:5000/api/appearance')
       .then(resp => resp.json())
