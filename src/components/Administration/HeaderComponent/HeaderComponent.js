@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import './HeaderComponent.css';
 import {Link} from 'react-router-dom';
 import { Button, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, } from 'reactstrap';
@@ -13,6 +14,10 @@ class TopHeader extends Component {
     };
     this.handleLogout = this.handleLogout.bind(this)
   }
+
+  static propTypes = {
+    contentTypes: PropTypes.array
+  };
 
   toggle() {
     this.setState({
