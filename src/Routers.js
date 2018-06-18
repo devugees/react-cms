@@ -12,6 +12,8 @@ import PrivatRoute from './components/PrivatRoute/PrivatRoute';
 import jwtDecode from 'jwt-decode';
 import FileUploader from './components/FileUploader/FileUploader';
 import Slider from './components/Slider/Slider';
+import ExtandedCTView from './components/LandingPage/LayoutComponents/ExtandedCTView';
+
 
 class Routers extends Component {
      constructor(props) {
@@ -56,6 +58,7 @@ class Routers extends Component {
             <Route  exact path="/" component={LandingPage} />
             <Route  exact path="/FileUploader" component={FileUploader} />
             <Route  exact path="/slider" component={Slider} />
+            <Route  path="/ContentType/entries/:entrieId" component={ExtandedCTView} />            
 
         
             <PrivatRoute
