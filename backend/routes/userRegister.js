@@ -2,15 +2,18 @@ var bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
+const validateRegisterInput = require('../validation/register');
+
 module.exports = (app) => {
 
     const serversignature = 'mysignature';
     app.post('/register', (req, res) => {
 
-        if (!req.body.email && !req.body.password) {
-            res.status(400).send({ message: "email can not be empty" });
-        }
-
+       const { errors, isValid } = validateRegisterInput(req.body);
+      // Check Validation
+      if (!isValid) {
+        return res.status(400).json(errors);
+      }
         bcrypt.genSalt(10, function(err, salt) {
             bcrypt.hash(req.body.password, salt, function(err, hash) {
                 req.body.password = hash;

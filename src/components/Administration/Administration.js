@@ -11,20 +11,20 @@ class Administration extends Component {
   constructor() {
     super();
     this.state = {
-      contentTypes: [],
+      contentTypes: []
     };
   }
 
   static propTypes = {
     activeLink: PropTypes.string
   };
-   //NewHook
+  //NewHook
   componentDidMount = () => {
     axios
       .get('http://localhost:5000/api/contenttypes')
       .then(response => {
         this.setState({
-          contentTypes: response.data,
+          contentTypes: response.data
         });
       })
       .catch(function(error) {
@@ -34,11 +34,15 @@ class Administration extends Component {
 
   render() {
     const colstyle = {padding: '0', margin: '0 0 0 0'};
-    const padding = {padding: '1em', margin: 0}
-    return <div className="Administration">
+    const padding = {padding: '1em', margin: 0};
+    return (
+      <div className="Administration">
         <Row style={colstyle}>
           <Col style={colstyle}>
-          <TopHeader history={this.props.history} contentTypes={this.state.contentTypes}/>
+            <TopHeader
+              history={this.props.history}
+              contentTypes={this.state.contentTypes}
+            />
           </Col>
         </Row>
         <Row style={colstyle}>
@@ -46,10 +50,15 @@ class Administration extends Component {
             <DashBoard contenttypes={this.state.contentTypes} />
           </Col>
           <Col className="Board" md="10" style={padding}>
-            <Main contenttypes={this.state.contentTypes} className="Main" activeLink={this.props.match.url} />
+            <Main
+              contenttypes={this.state.contentTypes}
+              className="Main"
+              activeLink={this.props.match.url}
+            />
           </Col>
         </Row>
-      </div>;
+      </div>
+    );
   }
 }
 
