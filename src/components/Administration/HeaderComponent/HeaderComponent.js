@@ -83,7 +83,7 @@ class TopHeader extends Component {
                   <DropdownMenu right>
                     {this.props.contentTypes.map((content, index) => {
                       return (
-                        <DropdownItem>
+                        <DropdownItem key={index}>
                           <Link
                             style={(linkStyle, textStyle)}
                             to={`/Administration/ContentType/${content._id}`}

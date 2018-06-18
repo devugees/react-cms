@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import './dashBoard.css';
-import {Nav, NavItem} from 'reactstrap';
-import {Link} from 'react-router-dom';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import "./dashBoard.css";
+import { Nav, NavItem } from "reactstrap";
+import { Link } from "react-router-dom";
 
 class dashBord extends Component {
   state = {
@@ -29,31 +29,35 @@ class dashBord extends Component {
                 <NavItem>
                   <Link
                     className="dashLink"
-                    to={`/Administration/ContentType/${contentType._id}`}>
+                    to={`/Administration/ContentType/${contentType._id}`}
+                  >
                     All {contentType.title}
                   </Link>
                 </NavItem>
                 <NavItem>
                   <Link
                     className="dashLink"
-                    to={`/Administration/Categories/${contentType._id}`}>
+                    to={`/Administration/Categories/${contentType._id}`}
+                  >
                     Categories {contentType.title}
                   </Link>
                 </NavItem>
                 <NavItem>
                   <Link
                     className="dashLink"
-                    to={`/Administration/Structure/${contentType._id}`}>
+                    to={`/Administration/Structure/${contentType._id}`}
+                  >
                     Structure
                   </Link>
                 </NavItem>
+                {/*
                 <NavItem>
                   <Link
                     className="dashLink"
                     to={`/Administration/View/${contentType._id}`}>
                     View
                   </Link>
-                </NavItem>
+                </NavItem> */}
               </Nav>
               <hr />
             </div>
@@ -63,7 +67,14 @@ class dashBord extends Component {
     );
 
     return (
-      <div className="style FontColor style-1" style={{overflowY: 'scroll', webkitOverflowScrolling: 'touch', maxHeight: '95vh'}}>
+      <div
+        className="style FontColor style-1"
+        style={{
+          overflowY: "scroll",
+          webkitOverflowScrolling: "touch",
+          maxHeight: "95vh"
+        }}
+      >
         <strong>Dashbord</strong>
         <Nav className="color" vertical>
           <NavItem>
@@ -86,7 +97,8 @@ class dashBord extends Component {
             <NavItem>
               <Link
                 className="dashLinks"
-                to="/Administration/main/ContentTypesList">
+                to="/Administration/main/ContentTypesList"
+              >
                 Content Types
               </Link>
             </NavItem>
@@ -120,21 +132,23 @@ class dashBord extends Component {
               Custom
             </Link>
           </NavItem>
+          {/*
           <NavItem>
             <Link className="dashLinks" to="/Administration/main/Blocks">
               Blocks
             </Link>
-          </NavItem>
+          </NavItem> */}
           <NavItem>
             <Link className="dashLinks" to="/Administration/main/CustomeCode">
               Custom Code
             </Link>
           </NavItem>
+          {/*
           <NavItem>
             <Link className="dashLinks" to="/Administration/main/Editor">
               Editor
             </Link>
-          </NavItem>
+          </NavItem> */}
         </Nav>
 
         <hr />
@@ -146,11 +160,12 @@ class dashBord extends Component {
               All Users
             </Link>
           </NavItem>
+          {/*
           <NavItem>
             <Link className="dashLinks" to="/Administration/main/Roles">
               Roles
             </Link>
-          </NavItem>
+          </NavItem> */}
         </Nav>
         <hr />
 
@@ -158,21 +173,23 @@ class dashBord extends Component {
           <NavItem>
             <Link
               className="dashLinks"
-              to="/Administration/main/SettingsComponent">
+              to="/Administration/main/SettingsComponent"
+            >
               Setting
             </Link>
           </NavItem>
         </Nav>
 
         <hr />
-
+        {/*
         <Nav vertical>
+          
           <NavItem>
             <Link className="dashLinks" to="/Administration/main/Plugins">
               Plugins
             </Link>
-          </NavItem>
-        </Nav>
+          </NavItem> 
+        </Nav> */}
       </div>
     );
   }
