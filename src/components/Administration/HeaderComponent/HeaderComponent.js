@@ -20,21 +20,7 @@ class TopHeader extends Component {
   constructor() {
     super();
 
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
-    this.handleLogout = this.handleLogout.bind(this);
-  }
-
-  static propTypes = {
-    contentTypes: PropTypes.array
-  };
-
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
+    this.handleLogout = this.handleLogout.bind(this)
   }
 
   handleLogout() {
@@ -57,62 +43,27 @@ class TopHeader extends Component {
             Dashbord
           </NavbarBrand>
 
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavbarBrand
-                style={{display: 'flex', padding: '0', margin: 'auto'}}>
-                <NavItem style={marginRight}>
-                  <Link style={(linkStyle, textStyle)} to="/">
-                    Go to Web Site
-                  </Link>
-                </NavItem>
-                <NavItem style={marginRight}>
-                  <Link
-                    style={(linkStyle, textStyle)}
-                    to="/Administration/main/NewContentType">
-                    Create Node
-                  </Link>
-                </NavItem>
-              </NavbarBrand>
-              <NavbarBrand>
-                <UncontrolledDropdown nav inNavbar>
-                  <DropdownToggle nav caret style={(linkStyle, textStyle)}>
-                    New
-                  </DropdownToggle>
-                  <DropdownMenu right>
-                    {this.props.contentTypes.map((content, index) => {
-                      return (
-                        <DropdownItem key={index}>
-                          <Link
-                            style={(linkStyle, textStyle)}
-                            to={`/Administration/ContentType/${content._id}`}
-                            key={index}>
-                            {content.title}
-                          </Link>
-                        </DropdownItem>
-                      );
-                    })}
-                    <DropdownItem>
-                      <Link
-                        style={(linkStyle, textStyle)}
-                        to="/Administration/main/AllUsers">
-                        Users
-                      </Link>
-                    </DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
-              </NavbarBrand>
-              <Button
-                style={{
-                  padding: '0.1em 0.4em',
-                  margin: '3% 0',
-                  fontSize: '14px',
-                  height: '1%'
-                }}
-                onClick={this.handleLogout}>
-                Sign out{' '}
-              </Button>
+
+          <NavbarToggler onClick={this.props.toggle} />
+          <Collapse isOpen={this.props.isOpen} navbar>
+            <Nav className="ml-auto" navbar style={{background: '#85C1E9'}}>
+        
+        <NavbarBrand style={{display:'flex', padding: '0', margin: 'auto'}}>
+              <NavItem style={marginRight}><Link style={linkStyle, textStyle} to="/">Go to Web Site</Link></NavItem>
+              <NavItem style={marginRight}><Link style={linkStyle, textStyle} to="/Administration/main/NewContentType">Create Node</Link></NavItem>
+        </NavbarBrand>
+       <Navbar>
+        <UncontrolledDropdown nav inNavbar style={marginRight}>
+          <DropdownToggle style={textStyle} nav caret>New</DropdownToggle>
+            <DropdownMenu right style={{top: '4vh'}}>
+              <DropdownItem>Option 1</DropdownItem>
+              <DropdownItem>Option 2</DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem>Reset</DropdownItem>
+            </DropdownMenu>
+        </UncontrolledDropdown>
+        </Navbar>
+          <Button style={{padding: '0.1em 0.4em', margin: '3% 0', fontSize: '14px', height: '1%'}} onClick={this.handleLogout}>Sign out </Button>
 
               {/* <UncontrolledDropdown>
                 <DropdownToggle style={textColor} caret>

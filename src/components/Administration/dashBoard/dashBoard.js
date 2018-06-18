@@ -1,13 +1,16 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import "./dashBoard.css";
-import { Nav, NavItem } from "reactstrap";
-import { Link } from "react-router-dom";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import './dashBoard.css';
+import {Nav, NavItem, Collapse, NavbarToggler} from 'reactstrap';
+import {Link} from 'react-router-dom';
 
 class dashBord extends Component {
+
   state = {
     contentTypes: this.props.contenttypes
   };
+
+
 
   static propTypes = {
     contenttypes: PropTypes.array
@@ -76,6 +79,10 @@ class dashBord extends Component {
         }}
       >
         <strong>Dashbord</strong>
+
+          <NavbarToggler onClick={this.props.toggleoneis} />
+          <Collapse isOpen={this.props.isOpenOne} navbar>
+
         <Nav className="color" vertical>
           <NavItem>
             <Link className="dashLinks" to="/Administration/main/Sitestatus">
@@ -188,8 +195,9 @@ class dashBord extends Component {
             <Link className="dashLinks" to="/Administration/main/Plugins">
               Plugins
             </Link>
-          </NavItem> 
-        </Nav> */}
+          </NavItem>
+        </Nav>
+        </Collapse>
       </div>
     );
   }
