@@ -36,9 +36,17 @@ class Categories extends Component {
       });
   };
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    this.bringingCategoriesDb(nextProps)
+  componentDidMount  ()  {
+    this.bringingCategoriesDb(this.props  )  
   }
+
+  componentDidUpdate (prevProps, prevState) {
+    if(prevProps.id != this.props.id) {
+      this.bringingCategoriesDb(this.props)
+      }
+  }
+    
+  
 
 
   handleToggleEditInput(index, categories) {

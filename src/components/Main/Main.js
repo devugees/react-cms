@@ -43,8 +43,6 @@ class Main extends Component {
     contentTypesObj.map((contentType) => {
       contentType.fields.map((field) => {
         allTheFields.push(field)
-
-
       })
       if (props.activeLink.split('/')[3] === contentType._id) {
         fields = contentType.fields
