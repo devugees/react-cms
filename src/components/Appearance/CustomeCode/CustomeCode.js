@@ -40,9 +40,9 @@ class CustomeCode extends Component {
       .get(`http://localhost:5000/api/customcode`)
       .then(response => {
         console.log(response);
-        let data;
-        data.javascriptCode = response.data.javascriptCode,
-        data.cssCode = response.data.cssCode
+        let data= {};
+        data.javascriptCode = response.data[0].javascriptCode,
+        data.cssCode = response.data[0].cssCode
         this.setState({data});
       })
       .catch(error => {
@@ -55,7 +55,7 @@ class CustomeCode extends Component {
      <div>
        <h3>Java Script Code</h3>
        <CodeMirror
-       defaultValue= {this.state.javascriptCode}
+       value= {this.state.data.javascriptCode}
         options={{
           mode: "javascript",
           theme: "material",
@@ -66,7 +66,7 @@ class CustomeCode extends Component {
       />
        <h3>Css Code</h3>      
       <CodeMirror
-        defaultValue= {this.state.cssCode}        
+        value= {this.state.data.cssCode}        
         options={{
           mode: "javascript",
           theme: "material",
