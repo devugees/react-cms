@@ -43,6 +43,8 @@ require('./routes/appearance')(app);
 require('./routes/Users')(app);
 require('./routes/Categories')(app);
 require('./routes/upload')(app);
+require('./routes/customCode')(app);
+
 
 
 
