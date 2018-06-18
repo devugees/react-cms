@@ -158,7 +158,8 @@ handleSave =(e) => {
 	          <Label for="exampleEmail">Css</Label>
 	          <Input type="text" name="css" id="text" placeholder="with a placeholder" onChange={this.onChange} />
            </FormGroup>
-           <Button type="Submit" onClick={this.handleSave}>Save</Button>
+              <Button onClick={this.props.remove} color="primary">X</Button>
+                   
         </Form>
       </div>
     );
