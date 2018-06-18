@@ -83,7 +83,9 @@ class LandingPage extends Component {
         viewType: 'Grid',
         columns: 3
       }
-    ]
+    ],
+    javascriptCode:"",
+    cssCode:"",
   };
 
 /*
@@ -198,6 +200,7 @@ class LandingPage extends Component {
   };
 
 */
+
   componentWillMount() {
     fetch('http://localhost:5000/api/appearance')
       .then(resp => resp.json())
@@ -216,6 +219,9 @@ class LandingPage extends Component {
   render() {
     return (
       <React.Fragment>
+      <style>
+      {this.state.cssCode}
+      </style>
         <Menu />
         <Slider />
         <Container>
@@ -231,6 +237,10 @@ class LandingPage extends Component {
           </Container>
         </div>
         <Footer />
+        <script type="text/javascript">
+        {this.state.javascriptCode}
+        </script>
+
       </React.Fragment>
     );
   }

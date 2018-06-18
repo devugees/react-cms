@@ -14,10 +14,12 @@ class CustomeCode extends Component {
     }
   }
   
-  onChange = (e,editor, data, value) => {
+  onChange = (event,editor, data, value,event1) => {
+    
     let stateData = {...this.state.data};
-    stateData[e.target.name]= e.target.value
+    stateData[event.options.name]= data
     this.setState({data:stateData})
+    
   }
 
   onClick = () => {
@@ -54,22 +56,22 @@ class CustomeCode extends Component {
        <h3>Java Script Code</h3>
        <CodeMirror
        defaultValue= {this.state.javascriptCode}
-        name="javascriptCode"
         options={{
           mode: "javascript",
           theme: "material",
-          lineNumbers: true
+          lineNumbers: true,
+          name:"javascriptCode"
         }}
         onChange={this.onChange}
       />
        <h3>Css Code</h3>      
       <CodeMirror
         defaultValue= {this.state.cssCode}        
-        name="cssCode"
         options={{
           mode: "javascript",
           theme: "material",
-          lineNumbers: true
+          lineNumbers: true,
+          name:"cssCode"
         }}
         onChange={this.onChange}
       />
