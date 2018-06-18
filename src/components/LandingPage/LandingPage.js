@@ -215,6 +215,21 @@ class LandingPage extends Component {
           'No internet connection found. App is running in offline mode.'
         );
       });
+      fetch('http://localhost:5000/api/customcode')
+      .then(resp => resp.json())
+      .then(data => {
+        console.log(data);
+        this.setState({
+          javascriptCode: data[0].javascriptCode,
+          cssCode: data[0].cssCode
+        });
+        
+      })
+      .catch(() => {
+        console.log(
+          'No internet connection found. App is running in offline mode.'
+        );
+      });
   }
   render() {
     return (
