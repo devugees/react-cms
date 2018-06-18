@@ -1,4 +1,4 @@
-# Component Management System 
+# Content Management System 
 
 We believe in dynamic!  
 Everything's in relation to one another.  

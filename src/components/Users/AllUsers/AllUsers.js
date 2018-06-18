@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Table, Input } from "reactstrap";
 import axios from "axios";
+import AddNewUser from './AddNewUser'
 
 class Allusers extends Component {
   constructor(props) {
@@ -124,6 +125,9 @@ class Allusers extends Component {
     }
     return (
       <div className="container">
+      <div>
+        <AddNewUser componentWillMount={this.componentWillMount}/>
+      </div>
         <Table striped>
           <thead>
             <tr>

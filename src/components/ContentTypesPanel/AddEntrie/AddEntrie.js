@@ -134,9 +134,7 @@ class AddEntrie extends Component {
 
     let allFields = this.props.fields.map((object, index) => {
       if (
-        object.fieldLabel === "Image" &&
-        object.type === "Image" &&
-        object.machineName === "Image"
+        object.type === "image"
       ) {
         return (
           <div className="col-md-6 mt-1">
@@ -150,9 +148,7 @@ class AddEntrie extends Component {
           </div>
         );
       } else if (
-        object.fieldLabel === "categories" &&
-        object.type === "categories" &&
-        object.machineName === "categories"
+        object.type === "categories"
       ) {
         return (
           <div className="col-md-6">
