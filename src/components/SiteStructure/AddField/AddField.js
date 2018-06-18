@@ -11,6 +11,7 @@ import {
   Col
 } from 'reactstrap';
 import './AddField.css';
+
 //import axios from 'axios';
 
 class AddField extends Component {
@@ -23,6 +24,7 @@ class AddField extends Component {
   requiredRef = React.createRef();
   cssClassNameRef = React.createRef();
   customCsslRef = React.createRef();
+  htmlElementRef = React.createRef();
 
   static propTypes = {
     addFields: PropTypes.array,
@@ -37,6 +39,7 @@ class AddField extends Component {
         .toLowerCase()
         .replace(/\s/g, ''),
       type: this.typeRef.current.value,
+      htmlElement: this.htmlElementRef.current.value,
       typeOption: this.typeOptRef.current.value,
       unique: this.uniqueRef.current.checked,
       visible: this.visibleRef.current.checked,
@@ -86,6 +89,26 @@ class AddField extends Component {
                     <option>time</option>
                     <option>week</option>
                     <option>select</option>
+                  </Input>
+                </FormGroup>
+              </Col>
+              <Col>
+                <FormGroup>
+                  <Label for="exampleSelect">Html-element</Label>
+                  <Input
+                    name="htmlElement"
+                    type="select"
+                    id="exampleSelect"
+                    innerRef={this.htmlElement}>
+                    <option>h1</option>
+                    <option>h2</option>
+                    <option>h3</option>
+                    <option>h4</option>
+                    <option>h5</option>
+                    <option>h6</option>
+                    <option>p</option>
+                    <option>img</option>
+                    <option>span</option>
                   </Input>
                 </FormGroup>
               </Col>
