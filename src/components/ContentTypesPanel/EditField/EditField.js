@@ -24,6 +24,7 @@ class EditField extends Component {
   requiredRef = React.createRef();
   cssClassNameRef = React.createRef();
   customCsslRef = React.createRef();
+  htmlElementRef = React.createRef();
 
   static propTypes = {
     addFields: PropTypes.array,
@@ -38,6 +39,7 @@ class EditField extends Component {
         .toLowerCase()
         .replace(/\s/g, ''),
       type: this.typeRef.current.value,
+      htmlElement: this.htmlElementRef.current.value,
       typeOption: this.typeOptRef.current.value,
       unique: this.uniqueRef.current.checked,
       visible: this.visibleRef.current.checked,
@@ -55,7 +57,7 @@ class EditField extends Component {
 
     return (
       <div className="addfield">
-        <h4 className="header">Add Your Content Fields</h4>
+        <h4 className="header">Edit Field</h4>
         <Container className="EditField">
           <Form onSubmit={this.handelSubmit}>
             <Row>
@@ -91,6 +93,26 @@ class EditField extends Component {
                     <option>time</option>
                     <option>week</option>
                     <option>select</option>
+                  </Input>
+                </FormGroup>
+              </Col>
+              <Col>
+                <FormGroup>
+                  <Label for="exampleSelect">Html-element</Label>
+                  <Input
+                    name="htmlElement"
+                    type="select"
+                    id="exampleSelect"
+                    innerRef={this.htmlElement}>
+                    <option>h1</option>
+                    <option>h2</option>
+                    <option>h3</option>
+                    <option>h4</option>
+                    <option>h5</option>
+                    <option>h6</option>
+                    <option>p</option>
+                    <option>img</option>
+                    <option>span</option>
                   </Input>
                 </FormGroup>
               </Col>
