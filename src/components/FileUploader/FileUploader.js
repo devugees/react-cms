@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { InputGroup, InputGroupText, InputGroupAddon, Button, Form, FormGroup, Modal,Label, Input, Container, Row, Col, ModalFooter ,ModalBody, ModalHeader} from 'reactstrap';
+import { InputGroup, InputGroupAddon, Button, Modal, Input, ModalFooter, ModalHeader} from 'reactstrap';
 import './FileUploader.css';
 
 export default class FileUploader extends Component {
@@ -147,7 +147,7 @@ toggleForm(e) {
                         value={this.state.path}
                         onChange={this.onChange} />
                 <InputGroupAddon addonType="append">
-                   <Button className="btn btn-primary" onClick={this.toggle}>SelecteFile</Button>
+                   <Button className="btn btn-primary" onClick={this.toggle}>Select File</Button>
                 </InputGroupAddon>
               </InputGroup>
                {this.state.ShowImageinput ? (<img  src={this.state.path}
@@ -172,7 +172,7 @@ toggleForm(e) {
 
                         }} />) : null}
                 </div>
-                 <Button  color="light" onClick={this.toggleForm}>Uplode New</Button>
+                 <Button  color="light" onClick={this.toggleForm}>Upload New</Button>
                  <Button  color="light" onClick={this.toggleNew}>Media Library</Button>
                 </ModalHeader>
                 <hr /> 
@@ -180,7 +180,7 @@ toggleForm(e) {
                   {this.state.Toggleform ? uploderForm : null}
                   
                 <ModalFooter>
-                  <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
+                  <Button color="primary" onClick={this.toggle}>Choose</Button>{' '}
                   <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                 </ModalFooter>
               </Modal>
