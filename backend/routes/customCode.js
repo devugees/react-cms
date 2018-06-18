@@ -21,5 +21,4 @@ module.exports = (app) => {
           return res.send("succesfully saved");
       });
   });
-
 }
