@@ -93,7 +93,12 @@ class Categories extends Component {
           headers: {Authorization: `Bearer ${tokenStr}`}
         }
       )
-      .then(response => this.componentDidMount())
+      .then(response => {
+        this.setState({
+          displayInputsAdd: false,
+        });
+        this.componentDidMount() 
+        })
       .catch(err => console.log(err));
   }
 
@@ -117,11 +122,11 @@ class Categories extends Component {
       )
       .then(response => {
         this.componentDidMount()
-        setTimeout(() => {
+        //setTimeout(() => {
           this.setState({
             displayInputs: false,
           });
-        }, 5000);
+        //}, 5000);
       })
       .catch(err => console.log(err));
   }
