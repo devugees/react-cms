@@ -44,6 +44,10 @@ removeContentTyps = (key) => {
     });
   };
 
+bringContentTypeObject =(newobject) => {
+  let objdata = newobject;
+  this.props.bringContentTypeObjectFromApperanc(objdata);
+}
   render() {
     const style = {marginBottom: '1em'};
     const btnFile = {marginBottom: '1em', height: '2em'};
@@ -57,6 +61,7 @@ removeContentTyps = (key) => {
     let HandleContentType =this.state.contentTypesArr.map((p, index) => (
                   <div className="col-md-4">
                     <HandleContentTypeView 
+                               bringContentTypeObject={this.bringContentTypeObject}
                                remove={() => {this.removeContentTyps(p.id)}}
                                contenttypeData={this.props.contentTypeData} 
                                key={index} 

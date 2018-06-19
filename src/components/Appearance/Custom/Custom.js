@@ -7,6 +7,7 @@ class Custom extends Component {
     super();
     this.state = {
       categories: [],
+      contenttypesObject: [],
       value: [],
       crazy: false,
       form: false,
@@ -39,6 +40,7 @@ class Custom extends Component {
         form[event.target.elements[i].name] = event.target.elements[i].value;
       }
     }
+ 
     axios
       .post('http://localhost:5000/api/appearance', form)
       .then(response => {
@@ -49,8 +51,20 @@ class Custom extends Component {
         console.log('Error: ', error);
       });
   };
+  contenttypesArray = [];
+
+  bringContentTypeObjectFromApperanc = (data) => {
+    let contenttypesObject = this.state.contenttypesObject;
+     console.log(contenttypesObject)
+        this.contenttypesArray.push(data)
+        this.setState({contenttypesObject:this.contenttypesArray})
+      
+   
+  
+  }
 
   render() {
+    console.log(this.state.contenttypesObject)
     const style = {marginBottom: '1em'};
     const btnFile = {marginBottom: '1em', height: '2em'};
 
@@ -63,6 +77,8 @@ class Custom extends Component {
      
       this.state.form && (
         <AppearanceForm
+
+          bringContentTypeObjectFromApperanc={this.bringContentTypeObjectFromApperanc}
           contentTypeData={this.props.contenttypes}
           handleSubmit={this.handleSubmit}
           form={this.state.form}
