@@ -57,7 +57,7 @@ class Administration extends Component {
       <div className="Administration">
       <Row style={colstyle}>
           <Col style={colstyle} >
-    <TopHeader isOpen={this.state.isOpen} toggleSideBar={this.toggleSideBar} toggle={this.toggle} history={this.props.history}/>
+          <TopHeader contentTypes={this.state.contentTypes} isOpen={this.state.isOpen} toggleSideBar={this.toggleSideBar} toggle={this.toggle} history={this.props.history}/>
         
           </Col>
         </Row>

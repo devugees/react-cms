@@ -47,7 +47,7 @@ class TopHeader extends Component {
           <Collapse isOpen={this.props.isOpen} navbar>
             <Nav className="ml-auto" navbar>
   
-              <Navbar style={{background: '#85c1e9', marginTop: '-7px', padding: '1em 0 0 1em' }} navbar expand="md">
+              <Navbar style={{background: '#85c1e9'}} navbar expand="md">
                 
                 <NavItem className='marginRight' >
                 <Link style={LinkTextStyle} to="/">Go to Web Site</Link>
@@ -59,10 +59,18 @@ class TopHeader extends Component {
                 <UncontrolledDropdown nav inNavbar className='marginRight' >
                   <DropdownToggle style={textStyle} nav caret>New</DropdownToggle>
                     <DropdownMenu right style={{top: '4vh'}}>
-                      <DropdownItem>Option 1</DropdownItem>
-                      <DropdownItem>Option 2</DropdownItem>
-                      <DropdownItem divider />
-                      <DropdownItem>Reset</DropdownItem>
+                    {this.props.contentTypes.map((content, index) => {
+                      return (
+                        <DropdownItem key={index}>
+                          <Link
+                            style={(textStyle)}
+                            to={`/Administration/ContentType/${content._id}`}
+                            key={index}>
+                            {content.title}
+                          </Link>
+                        </DropdownItem>
+                      );
+                    })}
                     </DropdownMenu>
                 </UncontrolledDropdown>
   

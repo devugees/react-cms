@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Table, Input } from "reactstrap";
 import axios from "axios";
+import classnames from 'classnames';
 import AddNewUser from './AddNewUser'
 
 class Allusers extends Component {
@@ -11,6 +12,8 @@ class Allusers extends Component {
       email: "",
       role: "",
       id: "",
+      errors: {},
+      successMessage: false,
       displaySocialInputs: false
     };
     this.onChange = this.onChange.bind(this);
@@ -71,8 +74,25 @@ class Allusers extends Component {
       .post(`http://localhost:5000/updateuser/${iduser}`, newdata, {
         headers: { Authorization: `Bearer ${tokenStr}` }
       })
-      .then(response => this.componentWillMount())
-      .catch(err => console.log(err));
+      .then(response => {
+        this.componentWillMount()
+
+        this.setState({
+          email: '',
+          role: '',
+          errors: {},
+          successMessage: true
+        });
+        setTimeout(() => {
+          this.setState({
+            displaySocialInputs: false,
+            successMessage: false
+          });
+        }, 5000);
+      }
+    )
+      .catch(err => this.setState({ errors: err.response.data }));
+    
   }
 
   onChange(e) {
@@ -80,34 +100,56 @@ class Allusers extends Component {
   }
 
   render() {
+    const { errors } = this.state;
+    let success;
+    if (this.state.successMessage) {
+      success = (
+        <div className="alert alert-success mt-4" role="alert">
+          Edit User Successfully</div>
+      )
+    }
     let socialInputs;
     if (this.state.displaySocialInputs) {
       socialInputs = (
         <div>
+          {}
           <Table striped>
             <thead>
               <tr>
                 <th>email</th>
                 <th>role</th>
               </tr>
+              {success}
             </thead>
             <tbody>
               <tr>
                 <td>
                   <Input
+                    className={classnames('form-control mb-4', {
+                      'is-invalid': errors.email
+                    })}
                     placeholder=""
                     name="email"
                     value={this.state.email}
                     onChange={this.onChange}
                   />
+                  {errors.email && (
+                    <div className="invalid-feedback margtop">{errors.email}</div>
+                  )}
                 </td>
                 <td>
                   <Input
+                    className={classnames('form-control mb-4', {
+                      'is-invalid': errors.role
+                    })}
                     placeholder=""
                     name="role"
                     value={this.state.role}
                     onChange={this.onChange}
                   />
+                  {errors.role && (
+                    <div className="invalid-feedback margtop">{errors.role}</div>
+                  )}
                 </td>
                 <td>
                   <button
