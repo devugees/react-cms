@@ -10,9 +10,27 @@ import axios from 'axios';
 class Administration extends Component {
   constructor() {
     super();
+    this.toggle = this.toggle.bind(this);
+    this.toggleSideBar = this.toggleSideBar.bind(this);
     this.state = {
-      contentTypes: []
+      contentTypes: [],
+      isOpen: false,
+      isOpenOne: false
     };
+  }
+
+  toggle() {
+      console.log('one')
+    this.setState({
+      isOpen: !this.state.isOpen,
+    });
+  }
+
+  toggleSideBar() {
+      console.log('two')
+    this.setState({
+      isOpenOne: !this.state.isOpenOne,
+    });
   }
 
   static propTypes = {
@@ -37,17 +55,15 @@ class Administration extends Component {
     const padding = {padding: '1em', margin: 0};
     return (
       <div className="Administration">
-        <Row style={colstyle}>
-          <Col style={colstyle}>
-            <TopHeader
-              history={this.props.history}
-              contentTypes={this.state.contentTypes}
-            />
+      <Row style={colstyle}>
+          <Col style={colstyle} >
+          <TopHeader contentTypes={this.state.contentTypes} isOpen={this.state.isOpen} toggleSideBar={this.toggleSideBar} toggle={this.toggle} history={this.props.history}/>
+        
           </Col>
         </Row>
-        <Row style={colstyle}>
-          <Col md="2" style={colstyle}>
-            <DashBoard contenttypes={this.state.contentTypes} />
+        <Row style={colstyle} >
+          <Col md="2" style={colstyle} >
+            <DashBoard isOpenOne={this.state.isOpenOne} contenttypes={this.state.contentTypes} />
           </Col>
           <Col className="Board" md="10" style={padding}>
             <Main
