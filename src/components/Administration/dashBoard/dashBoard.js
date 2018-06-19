@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './dashBoard.css';
-import {Nav, NavItem, Collapse, NavbarToggler} from 'reactstrap';
+import {Nav, NavItem, Collapse, Navbar} from 'reactstrap';
 import {Link} from 'react-router-dom';
 
 class dashBord extends Component {
@@ -70,18 +70,11 @@ class dashBord extends Component {
     );
 
     return (
-      <div
-        className="style FontColor style-1"
-        style={{
-          overflowY: "scroll",
-          webkitOverflowScrolling: "touch",
-          maxHeight: "95vh"
-        }}
-      >
-        <strong>Dashbord</strong>
+      <div className="style FontColor style-1" style={{overflowY: "scroll", webkitOverflowScrolling: "touch",maxHeight: "95vh"}}>
+        <Navbar expand="md">
 
-          <NavbarToggler onClick={this.props.toggleoneis} />
-          <Collapse isOpen={this.props.isOpenOne} navbar>
+
+          <Collapse className='flex-column align-items-start' isOpen={this.props.isOpenOne} navbar>
 
         <Nav className="color" vertical>
           <NavItem>
@@ -197,7 +190,9 @@ class dashBord extends Component {
             </Link>
           </NavItem>
         </Nav>
+      */}
         </Collapse>
+      </Navbar>
       </div>
     );
   }

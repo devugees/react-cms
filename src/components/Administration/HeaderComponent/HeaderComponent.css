@@ -4,3 +4,32 @@ img {
 	height: 110px;
 }
 */
+.Navbar {
+	    background: #85C1E9;
+	    height: 5.1vh;
+	    z-index: 100;
+}
+
+.MediaCollapse {
+	background: #85c1e9;
+}
+
+.marginRight {
+	margin-right: 1em;
+
+}
+
+.insxxxline {
+    	color: #fff;
+    }
+@media only screen and (max-width: 767px) {
+    .MediaCollapse {
+        background-color: #85c1e9;
+        width: 25em;
+        display: inline-table;
+    }
+    nav .navbar {
+    	display: block;
+    	margin-top: 1em;
+}
+}

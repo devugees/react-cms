@@ -29,41 +29,46 @@ class TopHeader extends Component {
   }
 
   render() {
-    const marginRight = {marginRight: '1em'};
+    
     const textStyle = {color: 'black', fontSize: '14px', fontWeight: 'bold'};
-    const linkStyle = {textDecoration: 'none'};
+    const LinkTextStyle = {textDecoration: 'none', color: 'black', fontSize: '14px', fontWeight: 'bold'}
+
     return (
       <div className="top" style={{display: 'inline'}}>
-        <Navbar
-          className="Navbar"
-          dark
-          expand="md"
-          style={{background: '#85C1E9', height: '5vh', zIndex: 100}}>
-          <NavbarBrand style={textStyle} href="/">
-            Dashbord
-          </NavbarBrand>
 
 
-          <NavbarToggler onClick={this.props.toggle} />
+        <Navbar style={{background: '#85C1E9'}} className="Navbar" expand="md">
+          <NavbarBrand style={textStyle} href="/">Dashbord</NavbarBrand>
+
+
+          <NavbarToggler onClick={this.props.toggle}>Option</NavbarToggler>
+          <NavbarToggler onClick={this.props.toggleSideBar}>Dashes</NavbarToggler>
+
           <Collapse isOpen={this.props.isOpen} navbar>
-            <Nav className="ml-auto" navbar style={{background: '#85C1E9'}}>
-        
-        <NavbarBrand style={{display:'flex', padding: '0', margin: 'auto'}}>
-              <NavItem style={marginRight}><Link style={linkStyle, textStyle} to="/">Go to Web Site</Link></NavItem>
-              <NavItem style={marginRight}><Link style={linkStyle, textStyle} to="/Administration/main/NewContentType">Create Node</Link></NavItem>
-        </NavbarBrand>
-       <Navbar>
-        <UncontrolledDropdown nav inNavbar style={marginRight}>
-          <DropdownToggle style={textStyle} nav caret>New</DropdownToggle>
-            <DropdownMenu right style={{top: '4vh'}}>
-              <DropdownItem>Option 1</DropdownItem>
-              <DropdownItem>Option 2</DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>Reset</DropdownItem>
-            </DropdownMenu>
-        </UncontrolledDropdown>
-        </Navbar>
-          <Button style={{padding: '0.1em 0.4em', margin: '3% 0', fontSize: '14px', height: '1%'}} onClick={this.handleLogout}>Sign out </Button>
+            <Nav className="ml-auto MediaCollapse" navbar>
+  
+              <Navbar className="navbar " expand="md">
+                
+                <NavItem className='marginRight' >
+                <Link style={LinkTextStyle} to="/">Go to Web Site</Link>
+                </NavItem>
+                <NavItem className='marginRight' >
+                <Link style={LinkTextStyle} to="/Administration/main/NewContentType">Create Node</Link>
+                </NavItem>
+                
+                <UncontrolledDropdown nav inNavbar className='marginRight' >
+                  <DropdownToggle style={textStyle} nav caret>New</DropdownToggle>
+                    <DropdownMenu right style={{top: '4vh'}}>
+                      <DropdownItem>Option 1</DropdownItem>
+                      <DropdownItem>Option 2</DropdownItem>
+                      <DropdownItem divider />
+                      <DropdownItem>Reset</DropdownItem>
+                    </DropdownMenu>
+                </UncontrolledDropdown>
+  
+                <NavItem className='marginRight' ><Button style={{border: 'none', background: 'none'}} onClick={this.handleLogout}>Sign out </Button></NavItem>
+              </Navbar>
+              
 
               {/* <UncontrolledDropdown>
                 <DropdownToggle style={textColor} caret>

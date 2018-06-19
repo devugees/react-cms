@@ -11,7 +11,7 @@ class Administration extends Component {
   constructor() {
     super();
     this.toggle = this.toggle.bind(this);
-    this.toggleoneis = this.toggleoneis.bind(this);
+    this.toggleSideBar = this.toggleSideBar.bind(this);
     this.state = {
       contentTypes: [],
       isOpen: false,
@@ -26,10 +26,9 @@ class Administration extends Component {
     });
   }
 
-  toggleoneis() {
+  toggleSideBar() {
       console.log('two')
     this.setState({
-
       isOpenOne: !this.state.isOpenOne,
     });
   }
@@ -56,15 +55,15 @@ class Administration extends Component {
     const padding = {padding: '1em', margin: 0};
     return (
       <div className="Administration">
-        <Row style={colstyle}>
+      <Row style={colstyle}>
           <Col style={colstyle} >
-            <TopHeader isOpen={this.state.isOpen} toggle={this.toggle} history={this.props.history}/>
+    <TopHeader isOpen={this.state.isOpen} toggleSideBar={this.toggleSideBar} toggle={this.toggle} history={this.props.history}/>
         
           </Col>
         </Row>
         <Row style={colstyle} >
           <Col md="2" style={colstyle} >
-            <DashBoard isOpenOne={this.state.isOpenOne} toggleoneis={this.toggleoneis} contenttypes={this.state.contentTypes} />
+            <DashBoard isOpenOne={this.state.isOpenOne} contenttypes={this.state.contentTypes} />
           </Col>
           <Col className="Board" md="10" style={padding}>
             <Main
