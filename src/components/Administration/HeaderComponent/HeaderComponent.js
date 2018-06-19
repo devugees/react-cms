@@ -45,9 +45,9 @@ class TopHeader extends Component {
           <NavbarToggler onClick={this.props.toggleSideBar}>Dashes</NavbarToggler>
 
           <Collapse isOpen={this.props.isOpen} navbar>
-            <Nav className="ml-auto MediaCollapse" navbar>
+            <Nav className="ml-auto" navbar>
   
-              <Navbar className="navbar " expand="md">
+              <Navbar style={{background: '#85c1e9', marginTop: '-7px', padding: '1em 0 0 1em' }} navbar expand="md">
                 
                 <NavItem className='marginRight' >
                 <Link style={LinkTextStyle} to="/">Go to Web Site</Link>

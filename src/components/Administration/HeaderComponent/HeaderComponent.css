@@ -6,12 +6,9 @@ img {
 */
 .Navbar {
 	    background: #85C1E9;
-	    height: 5.1vh;
+	    height: 100%;
+	    max-height: 5vh;
 	    z-index: 100;
-}
-
-.MediaCollapse {
-	background: #85c1e9;
 }
 
 .marginRight {
@@ -25,9 +22,9 @@ img {
 @media only screen and (max-width: 767px) {
     .MediaCollapse {
         background-color: #85c1e9;
-        width: 25em;
+        width: 20em;
         display: inline-table;
-    }
+	  }
     nav .navbar {
     	display: block;
     	margin-top: 1em;
