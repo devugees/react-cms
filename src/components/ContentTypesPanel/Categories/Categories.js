@@ -115,7 +115,14 @@ class Categories extends Component {
           headers: { Authorization: `Bearer ${tokenStr}` }
         }
       )
-      .then(response => this.componentDidMount())
+      .then(response => {
+        this.componentDidMount()
+        setTimeout(() => {
+          this.setState({
+            displayInputs: false,
+          });
+        }, 5000);
+      })
       .catch(err => console.log(err));
   }
 
