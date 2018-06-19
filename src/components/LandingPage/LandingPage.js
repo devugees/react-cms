@@ -6,6 +6,8 @@ import IconBox from './LayoutComponents/IconBox';
 import Post from './LayoutComponents/Post';
 import Footer from './LayoutComponents/Footer';
 import LayoutComponents from './LayoutComponents/LayoutComponents';
+
+
 import './LandingPage.css';
 
 class LandingPage extends Component {
@@ -22,14 +24,14 @@ class LandingPage extends Component {
             key: 'image',
             element: 'img'
           },
+              {
+                key: 'title',
+                element: 'h'
+              },
           {
             key: 'body',
             element: 'p'
           },
-          {
-            key: 'title',
-            element: 't'
-          }
         ],
         numperOfPosts: 4,
         viewType: 'Grid',
@@ -46,13 +48,13 @@ class LandingPage extends Component {
             element: 'img'
           },
           {
+            key: 'title',
+            element: 'h'
+          },
+          {
             key: 'body',
             element: 'p'
           },
-          {
-            key: 'title',
-            element: 'h'
-          }
         ],
         numperOfPosts: 4,
         viewType: 'Grid',
@@ -69,20 +71,24 @@ class LandingPage extends Component {
             element: 'img'
           },
           {
+            key: 'title',
+            element: 'h'
+          },
+          {
             key: 'body',
             element: 'p'
           },
-          {
-            key: 'title',
-            element: 'h'
-          }
         ],
         numperOfPosts: 4,
         viewType: 'Grid',
         columns: 3
       }
-    ]
+    ],
+    javascriptCode:"",
+    cssCode:"",
   };
+
+/*
   theme = {
     sections: [
       {
@@ -192,6 +198,9 @@ class LandingPage extends Component {
   generateTheme = {
     sections: []
   };
+
+*/
+
   componentWillMount() {
     fetch('http://localhost:5000/api/appearance')
       .then(resp => resp.json())
@@ -206,10 +215,28 @@ class LandingPage extends Component {
           'No internet connection found. App is running in offline mode.'
         );
       });
+      fetch('http://localhost:5000/api/customcode')
+      .then(resp => resp.json())
+      .then(data => {
+        console.log(data);
+        this.setState({
+          javascriptCode: data[0].javascriptCode,
+          cssCode: data[0].cssCode
+        });
+        
+      })
+      .catch(() => {
+        console.log(
+          'No internet connection found. App is running in offline mode.'
+        );
+      });
   }
   render() {
     return (
       <React.Fragment>
+      <style>
+      {this.state.cssCode}
+      </style>
         <Menu />
         <Slider />
         <Container>
@@ -225,6 +252,10 @@ class LandingPage extends Component {
           </Container>
         </div>
         <Footer />
+        <script type="text/javascript">
+        {this.state.javascriptCode}
+        </script>
+
       </React.Fragment>
     );
   }

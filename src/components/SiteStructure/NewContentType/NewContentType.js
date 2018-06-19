@@ -18,17 +18,18 @@ class NewContentType extends Component {
   state = {
     contentSettings: {},
     fields: [],
-    fieldsKeys: {
-      FieldLabel: "",
-      MachineName: "",
-      Type: "",
-      TypeOption: "",
-      Unique: "",
-      Visible: "",
-      Required: "",
-      CssClasses: "",
-      CustomCss: ""
-    }
+    fieldsKeys:{ 
+      FieldLabel:"",
+      MachineName:"",
+      Type:"",
+      HtmlElement:"",
+      TypeOption:"",
+      Unique:"",
+      Visible:"",
+      Required:"",
+      CssClasses:"",
+      CustomCss:"",
+     }
   };
 
   newContentTypeObj = {};
@@ -92,7 +93,7 @@ class NewContentType extends Component {
                   />
                 </FormGroup>
               </Col>
-              <Col sm="6" md="6" lg="6">
+              {/*<Col sm="6" md="6" lg="6">  // we emplemt ot when we emplemnt dynamic routes depending on this//
                 <FormGroup>
                   <Label>URL*</Label>
                   <Input
@@ -102,7 +103,7 @@ class NewContentType extends Component {
                     onChange={this.handelChange}
                   />
                 </FormGroup>
-              </Col>
+              </Col>*/}
             </Row>
             <Row>
               <Col sm="6" md="6" lg="6">

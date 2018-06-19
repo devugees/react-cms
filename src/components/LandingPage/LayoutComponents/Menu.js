@@ -16,7 +16,7 @@ export default class Menu extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      title: 'Reapress',
+      title: '',
       menuItems: [
         {
           url: '/',
@@ -29,6 +29,20 @@ export default class Menu extends React.Component {
       ],
       isOpen: false
     };
+  }
+  componentWillMount() {
+    fetch('http://localhost:5000/api/appearance')
+      .then(resp => resp.json())
+      .then(data => {
+        this.setState({
+          title: data[0].websitetitle
+        });
+      })
+      .catch(() => {
+        console.log(
+          'No internet connection found. App is running in offline mode.'
+        );
+      });
   }
 
   toggle() {

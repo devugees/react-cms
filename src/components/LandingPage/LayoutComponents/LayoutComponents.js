@@ -41,8 +41,10 @@ class LayoutComponents extends Component {
     this.state.content.map((con, index) => {
       let style = {
         border: '.5px solid rgba(0, 0 , 0, .2)',
-        padding: '.5rem',
-        margin: '.5rem'
+        padding: '1rem',
+        margin: '.5rem',
+        height: "18rem",
+        width: "22rem",
       };
       return cols.push(
         <Col sm="2" md="4" key={index} style={style}>
@@ -52,7 +54,6 @@ class LayoutComponents extends Component {
             } else if (field.element == 'img') {
               return (
                 <img
-                  style={{height: '100px', width: '100px'}}
                   src={con.image}
                   key={i}
                 />

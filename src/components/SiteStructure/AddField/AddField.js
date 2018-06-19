@@ -11,6 +11,7 @@ import {
   Col
 } from 'reactstrap';
 import './AddField.css';
+
 //import axios from 'axios';
 
 class AddField extends Component {
@@ -23,6 +24,7 @@ class AddField extends Component {
   requiredRef = React.createRef();
   cssClassNameRef = React.createRef();
   customCsslRef = React.createRef();
+  htmlElementRef = React.createRef();
 
   static propTypes = {
     addFields: PropTypes.array,
@@ -37,6 +39,7 @@ class AddField extends Component {
         .toLowerCase()
         .replace(/\s/g, ''),
       type: this.typeRef.current.value,
+      htmlElement: this.htmlElementRef.current.value,
       typeOption: this.typeOptRef.current.value,
       unique: this.uniqueRef.current.checked,
       visible: this.visibleRef.current.checked,
@@ -69,29 +72,43 @@ class AddField extends Component {
                     type="select"
                     id="exampleSelect"
                     innerRef={this.typeRef}>
-                    <option>Text</option>
-                    <option>Button</option>
-                    <option>Checkbox</option>
-                    <option>Color</option>
-                    <option>Date</option>
-                    <option>Datetime-local</option>
-                    <option>Email</option>
-                    <option>File</option>
-                    <option>Hidden</option>
-                    <option>Image</option>
-                    <option>Month</option>
-                    <option>Number</option>
-                    <option>Password</option>
-                    <option>Radio</option>
-                    <option>Range</option>
-                    <option>Reset</option>
-                    <option>Search</option>
-                    <option>Telephone</option>
-                    <option>Time</option>
-                    <option>Url</option>
-                    <option>Week</option>
-                    <option>Select</option>
-                    <option>Textarea</option>
+                    <option>text</option>
+                    <option>textarea</option>
+                    <option>email</option>
+                    <option>url</option>
+                    <option>image</option>
+                    <option>button</option>
+                    <option>checkbox</option>
+                    <option>color</option>
+                    <option>date</option>
+                    <option>month</option>
+                    <option>number</option>
+                    <option>password</option>
+                    <option>radio</option>
+                    <option>telephone</option>
+                    <option>time</option>
+                    <option>week</option>
+                    <option>select</option>
+                  </Input>
+                </FormGroup>
+              </Col>
+              <Col>
+                <FormGroup>
+                  <Label for="exampleSelect">Html-element</Label>
+                  <Input
+                    name="htmlElement"
+                    type="select"
+                    id="exampleSelect"
+                    innerRef={this.htmlElement}>
+                    <option>h1</option>
+                    <option>h2</option>
+                    <option>h3</option>
+                    <option>h4</option>
+                    <option>h5</option>
+                    <option>h6</option>
+                    <option>p</option>
+                    <option>img</option>
+                    <option>span</option>
                   </Input>
                 </FormGroup>
               </Col>
