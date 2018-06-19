@@ -13,7 +13,10 @@ class HandleContentTypeView extends Component {
       selectEntry: '',
       css: '',
       selectGrid: '',
-      select: ''
+      selectContentType: '',
+      finalContentType: {},
+      chosenFields: []
+      
     };
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -28,28 +31,65 @@ class HandleContentTypeView extends Component {
   }
    onChange(e) {
     this.setState({[e.target.name]: e.target.value});
+   
 
   }
-handleSave =(e) => {
- e.preventDefault();
-  const content = {
-  	 value: this.state.value,
+ 
+handletDidUpdate  = () =>{
+  	let contenttypeData = this.props.contenttypeData;
+
+	let select = this.state.selectContentType;
+
+   if(this.state.selectContentType) {
+   let singlContentType =[];
+   let optionsField = contenttypeData.map((items) => items.machineName).indexOf(select);
+    singlContentType.push(contenttypeData[optionsField])
+
+    let finalContentType = {};
+    finalContentType._id = singlContentType[0]._id
+    finalContentType.title = singlContentType[0].title
+    finalContentType.machineName = singlContentType[0].machineName
+   
+
+     let chosenFields = [];
+     let  handleFields;
+    if(this.state.selectContentType) {
+     handleFields = singlContentType.map(item => item.fields);
+     this.state.value.map(item => {
+  	handleFields[0].map((field) => {
+  		if (item.label === field.machineName) {
+  			chosenFields.push(field)
+  		}
+  	})
+   });
+  }
+  let contentTypeObject = {
       selectview: this.state.selectview,
       selectEntry: this.state.selectEntry,
       css: this.state.css,
       selectGrid: this.state.selectGrid,
-      select: this.state.select
+      finalContentType,
+      chosenFields
   }
-  console.log(content)
+  if(contentTypeObject.finalContentType !== '' &&
+  	   contentTypeObject.chosenFields.length !== 0 ) {
+  this.props.bringContentTypeObject(contentTypeObject);
+  }
 }
 
-  render() {
-  	let contenttypeData = this.props.contenttypeData;
+}
 
+
+
+
+  render() {
+  
+  	let contenttypeData = this.props.contenttypeData;
+  	
   	const contenttypeSelectTitle = (
            <div>
               <Label for="exampleSelect">contenttypesTitle</Label>
-                 <Input type="select"  name="select"  onChange={this.onChangeSelct.bind(this)}>
+                 <Input type="select"  name="selectContentType"  onChange={this.onChangeSelct.bind(this)}>
                      <option></option>
                  )
                   {contenttypeData.map(item => (
@@ -59,13 +99,13 @@ handleSave =(e) => {
                 </div>
              );
 
- let select = this.state.select;
+ let select = this.state.selectContentType;
  let singlContentType =[];
  let optionsField = contenttypeData.map((items) => items.machineName).indexOf(select);
     singlContentType.push(contenttypeData[optionsField])
 
  var handleFields;
- if(this.state.select) {
+ if(this.state.selectContentType) {
 
     handleFields = singlContentType.map(item => item.fields);
 
@@ -75,7 +115,7 @@ handleSave =(e) => {
       value: index
     })))
 
-    var categoriesProp = (
+    var contentTypesProp = (
       <div className="section">
       <Label className="mt-4 mb-0">Fields</Label>
         <h3 className="section-heading">{options.label}</h3>
@@ -127,7 +167,7 @@ handleSave =(e) => {
            </FormGroup>
 
            <FormGroup>
-            {categoriesProp}
+            {contentTypesProp}
            </FormGroup>
 
            <FormGroup className="mt-4">
@@ -159,7 +199,7 @@ handleSave =(e) => {
 	          <Input type="text" name="css" id="text" placeholder="with a placeholder" onChange={this.onChange} />
            </FormGroup>
               <Button onClick={this.props.remove} color="primary">X</Button>
-                   
+              <Button onClick={this.handletDidUpdate} color="primary">Save</Button>
         </Form>
       </div>
     );

@@ -88,6 +88,7 @@ this.setState({displaySocialInputs: !this.state.displaySocialInputs})
               <tr>
                 <td>
                   <Input
+                    type="email"
                    className={classnames('form-control mb-4', {
                                 'is-invalid': errors.email
                               })}
@@ -103,6 +104,7 @@ this.setState({displaySocialInputs: !this.state.displaySocialInputs})
                 </td>
                 <td>
                   <Input
+                    type="text"
                    className={classnames('form-control mb-4', {
                                 'is-invalid': errors.role
                               })}
@@ -117,6 +119,7 @@ this.setState({displaySocialInputs: !this.state.displaySocialInputs})
                 </td>
                 <td>
                   <Input
+                    type="password"
                   className={classnames('form-control mb-4', {
                                 'is-invalid': errors.password
                               })}
