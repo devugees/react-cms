@@ -147,12 +147,13 @@ toggleForm(e) {
 
         return (
           <div>
-         <div >
+         <div>
             <InputGroup >
                 <Input  
                        type="text"
-                        name="description"
-                        className="mr-0"
+                       name="description"
+                       placeholder="File path"
+                        className=""
                         value={this.state.path}
                         onChange={this.onChange} />
                 <InputGroupAddon addonType="append">

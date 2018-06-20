@@ -37,7 +37,6 @@ removeContentTyps = (key) => {
 
 
   render() {
-  console.log(this.props.contenttypesObject);
     const style = {marginBottom: '1em'};
     const btnFile = {marginBottom: '1em', height: '2em'};
     const brdJumbo = { border: "1px solid grey", margin: '0 0 2em 0' };
@@ -99,25 +98,31 @@ removeContentTyps = (key) => {
             <Row style={{margin: '1em'}}>
               <Col>
                 <h5>Slide 1 </h5>
-                <FileUploader style={style} bringFileUrl={this.bringFileUrl} />
+                <div className="mb-3">
+                    <FileUploader style={style} bringFileUrl={this.bringFileUrl} />
                 <Input style={style} placeholder="Title" />
                 <Input style={style} placeholder="Text" />
               </Col>
               <Col>
                 <h5>Slide 2 </h5>
-                <FileUploader bringFileUrl={this.bringFileUrl} />
+                <div className="mb-3">
+                    <FileUploader bringFileUrl={this.bringFileUrl} />
                 <Input style={style} placeholder="Title" />
                 <Input style={style} placeholder="Text" />
               </Col>
               <Col>
                 <h5>Slide 3 </h5>
-                <FileUploader bringFileUrl={this.bringFileUrl} />
+                <div className="mb-3">
+                    <FileUploader bringFileUrl={this.bringFileUrl} />
+                </div>
                 <Input style={style} placeholder="Title" />
                 <Input style={style} placeholder="Text" />
               </Col>
               <Col>
                 <h5>Slide 4 </h5>
-                <FileUploader bringFileUrl={this.bringFileUrl} />
+                <div className="mb-3">
+                    <FileUploader bringFileUrl={this.bringFileUrl} />
+                </div>
                 <Input style={style} placeholder="Title" />
                 <Input style={style} placeholder="Text" />
               </Col>
