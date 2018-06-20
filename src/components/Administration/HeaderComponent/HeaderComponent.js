@@ -37,8 +37,8 @@ class TopHeader extends Component {
       <div className="top" style={{display: 'inline'}}>
 
 
-        <Navbar style={{background: '#85C1E9', padding: '0 1em 0 1em', outline: 'none'}} className="Navbar DivNav" expand="md">
-          <NavbarBrand style={textStyle} href="/">Dashbord</NavbarBrand>
+        <Navbar style={{background: '#85C1E9'}} className="Navbar" expand="md">
+          <NavbarBrand style={textStyle} href="/">Check your Website</NavbarBrand>
 
 
           <NavbarToggler onClick={this.props.toggle}>Option</NavbarToggler>
@@ -51,7 +51,7 @@ class TopHeader extends Component {
                 
                 <NavItem className='marginRight' >
                 <Link style={LinkTextStyle} to="/">Go to Web Site</Link>
-                </NavItem>
+                </NavItem> */ }
                 <NavItem className='marginRight' >
                 <Link style={LinkTextStyle} to="/Administration/main/NewContentType">Create Node</Link>
                 </NavItem>

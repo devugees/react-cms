@@ -107,12 +107,13 @@ class dashBord extends Component {
                 Menues
               </Link>
             </NavItem>
+            {/*
             <NavItem>
               <Link className="dashLinks" to="/Administration/main/AllFields">
                 All Fileds
-              </Link>
+            </Link> 
             </NavItem>
-            {/*<NavItem>
+            <NavItem>
           <Link className='dashLinks'  to="/Administration/main/FieldTypes">Field Types</Link>
         </NavItem>*/}
           </Nav>

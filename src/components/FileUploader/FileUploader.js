@@ -21,7 +21,7 @@ export default class FileUploader extends Component {
           Toggleform: false,
           ShowImageinput: false,
           border: '',
-          path: path
+          path: path,
         }
         this.toggle = this.toggle.bind(this);
         this.toggleNew = this.toggleNew.bind(this);
@@ -36,6 +36,15 @@ export default class FileUploader extends Component {
             .catch(function (error) {
               console.log(error);
             });
+    }
+
+    componentDidUpdate(prevProps){
+      if(this.props != prevProps){
+
+        if(this.props.remove){
+          this.setState({path:""})
+        }
+      }
     }
 
       onChange = (e) => {
@@ -150,7 +159,7 @@ toggleForm(e) {
                    <Button className="btn btn-primary" onClick={this.toggle}>Select File</Button>
                 </InputGroupAddon>
               </InputGroup>
-               {this.state.ShowImageinput ? (<img  src={this.state.path}
+               {this.state.ShowImageinput && !this.props.remove  ? (<img  src={this.state.path}
                         style={{
                           width: '100px',
                           height: '100px',
@@ -180,8 +189,8 @@ toggleForm(e) {
                   {this.state.Toggleform ? uploderForm : null}
                   
                 <ModalFooter>
-                  <Button color="primary" onClick={this.toggle}>Choose</Button>{' '}
                   <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                  <Button color="primary" onClick={this.toggle}>Choose</Button>{' '}
                 </ModalFooter>
               </Modal>
           

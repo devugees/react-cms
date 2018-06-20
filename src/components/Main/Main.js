@@ -30,6 +30,10 @@ class Main extends Component {
     allTheFields: []
   }
 
+  emptyFields = () => {
+    this.setState({fields: []})
+  }
+
   static propTypes = {
    contenttypes: PropTypes.array
   }
@@ -73,7 +77,7 @@ class Main extends Component {
       "AllUsers": <AllUsers/>,
       "Roles": <Roles/>,
       "Plugins": <Plugins/>,
-      "ContentType": <ContentTypePanel fields={this.state.fields} contenttypes={this.props.contenttypes} id={this.props.activeLink.split('/')[3]} />,
+      "ContentType": <ContentTypePanel fields={this.state.fields} contenttypes={this.props.contenttypes} emptyFields={this.emptyFields} id={this.props.activeLink.split('/')[3]} />,
       "Structure": <Structure fields={this.state.fields} id={this.props.activeLink.split('/')[3]} />,
       "Categories": <Categories id={this.props.activeLink.split('/')[3]}/>,
     }
