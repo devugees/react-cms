@@ -138,7 +138,7 @@ class AddEntrie extends Component {
       ) {
         return (
           <div className="col-md-6 mt-1">
-            <div>Uplode Photo</div>
+            <div>Upload Photo</div>
             <div>
               <FileUploader
                 bringFileUrl={this.bringFileUrl}
