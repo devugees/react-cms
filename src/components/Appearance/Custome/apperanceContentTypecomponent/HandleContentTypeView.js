@@ -22,6 +22,35 @@ class HandleContentTypeView extends Component {
     this.onChange = this.onChange.bind(this);
   }
 
+  componentDidMount = () => {
+    if (this.props.selectedValues) {
+    	for (var key in this.props.selectedValues) {
+    		console.log(key)
+    		this.setState({ [key]: this.props.selectedValues.key})
+    	}
+    }  
+  }
+
+  componentDidUpdate = (prevProps, prevState) => {
+  	console.log("this.props",this.props)
+  	console.log("prevProps",prevProps)
+
+    if(prevProps != this.props) {
+
+	    if (this.props.selectedValues) {
+
+	    	for (var key in this.props.selectedValues) {
+	    		console.log("key",key)
+	    		this.setState({ [key]: this.props.selectedValues.key})
+	    	}
+	    } 
+    }
+  }
+
+
+
+
+
   handleSelectChange(value) {
     this.setState({value});
   }
@@ -64,6 +93,7 @@ handletDidUpdate  = () =>{
    });
   }
   let contentTypeObject = {
+  	  keyItem: this.props.key1,
       selectview: this.state.selectview,
       selectEntry: this.state.selectEntry,
       css: this.state.css,
@@ -79,17 +109,13 @@ handletDidUpdate  = () =>{
 
 }
 
-
-
-
   render() {
-  
+
   	let contenttypeData = this.props.contenttypeData;
-  	
   	const contenttypeSelectTitle = (
            <div>
               <Label for="exampleSelect">contenttypesTitle</Label>
-                 <Input type="select"  name="selectContentType"  onChange={this.onChangeSelct.bind(this)}>
+                 <Input type="select" value={this.state.finalContentType.machineName}  name="selectContentType"  onChange={this.onChangeSelct.bind(this)}>
                      <option></option>
                  )
                   {contenttypeData.map(item => (
@@ -138,7 +164,7 @@ handletDidUpdate  = () =>{
        viewColomus= (
             <div className="mt-4">
            	 <Label for="exampleSelect">Colomus</Label>
-                 <Input type="select"  name="selectGrid"  onChange={this.onChange}>
+                 <Input type="select" value={this.state.selectGrid}  name="selectGrid"  onChange={this.onChange}>
                      <option>Select</option>
                      <option>1</option>
                      <option>2</option>
@@ -172,18 +198,13 @@ handletDidUpdate  = () =>{
 
            <FormGroup className="mt-4">
            	 <Label for="exampleSelect">Entery Number</Label>
-                 <Input type="select"  name="selectEntry"  onChange={this.onChange}>
-                     <option>Select</option>
-                     <option>1</option>
-                     <option>2</option>
-                     <option>3</option>
-                     <option>4</option>
+                 <Input type="number" value={this.state.selectEntry}  name="selectEntry"  onChange={this.onChange}>
                  </Input>
            </FormGroup>
 
             <FormGroup className="mt-4">
            	 <Label for="exampleSelect">View Mode</Label>
-                 <Input type="select"  name="selectview"  onChange={this.onChange}>
+                 <Input type="select"  value={this.state.selectview} name="selectview"  onChange={this.onChange}>
                      <option>Select</option>
                      <option>Grid</option>
                      <option>Slider</option>
@@ -196,7 +217,7 @@ handletDidUpdate  = () =>{
            </FormGroup>
            <FormGroup>
 	          <Label for="exampleEmail">Css</Label>
-	          <Input type="text" name="css" id="text" placeholder="with a placeholder" onChange={this.onChange} />
+	          <Input type="text" name="css" value={this.state.css} id="text" placeholder="with a placeholder" onChange={this.onChange} />
            </FormGroup>
               <Button onClick={this.props.remove} color="primary">X</Button>
               <Button onClick={this.handletDidUpdate} color="primary">Save</Button>
