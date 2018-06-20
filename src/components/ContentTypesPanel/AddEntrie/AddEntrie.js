@@ -154,21 +154,21 @@ class AddEntrie extends Component {
             </div>
           </div>
         );
-      } else if (
-        object.type === "categories") {
+      } else if ( object.type === "categories") {
         return (
           <div className="w-100 ">
             <Label>Categories</Label>
             <div>{categoriesProp}</div>
           </div>
         );
-      } else if (
-        object.type === "textarea"
-      ) {
+      } else if ( object.type === "textarea") {
         return (
           <div className="w-100 ">
             <Label>{object.fieldLabel.charAt(0).toUpperCase() + object.fieldLabel.slice(1)}</Label>
-            <ReactQuill onChange={this.handleQuillChange.bind(this, object.machineName) }/>
+            <ReactQuill
+              value={this.state[object.machineName]}
+              onChange={this.handleQuillChange.bind(this, object.machineName) }
+            />
           </div>
         );
       }

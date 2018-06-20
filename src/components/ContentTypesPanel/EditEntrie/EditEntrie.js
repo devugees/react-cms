@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Button, Form, FormGroup, Label} from 'reactstrap';
+import {Button, Input, Form, FormGroup, Label} from 'reactstrap';
 import './EditEntrie.css';
 import axios from 'axios';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import FileUploader from '../../FileUploader/FileUploader';
-
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 let selectedCategorie ;
 class EditEntrie extends Component {
@@ -66,17 +67,12 @@ class EditEntrie extends Component {
       this.setState({value:value})
       this.editedEntrie.categories = value
     }else {
-
-
-
     let inputName = event.target.name;
     this.editedEntrie[inputName] = event.target.value;
     }
-    console.log("editedEntrie",this.editedEntrie);
   };
  
   handelFormSubmit = event => {
-    console.log("editedEntrie",this.editedEntrie)
     event.preventDefault();
     this.props.AddEditedItemToState(this.editedEntrie,this.props.itemWillBeEdited.index);
     axios
@@ -85,7 +81,6 @@ class EditEntrie extends Component {
         this.editedEntrie
       )
       .then(response => {
-        console.log("response",response)
         if (response.data.message) {
           console.error(response.data.message);
         }
@@ -96,18 +91,21 @@ class EditEntrie extends Component {
     this.props.toggle()
   };
 
-  handleSelectChange(value) {
+  handleQuillChange = (  name, value) => {
+    //TODO fill modal quill editor with values from the entry
+    this.editedEntrie[name] = value;
+  }
     
+
+  handleSelectChange(value) {
+    this.setState({value});
   }
 
   render() {
-
-
     const options = this.state.categories.map((item, index) => ({
       label: item.name,
       value: index
     }));
-console.log("selectedCategorie",selectedCategorie);
     const categoriesProp = (
       <div className="section">
         <h3 className="section-heading">{options.label}</h3>
@@ -148,13 +146,24 @@ console.log("selectedCategorie",selectedCategorie);
                     <div>{categoriesProp}</div>
                     </div>
                     )
+              } else if ( object.type === "textarea") {
+              return (
+                <div className="w-100 ">
+                  <Label>{object.fieldLabel.charAt(0).toUpperCase() + object.fieldLabel.slice(1)}</Label>
+                  {/* TODO fill modal quill editor with values from the entry */}
+                  <ReactQuill 
+                    defaultValue={this.state.itemWillBeEdited.item[object.machineName]}
+                    onChange={this.handleQuillChange.bind(this, object.machineName) }
+                  />
+                </div>
+              );
           } else {
                return(<div key={index}>
 
                   <FormGroup style={styleFormGroups} className="FormGroup">
                     <Label for="exampleEmail">
                     {object.fieldLabel}</Label>
-                    <input
+                  <Input
                       name={object.machineName}
                       type={object.type}
                       required={object.required}
