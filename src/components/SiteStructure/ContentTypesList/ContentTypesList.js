@@ -20,11 +20,20 @@ class ContentTypesList extends Component {
       });
     });
     console.log(contentTypesWithoutId);
-
+    const ButtonStyle = {margin: '1em 0px 0px 0px'}
+    const brdJumbo = { border: "1px solid grey", margin: '0 0 2em 0' };
+    const h3Brd = {
+      marginTop: " -17px",
+      marginLeft: "5px",
+      background: "white",
+      width: 'auto',
+      display: 'table'
+    };
+    const ViewTables = {width: '-webkit-fill-available'}
     return (
-      <div>
-
-          <ViewTable
+      <div style={brdJumbo}>
+      <h5 style={h3Brd}>Content List</h5>
+          <ViewTable style={ViewTables}
             contenttypes={this.props.contenttypes}
             items={contentTypesWithoutId}
             keys={contentTypesWithoutId[0]}
@@ -32,7 +41,7 @@ class ContentTypesList extends Component {
           />
 
         <Link to="/Administration/main/NewContentType">
-          <Button>Create New</Button>
+          <Button style={ButtonStyle}>Create New</Button>
         </Link>
       </div>
     );

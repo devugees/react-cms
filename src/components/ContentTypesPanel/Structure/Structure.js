@@ -107,6 +107,7 @@ itemWillBeEdited = {};
       width: 'auto',
       display: 'table'
     };
+    const AddFieldStyle = {margin: '0'}
       return (
 	      <div className='StructurePage'>
           <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
@@ -130,11 +131,11 @@ itemWillBeEdited = {};
               keys={this.state.fieldsKeys}/>
             </Row>
 
-            <Row>
+            <Row style={AddFieldStyle}>
               <AddField addFields={this.addFields} id={this.props.id} />
             </Row>
 
-            <Row className='float-right'>
+            <Row className='float-right' style={AddFieldStyle}>
             <Button type="submit" className="btn mt-2 btn btn-outline-success btn-md"  onClick={this.handelClick} >Save</Button>
             <Button className="btn ml-2 mt-2 btn btn-outline-secondary btn-md">Cancel</Button>
             </Row>
