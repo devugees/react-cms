@@ -41,7 +41,7 @@ class CustomeCode extends Component {
       .then(response => {
         console.log(response);
         let data= {};
-        data.javascriptCode = response.data[0].javascriptCode,
+        data.javascriptCode = response.data[0].javascriptCode
         data.cssCode = response.data[0].cssCode
         this.setState({data});
       })

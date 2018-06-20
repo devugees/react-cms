@@ -51,13 +51,13 @@ class Custome extends Component {
   };
 
   render() {
-    const style = {marginBottom: '1em'};
-    const btnFile = {marginBottom: '1em', height: '2em'};
+    //const style = {marginBottom: '1em'};
+    //const btnFile = {marginBottom: '1em', height: '2em'};
 
-    const options = this.state.categories.map((item, index) => ({
-      label: item.name,
-      value: index,
-    }));
+    //const options = this.state.categories.map((item, index) => ({
+      //label: item.name,
+      //value: index,
+    //}));
 
     return (
      

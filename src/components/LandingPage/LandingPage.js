@@ -3,7 +3,7 @@ import {Container} from 'reactstrap';
 import Menu from './LayoutComponents/Menu';
 import Slider from '../Slider/Slider';
 import IconBox from './LayoutComponents/IconBox';
-import Post from './LayoutComponents/Post';
+//import Post from './LayoutComponents/Post';
 import Footer from './LayoutComponents/Footer';
 import LayoutComponents from './LayoutComponents/LayoutComponents';
 

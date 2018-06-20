@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Form, Row, Col, Input, Button } from "reactstrap";
 import Select from "react-select";
-import axios from "axios";
+//import axios from "axios";
 import randomstring from "randomstring";
 import HandleContentTypeView from "./apperanceContentTypecomponent/HandleContentTypeView";
 import FileUploader from "../../FileUploader/FileUploader";
@@ -13,7 +13,7 @@ class AppearanceForm extends Component {
     this.state= {
        contentTypesArr: [],
                  }
-                 showcomponent: false
+                 //showcomponent: false
                 }
 
   static propTypes = {

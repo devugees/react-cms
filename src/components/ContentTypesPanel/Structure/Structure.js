@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Button,Container, Row, Form, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import TopHeader from '../../Administration/HeaderComponent/HeaderComponent';
-import DashBoard from '../../Administration/dashBoard/dashBoard';
+import { Button, Row, Modal, ModalHeader, ModalBody } from 'reactstrap';
+//import TopHeader from '../../Administration/HeaderComponent/HeaderComponent';
+//import DashBoard from '../../Administration/dashBoard/dashBoard';
 import AddField from '../../SiteStructure/AddField/AddField';
 import ViewTable from '../../ViewTable/ViewTable';
 import EditField from '../EditField/EditField';
@@ -94,11 +94,10 @@ itemWillBeEdited = {};
       .catch(error => {
         console.log("Error: ", error);
       });
-
   }
  
 	render() {
-   const colstyle ={padding: '0',margin:'0 0 0 0', height: 'auto'};
+   //const colstyle ={padding: '0',margin:'0 0 0 0', height: 'auto'};
 	    return (
 	      <div>
           <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>

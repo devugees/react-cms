@@ -12,7 +12,7 @@ let selectedCategorie ;
 class EditEntrie extends Component {
   constructor(props) {
     super(props);
-    let categories = [];
+    //let categories = [];
     let selectedFile;
 
     if(this.props.itemWillBeEdited.item.categories){
