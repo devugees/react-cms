@@ -23,13 +23,13 @@ class ContentTypesList extends Component {
 
     return (
       <div>
-        <Row>
+
           <ViewTable
             contenttypes={this.props.contenttypes}
             items={contentTypesWithoutId}
             keys={contentTypesWithoutId[0]}
           />
-        </Row>
+
         <Link to="/Administration/main/NewContentType">
           <Button>Create New</Button>
         </Link>

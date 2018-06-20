@@ -54,8 +54,6 @@ class Main extends Component {
   };
 
   render() {
-
-
     
       let components = {
       "View": <View  id={this.props.activeLink.split('/')[3]} />,                                                                           
@@ -83,8 +81,18 @@ class Main extends Component {
       let linkMain = this.props.activeLink.split('/')[3];
       let linkSecound = this.props.activeLink.split('/')[2];
       let component = components[linkMain] || components[linkSecound] || <PageNotFound/>
-      return (<div>{component}</div>)
-    
+      return (<div style={{
+                    height: '95vh',
+                    position: 'absolute',
+                    padding: '1em',
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    top: 0,
+                    overflowY: 'auto',
+                    overflowScrolling: "touch",
+                    WebkitOverflowScrolling: "touch"
+                  }} className='MainScroll'>{component}</div>)
 
     
     }
