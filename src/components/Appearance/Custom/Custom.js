@@ -7,6 +7,7 @@ class Custom extends Component {
     super();
     this.state = {
       categories: [],
+      contentTypesArr: [],
       value: [],
       crazy: false,
       form: false,
@@ -28,6 +29,32 @@ class Custom extends Component {
       });
   }
 
+  incremnetContentTyps = () => {
+      const contentTypesArr = [...this.state.contentTypesArr];
+      const contentTypeView = {
+        selectview: '',
+        selectEntry: '',
+        css: '',
+        selectGrid: '',
+        selectContentType: '',
+        finalContentType: {},
+        chosenFields: []
+      }
+      contentTypesArr.push(contentTypeView)
+      this.setState({
+        contentTypesArr: contentTypesArr,
+        showcomponent: true,
+      })
+}
+removeContentTypsFromState = (key) => {
+     console.log("key",key)
+    const contentTypesArr = [...this.state.contentTypesArr]
+    contentTypesArr.splice(key, 1)
+    console.log("contentTypesArr",contentTypesArr);
+    this.setState({contentTypesArr})
+   
+  };
+
   handleSubmit = event => {
     event.preventDefault();
     let form = {};
@@ -39,6 +66,7 @@ class Custom extends Component {
         form[event.target.elements[i].name] = event.target.elements[i].value;
       }
     }
+ 
     axios
       .post('http://localhost:5000/api/appearance', form)
       .then(response => {
@@ -49,8 +77,17 @@ class Custom extends Component {
         console.log('Error: ', error);
       });
   };
+  
+
+  bringContentTypeObjectFromApperanc = (data) => {
+        const contentTypesArr = [...this.state.contentTypesArr]
+        console.log(data)
+        contentTypesArr[data.keyItem] = data
+        this.setState({contentTypesArr})
+  }
 
   render() {
+    console.log(this.state.contentTypesArr)
     const style = {marginBottom: '1em'};
     const btnFile = {marginBottom: '1em', height: '2em'};
 
@@ -63,9 +100,13 @@ class Custom extends Component {
      
       this.state.form && (
         <AppearanceForm
+          contentTypesArr={this.state.contentTypesArr}
+          bringContentTypeObjectFromApperanc={this.bringContentTypeObjectFromApperanc}
           contentTypeData={this.props.contenttypes}
           handleSubmit={this.handleSubmit}
           form={this.state.form}
+          incremnetContentTyps={this.incremnetContentTyps}
+          removeContentTypsFromState={this.removeContentTypsFromState}
         />
       )
     

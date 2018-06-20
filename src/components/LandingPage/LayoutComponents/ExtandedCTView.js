@@ -5,6 +5,7 @@ import {Row, Col} from 'reactstrap';
 class ExtandedCTView extends Component {
   
   render() {
+    console.log(this.props.match.params.entrieId);
     return (<h1>HII</h1>)
   }
 }
