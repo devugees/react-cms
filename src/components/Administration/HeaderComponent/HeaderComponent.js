@@ -38,7 +38,7 @@ class TopHeader extends Component {
 
 
         <Navbar style={{background: '#85C1E9'}} className="Navbar" expand="md">
-          <NavbarBrand style={textStyle} href="/">Dashbord</NavbarBrand>
+          <NavbarBrand style={textStyle} href="/">Check your Website</NavbarBrand>
 
 
           <NavbarToggler onClick={this.props.toggle}>Option</NavbarToggler>
@@ -48,7 +48,7 @@ class TopHeader extends Component {
             <Nav className="ml-auto" navbar>
   
               <Navbar style={{background: '#85c1e9'}} navbar expand="md">
-                
+                {/*
                 <NavItem className='marginRight' >
                 <Link style={LinkTextStyle} to="/">Go to Website</Link>
                 </NavItem>
