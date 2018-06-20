@@ -66,7 +66,7 @@ this.setState({displaySocialInputs: !this.state.displaySocialInputs})
 		  if(this.state.successMessage) {
 		    success = (
 		           <div className="alert alert-success mt-4" role="alert">
-		            Added NewUser Seccessfuly</div>
+		            Added NewUser Successfully</div>
 		      )
 		  }
 		let socialInputs;
@@ -151,7 +151,7 @@ this.setState({displaySocialInputs: !this.state.displaySocialInputs})
                       onClick={this.toggleInput}
                       className="btn btn-primary ml-1"
                     >
-                      AddNewUser
+                      Add New User
                     </button>
                     {socialInputs}
 			</div>

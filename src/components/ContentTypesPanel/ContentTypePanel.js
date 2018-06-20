@@ -149,6 +149,7 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
           <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
           <ModalBody>
             <EditEntrie
+             toggle={this.toggle}
              categorie={this.state.categories}
              itemWillBeEdited={this.itemWillBeEdited}
              AddEditedItemToState={this.AddEditedItemToState}
@@ -172,6 +173,7 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
         contentTypeId={this.props.id}
         addNewEntrieToState={this.addNewEntrieToState}
         categorie={this.state.categories}
+        emptyFields={this.props.emptyFields}
         action = "Add"
          />
       </div>

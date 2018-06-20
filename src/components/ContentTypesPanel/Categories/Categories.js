@@ -72,7 +72,7 @@ class Categories extends Component {
       .delete(`http://localhost:5000/api/deletecategories/${categories}`, {
         headers: {Authorization: `Bearer ${tokenStr}`}
       })
-      .then(response => this.componentWillMount())
+      .then(response => this.componentDidMount())
       .catch(error => {
         console.log('Error: ', error);
       });
@@ -93,7 +93,12 @@ class Categories extends Component {
           headers: {Authorization: `Bearer ${tokenStr}`}
         }
       )
-      .then(response => this.componentWillMount())
+      .then(response => {
+        this.setState({
+          displayInputsAdd: false,
+        });
+        this.componentDidMount() 
+        })
       .catch(err => console.log(err));
   }
 
@@ -115,7 +120,14 @@ class Categories extends Component {
           headers: { Authorization: `Bearer ${tokenStr}` }
         }
       )
-      .then(response => this.componentWillMount())
+      .then(response => {
+        this.componentDidMount()
+        //setTimeout(() => {
+          this.setState({
+            displayInputs: false,
+          });
+        //}, 5000);
+      })
       .catch(err => console.log(err));
   }
 
@@ -219,7 +231,7 @@ class Categories extends Component {
                     type="button"
                     onClick={this.handleToggleAddInput.bind(this)}
                     className="btn btn-primary ml-1">
-                    Add New categorie
+                    Add New Category
                   </button>
                 </td>
               </tr>

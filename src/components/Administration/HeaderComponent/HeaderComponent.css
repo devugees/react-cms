@@ -4,3 +4,42 @@ img {
 	height: 110px;
 }
 */
+
+.NavButtons {
+    position: fixed;
+    display: block;
+    height: 0;
+}
+
+.Navbar {
+    height: 100%;
+}
+
+.marginRight {
+	margin-right: 1em;
+}
+
+.navbarOption{
+    background: transparent;
+}
+
+@media only screen and (max-width: 767px) {
+    .MediaCollapse {
+        width: 20em;
+        display: inline-table;
+	  }
+    nav .navbar {
+    	display: block;
+    	margin-top: 1em;
+    }
+    .navbar-nav .dropdown-menu {
+        background: none;
+        height: 0px;
+        border: none;
+        padding: 0px;
+        margin: 0px; 
+    }
+    .NavButtons {
+        height: auto
+}
+}

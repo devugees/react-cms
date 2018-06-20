@@ -51,6 +51,34 @@ class ViewTable extends Component {
     if (!this.props.keys) {
       return null;
     }
+    if (this.props.controllers) {
+
+    }
+    let controllers = (index,item) => {
+      if (this.props.hideControllers) {
+        return null
+    }else return (
+             <td>
+              <Row>
+                <button
+                  className="mr-2 btn-outline-info btn-sm"
+                  onClick={this.handleEdit.bind(this, index, item.machineName)}>
+                  Edit
+                </button>
+                <button
+                  className="btn btn-outline-danger btn-sm"
+                  onClick={this.handleDelete.bind(
+                    this,
+                    index,
+                    item.machineName
+                  )}>
+                  Delete
+                </button>
+              </Row>
+            </td>
+            )
+    }
+    
 
     this.renderedKeys = Object.keys(this.props.keys).map((key, index) => {
       return <th key={index}>{key}</th>;
@@ -97,24 +125,8 @@ class ViewTable extends Component {
                 return <td key={index2}>{string.toString()}</td>;
               }
             })}
-            <td>
-              <Row>
-                <button
-                  className="mr-2 btn-outline-info btn-sm"
-                  onClick={this.handleEdit.bind(this, index, item.machineName)}>
-                  Edit
-                </button>
-                <button
-                  className="btn btn-outline-danger btn-sm"
-                  onClick={this.handleDelete.bind(
-                    this,
-                    index,
-                    item.machineName
-                  )}>
-                  Delete
-                </button>
-              </Row>
-            </td>
+            
+            {controllers(index,item)}
           </tr>
         );
       });
@@ -123,18 +135,22 @@ class ViewTable extends Component {
     }
 
     return (
+
       <div
         className="ViewTable"
         style={{
+          padding: '0px',
           overflowY: 'scroll',
           webkitOverflowScrolling: 'touch',
-          maxHeight: '50vh'
+          maxHeight: '50vh',
+          width: '-webkit-fill-available',
         }}>
-        <Table striped>
+        <Table className='TableMediaQ' striped>
           <thead>
             <tr>
               {this.renderedKeys}
-              <th>Controllers</th>
+              {!this.props.hideControllers ? (<th>Controllers</th>) : null }
+              
             </tr>
           </thead>
           <tbody>{this.renderedItems}</tbody>

@@ -1,12 +1,16 @@
 const User = require('../models/User');
 const  jwt = require('jsonwebtoken');
-const  VerifyToken = require('../config/VerifyToken');
+const VerifyToken = require('../config/VerifyToken');
+
+
+const updateUser = require('../validation/updateUser');
 
 
 const serversignature = 'mysignature';
 
 module.exports = (app) => {
-app.get('/users',VerifyToken, (req, res) => {
+  app.get('/users', VerifyToken, (req, res) => {
+   
    jwt.verify(req.token, serversignature, (err1, authData) => {
     if(err1) {
       throw err1;
@@ -49,7 +53,11 @@ app.delete('/deleteuser/:userid', VerifyToken, (req, res)  => {
 });
 
 app.post('/updateuser/:iduser', VerifyToken, (req, res) => {
-
+  const { errors, isValid } = updateUser(req.body);
+  // Check Validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
    jwt.verify(req.token, serversignature, (err1, authData) => {
     if(err1) {
       throw err1;

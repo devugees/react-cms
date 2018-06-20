@@ -47,11 +47,12 @@ removeContentTyps = (key) => {
   render() {
     const style = {marginBottom: '1em'};
     const btnFile = {marginBottom: '1em', height: '2em'};
-    const brdJumbo = { border: "1px solid grey" };
+    const brdJumbo = { border: "1px solid grey", margin: '0 0 2em 0' };
     const h3Brd = {
       marginTop: " -17px",
       marginLeft: "5px",
-      background: "white"
+      background: "white",
+      width: '2.5em'
     };
     let HandleContentType =this.state.contentTypesArr.map((p, index) => (
                   <div className="col-md-4">
@@ -65,9 +66,9 @@ removeContentTyps = (key) => {
   return (
       <div>
       <Form onSubmit={this.props.handleSubmit}>
-        <Row>
+        <Row style={brdJumbo}>
           <Col>
-            <h3>Menu</h3>
+            <h3 style={h3Brd}>Menu</h3>
             <Input
               defaultValue={this.props.form.websitetitle}
               name="websitetitle"
@@ -87,7 +88,7 @@ removeContentTyps = (key) => {
 
         <Row style={brdJumbo}>
             <h3 style={h3Brd}> Slider </h3>
-            <Row>
+            <Row style={{margin: '1em'}}>
               <Col>
                 <h5>Slide 1 </h5>
                 <FileUploader style={style} bringFileUrl={this.bringFileUrl} />
@@ -208,7 +209,7 @@ removeContentTyps = (key) => {
          <div className="container" >
          <div className="row">
            <div className="col-md-12">
-              <Button className="ml-2" onClick={this.incremnetContentTyps} color="primary">AddContent</Button>
+              <Button className="ml-2" onClick={this.incremnetContentTyps} color="primary">Add Content</Button>
          </div>
          </div>
          <div className="row">

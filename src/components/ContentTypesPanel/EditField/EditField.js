@@ -78,6 +78,7 @@ class EditField extends Component {
                     innerRef={this.typeRef}>
                     <option>text</option>
                     <option>textarea</option>
+                    <option>categories</option>
                     <option>email</option>
                     <option>url</option>
                     <option>image</option>
@@ -103,7 +104,7 @@ class EditField extends Component {
                     name="htmlElement"
                     type="select"
                     id="exampleSelect"
-                    innerRef={this.htmlElement}>
+                    innerRef={this.htmlElementRef}>
                     <option>h1</option>
                     <option>h2</option>
                     <option>h3</option>

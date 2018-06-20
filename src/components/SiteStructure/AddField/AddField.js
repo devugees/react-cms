@@ -32,6 +32,7 @@ class AddField extends Component {
   };
 
   handelClick = e => {
+    console.log(this.htmlElementRef);
     e.preventDefault();
     const field = {
       fieldLabel: this.fieldLabelRef.current.value,
@@ -99,7 +100,7 @@ class AddField extends Component {
                     name="htmlElement"
                     type="select"
                     id="exampleSelect"
-                    innerRef={this.htmlElement}>
+                    innerRef={this.htmlElementRef}>
                     <option>h1</option>
                     <option>h2</option>
                     <option>h3</option>

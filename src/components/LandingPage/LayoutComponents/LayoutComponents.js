@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import {Row, Col} from 'reactstrap';
+import {Link} from "react-router-dom"
 class LayoutComponents extends Component {
   state = {
     content: [],
@@ -46,7 +47,7 @@ class LayoutComponents extends Component {
         height: "18rem",
         width: "22rem",
       };
-      return cols.push(
+      return cols.push(<Link to={`/ContentType/entries/${con._id}`}>
         <Col sm="2" md="4" key={index} style={style}>
           {fields.map((field, i) => {
             if (field.element == 'h') {
@@ -63,6 +64,7 @@ class LayoutComponents extends Component {
             }
           })}
         </Col>
+        </Link>
       );
     });
 

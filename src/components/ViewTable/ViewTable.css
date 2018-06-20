@@ -1,20 +1,25 @@
-::-webkit-scrollbar-track
-{
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  border-radius: 10px;
-  background-color: #F5F5F5;
+.TableMediaQ{
+	transform: scale(0.95,1);
 }
 
-::-webkit-scrollbar
-{
-  width: 6px;
-  height: 6px;
-  background-color: #F5F5F5;
+@media only screen and (max-width: 1440px) {
+	.TableMediaQ {
+	transform: scale(0.99,1);
+}
 }
 
-::-webkit-scrollbar-thumb
-{
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-  background-color: lightgray;
+
+@media only screen and (max-width: 1366px) {
+	.TableMediaQ {
+		margin-left: -2em;
+	transform: scale(0.90,1);
 }
+}
+
+
+@media only screen and (min-width: 2000px) {
+	.TableMediaQ {
+		transform: scale(1,1);
+}
+}
+

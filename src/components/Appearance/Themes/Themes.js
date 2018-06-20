@@ -24,7 +24,7 @@ class Themes extends Component {
               Default Theme for a new amazing, dynamic, cute and fluent website.
             </CardText>
             <Button>
-              <Link style={button} to="/Administration/main/Custome">
+              <Link style={button} to="/Administration/main/Custom">
                 Customize
               </Link>
             </Button>
