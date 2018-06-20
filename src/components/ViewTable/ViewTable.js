@@ -135,14 +135,19 @@ class ViewTable extends Component {
     }
 
     return (
+
       <div
         className="ViewTable"
         style={{
+          padding: '0px',
+          width: '100wh',
           overflowY: 'scroll',
           webkitOverflowScrolling: 'touch',
-          maxHeight: '50vh'
+          maxHeight: '50vh',
+          width: '100em',
+
         }}>
-        <Table striped>
+        <Table className='TableMediaQ' striped>
           <thead>
             <tr>
               {this.renderedKeys}

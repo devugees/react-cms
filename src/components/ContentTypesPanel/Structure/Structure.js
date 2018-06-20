@@ -97,9 +97,17 @@ itemWillBeEdited = {};
   }
  
 	render() {
-   //const colstyle ={padding: '0',margin:'0 0 0 0', height: 'auto'};
+
+    const colstyle ={padding: '0',margin:'0 0 0 0', height: 'auto'};
+    const brdJumbo = { border: "1px solid grey", margin: '0 0 2em 0' };
+    const h3Brd = {
+      marginTop: " -17px",
+      marginLeft: "5px",
+      background: "white",
+      width: 'auto'
+    };
 	    return (
-	      <div>
+	      <div className='StructurePage'>
           <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
             <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
             <ModalBody>
@@ -111,8 +119,9 @@ itemWillBeEdited = {};
             </ModalBody>
           </Modal>
 
-            <Row>
-            <ViewTable 
+            <Row style={brdJumbo}>
+            <h5 style={h3Brd}>All your fields</h5>
+            <ViewTable
               deleteFieldFromState={this.deleteFieldFromState}
               bringItemWillBeEditedFromViewTable={this.bringItemWillBeEditedFromViewTable}
               toggle={this.toggle}
