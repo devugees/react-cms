@@ -12,7 +12,6 @@ let newEntrie = {};
 class AddEntrie extends Component {
   constructor(props) {
     super(props);
-    this.child = React.createRef();
     console.log("props", props);
 
     this.state = {
@@ -97,7 +96,7 @@ class AddEntrie extends Component {
       })
       .then(response => {
         this.setState({title:'', body:'', describtion:'', value:[], selectedFile: {},remove: true })
-        this.child.current.bang()
+      
       })
       .catch(function(error) {
         console.log("Error: ", error);
@@ -157,7 +156,6 @@ class AddEntrie extends Component {
             <div>Uplode Photo</div>
             <div>
               <FileUploader
-                ref={this.child}
                 bringFileUrl={this.bringFileUrl}
                 fieldLabel={object.fieldLabel}
                 remove={this.state.remove}
