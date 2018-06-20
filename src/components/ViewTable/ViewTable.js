@@ -140,12 +140,10 @@ class ViewTable extends Component {
         className="ViewTable"
         style={{
           padding: '0px',
-          width: '100wh',
           overflowY: 'scroll',
           webkitOverflowScrolling: 'touch',
           maxHeight: '50vh',
-          width: '100em',
-
+          width: '-webkit-fill-available',
         }}>
         <Table className='TableMediaQ' striped>
           <thead>
