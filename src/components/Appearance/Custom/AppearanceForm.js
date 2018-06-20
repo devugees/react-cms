@@ -12,39 +12,32 @@ class AppearanceForm extends Component {
     super(props);
     this.state= {
        contentTypesArr: [],
+       showcomponent: false
                  }
-                 showcomponent: false
+
                 }
 
   static propTypes = {
     handleSubmit: PropTypes.func
   };
-
- incremnetContentTyps = () => {
-  const newPic = {
-        id: randomstring.generate(5)
-      };
-      const contentTypesArr = [...this.state.contentTypesArr, newPic];
-      this.setState({
-        contentTypesArr: contentTypesArr,
-        showcomponent: true,
-      })
+componentWillReceiveProps(nextProps) {
+ this.setState({contentTypesArr: nextProps.contentTypesArr});
 }
 
+
 removeContentTyps = (key) => {
-    const picIndex = this.state.contentTypesArr.findIndex((pic) => {
-      return key === pic.id;
-    });
+  this.props.removeContentTypsFromState(key);
+     console.log("key",key)
+    const contentTypesArrOb = [...this.state.contentTypesArr]
+    contentTypesArrOb.splice(key, 1)
+    console.log("contentTypesArr",contentTypesArrOb);
+    this.setState({contentTypesArr: contentTypesArrOb})
 
-    const contentTypesArr = [...this.state.contentTypesArr];
-    contentTypesArr.splice(picIndex, 1);
-
-    this.setState({
-      contentTypesArr: contentTypesArr
-    });
   };
 
+
   render() {
+  console.log(this.props.contenttypesObject);
     const style = {marginBottom: '1em'};
     const btnFile = {marginBottom: '1em', height: '2em'};
     const brdJumbo = { border: "1px solid grey", margin: '0 0 2em 0' };
@@ -54,15 +47,30 @@ removeContentTyps = (key) => {
       background: "white",
       width: '2.5em'
     };
-    let HandleContentType =this.state.contentTypesArr.map((p, index) => (
-                  <div className="col-md-4">
-                    <HandleContentTypeView 
-                               remove={() => {this.removeContentTyps(p.id)}}
-                               contenttypeData={this.props.contentTypeData} 
-                               key={index} 
+    let showComponent = this.state.contentTypesArr.map((content, index) => {
+      if(content.keyItem) {
+            return (<div className="col-md-4">
+                      <HandleContentTypeView
+                               bringContentTypeObject={this.props.bringContentTypeObjectFromApperanc}
+                               remove={() => {this.removeContentTyps(index)}}
+                               selectedValues={content}
+                               contenttypeData={this.props.contentTypeData}
+                               key={index}
+                               key1={content.keyItem}
                            />
-                  </div>
-                 ))
+                    </div>)
+                  } else {
+                    return (<div className="col-md-4">
+                              <HandleContentTypeView
+                               bringContentTypeObject={this.props.bringContentTypeObjectFromApperanc}
+                               remove={() => {this.removeContentTyps(index)}}
+                               contenttypeData={this.props.contentTypeData}
+                               key={index}
+                               key1={index}
+                           />
+                    </div>)
+                  }
+                 } )
   return (
       <div>
       <Form onSubmit={this.props.handleSubmit}>
@@ -116,7 +124,7 @@ removeContentTyps = (key) => {
             </Row>
           </Row>
           <Row>
-          
+
           <Col>
             <h3>IconBox Left </h3>
             <input
@@ -209,16 +217,16 @@ removeContentTyps = (key) => {
          <div className="container" >
          <div className="row">
            <div className="col-md-12">
-              <Button className="ml-2" onClick={this.incremnetContentTyps} color="primary">Add Content</Button>
+              <Button className="ml-2" onClick={this.props.incremnetContentTyps} color="primary">Add Content</Button>
          </div>
          </div>
          <div className="row">
-                 {this.state.showcomponent? HandleContentType : null}
+                 {showComponent}
           </div>
         </div>
          <Button className="mt-4" type="submit">Submit</Button>
       </Form>
-      
+
       </div>
     );
   }
