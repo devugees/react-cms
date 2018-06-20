@@ -104,9 +104,10 @@ itemWillBeEdited = {};
       marginTop: " -17px",
       marginLeft: "5px",
       background: "white",
-      width: 'auto'
+      width: 'auto',
+      display: 'table'
     };
-	    return (
+      return (
 	      <div className='StructurePage'>
           <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
             <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
@@ -121,7 +122,7 @@ itemWillBeEdited = {};
 
             <Row style={brdJumbo}>
             <h5 style={h3Brd}>All your fields</h5>
-            <ViewTable
+            <ViewTable 
               deleteFieldFromState={this.deleteFieldFromState}
               bringItemWillBeEditedFromViewTable={this.bringItemWillBeEditedFromViewTable}
               toggle={this.toggle}

@@ -45,7 +45,7 @@ class TopHeader extends Component {
             <Nav className="ml-auto" navbar>
   
 
-              <Navbar style={{background: '#85c1e9'}} navbar expand="md">
+              <Navbar style={{background: '#85c1e9'}} className='NavButtons' navbar expand="md">
                 <NavItem className='marginRight' >
                 <Link style={LinkTextStyle} to="/">Check your Website</Link>
                 </NavItem> 

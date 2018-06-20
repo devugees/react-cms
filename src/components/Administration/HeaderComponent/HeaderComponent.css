@@ -5,11 +5,14 @@ img {
 }
 */
 
+.NavButtons {
+    position: fixed;
+    display: block;
+    height: 0;
+}
+
 .Navbar {
-	    background: #85C1E9;
-	    height: 100%;
-	    max-height: 5vh;
-	    z-index: 100;
+    height: 100%;
 }
 
 .marginRight {
@@ -22,16 +25,12 @@ img {
 
 @media only screen and (max-width: 767px) {
     .MediaCollapse {
-        background-color: #85c1e9;
         width: 20em;
         display: inline-table;
 	  }
     nav .navbar {
     	display: block;
     	margin-top: 1em;
-    }
-    .navbarOption {
-        background: #85c1e9;
     }
     .navbar-nav .dropdown-menu {
         background: none;
@@ -40,4 +39,7 @@ img {
         padding: 0px;
         margin: 0px; 
     }
+    .NavButtons {
+        height: auto
+}
 }
