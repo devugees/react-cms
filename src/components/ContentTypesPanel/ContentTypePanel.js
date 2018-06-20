@@ -173,6 +173,7 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
         contentTypeId={this.props.id}
         addNewEntrieToState={this.addNewEntrieToState}
         categorie={this.state.categories}
+        emptyFields={this.props.emptyFields}
         action = "Add"
          />
       </div>
