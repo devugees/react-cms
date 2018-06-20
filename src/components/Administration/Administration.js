@@ -52,10 +52,10 @@ class Administration extends Component {
 
   render() {
     const colstyle = {padding: '0', margin: '0 0 0 0'};
-    const padding = {padding: '1em', margin: 0};
+    const padding = {padding: '1em', margin: 0, height: '95vh'};
     return (
       <div className="Administration">
-      <Row style={colstyle}>
+      <Row style={colstyle} >
           <Col style={colstyle} >
           <TopHeader contentTypes={this.state.contentTypes} isOpen={this.state.isOpen} toggleSideBar={this.toggleSideBar} toggle={this.toggle} history={this.props.history}/>
         
@@ -65,15 +65,15 @@ class Administration extends Component {
           <Col md="2" style={colstyle} >
             <DashBoard isOpenOne={this.state.isOpenOne} contenttypes={this.state.contentTypes} />
           </Col>
-          <Col className="Board" md="10" style={padding}>
-            <Main
-              contenttypes={this.state.contentTypes}
-              className="Main"
-              activeLink={this.props.match.url}
-            />
+          <Col className="Board constans" md="10" style={padding}>
+              <Main
+                contenttypes={this.state.contentTypes}
+                className="Main"
+                activeLink={this.props.match.url}
+              />
           </Col>
         </Row>
-      </div>
+        </div>
     );
   }
 }
