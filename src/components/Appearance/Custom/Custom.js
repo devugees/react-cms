@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import AppearanceForm from './AppearanceForm';
 
-class Custome extends Component {
+class Custom extends Component {
   constructor() {
     super();
     this.state = {
@@ -74,4 +74,4 @@ class Custome extends Component {
   }
 }
 
-export default Custome;
+export default Custom;

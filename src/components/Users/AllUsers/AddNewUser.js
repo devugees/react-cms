@@ -151,7 +151,7 @@ this.setState({displaySocialInputs: !this.state.displaySocialInputs})
                       onClick={this.toggleInput}
                       className="btn btn-primary ml-1"
                     >
-                      AddNewUser
+                      Add New User
                     </button>
                     {socialInputs}
 			</div>

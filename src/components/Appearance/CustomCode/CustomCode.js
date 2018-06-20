@@ -5,7 +5,7 @@ import axios from 'axios'
 require('codemirror/mode/xml/xml');
 require('codemirror/mode/javascript/javascript');
 
-class CustomeCode extends Component {
+class CustomCode extends Component {
 
   state = {
       data:{
@@ -82,4 +82,4 @@ class CustomeCode extends Component {
   }
 }
 
-export default CustomeCode;
+export default CustomCode;

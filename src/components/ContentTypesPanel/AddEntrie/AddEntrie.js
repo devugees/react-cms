@@ -153,7 +153,7 @@ class AddEntrie extends Component {
       ) {
         return (
           <div className="col-md-6 mt-1">
-            <div>Uplode Photo</div>
+            <div>Upload Photo</div>
             <div>
               <FileUploader
                 bringFileUrl={this.bringFileUrl}
@@ -193,7 +193,7 @@ class AddEntrie extends Component {
 
     return (
       <div className="boxs">
-        <h3> {this.props.action} Entrie </h3>
+        <h3> {this.props.action} Entry </h3>
         <Form style={styleForm} onSubmit={this.handelFormSubmit}>
           <div className="container">
             <div className="row">{allFields}</div>

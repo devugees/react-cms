@@ -50,7 +50,7 @@ class TopHeader extends Component {
               <Navbar style={{background: '#85c1e9'}} navbar expand="md">
                 
                 <NavItem className='marginRight' >
-                <Link style={LinkTextStyle} to="/">Go to Web Site</Link>
+                <Link style={LinkTextStyle} to="/">Go to Website</Link>
                 </NavItem>
                 <NavItem className='marginRight' >
                 <Link style={LinkTextStyle} to="/Administration/main/NewContentType">Create Node</Link>
