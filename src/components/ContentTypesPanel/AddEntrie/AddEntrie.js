@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Button, Input, Form, FormGroup, Label } from "reactstrap";
+import { Input, Button, Form, FormGroup, Label } from "reactstrap";
 import "./AddEntrie.css";
 import axios from "axios";
 import Select from "react-select";
 import "react-select/dist/react-select.css";
 import FileUploader from "../../FileUploader/FileUploader";
-
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 let newEntrie = {};
 
 class AddEntrie extends Component {
@@ -59,9 +60,10 @@ class AddEntrie extends Component {
     let inputName = e.target.name;
     newEntrie[inputName] = e.target.value;
     this.setState({[inputName]: e.target.value})
-    console.log(newEntrie);
   };
-
+  handleQuillChange = (  name, value) => {
+    newEntrie[name] = value;
+  };
   handelFormSubmit = event => {
     console.log(this.state);
     event.preventDefault();
@@ -120,7 +122,6 @@ class AddEntrie extends Component {
 
     const categoriesProp = (
       <div className="section">
-        <h3 className="section-heading">{options.label}</h3>
         <Select
           multi
           joinValues
@@ -133,14 +134,6 @@ class AddEntrie extends Component {
       </div>
     );
 
-    const styleFormGroups = {
-      width: "250px",
-      float: "left",
-      margin: "15px",
-      padding: "15px"
-    };
-
-    const labelCategorie = {marginBottom: "0"};
 
     const styleForm = {
       width: "90%"
@@ -148,41 +141,47 @@ class AddEntrie extends Component {
 
     let allFields = this.props.fields.map((object, index) => {
       const objectMachinename = object.machineName
-      if (
-        object.type === "image"
-      ) {
+      if ( object.type === "image") {
         return (
-          <div className="col-md-6 mt-1">
-            <div>Upload Photo</div>
+          <div className="w-100  mt-1">
+            <div>Uplode Photo</div>
             <div>
               <FileUploader
                 bringFileUrl={this.bringFileUrl}
-                fieldLabel={object.fieldLabel}
                 remove={this.state.remove}
+                fieldLabel={object.fieldLabel.charAt(0).toUpperCase() + object.fieldLabel.slice(1)}
               />
             </div>
           </div>
         );
       } else if (
-        object.type === "categories"
+        object.type === "categories") {
+        return (
+          <div className="w-100 ">
+            <Label>Categories</Label>
+            <div>{categoriesProp}</div>
+          </div>
+        );
+      } else if (
+        object.type === "textarea"
       ) {
         return (
-          <div className="col-md-6">
-            <Label style={labelCategorie}>Categories</Label>
-            <div>{categoriesProp}</div>
+          <div className="w-100 ">
+            <Label>{object.fieldLabel.charAt(0).toUpperCase() + object.fieldLabel.slice(1)}</Label>
+            <ReactQuill onChange={this.handleQuillChange.bind(this, object.machineName) }/>
           </div>
         );
       }
       return (
-
-        <div key={index}>
-          <FormGroup style={styleFormGroups} className="FormGroup">
-            <Label for="exampleEmail">{object.fieldLabel}</Label>
+        <div className="w-100" key={index}>
+          <FormGroup className="FormGroup w-100">
+            <Label for={object.machineName}>{object.fieldLabel.charAt(0).toUpperCase() + object.fieldLabel.slice(1)}</Label>
             <Input
+              placeholder={object.fieldLabel.charAt(0).toUpperCase() + object.fieldLabel.slice(1)}
+              id={object.machineName}
               name={object.machineName}
               type={object.type}
               required={object.required}
-              className={object.cssClasses}
               onChange={this.handelChange}
               value={this.state[object.machineName]}
             />
