@@ -32,9 +32,6 @@ class HandleContentTypeView extends Component {
   }
 
   componentDidUpdate = (prevProps, prevState) => {
-  	console.log("this.props",this.props)
-  	console.log("prevProps",prevProps)
-
     if(prevProps != this.props) {
 
 	    if (this.props.selectedValues) {
@@ -59,17 +56,11 @@ class HandleContentTypeView extends Component {
 
   }
    onChange(e) {
-    this.setState({[e.target.name]: e.target.value});
-   
+    let contenttypeData = this.props.contenttypeData;
 
-  }
- 
-handletDidUpdate  = () =>{
-  	let contenttypeData = this.props.contenttypeData;
+  let select = e.target.value;
 
-	let select = this.state.selectContentType;
-
-   if(this.state.selectContentType) {
+   if(e.target.value) {
    let singlContentType =[];
    let optionsField = contenttypeData.map((items) => items.machineName).indexOf(select);
     singlContentType.push(contenttypeData[optionsField])
@@ -78,7 +69,17 @@ handletDidUpdate  = () =>{
     finalContentType._id = singlContentType[0]._id
     finalContentType.title = singlContentType[0].title
     finalContentType.machineName = singlContentType[0].machineName
-   
+
+    this.setState({[e.target.name]: e.target.value,finalContentType});
+  }
+}
+ 
+handletDidUpdate  = () => {
+  
+    let contenttypeData = this.props.contenttypeData;
+      let singlContentType =[];
+   let optionsField = contenttypeData.map((items) => items.machineName).indexOf(this.state.finalContentType.title);
+    singlContentType.push(contenttypeData[optionsField])
 
      let chosenFields = [];
      let  handleFields;
@@ -98,7 +99,7 @@ handletDidUpdate  = () =>{
       selectEntry: this.state.selectEntry,
       css: this.state.css,
       selectGrid: this.state.selectGrid,
-      finalContentType,
+      finalContentType: this.state.finalContentType,
       chosenFields
   }
   if(contentTypeObject.finalContentType !== '' &&
@@ -107,7 +108,7 @@ handletDidUpdate  = () =>{
   }
 }
 
-}
+
 
   render() {
 

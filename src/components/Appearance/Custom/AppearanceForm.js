@@ -14,7 +14,7 @@ class AppearanceForm extends Component {
        contentTypesArr: [],
        showcomponent: false
                  }
-                 
+
                 }
 
   static propTypes = {
@@ -23,7 +23,7 @@ class AppearanceForm extends Component {
 componentWillReceiveProps(nextProps) {
  this.setState({contentTypesArr: nextProps.contentTypesArr});
 }
- 
+
 
 removeContentTyps = (key) => {
   this.props.removeContentTypsFromState(key);
@@ -32,7 +32,7 @@ removeContentTyps = (key) => {
     contentTypesArrOb.splice(key, 1)
     console.log("contentTypesArr",contentTypesArrOb);
     this.setState({contentTypesArr: contentTypesArrOb})
-   
+
   };
 
 
@@ -50,18 +50,18 @@ removeContentTyps = (key) => {
     let showComponent = this.state.contentTypesArr.map((content, index) => {
       if(content.keyItem) {
             return (<div className="col-md-4">
-                      <HandleContentTypeView 
+                      <HandleContentTypeView
                                bringContentTypeObject={this.props.bringContentTypeObjectFromApperanc}
                                remove={() => {this.removeContentTyps(index)}}
                                selectedValues={content}
                                contenttypeData={this.props.contentTypeData}
                                key={index}
-                               key1={content.keyItem} 
+                               key1={content.keyItem}
                            />
                     </div>)
                   } else {
                     return (<div className="col-md-4">
-                              <HandleContentTypeView 
+                              <HandleContentTypeView
                                bringContentTypeObject={this.props.bringContentTypeObjectFromApperanc}
                                remove={() => {this.removeContentTyps(index)}}
                                contenttypeData={this.props.contentTypeData}
@@ -124,7 +124,7 @@ removeContentTyps = (key) => {
             </Row>
           </Row>
           <Row>
-          
+
           <Col>
             <h3>IconBox Left </h3>
             <input
@@ -226,7 +226,7 @@ removeContentTyps = (key) => {
         </div>
          <Button className="mt-4" type="submit">Submit</Button>
       </Form>
-      
+
       </div>
     );
   }
