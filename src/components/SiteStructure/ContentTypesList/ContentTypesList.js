@@ -28,6 +28,7 @@ class ContentTypesList extends Component {
             contenttypes={this.props.contenttypes}
             items={contentTypesWithoutId}
             keys={contentTypesWithoutId[0]}
+            hideControllers= {true}
           />
         </Row>
         <Link to="/Administration/main/NewContentType">
