@@ -209,7 +209,7 @@ removeContentTyps = (key) => {
          <div className="container" >
          <div className="row">
            <div className="col-md-12">
-              <Button className="ml-2" onClick={this.incremnetContentTyps} color="primary">AddContent</Button>
+              <Button className="ml-2" onClick={this.incremnetContentTyps} color="primary">Add Content</Button>
          </div>
          </div>
          <div className="row">

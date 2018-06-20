@@ -4,7 +4,7 @@ import './App.css';
 import Administration from './components/Administration/Administration';
 import Login from './components/Login/Login';
 import Registration from './components/Registration/Registration';
-import CustomeCode from './components/Appearance/CustomeCode/CustomeCode';
+import CustomCode from './components/Appearance/CustomCode/CustomCode';
 import AddEntrie from './components/ContentTypesPanel/AddEntrie/AddEntrie';
 // import Structure from './components/ContentTypesPanel/Structure/Structure';
 import LandingPage from './components/LandingPage/LandingPage';
@@ -71,7 +71,7 @@ class Routers extends Component {
 
              <PrivatRoute  
                 authenticated={this.state.authenticated}
-                exact path="/CustomeCode/" component={CustomeCode} />
+                exact path="/CustomCode/" component={CustomCode} />
             
              <PrivatRoute 
                 authenticated={this.state.authenticated}
