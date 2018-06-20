@@ -71,6 +71,7 @@ class EditEntrie extends Component {
       .catch(error => {
         console.error("Error:", error);
       });
+    this.props.toggle()
   };
 
   handleSelectChange(value) {
