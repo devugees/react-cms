@@ -13,11 +13,40 @@ class HandleContentTypeView extends Component {
       selectEntry: '',
       css: '',
       selectGrid: '',
-      select: ''
+      selectContentType: '',
+      finalContentType: {},
+      chosenFields: []
+      
     };
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.onChange = this.onChange.bind(this);
   }
+
+  componentDidMount = () => {
+    if (this.props.selectedValues) {
+    	for (var key in this.props.selectedValues) {
+    		console.log(key)
+    		this.setState({ [key]: this.props.selectedValues.key})
+    	}
+    }  
+  }
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if(prevProps != this.props) {
+
+	    if (this.props.selectedValues) {
+
+	    	for (var key in this.props.selectedValues) {
+	    		console.log("key",key)
+	    		this.setState({ [key]: this.props.selectedValues.key})
+	    	}
+	    } 
+    }
+  }
+
+
+
+
 
   handleSelectChange(value) {
     this.setState({value});
@@ -27,29 +56,67 @@ class HandleContentTypeView extends Component {
 
   }
    onChange(e) {
-    this.setState({[e.target.name]: e.target.value});
+    let contenttypeData = this.props.contenttypeData;
 
+  let select = e.target.value;
+
+   if(e.target.value) {
+   let singlContentType =[];
+   let optionsField = contenttypeData.map((items) => items.machineName).indexOf(select);
+    singlContentType.push(contenttypeData[optionsField])
+
+    let finalContentType = {};
+    finalContentType._id = singlContentType[0]._id
+    finalContentType.title = singlContentType[0].title
+    finalContentType.machineName = singlContentType[0].machineName
+
+    this.setState({[e.target.name]: e.target.value,finalContentType});
   }
-handleSave =(e) => {
- e.preventDefault();
-  const content = {
-  	 value: this.state.value,
+}
+ 
+handletDidUpdate  = () => {
+  
+    let contenttypeData = this.props.contenttypeData;
+      let singlContentType =[];
+   let optionsField = contenttypeData.map((items) => items.machineName).indexOf(this.state.finalContentType.title);
+    singlContentType.push(contenttypeData[optionsField])
+
+     let chosenFields = [];
+     let  handleFields;
+    if(this.state.selectContentType) {
+     handleFields = singlContentType.map(item => item.fields);
+     this.state.value.map(item => {
+  	handleFields[0].map((field) => {
+  		if (item.label === field.machineName) {
+  			chosenFields.push(field)
+  		}
+  	})
+   });
+  }
+  let contentTypeObject = {
+  	  keyItem: this.props.key1,
       selectview: this.state.selectview,
       selectEntry: this.state.selectEntry,
       css: this.state.css,
       selectGrid: this.state.selectGrid,
-      select: this.state.select
+      finalContentType: this.state.finalContentType,
+      chosenFields
   }
-  console.log(content)
+  if(contentTypeObject.finalContentType !== '' &&
+  	   contentTypeObject.chosenFields.length !== 0 ) {
+  this.props.bringContentTypeObject(contentTypeObject);
+  }
 }
 
-  render() {
-  	let contenttypeData = this.props.contenttypeData;
 
+
+  render() {
+
+  	let contenttypeData = this.props.contenttypeData;
   	const contenttypeSelectTitle = (
            <div>
               <Label for="exampleSelect">contenttypesTitle</Label>
-                 <Input type="select"  name="select"  onChange={this.onChangeSelct.bind(this)}>
+                 <Input type="select" value={this.state.finalContentType.machineName}  name="selectContentType"  onChange={this.onChangeSelct.bind(this)}>
                      <option></option>
                  )
                   {contenttypeData.map(item => (
@@ -59,13 +126,13 @@ handleSave =(e) => {
                 </div>
              );
 
- let select = this.state.select;
+ let select = this.state.selectContentType;
  let singlContentType =[];
  let optionsField = contenttypeData.map((items) => items.machineName).indexOf(select);
     singlContentType.push(contenttypeData[optionsField])
 
  var handleFields;
- if(this.state.select) {
+ if(this.state.selectContentType) {
 
     handleFields = singlContentType.map(item => item.fields);
 
@@ -75,7 +142,7 @@ handleSave =(e) => {
       value: index
     })))
 
-    var categoriesProp = (
+    var contentTypesProp = (
       <div className="section">
       <Label className="mt-4 mb-0">Fields</Label>
         <h3 className="section-heading">{options.label}</h3>
@@ -98,7 +165,7 @@ handleSave =(e) => {
        viewColomus= (
             <div className="mt-4">
            	 <Label for="exampleSelect">Colomus</Label>
-                 <Input type="select"  name="selectGrid"  onChange={this.onChange}>
+                 <Input type="select" value={this.state.selectGrid}  name="selectGrid"  onChange={this.onChange}>
                      <option>Select</option>
                      <option>1</option>
                      <option>2</option>
@@ -127,23 +194,18 @@ handleSave =(e) => {
            </FormGroup>
 
            <FormGroup>
-            {categoriesProp}
+            {contentTypesProp}
            </FormGroup>
 
            <FormGroup className="mt-4">
            	 <Label for="exampleSelect">Entery Number</Label>
-                 <Input type="select"  name="selectEntry"  onChange={this.onChange}>
-                     <option>Select</option>
-                     <option>1</option>
-                     <option>2</option>
-                     <option>3</option>
-                     <option>4</option>
+                 <Input type="number" value={this.state.selectEntry}  name="selectEntry"  onChange={this.onChange}>
                  </Input>
            </FormGroup>
 
             <FormGroup className="mt-4">
            	 <Label for="exampleSelect">View Mode</Label>
-                 <Input type="select"  name="selectview"  onChange={this.onChange}>
+                 <Input type="select"  value={this.state.selectview} name="selectview"  onChange={this.onChange}>
                      <option>Select</option>
                      <option>Grid</option>
                      <option>Slider</option>
@@ -156,10 +218,10 @@ handleSave =(e) => {
            </FormGroup>
            <FormGroup>
 	          <Label for="exampleEmail">Css</Label>
-	          <Input type="text" name="css" id="text" placeholder="with a placeholder" onChange={this.onChange} />
+	          <Input type="text" name="css" value={this.state.css} id="text" placeholder="with a placeholder" onChange={this.onChange} />
            </FormGroup>
               <Button onClick={this.props.remove} color="primary">X</Button>
-                   
+              <Button onClick={this.handletDidUpdate} color="primary">Save</Button>
         </Form>
       </div>
     );
