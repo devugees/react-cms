@@ -14,11 +14,7 @@ class AppearanceForm extends Component {
        contentTypesArr: [],
        showcomponent: false
                  }
-<<<<<<< HEAD:src/components/Appearance/Custom/AppearanceForm.js
-
-=======
                  
->>>>>>> copyAddTypeView:src/components/Appearance/Custome/AppearanceForm.js
                 }
 
   static propTypes = {
@@ -29,10 +25,6 @@ componentWillReceiveProps(nextProps) {
 }
  
 
-<<<<<<< HEAD:src/components/Appearance/Custom/AppearanceForm.js
-
-=======
->>>>>>> copyAddTypeView:src/components/Appearance/Custome/AppearanceForm.js
 removeContentTyps = (key) => {
   this.props.removeContentTypsFromState(key);
      console.log("key",key)
@@ -40,11 +32,7 @@ removeContentTyps = (key) => {
     contentTypesArrOb.splice(key, 1)
     console.log("contentTypesArr",contentTypesArrOb);
     this.setState({contentTypesArr: contentTypesArrOb})
-<<<<<<< HEAD:src/components/Appearance/Custom/AppearanceForm.js
-
-=======
    
->>>>>>> copyAddTypeView:src/components/Appearance/Custome/AppearanceForm.js
   };
 
 
@@ -62,27 +50,6 @@ removeContentTyps = (key) => {
     let showComponent = this.state.contentTypesArr.map((content, index) => {
       if(content.keyItem) {
             return (<div className="col-md-4">
-<<<<<<< HEAD:src/components/Appearance/Custom/AppearanceForm.js
-                      <HandleContentTypeView
-                               bringContentTypeObject={this.props.bringContentTypeObjectFromApperanc}
-                               remove={() => {this.removeContentTyps(index)}}
-                               selectedValues={content}
-                               contenttypeData={this.props.contentTypeData}
-                               key={index}
-                               key1={content.keyItem}
-                           />
-                    </div>)
-                  } else {
-                    return (<div className="col-md-4">
-                              <HandleContentTypeView
-                               bringContentTypeObject={this.props.bringContentTypeObjectFromApperanc}
-                               remove={() => {this.removeContentTyps(index)}}
-                               contenttypeData={this.props.contentTypeData}
-                               key={index}
-                               key1={index}
-                           />
-                    </div>)
-=======
                       <HandleContentTypeView 
                                bringContentTypeObject={this.props.bringContentTypeObjectFromApperanc}
                                remove={() => {this.removeContentTyps(index)}}
@@ -102,7 +69,6 @@ removeContentTyps = (key) => {
                                key1={index}
                            />
                     </div>)
->>>>>>> copyAddTypeView:src/components/Appearance/Custome/AppearanceForm.js
                   }
                  } )
   return (
@@ -257,16 +223,6 @@ removeContentTyps = (key) => {
           </Col>
         </Row>
          <div className="container" >
-<<<<<<< HEAD:src/components/Appearance/Custom/AppearanceForm.js
-           <div className="row">
-             <div className="col-md-12">
-                <Button className="ml-2" onClick={this.props.incremnetContentTyps} color="primary">Add Content</Button>
-             </div>
-           </div>
-           <div className="row">
-             {showComponent}
-           </div>
-=======
          <div className="row">
            <div className="col-md-12">
               <Button className="ml-2" onClick={this.props.incremnetContentTyps} color="primary">Add Content</Button>
@@ -275,7 +231,6 @@ removeContentTyps = (key) => {
          <div className="row">
                  {showComponent}
           </div>
->>>>>>> copyAddTypeView:src/components/Appearance/Custome/AppearanceForm.js
         </div>
          <Button className="mt-4" type="submit">Submit</Button>
       </Form>
