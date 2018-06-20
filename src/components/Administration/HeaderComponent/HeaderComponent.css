@@ -4,6 +4,7 @@ img {
 	height: 110px;
 }
 */
+
 .Navbar {
 	    background: #85C1E9;
 	    height: 100%;
@@ -13,12 +14,12 @@ img {
 
 .marginRight {
 	margin-right: 1em;
-
 }
 
-.insxxxline {
-    	color: #fff;
-    }
+.navbarOption{
+    background: transparent;
+}
+
 @media only screen and (max-width: 767px) {
     .MediaCollapse {
         background-color: #85c1e9;
@@ -28,5 +29,15 @@ img {
     nav .navbar {
     	display: block;
     	margin-top: 1em;
-}
+    }
+    .navbarOption {
+        background: #85c1e9;
+    }
+    .navbar-nav .dropdown-menu {
+        background: none;
+        height: 0px;
+        border: none;
+        padding: 0px;
+        margin: 0px; 
+    }
 }

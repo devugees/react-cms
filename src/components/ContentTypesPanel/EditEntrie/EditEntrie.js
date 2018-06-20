@@ -44,12 +44,34 @@ class EditEntrie extends Component {
     this.setState({categories: categoriesObject, loading: true});
   };
 
+  bringFileUrl = (fileUrl, fieldLabel) => {
+    console.log("fileUrl", fileUrl);
+    let selectedFile = {
+      fieldLabel: fieldLabel,
+      fileUrl: fileUrl
+    };
+    this.editedEntrie.image = fileUrl 
+    this.setState({
+      selectedFile: selectedFile
+    });
+  };
+
   editedEntrie = this.props.itemWillBeEdited.item;
 
  
-  handelChange = event => {
+  handelChange = (event,value) => {
+    console.log("event",event)
+    console.log("value",value)
+    if (value) {
+      this.setState({value:value})
+      this.editedEntrie.categories = value
+    }else {
+
+
+
     let inputName = event.target.name;
     this.editedEntrie[inputName] = event.target.value;
+    }
     console.log("editedEntrie",this.editedEntrie);
   };
  
@@ -75,8 +97,7 @@ class EditEntrie extends Component {
   };
 
   handleSelectChange(value) {
-    console.log('You have selected: ', value);
-    this.setState({value});
+    
   }
 
   render() {
@@ -96,7 +117,7 @@ console.log("selectedCategorie",selectedCategorie);
           value={this.state.value}
           placeholder="Select your favourite(s)"
           options={options}
-          onChange={this.handleSelectChange}
+          onChange={this.handelChange.bind(this, this.value)}
         />
       </div>
     );
@@ -111,17 +132,15 @@ console.log("selectedCategorie",selectedCategorie);
     };
 
  let allFields = this.props.fields.map((object, index) => {
-          if(object.fieldLabel === 'Image' && object.type === 'Image' && object.machineName === 'Image') {
+          if( object.type === 'image') {
             return(
                <div className="col-md-6 mt-1">
                  <div>
                     Uplode Photo</div>
-                    <div><FileUploader path={this.props.itemWillBeEdited.item.image} /></div>
+                    <div><FileUploader bringFileUrl={this.bringFileUrl} path={this.props.itemWillBeEdited.item.image} /></div>
                   </div>
               )
-          } else if(object.fieldLabel === 'categories'
-                       && object.type === 'categories' 
-                       && object.machineName === 'categories') {
+          } else if(object.type === 'categories') {
             return( 
               <div className="col-md-6">
                  <Label >
