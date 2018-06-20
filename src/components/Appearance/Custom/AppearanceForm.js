@@ -71,7 +71,7 @@ removeContentTyps = (key) => {
                   }
                  } )
   return (
-      <div>
+  <div>
       <Form onSubmit={this.props.handleSubmit}>
         <Row style={brdJumbo}>
           <Col>
@@ -100,6 +100,7 @@ removeContentTyps = (key) => {
                 <h5>Slide 1 </h5>
                 <div className="mb-3">
                     <FileUploader style={style} bringFileUrl={this.bringFileUrl} />
+                </div>
                 <Input style={style} placeholder="Title" />
                 <Input style={style} placeholder="Text" />
               </Col>
@@ -107,6 +108,7 @@ removeContentTyps = (key) => {
                 <h5>Slide 2 </h5>
                 <div className="mb-3">
                     <FileUploader bringFileUrl={this.bringFileUrl} />
+                </div>
                 <Input style={style} placeholder="Title" />
                 <Input style={style} placeholder="Text" />
               </Col>
@@ -132,19 +134,19 @@ removeContentTyps = (key) => {
 
           <Col>
             <h3>IconBox Left </h3>
-            <input
+            <Input
               defaultValue={this.props.form.icon1.icon}
               name="licon"
               style={style}
               placeholder="Icon Name"
             />
-            <input
+            <Input
               defaultValue={this.props.form.icon1.title}
               name="ltitle"
               style={style}
               placeholder="Title"
             />
-            <input
+            <Input
               defaultValue={this.props.form.icon1.text}
               name="ltext"
               style={style}
@@ -153,19 +155,19 @@ removeContentTyps = (key) => {
           </Col>
           <Col>
             <h3>IconBox Center</h3>
-            <input
+            <Input
               defaultValue={this.props.form.icon2.icon}
               name="cicon"
               style={style}
               placeholder="Icon Name"
             />
-            <input
+            <Input
               defaultValue={this.props.form.icon2.title}
               name="ctitle"
               style={style}
               placeholder="Title"
             />
-            <input
+            <Input
               defaultValue={this.props.form.icon2.text}
               name="ctext"
               style={style}
@@ -174,19 +176,19 @@ removeContentTyps = (key) => {
           </Col>
           <Col>
             <h3>IconBox Right</h3>
-            <input
+            <Input
               defaultValue={this.props.form.icon3.icon}
               name="ricon"
               style={style}
               placeholder="Icon Name"
             />
-            <input
+            <Input
               defaultValue={this.props.form.icon3.title}
               name="rtitle"
               style={style}
               placeholder="Title"
             />
-            <input
+            <Input
               defaultValue={this.props.form.icon3.text}
               name="rtext"
               style={style}
@@ -220,14 +222,14 @@ removeContentTyps = (key) => {
           </Col>
         </Row>
          <div className="container" >
-         <div className="row">
-           <div className="col-md-12">
-              <Button className="ml-2" onClick={this.props.incremnetContentTyps} color="primary">Add Content</Button>
-         </div>
-         </div>
-         <div className="row">
-                 {showComponent}
-          </div>
+           <div className="row">
+             <div className="col-md-12">
+                <Button className="ml-2" onClick={this.props.incremnetContentTyps} color="primary">Add Content</Button>
+             </div>
+           </div>
+           <div className="row">
+             {showComponent}
+           </div>
         </div>
          <Button className="mt-4" type="submit">Submit</Button>
       </Form>
