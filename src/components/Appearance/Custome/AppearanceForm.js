@@ -53,7 +53,7 @@ removeContentTyps = (key) => {
                                bringContentTypeObject={this.props.bringContentTypeObjectFromApperanc}
                                remove={() => {this.removeContentTyps(index)}}
                                selectedValues={content}
-                               contenttypeData={this.props.contentTypeData}
+                               contentTypes={this.props.contentTypeData}
                                key={index}
                                key1={content.keyItem} 
                            />
@@ -63,7 +63,7 @@ removeContentTyps = (key) => {
                               <HandleContentTypeView 
                                bringContentTypeObject={this.props.bringContentTypeObjectFromApperanc}
                                remove={() => {this.removeContentTyps(index)}}
-                               contenttypeData={this.props.contentTypeData}
+                               contentTypes={this.props.contentTypeData}
                                key={index}
                                key1={index}
                            />
