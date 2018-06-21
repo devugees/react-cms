@@ -1,41 +1,42 @@
 .Navbar {
-    background-color: #1a517f;
+  background-color: #1a517f;
 }
 
 .Jumbotron {
-    background-size: cover;
-    color: white;
-    height: 30em;
-    width: auto;
+  background-size: cover;
+  color: white;
+  height: 30em;
+  width: auto;
 }
 
 .Jumbotron h1 {
-    font-size: 2.6rem !important;
-    line-height: 3.2 !important;
-    text-align: center;
-    text-shadow: 0 0 30px black, 0 0 5px #0000FF;
+  font-size: 2.6rem !important;
+  line-height: 3.2 !important;
+  text-align: center;
+  text-shadow: 0 0 30px black, 0 0 5px #0000ff;
 }
 
 .Jumbotron p {
-    text-align: center;
-    text-shadow: 0 0 3px black, 0 0 5px #0000FF;
+  text-align: center;
+  text-shadow: 0 0 3px black, 0 0 5px #0000ff;
 }
 
 .Box {
-    text-align: center;
+  text-align: center;
 }
 
 .Icon {
-    padding: 1em;
-    border-bottom: 1px solid gray;
-    margin-bottom: 1em;
+  padding: 1em;
+  border-bottom: 1px solid gray;
+  margin-bottom: 1em;
 }
 
 .borderBox {
-    border: 1px solid grey;
+  border: 1px solid grey;
 }
 
 img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
 }

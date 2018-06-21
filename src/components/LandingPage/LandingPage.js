@@ -1,94 +1,47 @@
-import React, {Component} from 'react';
-import {Container} from 'reactstrap';
-import Menu from './LayoutComponents/Menu';
-import Slider from '../Slider/Slider';
-import IconBox from './LayoutComponents/IconBox';
-import Post from './LayoutComponents/Post';
-import Footer from './LayoutComponents/Footer';
-import LayoutComponents from './LayoutComponents/LayoutComponents';
+import React, { Component } from "react";
+import { Container } from "reactstrap";
+import Menu from "./LayoutComponents/Menu";
+import Slider from "../Slider/Slider";
+import IconBox from "./LayoutComponents/IconBox";
+import Post from "./LayoutComponents/Post";
+import Footer from "./LayoutComponents/Footer";
+import LayoutComponents from "./LayoutComponents/LayoutComponents";
 
-
-import './LandingPage.css';
+import "./LandingPage.css";
 
 class LandingPage extends Component {
   state = {
-    form: '',
+    form: "",
     contentTypes: [
       {
         contentType: {
-          id: '5b0202dc93aec4148ef87ea1',
-          name: 'Posts-test'
+          id: "5b0202dc93aec4148ef87ea1",
+          name: "Posts-test"
         },
         fields: [
           {
-            key: 'image',
-            element: 'img'
+            key: "image",
+            element: "img"
           },
-              {
-                key: 'title',
-                element: 'h'
-              },
           {
-            key: 'body',
-            element: 'p'
+            key: "title",
+            element: "h"
           },
+          {
+            key: "body",
+            element: "p"
+          }
         ],
-        numperOfPosts: 4,
-        viewType: 'Grid',
-        columns: 3
-      },
-      {
-        contentType: {
-          id: '5b0202dc93aec4148ef87ea1',
-          name: 'Posts-test'
-        },
-        fields: [
-          {
-            key: 'image',
-            element: 'img'
-          },
-          {
-            key: 'title',
-            element: 'h'
-          },
-          {
-            key: 'body',
-            element: 'p'
-          },
-        ],
-        numperOfPosts: 4,
-        viewType: 'Grid',
-        columns: 3
-      },
-      {
-        contentType: {
-          id: '5b0202dc93aec4148ef87ea1',
-          name: 'Posts-test'
-        },
-        fields: [
-          {
-            key: 'image',
-            element: 'img'
-          },
-          {
-            key: 'title',
-            element: 'h'
-          },
-          {
-            key: 'body',
-            element: 'p'
-          },
-        ],
-        numperOfPosts: 4,
-        viewType: 'Grid',
-        columns: 3
+        numberOfPosts: 6,
+        viewType: "Grid",
+        columns: 4
       }
     ],
-    javascriptCode:"",
-    cssCode:"",
+    javascriptCode: "",
+    cssCode: ""
   };
 
-/*
+  /*
   theme = {
     sections: [
       {
@@ -202,7 +155,7 @@ class LandingPage extends Component {
 */
 
   componentWillMount() {
-    fetch('http://localhost:5000/api/appearance')
+    fetch("http://localhost:5000/api/appearance")
       .then(resp => resp.json())
       .then(data => {
         this.setState({
@@ -212,10 +165,10 @@ class LandingPage extends Component {
       })
       .catch(() => {
         console.log(
-          'No internet connection found. App is running in offline mode.'
+          "No internet connection found. App is running in offline mode."
         );
       });
-      fetch('http://localhost:5000/api/customcode')
+    fetch("http://localhost:5000/api/customcode")
       .then(resp => resp.json())
       .then(data => {
         console.log(data);
@@ -223,20 +176,17 @@ class LandingPage extends Component {
           javascriptCode: data[0].javascriptCode,
           cssCode: data[0].cssCode
         });
-        
       })
       .catch(() => {
         console.log(
-          'No internet connection found. App is running in offline mode.'
+          "No internet connection found. App is running in offline mode."
         );
       });
   }
   render() {
     return (
       <React.Fragment>
-      <style>
-      {this.state.cssCode}
-      </style>
+        <style>{this.state.cssCode}</style>
         <Menu />
         <Slider />
         <Container>
@@ -246,16 +196,13 @@ class LandingPage extends Component {
         <div className="py-5 bg-light">
           <Container>
             {this.state.contentTypes.map((content, index) => {
-              console.log('here', content);
+              console.log("here", content);
               return <LayoutComponents key={index} contentType={content} />;
             })}
           </Container>
         </div>
         <Footer />
-        <script type="text/javascript">
-        {this.state.javascriptCode}
-        </script>
-
+        <script type="text/javascript">{this.state.javascriptCode}</script>
       </React.Fragment>
     );
   }
