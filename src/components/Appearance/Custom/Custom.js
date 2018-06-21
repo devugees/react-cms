@@ -71,8 +71,8 @@ class Custom extends Component {
     };
 
     bringContentTypeObjectFromApperanc = (data) => {
+        console.log("it tis called ",data)
         const contentTypesArr = [...this.state.contentTypesArr]
-        console.log(data)
         contentTypesArr[data.keyItem] = data
         this.setState({contentTypesArr})
     }
