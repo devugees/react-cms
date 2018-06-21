@@ -58,6 +58,7 @@ class Custom extends Component {
                 form[event.target.elements[i].name] = event.target.elements[i].value;
             }
         }
+        console.log(form)
 
         axios
             .post('http://localhost:5000/api/appearance', form)
