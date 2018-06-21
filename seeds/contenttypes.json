@@ -1,0 +1,177 @@
+[{
+    "_id": "5b0bb34899c48f13e94be6aa",
+    "fields": [
+    {
+        "fieldLabel": "jgjg",
+        "machineName": "jgjg",
+        "type": "Text",
+        "typeOption": "jgh",
+        "unique": true,
+        "visible": false,
+        "required": true,
+        "cssClasses": "jhgjgh",
+        "customCss": "jhgjg"
+    },
+    {
+        "fieldLabel": "Title",
+        "machineName": "title",
+        "type": "Text",
+        "typeOption": "jgh",
+        "unique": true,
+        "visible": false,
+        "required": true,
+        "cssClasses": "jhgjgh",
+        "customCss": "jhgjg"
+    },
+    {
+        "fieldLabel": "body",
+        "machineName": "body",
+        "type": "Text",
+        "typeOption": "jgh",
+        "unique": true,
+        "visible": false,
+        "required": true,
+        "cssClasses": "jhgjgh",
+        "customCss": "jhgjg"
+    }],
+    "title": "Movies",
+    "machineName": "movies",
+    "url": "/movies",
+    "__v": "0"
+},
+{
+    "_id": "5b17c62d9b41d51b1233c785",
+    "fields": [
+    {
+        "fieldLabel": "title",
+        "machineName": "title",
+        "type": "Text",
+        "typeOption": "",
+        "unique": false,
+        "visible": false,
+        "required": true,
+        "cssClasses": "",
+        "customCss": ""
+    },
+    {
+        "fieldLabel": "Body",
+        "machineName": "body",
+        "type": "Text",
+        "typeOption": "",
+        "unique": false,
+        "visible": false,
+        "required": true,
+        "cssClasses": "",
+        "customCss": ""
+    }],
+    "title": "Books",
+    "machineName": "books",
+    "url": "/books",
+    "__v": "0"
+},
+{
+    "_id": "5b2787cbac68cb27dad8dbc3",
+    "fields": [
+    {
+        "fieldLabel": "",
+        "machineName": "",
+        "type": "text",
+        "typeOption": "",
+        "unique": false,
+        "visible": false,
+        "required": false,
+        "cssClasses": "",
+        "customCss": ""
+    },
+    {
+        "fieldLabel": "",
+        "machineName": "",
+        "type": "text",
+        "typeOption": "",
+        "unique": false,
+        "visible": false,
+        "required": false,
+        "cssClasses": "",
+        "customCss": ""
+    },
+    {
+        "fieldLabel": "",
+        "machineName": "",
+        "type": "text",
+        "typeOption": "",
+        "unique": false,
+        "visible": false,
+        "required": false,
+        "cssClasses": "",
+        "customCss": ""
+    }],
+    "__v": "0"
+},
+{
+    "_id": "5b0202dc93aec4148ef87ea1",
+    "title": "Posts-test",
+    "machineName": "fdgfd",
+    "url": "posts-test",
+    "__v": "21",
+    "fields": [
+    {
+        "fieldLabel": "title",
+        "machineName": "title",
+        "type": "text",
+        "htmlElement": "h1",
+        "typeOption": "",
+        "unique": true,
+        "visible": false,
+        "required": true,
+        "cssClasses": "post-title",
+        "customCss": ""
+    },
+    {
+        "fieldLabel": "body",
+        "machineName": "body",
+        "type": "textarea",
+        "htmlElement": "p",
+        "typeOption": "",
+        "unique": false,
+        "visible": false,
+        "required": false,
+        "cssClasses": "post-body",
+        "customCss": ""
+    },
+    {
+        "fieldLabel": "describtion",
+        "machineName": "describtion",
+        "type": "textarea",
+        "htmlElement": "p",
+        "typeOption": "",
+        "unique": false,
+        "visible": false,
+        "required": false,
+        "cssClasses": "post-body",
+        "customCss": ""
+    },
+    {
+        "fieldLabel": "categories",
+        "machineName": "categories",
+        "type": "categories",
+        "htmlElement": "p",
+        "typeOption": "",
+        "unique": false,
+        "visible": false,
+        "required": false,
+        "cssClasses": "post-body",
+        "customCss": ""
+    },
+    {
+        "fieldLabel": "image",
+        "machineName": "image",
+        "type": "image",
+        "htmlElement": "img",
+        "typeOption": "",
+        "unique": false,
+        "visible": false,
+        "required": false,
+        "cssClasses": "post-body",
+        "customCss": ""
+    }]
+}]
