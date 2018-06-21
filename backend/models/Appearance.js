@@ -41,7 +41,7 @@ const AppearanceSchema = new Schema({
   },
   footertext: String,
   footeritems: Array,
-  ContentTypes: Array
+  contentTypesView: Array
 });
 
 const Appearance = mongoose.model('Appearance', AppearanceSchema);

@@ -12,6 +12,7 @@ module.exports = (app) => {
   });
   
   app.post('/api/appearance', (req, res) => {
+    console.log(req.body)
       payload = {
         slide1: {
           picture: req.body.slide1picture,
@@ -49,8 +50,10 @@ module.exports = (app) => {
           text: req.body.rtext
         },
         websitetitle: req.body.websitetitle,
-        footertext: req.body.footertext
+        footertext: req.body.footertext,
+        contentTypesView : req.body.contentTypesView
       };
+      console.log("payload",payload)
       Appearance.findOneAndUpdate({}, payload, {upsert:true}, function(err, doc){
           if (err) return res.send(500, { error: err });
           return res.send("succesfully saved");

@@ -18,7 +18,7 @@ class Custom extends Component {
         fetch('http://localhost:5000/api/appearance')
             .then(resp => resp.json())
             .then(data => {
-                this.setState({form: data[0]});
+                this.setState({form: data[0],contentTypesArr: data[0].contentTypesView});
             })
             .catch(() => {
                 console.log('No internet connection found. App is running in offline mode.');
@@ -26,7 +26,9 @@ class Custom extends Component {
     }
 
     incremnetContentTyps = () => {
-        const contentTypesArr = [...this.state.contentTypesArr];
+        if(Array.isArray(this.state.contentTypesArr)){
+
+            const contentTypesArr = [...this.state.contentTypesArr];
         const contentTypeView = {
             choosenContentType: {},
             chosenFields: [],
@@ -40,6 +42,24 @@ class Custom extends Component {
             contentTypesArr: contentTypesArr,
             // showcomponent: true,
         })
+
+        } else {
+            const contentTypesArr = [];
+            const contentTypeView = {
+                choosenContentType: {},
+                chosenFields: [],
+                numberOfEntries: "",
+                viewType: "",
+                numberOfColomus: "",
+                css: ""
+            }
+            contentTypesArr.push(contentTypeView)
+            this.setState({
+                contentTypesArr: contentTypesArr,
+                // showcomponent: true,
+            })
+        }
+        
     }
     removeContentTypsFromState = (key) => {
         console.log("key", key)
@@ -61,6 +81,7 @@ class Custom extends Component {
                 console.log("form",form)
             }
         }
+        form.contentTypesView = this.state.contentTypesArr
 
         axios
             .post('http://localhost:5000/api/appearance', form)
