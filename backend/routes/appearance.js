@@ -13,6 +13,26 @@ module.exports = (app) => {
   
   app.post('/api/appearance', (req, res) => {
       payload = {
+        slide1: {
+          picture: req.body.slide1File,
+          title: req.body.slide1Title,
+          text: req.body.slide1Text
+        },
+        slide2: {
+          picture: req.body.slide2File,
+          title: req.body.slide2Title,
+          text: req.body.slide2Text
+        },
+        slide3: {
+          picture: req.body.slide3File,
+          title: req.body.slide3Title,
+          text: req.body.slide3Text
+        },
+        slide4: {
+          picture: req.body.slide4File,
+          title: req.body.slide4Title,
+          text: req.body.slide4Text
+        },
         icon1: {
           icon: req.body.licon,
           title: req.body.ltitle,

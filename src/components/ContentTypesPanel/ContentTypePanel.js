@@ -71,10 +71,12 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
           });
   }
 
+
   componentDidMount = () => {
     this.bringEntries(this.props)
     this.bringCategories(this.props)  
   }
+
 
   componentDidUpdate = (prevProps, prevState) => {
     console.log("New props")

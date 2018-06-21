@@ -14,7 +14,7 @@ class AppearanceForm extends Component {
        contentTypesArr: [],
        showcomponent: false
                  }
-
+                 
                 }
 
   static propTypes = {
@@ -23,16 +23,14 @@ class AppearanceForm extends Component {
 componentWillReceiveProps(nextProps) {
  this.setState({contentTypesArr: nextProps.contentTypesArr});
 }
-
+ 
 
 removeContentTyps = (key) => {
   this.props.removeContentTypsFromState(key);
-     console.log("key",key)
     const contentTypesArrOb = [...this.state.contentTypesArr]
     contentTypesArrOb.splice(key, 1)
-    console.log("contentTypesArr",contentTypesArrOb);
     this.setState({contentTypesArr: contentTypesArrOb})
-
+   
   };
 
 
@@ -49,21 +47,21 @@ removeContentTyps = (key) => {
     let showComponent = this.state.contentTypesArr.map((content, index) => {
       if(content.keyItem) {
             return (<div className="col-md-4">
-                      <HandleContentTypeView
+                      <HandleContentTypeView 
                                bringContentTypeObject={this.props.bringContentTypeObjectFromApperanc}
                                remove={() => {this.removeContentTyps(index)}}
                                selectedValues={content}
-                               contenttypeData={this.props.contentTypeData}
+                               contentTypes={this.props.contentTypeData}
                                key={index}
-                               key1={content.keyItem}
+                               key1={content.keyItem} 
                            />
                     </div>)
                   } else {
                     return (<div className="col-md-4">
-                              <HandleContentTypeView
+                              <HandleContentTypeView 
                                bringContentTypeObject={this.props.bringContentTypeObjectFromApperanc}
                                remove={() => {this.removeContentTyps(index)}}
-                               contenttypeData={this.props.contentTypeData}
+                               contentTypes={this.props.contentTypeData}
                                key={index}
                                key1={index}
                            />
@@ -99,34 +97,34 @@ removeContentTyps = (key) => {
               <Col>
                 <h5>Slide 1 </h5>
                 <div className="mb-3">
-                    <FileUploader style={style} bringFileUrl={this.bringFileUrl} />
+                    <FileUploader style={style} name="slide1File" bringFileUrl={this.bringFileUrl} />
                 </div>
-                <Input style={style} placeholder="Title" />
-                <Input style={style} placeholder="Text" />
+                <Input defaultValue={this.props.form.slide1.title} name="slide1Title" style={style} placeholder="Title" />
+                <Input defaultValue={this.props.form.slide1.text} name="slide1Text" style={style} placeholder="Text" />
               </Col>
               <Col>
                 <h5>Slide 2 </h5>
                 <div className="mb-3">
-                    <FileUploader bringFileUrl={this.bringFileUrl} />
+                    <FileUploader name="slide2File" bringFileUrl={this.bringFileUrl} />
                 </div>
-                <Input style={style} placeholder="Title" />
-                <Input style={style} placeholder="Text" />
+                <Input defaultValue={this.props.form.slide2.title} name="slide2Title" style={style} placeholder="Title" />
+                <Input defaultValue={this.props.form.slide2.text} name="slide2Text" style={style} placeholder="Text" />
               </Col>
               <Col>
                 <h5>Slide 3 </h5>
                 <div className="mb-3">
-                    <FileUploader bringFileUrl={this.bringFileUrl} />
+                    <FileUploader name="slide3File" bringFileUrl={this.bringFileUrl} />
                 </div>
-                <Input style={style} placeholder="Title" />
-                <Input style={style} placeholder="Text" />
+                <Input defaultValue={this.props.form.slide3.title} name="slide3Title" style={style} placeholder="Title" />
+                <Input defaultValue={this.props.form.slide3.text} name="slide3Text" style={style} placeholder="Text" />
               </Col>
               <Col>
                 <h5>Slide 4 </h5>
                 <div className="mb-3">
-                    <FileUploader bringFileUrl={this.bringFileUrl} />
+                    <FileUploader name="slide4File" bringFileUrl={this.bringFileUrl} />
                 </div>
-                <Input style={style} placeholder="Title" />
-                <Input style={style} placeholder="Text" />
+                <Input defaultValue={this.props.form.slide4.title} name="slide4Title" style={style} placeholder="Title" />
+                <Input defaultValue={this.props.form.slide4.title} name="slide4Text" style={style} placeholder="Text" />
               </Col>
             </Row>
           </Row>
@@ -223,14 +221,14 @@ removeContentTyps = (key) => {
           </Col>
         </Row>
          <div className="container" >
-           <div className="row">
-             <div className="col-md-12">
-                <Button className="ml-2" onClick={this.props.incremnetContentTyps} color="primary">Add Content</Button>
-             </div>
-           </div>
-           <div className="row">
-             {showComponent}
-           </div>
+         <div className="row">
+           <div className="col-md-12">
+              <Button className="ml-2" onClick={this.props.incremnetContentTyps} color="primary">Add Content</Button>
+         </div>
+         </div>
+         <div className="row">
+                 {showComponent}
+          </div>
         </div>
          <Button className="mt-4" type="submit">Submit</Button>
       </Form>
