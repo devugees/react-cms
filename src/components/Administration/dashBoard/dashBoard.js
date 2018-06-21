@@ -42,7 +42,7 @@ class dashBord extends Component {
                     className="dashLink"
                     to={`/Administration/Categories/${contentType._id}`}
                   >
-                    Categories {contentType.title}
+                    {contentType.title} Categories 
                   </Link>
                 </NavItem>
                 <NavItem>
@@ -129,7 +129,7 @@ class dashBord extends Component {
             </Link>
           </NavItem>
           <NavItem>
-            <Link className="dashLinks" to="/Administration/main/Custome">
+            <Link className="dashLinks" to="/Administration/main/Custom">
               Custom
             </Link>
           </NavItem>
@@ -140,7 +140,7 @@ class dashBord extends Component {
             </Link>
           </NavItem> */}
           <NavItem>
-            <Link className="dashLinks" to="/Administration/main/CustomeCode">
+            <Link className="dashLinks" to="/Administration/main/CustomCode">
               Custom Code
             </Link>
           </NavItem>
@@ -176,7 +176,7 @@ class dashBord extends Component {
               className="dashLinks"
               to="/Administration/main/SettingsComponent"
             >
-              Setting
+              Settings
             </Link>
           </NavItem>
         </Nav>

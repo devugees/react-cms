@@ -10,8 +10,8 @@ import SettingsComponent from '../SettingsComponent/SettingsComponent';
 import FieldTypes from '../SiteStructure/FieldTypes/FieldTypes';
 import AllFields from '../SiteStructure/AllFields/AllFields';
 import Themes from '../Appearance/Themes/Themes';
-import CustomeCode from '../Appearance/CustomeCode/CustomeCode';
-import Custome from '../Appearance/Custome/Custome';
+import CustomCode from '../Appearance/CustomCode/CustomCode';
+import Custom from '../Appearance/Custom/Custom';
 import Editor from '../Appearance/Editor/Editor';
 import Blocks from '../Appearance/Blocks/Blocks';
 import AllUsers from '../Users/AllUsers/AllUsers';
@@ -66,11 +66,11 @@ class Main extends Component {
       "Update": <Update/>,
       "ContentTypesList": <ContentTypesList contenttypes={this.props.contenttypes} />,
       "SettingsComponent": <SettingsComponent/>,
-      "FieldTypes": <FieldTypes/>,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+      "FieldTypes": <FieldTypes/>,      
       "AllFields": <AllFields allFields={this.state.allTheFields} />,
       "Themes": <Themes/>,
-      "CustomeCode": <CustomeCode/>,
-      "Custome": <Custome contenttypes={this.props.contenttypes}/>,
+      "CustomCode": <CustomCode/>,
+      "Custom": <Custom contenttypes={this.props.contenttypes}/>,
       "Editor": <Editor/>,
       "Blocks": <Blocks/>,
       "Menues": <Menues/>,

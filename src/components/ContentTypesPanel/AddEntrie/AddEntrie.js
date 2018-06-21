@@ -135,9 +135,17 @@ class AddEntrie extends Component {
     );
 
 
-    const styleForm = {
-      width: "90%"
+    const labelCategorie = {marginBottom: "0"};
+    const brdJumbo = { border: "1px solid grey", margin: '2em 1em 0 1em' };
+    const h3Brd = {
+      marginTop: " -17px",
+      marginLeft: "5px",
+      background: "white",
+      width: 'auto',
+      display: 'table'
     };
+
+    const styleForm = {width: "90%"};
 
     let allFields = this.props.fields.map((object, index) => {
       const objectMachinename = object.machineName
@@ -191,18 +199,14 @@ class AddEntrie extends Component {
     });
 
     return (
-      <div className="boxs">
-        <h3> {this.props.action} Entrie </h3>
+      <div className="boxs" style={brdJumbo}>
+        <h3 style={h3Brd}> {this.props.action} Entry </h3>
         <Form style={styleForm} onSubmit={this.handelFormSubmit}>
           <div className="container">
             <div className="row">{allFields}</div>
+            <Button type="submit" className="btn  btn-outline-primary mt-3">Add New Post</Button>
           </div>
-          <div className="mt-5">
-            <hr />
-            <Button type="submit" className="btn  btn-outline-primary mt-3">
-              Add New Post
-            </Button>
-          </div>
+          
         </Form>
       </div>
     );

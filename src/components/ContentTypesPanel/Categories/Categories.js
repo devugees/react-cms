@@ -231,7 +231,7 @@ class Categories extends Component {
                     type="button"
                     onClick={this.handleToggleAddInput.bind(this)}
                     className="btn btn-primary ml-1">
-                    Add New categorie
+                    Add New Category
                   </button>
                 </td>
               </tr>

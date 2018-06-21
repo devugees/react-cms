@@ -104,9 +104,11 @@ itemWillBeEdited = {};
       marginTop: " -17px",
       marginLeft: "5px",
       background: "white",
-      width: 'auto'
+      width: 'auto',
+      display: 'table'
     };
-	    return (
+    const AddFieldStyle = {margin: '0'}
+      return (
 	      <div className='StructurePage'>
           <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
             <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
@@ -121,7 +123,7 @@ itemWillBeEdited = {};
 
             <Row style={brdJumbo}>
             <h5 style={h3Brd}>All your fields</h5>
-            <ViewTable
+            <ViewTable 
               deleteFieldFromState={this.deleteFieldFromState}
               bringItemWillBeEditedFromViewTable={this.bringItemWillBeEditedFromViewTable}
               toggle={this.toggle}
@@ -129,11 +131,11 @@ itemWillBeEdited = {};
               keys={this.state.fieldsKeys}/>
             </Row>
 
-            <Row>
+            <Row style={AddFieldStyle}>
               <AddField addFields={this.addFields} id={this.props.id} />
             </Row>
 
-            <Row className='float-right'>
+            <Row className='float-right' style={AddFieldStyle}>
             <Button type="submit" className="btn mt-2 btn btn-outline-success btn-md"  onClick={this.handelClick} >Save</Button>
             <Button className="btn ml-2 mt-2 btn btn-outline-secondary btn-md">Cancel</Button>
             </Row>
