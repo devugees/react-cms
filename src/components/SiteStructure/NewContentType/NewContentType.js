@@ -66,11 +66,28 @@ class NewContentType extends Component {
   };
 
   render() {
+    const brdJumbo = {
+      border: "1px solid grey",
+      margin: '1em 0 1em 0',
+      padding: '1em',
+      transform: 'scale(1.02,1)'
+    };
+    const h3Brd = {
+      marginTop: " -33px",
+      marginLeft: "5px",
+      background: "white",
+      width: 'auto',
+      display: 'table',
+      position: 'absolute'
+    };
     return (
       <div className="AddContent">
-        <Container className="ContentSetting">
+        <Container className="ContentSetting" >
           <Form onSubmit={this.handelSubmit}>
-            <Row>
+      <div className="row">
+        <div className="column">
+            <Row style={brdJumbo}>
+          <h5 style={h3Brd} >New Content</h5>
               <Col sm="3" md="3" lg="3">
                 <FormGroup>
                   <Label>Title</Label>
@@ -93,19 +110,6 @@ class NewContentType extends Component {
                   />
                 </FormGroup>
               </Col>
-              {/*<Col sm="6" md="6" lg="6">  // we emplemt ot when we emplemnt dynamic routes depending on this//
-                <FormGroup>
-                  <Label>URL*</Label>
-                  <Input
-                    name="url"
-                    placeholder="url"
-                    type="text"
-                    onChange={this.handelChange}
-                  />
-                </FormGroup>
-              </Col>*/}
-            </Row>
-            <Row>
               <Col sm="6" md="6" lg="6">
                 <FormGroup>
                   <Label>Descripton</Label>
@@ -117,7 +121,7 @@ class NewContentType extends Component {
                   />
                 </FormGroup>
               </Col>
-              <Col sm="6" md="6" lg="6">
+              <Col sm="6" md="8" lg="12">
                 <FormGroup>
                   <Label>Submission Guidlines</Label>
                   <Input
@@ -129,9 +133,13 @@ class NewContentType extends Component {
                 </FormGroup>
               </Col>
             </Row>
+        </div>
+      <div className="column">
             <Row>
               <AddField addFields={this.addFields} />
             </Row>
+        </div>
+      </div>
             <Row>
               <ViewTable
                 items={this.state.fields}
@@ -151,10 +159,25 @@ class NewContentType extends Component {
             </Row>
           </Form>
         </Container>
-
-        {/*
-        <ContentSetting addContentType={this.addContentType}
-/>*/}
+{/*
+<Col sm="6" md="6" lg="6">
+// we emplemt
+ ot when we 
+ emplemnt dynamic 
+ routes depending 
+ on this//
+<FormGroup>
+<Label>URL*</Label>
+<Input
+name="url"
+placeholder="url"
+type="text"
+onChange={this.handelChange}
+/>
+</FormGroup>
+</Col>
+*/}
+{/*<ContentSetting addContentType={this.addContentType}/>*/}
       </div>
     );
   }

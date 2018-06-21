@@ -7,3 +7,15 @@
   margin: 2.5rem 0 9.5rem 20.5rem;
 }
 */
+.column {
+    width: 100%;
+    padding: 10px;
+    height: auto; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}

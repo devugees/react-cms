@@ -97,8 +97,9 @@ removeContentTypsFromState = (key) => {
     }));
 
     return (
-     
+
       this.state.form && (
+        <div>
         <AppearanceForm
           contentTypesArr={this.state.contentTypesArr}
           bringContentTypeObjectFromApperanc={this.bringContentTypeObjectFromApperanc}
@@ -108,6 +109,7 @@ removeContentTypsFromState = (key) => {
           incremnetContentTyps={this.incremnetContentTyps}
           removeContentTypsFromState={this.removeContentTypsFromState}
         />
+        </div>
       )
     
      
