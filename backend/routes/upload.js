@@ -12,7 +12,7 @@ module.exports = (app) => {
  const storage = multer.diskStorage({
       destination: (req, file, cb) => {
    
-        cb(null, './uploads');
+        cb(null, '../public/uploads');
       },
       filename: (req, file, cb) => {
       
@@ -53,7 +53,7 @@ module.exports = (app) => {
 
 
 app.get('/api/getimages', (req, res) => {
-var images = fs.readdirSync('./uploads');
+var images = fs.readdirSync('../public/uploads');
 res.send(images);
 });
 

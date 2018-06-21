@@ -51,11 +51,14 @@ class Custom extends Component {
     };
 
     handleSubmit = event => {
+        console.log(event.target.elements)
         event.preventDefault();
         let form = {};
         for (var i = 0; i < event.target.elements.length; i++) {
             if (event.target.elements[i].value !== '' && event.target.elements[i].name !== '') {
+                
                 form[event.target.elements[i].name] = event.target.elements[i].value;
+                console.log("form",form)
             }
         }
 

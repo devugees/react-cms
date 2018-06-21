@@ -97,7 +97,7 @@ removeContentTyps = (key) => {
               <Col>
                 <h5>Slide 1 </h5>
                 <div className="mb-3">
-                    <FileUploader style={style} name="slide1File" bringFileUrl={this.bringFileUrl} />
+                    <FileUploader index= "1"  style={style} name="slide1File" bringFileUrl={this.bringFileUrl} />
                 </div>
                 <Input defaultValue={this.props.form.slide1.title} name="slide1Title" style={style} placeholder="Title" />
                 <Input defaultValue={this.props.form.slide1.text} name="slide1Text" style={style} placeholder="Text" />
@@ -105,7 +105,7 @@ removeContentTyps = (key) => {
               <Col>
                 <h5>Slide 2 </h5>
                 <div className="mb-3">
-                    <FileUploader name="slide2File" bringFileUrl={this.bringFileUrl} />
+                    <FileUploader index= "2" name="slide2File" bringFileUrl={this.bringFileUrl} />
                 </div>
                 <Input defaultValue={this.props.form.slide2.title} name="slide2Title" style={style} placeholder="Title" />
                 <Input defaultValue={this.props.form.slide2.text} name="slide2Text" style={style} placeholder="Text" />
@@ -113,7 +113,7 @@ removeContentTyps = (key) => {
               <Col>
                 <h5>Slide 3 </h5>
                 <div className="mb-3">
-                    <FileUploader name="slide3File" bringFileUrl={this.bringFileUrl} />
+                    <FileUploader index= "3" name="slide3File" bringFileUrl={this.bringFileUrl} />
                 </div>
                 <Input defaultValue={this.props.form.slide3.title} name="slide3Title" style={style} placeholder="Title" />
                 <Input defaultValue={this.props.form.slide3.text} name="slide3Text" style={style} placeholder="Text" />
@@ -121,7 +121,7 @@ removeContentTyps = (key) => {
               <Col>
                 <h5>Slide 4 </h5>
                 <div className="mb-3">
-                    <FileUploader name="slide4File" bringFileUrl={this.bringFileUrl} />
+                    <FileUploader index= "4" name="slide4File" bringFileUrl={this.bringFileUrl} />
                 </div>
                 <Input defaultValue={this.props.form.slide4.title} name="slide4Title" style={style} placeholder="Title" />
                 <Input defaultValue={this.props.form.slide4.title} name="slide4Text" style={style} placeholder="Text" />
