@@ -1,0 +1,28 @@
+[{
+    "_id": "5b18e9127f6c869edfeefb0d",
+    "icon1":
+    {
+        "icon": "fa-beer",
+        "title": "Beer",
+        "text": "Blandit tempus porttitor. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum."
+    },
+    "icon2":
+    {
+        "icon": "fa-envelope",
+        "title": "Mail",
+        "text": "Curabitur blandit tempus porttitor. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum."
+    },
+    "icon3":
+    {
+        "icon": "fa-cog",
+        "title": "Cog",
+        "text": "Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum."
+    },
+    "menuItems": [],
+    "footerItems": [],
+    "footerText": null,
+    "__v": "0",
+    "websiteTitle": null,
+    "footertext": "Footer badlfkalfsa",
+    "websitetitle": "react-cms"
+}]
