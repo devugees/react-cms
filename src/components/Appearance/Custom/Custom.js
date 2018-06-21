@@ -92,15 +92,25 @@ class Custom extends Component {
             .categories
             .map((item, index) => ({label: item.name, value: index}));
 
-        return (this.state.form && (<AppearanceForm
-            contentTypesArr={this.state.contentTypesArr}
-            bringContentTypeObjectFromApperanc={this.bringContentTypeObjectFromApperanc}
-            contentTypeData={this.props.contenttypes}
-            handleSubmit={this.handleSubmit}
-            form={this.state.form}
-            incremnetContentTyps={this.incremnetContentTyps}
-            removeContentTypsFromState={this.removeContentTypsFromState}/>));
-    }
+    return (
+
+      this.state.form && (
+        <div>
+        <AppearanceForm
+          contentTypesArr={this.state.contentTypesArr}
+          bringContentTypeObjectFromApperanc={this.bringContentTypeObjectFromApperanc}
+          contentTypeData={this.props.contenttypes}
+          handleSubmit={this.handleSubmit}
+          form={this.state.form}
+          incremnetContentTyps={this.incremnetContentTyps}
+          removeContentTypsFromState={this.removeContentTypsFromState}
+        />
+        </div>
+      )
+    
+     
+    );
+  }
 }
 
 export default Custom;

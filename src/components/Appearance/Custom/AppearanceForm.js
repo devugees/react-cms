@@ -35,14 +35,14 @@ removeContentTyps = (key) => {
 
 
   render() {
-    const style = {marginBottom: '1em'};
+    const style = {margin: '1em 0 1em 0'};
     const btnFile = {marginBottom: '1em', height: '2em'};
-    const brdJumbo = { border: "1px solid grey", margin: '0 0 2em 0' };
+    const brdJumbo = { border: "1px solid grey", margin: '0 0 2em 0'};
     const h3Brd = {
-      marginTop: " -17px",
-      marginLeft: "5px",
+      margin: ' -17px 0 5px 0',
       background: "white",
-      width: '2.5em'
+      width: '2.5em',
+      position: 'absolute'
     };
     let showComponent = this.state.contentTypesArr.map((content, index) => {
       if(content.keyItem) {
@@ -73,7 +73,7 @@ removeContentTyps = (key) => {
       <Form onSubmit={this.props.handleSubmit}>
         <Row style={brdJumbo}>
           <Col>
-            <h3 style={h3Brd}>Menu</h3>
+            <h5 style={h3Brd}>Menu</h5>
             <Input
               defaultValue={this.props.form.websitetitle}
               name="websitetitle"
@@ -92,7 +92,7 @@ removeContentTyps = (key) => {
         </Row>
 
         <Row style={brdJumbo}>
-            <h3 style={h3Brd}> Slider </h3>
+            <h5 style={h3Brd}> Slider </h5>
             <Row style={{margin: '1em'}}>
               <Col>
                 <h5>Slide 1 </h5>
@@ -128,10 +128,11 @@ removeContentTyps = (key) => {
               </Col>
             </Row>
           </Row>
-          <Row>
 
+          <Row style={brdJumbo}>
           <Col>
-            <h3>IconBox Left </h3>
+          <h5 style={h3Brd}>Icons</h5>
+            <h5 style={{margin: '1em 0 0 0'}}>IconBox Left </h5>
             <Input
               defaultValue={this.props.form.icon1.icon}
               name="licon"
@@ -152,7 +153,7 @@ removeContentTyps = (key) => {
             />
           </Col>
           <Col>
-            <h3>IconBox Center</h3>
+            <h5 style={{margin: '1em 0 0 0'}}>IconBox Center</h5>
             <Input
               defaultValue={this.props.form.icon2.icon}
               name="cicon"
@@ -173,7 +174,7 @@ removeContentTyps = (key) => {
             />
           </Col>
           <Col>
-            <h3>IconBox Right</h3>
+            <h5 style={{margin: '1em 0 0 0'}}>IconBox Right</h5>
             <Input
               defaultValue={this.props.form.icon3.icon}
               name="ricon"
@@ -196,13 +197,13 @@ removeContentTyps = (key) => {
         </Row>
         <Row>
           <Col>
-            <h3>Post</h3>
+            <h5>Post</h5>
             <Input style={btnFile} type="file" name="file" id="exampleFile" />
             <Input style={style} placeholder="Title" />
             <Input style={style} placeholder="Text" />
           </Col>
           <Col>
-            <h3>Footer</h3>
+            <h5>Footer</h5>
             <Input
               defaultValue={this.props.form.footertext}
               name="footertext"

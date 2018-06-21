@@ -141,7 +141,7 @@ class AddEntrie extends Component {
     };
 
     const labelCategorie = {marginBottom: "0"};
-    const brdJumbo = { border: "1px solid grey", margin: '2em 1em 0 1em' };
+    const brdJumbo = { border: "1px solid grey", margin: '2em 1em 0 1em', padding: '1em'};
     const h3Brd = {
       marginTop: " -17px",
       marginLeft: "5px",
@@ -158,7 +158,7 @@ class AddEntrie extends Component {
         object.type === "image"
       ) {
         return (
-          <div className="col-md-6 mt-1">
+          <FormGroup className="col-md-6 mt-1">
             <div>Upload Photo</div>
             <div>
               <FileUploader
@@ -167,16 +167,16 @@ class AddEntrie extends Component {
                 remove={this.state.remove}
               />
             </div>
-          </div>
+          </FormGroup>
         );
       } else if (
         object.type === "categories"
       ) {
         return (
-          <div className="col-md-6">
+          <FormGroup className="col-md-6">
             <Label style={labelCategorie}>Categories</Label>
             <div>{categoriesProp}</div>
-          </div>
+          </FormGroup>
         );
       }
       return (
@@ -199,14 +199,11 @@ class AddEntrie extends Component {
 
     return (
       <div className="boxs" style={brdJumbo}>
-        <h3 style={h3Brd}> {this.props.action} Entry </h3>
-        <Form style={styleForm} onSubmit={this.handelFormSubmit}>
-          <div className="container">
-            <div className="row">{allFields}</div>
-            <Button type="submit" className="btn  btn-outline-primary mt-3">Add New Post</Button>
-          </div>
-          
+          <h3 style={h3Brd}> {this.props.action} Entry </h3>
+        <Form sm="6" md="6" lg="6" onSubmit={this.handelFormSubmit}>
+          <div className="row">{allFields}</div>
         </Form>
+        <Button style={{transform: 'scale(0.88,1)', margin: '1em 0 0 0'}} type="submit" className="btn btn-outline-primary">Add New Post</Button>
       </div>
     );
   }
