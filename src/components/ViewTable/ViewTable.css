@@ -23,3 +23,14 @@
 }
 }
 
+.table th {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0px;
+	background-color: #dee2e6;
+	border: 0 !important;
+}
+
+.table tr:first-child td {
+	border-top: 0;
+}
