@@ -27,17 +27,14 @@ componentWillReceiveProps(nextProps) {
 
 removeContentTyps = (key) => {
   this.props.removeContentTypsFromState(key);
-     console.log("key",key)
     const contentTypesArrOb = [...this.state.contentTypesArr]
     contentTypesArrOb.splice(key, 1)
-    console.log("contentTypesArr",contentTypesArrOb);
     this.setState({contentTypesArr: contentTypesArrOb})
    
   };
 
 
   render() {
-  console.log(this.props.contenttypesObject);
     const style = {marginBottom: '1em'};
     const btnFile = {marginBottom: '1em', height: '2em'};
     const brdJumbo = { border: "1px solid grey", margin: '0 0 2em 0' };
@@ -100,34 +97,34 @@ removeContentTyps = (key) => {
               <Col>
                 <h5>Slide 1 </h5>
                 <div className="mb-3">
-                    <FileUploader style={style} bringFileUrl={this.bringFileUrl} />
+                    <FileUploader style={style} name="slide1File" bringFileUrl={this.bringFileUrl} />
                 </div>
-                <Input style={style} placeholder="Title" />
-                <Input style={style} placeholder="Text" />
+                <Input defaultValue={this.props.form.slide1.title} name="slide1Title" style={style} placeholder="Title" />
+                <Input defaultValue={this.props.form.slide1.text} name="slide1Text" style={style} placeholder="Text" />
               </Col>
               <Col>
                 <h5>Slide 2 </h5>
                 <div className="mb-3">
-                    <FileUploader bringFileUrl={this.bringFileUrl} />
+                    <FileUploader name="slide2File" bringFileUrl={this.bringFileUrl} />
                 </div>
-                <Input style={style} placeholder="Title" />
-                <Input style={style} placeholder="Text" />
+                <Input defaultValue={this.props.form.slide2.title} name="slide2Title" style={style} placeholder="Title" />
+                <Input defaultValue={this.props.form.slide2.text} name="slide2Text" style={style} placeholder="Text" />
               </Col>
               <Col>
                 <h5>Slide 3 </h5>
                 <div className="mb-3">
-                    <FileUploader bringFileUrl={this.bringFileUrl} />
+                    <FileUploader name="slide3File" bringFileUrl={this.bringFileUrl} />
                 </div>
-                <Input style={style} placeholder="Title" />
-                <Input style={style} placeholder="Text" />
+                <Input defaultValue={this.props.form.slide3.title} name="slide3Title" style={style} placeholder="Title" />
+                <Input defaultValue={this.props.form.slide3.text} name="slide3Text" style={style} placeholder="Text" />
               </Col>
               <Col>
                 <h5>Slide 4 </h5>
                 <div className="mb-3">
-                    <FileUploader bringFileUrl={this.bringFileUrl} />
+                    <FileUploader name="slide4File" bringFileUrl={this.bringFileUrl} />
                 </div>
-                <Input style={style} placeholder="Title" />
-                <Input style={style} placeholder="Text" />
+                <Input defaultValue={this.props.form.slide4.title} name="slide4Title" style={style} placeholder="Title" />
+                <Input defaultValue={this.props.form.slide4.title} name="slide4Text" style={style} placeholder="Text" />
               </Col>
             </Row>
           </Row>
