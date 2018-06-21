@@ -17,28 +17,7 @@ class Slider extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-                  items :[
-  {
-    src: kino,
-    altText: 'Slide 1',
-    caption: 'Slide 1'
-  },
-  {
-    src: image1,
-    altText: 'Slide 2',
-    caption: 'Slide 2'
-  },
-  {
-    src: image2,
-    altText: 'Slide 3',
-    caption: 'Slide 3'
-  },
-  {
-    src: image3,
-    altText: 'Slide 4',
-    caption: 'Slide 4'
-  }
-],
+      items :[],
 
 
       activeIndex: 0 
@@ -50,6 +29,26 @@ class Slider extends Component {
     this.onExited = this.onExited.bind(this);
   }
 
+  componentWillMount() {
+    fetch('http://localhost:5000/api/appearance')
+      .then(resp => resp.json())
+      .then(data => {
+        this.setState({
+          items: [
+            data[0].slide1, 
+            data[0].slide2,  
+            data[0].slide3, 
+            data[0].slide4
+        ],
+        });
+      })
+      .catch(() => {
+        console.log(
+          'No internet connection found. App is running in offline mode.'
+        );
+      });
+  }
+  
   onExiting() {
     this.animating = true;
   }
@@ -88,11 +87,11 @@ class Slider extends Component {
       
           <img 
                style={{height: '500px', marginTop: 0, marginBottom: 30}}
-               src={item.src} 
+               src={item.picture} 
                alt={item.altText}
                  />
          
-          <CarouselCaption captionText={item.caption} captionHeader={item.caption} style={{display: 'block'}} />
+          <CarouselCaption captionText={item.text} captionHeader={item.title} style={{display: 'block'}} />
         </CarouselItem>
       );
     });
