@@ -24,8 +24,6 @@ class ExtandedCTView extends Component {
         }`
       )
       .then(response => {
-        let sortArr = 
-        console.log(response.data.content);
         this.setState({entry: response.data});
       })
       .catch(error => {
@@ -49,7 +47,7 @@ class ExtandedCTView extends Component {
       content
         ? Object.keys(content).map(key => {
           return key === 'image' ? (
-            image = <CardImg style={{ height: '85vh', boxShadow: '0 10px 6px -6px #777'}} src={content[key]} alt="#" />
+            image = <CardImg style={{ height: '85vh', boxShadow: '0 10px 6px -6px #777'}} src={content[key]} alt="#"/>
           ) : key === 'title' ? (
            title = <CardTitle style={{fontSize: '1.6rem',fontWeight: 'bold', marginBottom: '1rem'}}>{content[key]}</CardTitle>
           ) : key === 'body' ? (
@@ -65,10 +63,8 @@ class ExtandedCTView extends Component {
         })
         : null
     
-
-
     return <div>
-      <Card style={{display: 'block', textAlign: 'center', height: '100vh', border: 'none'}}>
+            <Card style={{display: 'block', textAlign: 'center', height: '100vh', border: 'none'}}>
               {image}
              <CardBody style={{padding: '1.5rem 15rem'}}>
                 {title}
@@ -76,10 +72,10 @@ class ExtandedCTView extends Component {
                 {describtion}
                 {categories}
                 {misc}
-              </CardBody>
+             </CardBody>
             </Card>
-          </div>;
-  }
+           </div>;
+    }
 }
 
 export default ExtandedCTView;
