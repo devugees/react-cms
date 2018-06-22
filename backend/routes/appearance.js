@@ -14,6 +14,7 @@ module.exports = (app) => {
   app.post('/api/appearance', (req, res) => {
     console.log(req.body)
       payload = {
+        logopicture: req.body.logopicture,
         slide1: {
           picture: req.body.slide1picture,
           title: req.body.slide1Title,

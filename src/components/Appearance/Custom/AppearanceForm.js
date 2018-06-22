@@ -90,6 +90,8 @@ removeContentTyps = (key) => {
               placeholder="Choose Pages for Menu"
               onChange={this.handleSelectChange}
             />
+            <h6>Logo</h6>
+            <FileUploader index= "logo" path={this.props.form.logopicture} name="slide3File" bringFileUrl={this.bringFileUrl} />
           </Col>
         </Row>
 

@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const AppearanceSchema = new Schema({
   websitetitle: String,
   menuItems: Array,
+  logopicture:String,
   slide1: {
     picture: String,
     title: String,
