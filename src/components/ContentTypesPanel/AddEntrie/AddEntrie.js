@@ -143,7 +143,7 @@ class AddEntrie extends Component {
     const labelCategorie = {marginBottom: "0"};
     const brdJumbo = { border: "1px solid grey", margin: '2em 1em 0 1em', padding: '1em'};
     const h3Brd = {
-      marginTop: " -17px",
+      marginTop: " -33px",
       marginLeft: "5px",
       background: "white",
       width: 'auto',
@@ -200,10 +200,10 @@ class AddEntrie extends Component {
     return (
       <div className="boxs" style={brdJumbo}>
           <h3 style={h3Brd}> {this.props.action} Entry </h3>
-        <Form sm="6" md="6" lg="6" onSubmit={this.handelFormSubmit}>
+        <Form onSubmit={this.handelFormSubmit}>
           <div className="row">{allFields}</div>
         </Form>
-        <Button style={{transform: 'scale(0.88,1)', margin: '1em 0 0 0'}} type="submit" className="btn btn-outline-primary">Add New Post</Button>
+        <Button style={{margin: '2em 0 0 0'}} type="submit" className="btn btn-outline-primary">Add New Post</Button>
       </div>
     );
   }
