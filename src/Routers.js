@@ -58,7 +58,7 @@ class Routers extends Component {
             <Route  exact path="/" component={LandingPage} />
             <Route  exact path="/FileUploader" component={FileUploader} />
             <Route  exact path="/slider" component={Slider} />
-            <Route  path="/ContentType/entries/:entrieId" component={ExtandedCTView} />            
+            <Route  path="/ContentType/entries/:entrieId" component={LandingPage} />            
 
         
             <PrivatRoute

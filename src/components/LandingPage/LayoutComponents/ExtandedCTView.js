@@ -13,7 +13,7 @@ import {
 
 class ExtandedCTView extends Component {
   state = {
-    id: '5b2a386449988f99d479770a',
+    id: this.props.id,
     entry: {}
   };
 
