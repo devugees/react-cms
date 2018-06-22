@@ -75,7 +75,7 @@ class CustomCode extends Component {
         }}
         onChange={this.onChange}
       />
-      <Button onClick={this.onClick} color="primary">Save</Button>{' '}
+      <Button className='mt-2' onClick={this.onClick} color="primary">Save</Button>{' '}
      </div>
      
     );
