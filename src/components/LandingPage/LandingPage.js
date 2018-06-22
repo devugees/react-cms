@@ -12,6 +12,7 @@ import './LandingPage.css';
 
 class LandingPage extends Component {
   state = {
+    contentTypesView:[],
     form: '',
     contentTypes: [
       {
@@ -207,7 +208,8 @@ class LandingPage extends Component {
       .then(data => {
         this.setState({
           form: data[0],
-          icons: [data[0].icon1, data[0].icon2, data[0].icon3]
+          icons: [data[0].icon1, data[0].icon2, data[0].icon3],
+          contentTypesView: data[0].contentTypesView
         });
       })
       .catch(() => {

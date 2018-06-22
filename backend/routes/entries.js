@@ -27,7 +27,7 @@ module.exports = (app) => {
 
     // > Get All Entry
     app.get('/api/entries/:contentTypeId', (req, res) => {
-        console.log(req.params.contentTypeId)
+        console.log('hsadjk',req.params.contentTypeId)
 
         Entries.find({ 'contentTypeId': req.params.contentTypeId }, (err, data) => {
             if (err) {
@@ -38,6 +38,24 @@ module.exports = (app) => {
             console.log(data)
             return res.send(data)
         });
+    });
+
+     // > Get Single Entry
+    app.get('/api/entries/one/:entrieId', (req, res) => {
+      console.log(req.params.entrieId);
+
+        Entries.findById(
+          req.params.entrieId,
+        (err, data) => {
+          if (err) {
+            console.log(err);
+
+            return res.send(err);
+          }
+          console.log(data);
+          return res.send(data);
+        }
+      );
     });
 
 

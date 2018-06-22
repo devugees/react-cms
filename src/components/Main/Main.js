@@ -88,7 +88,7 @@ class Main extends Component {
       return (<div style={{
                     height: '95vh',
                     position: 'absolute',
-                    padding: '1em',
+                    padding: '1.5em 1em 1em 1em',
                     left: 0,
                     right: 0,
                     bottom: 0,

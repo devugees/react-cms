@@ -46,6 +46,16 @@ class HandleContentTypeView extends Component {
   }
 
   onInputChange = (e, value) => {
+     let contentTypeSection = {
+              choosenContentType: this.state.choosenContentType,
+              chosenFields: this.state.chosenFields,
+              numberOfEntries: this.state.numberOfEntries,
+              viewType: this.state.viewType,
+              numberOfColomus: this.state.numberOfColomus,
+              css: this.state.css,
+              keyItem: this.props.key1
+          };
+
       if (e) {
           if (e.target.name === "choosenContentType") {
               let contentTypeIndex = this
@@ -54,10 +64,14 @@ class HandleContentTypeView extends Component {
                   .map((items) => items.machineName)
                   .indexOf(e.target.value);
               this.setState({choosenContentType: this.props.contentTypes[contentTypeIndex], value: []});
+
+              contentTypeSection.choosenContentType = this.props.contentTypes[contentTypeIndex]
+
           } else {
               this.setState({
                   [e.target.name]: e.target.value
               });
+              contentTypeSection[e.target.name] = e.target.value
           }
       } else if (value) {
 
@@ -75,9 +89,19 @@ class HandleContentTypeView extends Component {
                   })
           });
           this.setState({value, chosenFields});
+          contentTypeSection.chosenFields = chosenFields
+      }
+      if (this.state.choosenContentType) {
+          // validation there should be at least the contentType and the fields
+
+          if (contentTypeSection.choosenContentType !== '' && Array.isArray(contentTypeSection.chosenFields) && contentTypeSection.chosenFields.length !== 0) {
+            console.log("contentTypeSection",contentTypeSection);
+              this.props.bringContentTypeObject(contentTypeSection);
+          }
+
       }
   }
-
+/*
   saveClick = () => {
       if (this.state.choosenContentType) {
           // creating our final object from the state data
@@ -99,11 +123,12 @@ class HandleContentTypeView extends Component {
           }
 
       }
-  }
+  }*/
 
 
 
   render() {
+
       if (this.props.contentTypes) {
           let contentTypes = this.props.contentTypes;
           let selectContentType;
@@ -236,13 +261,13 @@ class HandleContentTypeView extends Component {
                           X
                       </Button>
 
-                      <Button
+                      {/*<Button
                           onClick={this
                           .saveClick
                           .bind(this)}
                           color="primary">
                           Save
-                      </Button>
+                      </Button>*/}
                   </Form>
               </div>
           );

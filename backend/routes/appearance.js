@@ -12,7 +12,28 @@ module.exports = (app) => {
   });
   
   app.post('/api/appearance', (req, res) => {
+    console.log(req.body)
       payload = {
+        slide1: {
+          picture: req.body.slide1picture,
+          title: req.body.slide1Title,
+          text: req.body.slide1Text
+        },
+        slide2: {
+          picture: req.body.slide2picture,
+          title: req.body.slide2Title,
+          text: req.body.slide2Text
+        },
+        slide3: {
+          picture: req.body.slide3picture,
+          title: req.body.slide3Title,
+          text: req.body.slide3Text
+        },
+        slide4: {
+          picture: req.body.slide4picture,
+          title: req.body.slide4Title,
+          text: req.body.slide4Text
+        },
         icon1: {
           icon: req.body.licon,
           title: req.body.ltitle,
@@ -29,8 +50,10 @@ module.exports = (app) => {
           text: req.body.rtext
         },
         websitetitle: req.body.websitetitle,
-        footertext: req.body.footertext
+        footertext: req.body.footertext,
+        contentTypesView : req.body.contentTypesView
       };
+      console.log("payload",payload)
       Appearance.findOneAndUpdate({}, payload, {upsert:true}, function(err, doc){
           if (err) return res.send(500, { error: err });
           return res.send("succesfully saved");
