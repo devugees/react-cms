@@ -6,6 +6,7 @@ import IconBox from './LayoutComponents/IconBox';
 import Post from './LayoutComponents/Post';
 import Footer from './LayoutComponents/Footer';
 import LayoutComponents from './LayoutComponents/LayoutComponents';
+import SubLanding from './SubLanding'
 
 
 import './LandingPage.css';
@@ -234,25 +235,15 @@ class LandingPage extends Component {
       });
   }
   render() {
+  console.log("this.props.match.params",this.props.match.params)
     return (
       <React.Fragment>
       <style>
       {this.state.cssCode}
       </style>
         <Menu />
-        <Slider />
-        <Container>
-          <IconBox icons={this.state.icons} />
-        </Container>
-
-        <div className="py-5 bg-light">
-          <Container>
-            {this.state.contentTypes.map((content, index) => {
-              console.log('here', content);
-              return <LayoutComponents key={index} contentType={content} />;
-            })}
-          </Container>
-        </div>
+       <SubLanding link={this.props.match.params} icon={this.state.icons}
+                  contentTypes={this.state.contentTypes}/>
         <Footer />
         <script type="text/javascript">
         {this.state.javascriptCode}
