@@ -12,6 +12,8 @@ import {
 
 class ExtandedCTView extends Component {
   state = {
+    id: this.props.id,
+
     entry: {}
   };
 
