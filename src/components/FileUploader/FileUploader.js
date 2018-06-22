@@ -160,7 +160,7 @@ export default class FileUploader extends Component {
              onChange={this.onChange}
              />
             <InputGroupAddon addonType="append">
-               <Button className="btn btn-primary" onClick={this.toggle}>Select File</Button>
+               <Button className="btn btn-primary mt-1" onClick={this.toggle}>Select File</Button>
             </InputGroupAddon>
             </InputGroup>
              {this.state.ShowImageinput && !this.props.remove  ? (<img  src={this.state.path}
