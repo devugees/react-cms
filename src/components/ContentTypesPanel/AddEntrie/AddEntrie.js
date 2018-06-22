@@ -174,7 +174,7 @@ class AddEntrie extends Component {
           <div className="w-100 ">
             <Label>{object.fieldLabel.charAt(0).toUpperCase() + object.fieldLabel.slice(1)}</Label>
             <ReactQuill
-              value={this.state[object.machineName]}
+              value={this.state[object.machineName] || ''}
               onChange={this.handleQuillChange.bind(this, object.machineName) }
             />
           </div>

@@ -152,7 +152,7 @@ class EditEntrie extends Component {
                   <Label>{object.fieldLabel.charAt(0).toUpperCase() + object.fieldLabel.slice(1)}</Label>
                   {/* TODO fill modal quill editor with values from the entry */}
                   <ReactQuill 
-                    defaultValue={this.state.itemWillBeEdited.item[object.machineName]}
+                    value={this.props.itemWillBeEdited.item[object.machineName]}
                     onChange={this.handleQuillChange.bind(this, object.machineName) }
                   />
                 </div>
@@ -169,7 +169,7 @@ class EditEntrie extends Component {
                       required={object.required}
                       className={object.cssClasses}
                       onChange={this.handelChange}
-                      defaultValue={this.props.itemWillBeEdited.item[object.machineName]}
+                      value={this.props.itemWillBeEdited.item[object.machineName]}
                     />
                   </FormGroup>
                 </div>)
