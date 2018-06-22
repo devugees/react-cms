@@ -55,17 +55,19 @@ class AddField extends Component {
   render() {
     return (
       <div className="addfield">
+      <Container>
+        <Form>
         <h4 className="header">Add Your Content Fields</h4>
         <Container className="AddField">
           <Form onSubmit={this.handelSubmit}>
-            <Row>
+            <Row> {/*style={{display: 'inline-block'}}*/}
               <Col>
                 <FormGroup>
                   <Label for="exampleEmail">Field Label</Label>
                   <Input name="fieldLabel" innerRef={this.fieldLabelRef} />
                 </FormGroup>
               </Col>
-              <Col>
+              <Col sm="6" md="6" lg="6">
                 <FormGroup>
                   <Label for="exampleSelect">Type</Label>
                   <Input
@@ -93,7 +95,7 @@ class AddField extends Component {
                   </Input>
                 </FormGroup>
               </Col>
-              <Col>
+              <Col sm="6" md="6" lg="6">
                 <FormGroup>
                   <Label for="exampleSelect">Html-element</Label>
                   <Input
@@ -113,7 +115,7 @@ class AddField extends Component {
                   </Input>
                 </FormGroup>
               </Col>
-              <Col>
+              <Col sm="6" md="6" lg="6">
                 <FormGroup>
                   <Label for="exampleText">Type-Option</Label>
                   <Input
@@ -124,7 +126,7 @@ class AddField extends Component {
                   />
                 </FormGroup>
               </Col>
-              <Col>
+              <Col sm="6" md="6" lg="6">
                 <FormGroup>
                   <Label for="exampleText">CSS-ClassName</Label>
                   <Input
@@ -135,7 +137,7 @@ class AddField extends Component {
                   />
                 </FormGroup>
               </Col>
-              <Col>
+              <Col sm="6" md="6" lg="6">
                 <FormGroup>
                   <Label for="exampleText">Custom CSS</Label>
                   <Input
@@ -147,50 +149,42 @@ class AddField extends Component {
                 </FormGroup>
               </Col>
             </Row>
-            <Row className="d-inline-flex text-center float-right w-50">
+              <Container> {/*style={{display: 'table-caption', width: '10em'}}*/}
+            <Row style={{display: 'inline'}}>
               <Col>
                 <FormGroup check inline>
                   <Label check>
-                    <Input
-                      name="required"
-                      type="checkbox"
-                      innerRef={this.requiredRef}
-                    />{' '}
-                    Required
+                    <Input style={{display: 'inline-block'}} name="required" type="checkbox" innerRef={this.requiredRef}/>
+                  {' '}Required
                   </Label>
                 </FormGroup>
               </Col>
               <Col>
                 <FormGroup check inline>
                   <Label check>
-                    <Input
-                      name="unique"
-                      type="checkbox"
-                      innerRef={this.uniqueRef}
-                    />{' '}
-                    Unique
+                    <Input style={{display: 'inline-block'}} name="unique" type="checkbox" innerRef={this.uniqueRef}/>
+                  {' '}Unique
                   </Label>
                 </FormGroup>
               </Col>
               <Col>
                 <FormGroup check inline>
                   <Label check>
-                    <Input
-                      name="visible"
-                      type="checkbox"
-                      innerRef={this.visibleRef}
-                    />{' '}
-                    Visible
+                    <Input style={{display: 'inline-block'}} name="visible" type="checkbox" innerRef={this.visibleRef}/>
+                  {' '}Visible
                   </Label>
                 </FormGroup>
               </Col>
-              <Button
-                onClick={this.handelClick}
-                className="btn btn-md btn-outline-primary mr-3">
+            <FormGroup> {/*style={{margin: '-3em 0 0 9em'}}*/}
+              <Button onClick={this.handelClick}>
                 Add
-              </Button>
+              </Button>{/*className="btn btn-md btn-outline-primary mr-3"*/}
+            </FormGroup>
             </Row>
+              </Container>
           </Form>
+        </Container>
+        </Form>
         </Container>
       </div>
     );
