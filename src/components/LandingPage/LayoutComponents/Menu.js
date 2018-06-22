@@ -54,7 +54,7 @@ export default class Menu extends React.Component {
   render() {
     return (
       <Navbar className="Navbar" dark expand="md">
-        <NavbarBrand href="/">{this.state.title}</NavbarBrand>
+        <NavbarBrand href="/">{this.state.title}      <img style={{height:"50px", width:"auto"}}  src={this.props.logo}/></NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>

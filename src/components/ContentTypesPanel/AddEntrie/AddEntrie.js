@@ -37,13 +37,17 @@ class AddEntrie extends Component {
     console.log("this.props", this.props);
   };
 
-  componentDidUpdate(nextProps, prevState) {}
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps != this.props) {
 
-  static getDerivedStateFromProps(props, state) {
-    props.fields.map(field => {
+      this.props.fields.map(field => {
       newEntrie[field.machineName] = "";
     });
-    return { categories: props.categorie };
+
+    this.setState({ categories: this.props.categorie }) ;
+    }
+    
+
   }
 
   bringFileUrl = (fileUrl, fieldLabel) => {
@@ -52,9 +56,7 @@ class AddEntrie extends Component {
       fieldLabel: fieldLabel,
       fileUrl: fileUrl
     };
-    this.setState({
-      selectedFile: selectedFile
-    });
+    newEntrie.image= fileUrl
   };
   handelChange = e => {
     let inputName = e.target.name;
@@ -62,7 +64,11 @@ class AddEntrie extends Component {
     this.setState({[inputName]: e.target.value})
   };
   handleQuillChange = (  name, value) => {
+    console.log("name",name);
+    console.log("value",value);
+
     newEntrie[name] = value;
+    this.setState({[name]: value})
   };
   handelFormSubmit = event => {
     console.log(this.state);
@@ -108,6 +114,7 @@ class AddEntrie extends Component {
   
 
   handleSelectChange(value) {
+    newEntrie.categories = value
     this.setState({ value });
   }
 

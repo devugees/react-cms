@@ -45,13 +45,28 @@ class Structure extends Component {
     id: PropTypes.string
   };
 
-  static getDerivedStateFromProps(props, state) {
+
+  componentDidMount = () => {
+    this.setState({fields: this.props.fields}) 
+  }
+
+
+  componentDidUpdate = (prevProps, prevState) => {
+    
+    if(prevProps != this.props) {
+    this.setState({fields: this.props.fields})
+    }
+  }
+
+  /*static getDerivedStateFromProps(props, state) {
       return {fields: props.fields}
-  };
+  };*/
 
   addFields = (field) => {
+    console.log("it is arriving",field);
       const fields = [...this.state.fields];
       fields.push(field);
+      console.log("fields",fields);
       this.setState({fields:fields})
   }
   editFields = (field,index) => {

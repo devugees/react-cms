@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container} from 'reactstrap';
+import {Container,Row} from 'reactstrap';
 import Menu from './LayoutComponents/Menu';
 import Slider from '../Slider/Slider';
 import IconBox from './LayoutComponents/IconBox';
@@ -24,14 +24,14 @@ render() {
 			          <IconBox icons={this.props.icons} />
 			        </Container>
 
-			        <div className="py-5 bg-light">
-			          <Container>
+			        
+			          <Container style={{maxWidth:"100vw"}}>
 			            {this.props.contentTypes.map((content, index) => {
 			              console.log('here', content);
-			              return <LayoutComponents key={index} contentType={content} />;
+			              return  <LayoutComponents key={index} contentType={content} />;
 			            })}
 			          </Container>
-			        </div>
+			      
 				</div>
 			);
 	}

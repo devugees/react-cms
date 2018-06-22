@@ -8,7 +8,7 @@ class LayoutComponents extends Component {
   state = {
     content: [],
     contentIds: [],
-    contentTypes: this.props.contentType
+    contentTypes: this.props.contentType.choosenContentType
   };
 
   static propTypes = {
@@ -17,14 +17,14 @@ class LayoutComponents extends Component {
 
   /*Lifecycle gets refactored sonn */
   componentDidMount() {
-    const {id} = this.state.contentTypes.contentType;
+    const {_id} = this.state.contentTypes;
     let content = [];
     let contentObj;
     let contentId;
     let contentIds = [];
 
     axios
-      .get(`http://localhost:5000/api/entries/${id}`)
+      .get(`http://localhost:5000/api/entries/${_id}`)
       .then(response => {
         response.data.map(entrie => {
           contentObj = {...entrie.content};
@@ -43,7 +43,7 @@ class LayoutComponents extends Component {
   }
 
   render() {
-    const {fields} = this.state.contentTypes;
+    const {chosenFields} = this.props.contentType;
     let cols = [];
 
     this.state.content.map((con, index) => {
@@ -56,21 +56,23 @@ class LayoutComponents extends Component {
         width: "22rem",
       };
       return cols.push(
-        <Col sm="2" md="6" key={index} style={style}>
-          {fields.map((field, i) => {
-            if (field.element == 'h') {
+        <Col sm="3" md="3" key={index} style={style}>
+          {chosenFields.map((field, i) => {
+            if (field.htmlElement == 'h1') {
               return <Link to={`/ContentType/entries/${this.state.contentIds[index]}`}> <h5 key={i}>{con.title}</h5></Link>;
-            } else if (field.element == 'img') {
+            } else if (field.htmlElement == 'img') {
               return (
                 <img
                   src={con.image}
                   key={i}
                 />
               );
-            } else if (field.element == 'p') {
-              return <div><p className='Ponle' key={i}>{con.body.substring(0,200)}</p><Link to={`/ContentType/entries/${this.state.contentIds[index]}`} className='readMore'>read more ...</Link></div>;
+            } else if (field.htmlElement == 'p') {
+              return <div><p className='Ponle' key={i}>{con.body.substring(0,200)}</p></div>;
             }
+
           })}
+          <Link to={`/ContentType/entries/${this.state.contentIds[index]}`} className='readMore'>read more ...</Link>
         </Col>
         
       );
@@ -78,7 +80,7 @@ class LayoutComponents extends Component {
 
     return (
       <div>
-        <Row style={{flexWrap: 'unset'}}>{cols}</Row>
+        <Row >{cols}</Row>
       </div>
     );
   }

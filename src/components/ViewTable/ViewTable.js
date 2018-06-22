@@ -119,7 +119,7 @@ class ViewTable extends Component {
                     </td>
                   );
                 } else {
-                  return <td key={index2}>{string.toString()}</td>;
+                  return <td key={index2}>{string.toString().substring(0,100)}</td>;
                 }
               } else if (typeof string === 'boolean') {
                 return <td key={index2}>{string.toString()}</td>;

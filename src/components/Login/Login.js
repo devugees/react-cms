@@ -76,7 +76,8 @@ class Login extends Component {
 
   render() {
     return (
-      <Container className="Login h-100 d-flex justify-content-center flex-column">
+      <Container className="Login h-100 d-flex justify-content-center flex-column " style={{background : "gray"}}>
+      <img src={require("./8d5fc049-ffc4-4464-8ab7-1aa9524ab73a.png")} />
         <Form className="col-md-4 offset-md-4" onSubmit={this.handleSubmit}>
           <h2 className="mb-3">Login</h2>
           <FormGroup>

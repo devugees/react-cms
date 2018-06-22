@@ -60,6 +60,7 @@ class NewContentType extends Component {
   };
 
   addFields = field => {
+    console.log("it is arriving",field);
     const fields = [...this.state.fields];
     fields.push(field);
     this.setState({ fields: fields });
