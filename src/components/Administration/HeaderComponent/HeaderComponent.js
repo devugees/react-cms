@@ -48,17 +48,9 @@ class TopHeader extends Component {
         }
 
         return (
-            <div className="top" style={{
-                display: 'inline'
-            }}>
-
-                <Navbar
-                    style={{
-                    background: '#85C1E9'
-                }}
-                    className="Navbar"
-                    expand="md">
-                    <NavbarBrand style={textStyle} href="/">Dashbord</NavbarBrand>
+            <div className="top" style={{display: 'inline'}}>
+            <Navbar style={{background: '#85C1E9'}} className="Navbar" expand="md">
+                    {/*<NavbarBrand style={textStyle} href="/">Dashbord</NavbarBrand>*/}
 
                     <NavbarToggler onClick={this.props.toggle}>Option</NavbarToggler>
                     <NavbarToggler onClick={this.props.toggleSideBar}>Dashes</NavbarToggler>
@@ -66,12 +58,7 @@ class TopHeader extends Component {
                     <Collapse isOpen={this.props.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
 
-                            <Navbar
-                                style={{
-                                background: '#85c1e9'
-                            }}
-                                navbar
-                                expand="md">
+                            <Navbar style={{background: '#85c1e9'}} className='NavButtons' navbar expand="md">
 
                                 <NavItem className='marginRight'>
                                     <Link style={LinkTextStyle} to="/">Go to Web Site</Link>
