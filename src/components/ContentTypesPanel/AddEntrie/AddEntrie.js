@@ -202,8 +202,8 @@ class AddEntrie extends Component {
           <h3 style={h3Brd}> {this.props.action} Entry </h3>
         <Form sm="6" md="6" lg="6" onSubmit={this.handelFormSubmit}>
           <div className="row">{allFields}</div>
-        </Form>
         <Button style={{transform: 'scale(0.88,1)', margin: '1em 0 0 0'}} type="submit" className="btn btn-outline-primary">Add New Post</Button>
+        </Form>
       </div>
     );
   }

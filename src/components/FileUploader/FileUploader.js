@@ -154,7 +154,7 @@ export default class FileUploader extends Component {
           <InputGroup>
             <Input
              type="text"
-             name= {"slide"+indexNum+"picture"}
+             name= {indexNum+"picture"}
              placeholder="File path"
              value={this.state.path}
              onChange={this.onChange}
