@@ -52,11 +52,11 @@ class LayoutComponents extends Component {
         border: '.5px solid rgba(0, 0 , 0, .2)',
         padding: '1rem',
         margin: '.5rem',
-        height: "18rem",
+        height: "auto",
         width: "22rem",
       };
       return cols.push(
-        <Col sm="2" md="4" key={index} style={style}>
+        <Col sm="2" md="6" key={index} style={style}>
           {fields.map((field, i) => {
             if (field.element == 'h') {
               return <Link to={`/ContentType/entries/${this.state.contentIds[index]}`}> <h5 key={i}>{con.title}</h5></Link>;
@@ -68,7 +68,7 @@ class LayoutComponents extends Component {
                 />
               );
             } else if (field.element == 'p') {
-              return <p key={i}>{con.body}</p>;
+              return <div><p className='Ponle' key={i}>{con.body.substring(0,200)}</p><Link to={`/ContentType/entries/${this.state.contentIds[index]}`} className='readMore'>read more ...</Link></div>;
             }
           })}
         </Col>
@@ -78,7 +78,7 @@ class LayoutComponents extends Component {
 
     return (
       <div>
-        <Row>{cols}</Row>
+        <Row style={{flexWrap: 'unset'}}>{cols}</Row>
       </div>
     );
   }
