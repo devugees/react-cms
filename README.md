@@ -42,3 +42,42 @@ PORT=
 4. `copy` your MONGOURL from mLab and `paste` it into `.env`
 5. `PORT` default is `5000`
 6. *now your're all set to* `yarn dev` or `npm dev` *your dynamic CMS*
+
+
+Some Photos of the Appliction:
+
+The adminstration page: Here where you can add new content type
+![alt text](https://raw.githubusercontent.com/devugees/react-cms/develop/screenshoots/Screenshot%20from%202018-08-06%2011-58-25.png)
+
+
+Here where you can add the fields for your content types like : title ,description ,price .... what ever info you want your content to have 
+
+![alt text](https://raw.githubusercontent.com/devugees/react-cms/develop/screenshoots/Screenshot%20from%202018-08-06%2012-01-25.png)
+
+And here you can see after saving the content type , it will be added to the dashbord 
+
+![alt text](https://raw.githubusercontent.com/devugees/react-cms/develop/screenshoots/Screenshot%20from%202018-08-06%2012-01-48.png)
+
+Here you can start adding content to your content type
+
+
+![alt text](https://raw.githubusercontent.com/devugees/react-cms/develop/screenshoots/Screenshot%20from%202018-08-06%2012-03-08.png)
+
+Here you can see our media picker 
+
+![alt text](https://raw.githubusercontent.com/devugees/react-cms/develop/screenshoots/Screenshot%20from%202018-08-06%2012-03-15.png)
+
+
+After you pick the photo and enter the data you can add it to your content list 
+
+![alt text](https://raw.githubusercontent.com/devugees/react-cms/develop/screenshoots/Screenshot%20from%202018-08-06%2012-51-13.png)
+
+Here where you see it added 
+
+![alt text](https://raw.githubusercontent.com/devugees/react-cms/develop/screenshoots/Screenshot%20from%202018-08-06%2012-53-04.png)
+
+
+#there is still much more into the Applecation to discover 
+
+
+
