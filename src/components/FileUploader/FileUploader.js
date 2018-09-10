@@ -12,7 +12,7 @@ export default class FileUploader extends Component {
       path = props.path
     }
     this.state = {
-      description: '',
+      picture: '',
       selectedFile: '',
       imagesArry: [],
       name: 'MediaLibrary',
@@ -62,10 +62,10 @@ export default class FileUploader extends Component {
 
   onClick = (e) => {
     e.preventDefault();
-    const { description, selectedFile } = this.state;
+    const { picture, selectedFile } = this.state;
     let formData = new FormData();
 
-    formData.append('description', description);
+    formData.append('picture', picture);
     formData.append('selectedFile', selectedFile);
 
     axios.post('http://localhost:5000/api/upload', formData)
@@ -103,29 +103,40 @@ export default class FileUploader extends Component {
       border: '2px solid red',
       ShowImageinput: true
     });
+    if(this.props.bringFileUrl){
     this.props.bringFileUrl(imagPth, this.props.fieldLabel)
+    }
   }
   render() {
-    const { description, selectedFile } = this.state;
+
+    let indexNum = "";
+    if (this.props.index) {
+      indexNum = this.props.index
+    }
+
+     
+    const { picture, selectedFile } = this.state;
 
     const allimages = (
             <div className="thumbnail">
-               {this.state.imagesArry.map((image, index) => (
-                    <img src={require('../../../backend/uploads/'+image)}
+               {this.state.imagesArry.map((image, index) => {
+                 console.log("image" , image)
+                 return (
+                    <img src={require('../../../public/uploads/'+image)}
                       key={index}
                       alt="Lights"
                       style={{width: '20%', height: '150px', margin: 20}}
                       onClick={this.handleimage.bind(this)}
                      />
-                   )) }
+                   )}) }
               </div>
              )
     const uploderForm = (
         <div>
           <Input
             type="text"
-            name="description"
-            value={description}
+            name="picture"
+            value={picture}
             onChange={this.onChange}
           />
           <Input
@@ -143,7 +154,7 @@ export default class FileUploader extends Component {
           <InputGroup>
             <Input
              type="text"
-             name="description"
+             name= {indexNum+"picture"}
              placeholder="File path"
              value={this.state.path}
              onChange={this.onChange}

@@ -44,8 +44,9 @@ removeContentTyps = (key) => {
       width: '2.5em',
       position: 'absolute'
     };
-    let showComponent = this.state.contentTypesArr.map((content, index) => {
-      if(content.keyItem) {
+    let showComponent = this.props.contentTypesArr.map((content, index) => {
+      console.log(content);
+      if((typeof content.keyItem) == "number") {
             return (<div className="col-md-4">
                       <HandleContentTypeView 
                                bringContentTypeObject={this.props.bringContentTypeObjectFromApperanc}
@@ -57,6 +58,7 @@ removeContentTyps = (key) => {
                            />
                     </div>)
                   } else {
+                    console.log("Why");
                     return (<div className="col-md-4">
                               <HandleContentTypeView 
                                bringContentTypeObject={this.props.bringContentTypeObjectFromApperanc}
@@ -88,6 +90,8 @@ removeContentTyps = (key) => {
               placeholder="Choose Pages for Menu"
               onChange={this.handleSelectChange}
             />
+            <h6>Logo</h6>
+            <FileUploader index= "logo" path={this.props.form.logopicture} name="slide3File" bringFileUrl={this.bringFileUrl} />
           </Col>
         </Row>
 
@@ -97,7 +101,7 @@ removeContentTyps = (key) => {
               <Col>
                 <h5>Slide 1 </h5>
                 <div className="mb-3">
-                    <FileUploader style={style} name="slide1File" bringFileUrl={this.bringFileUrl} />
+                    <FileUploader index= "slide1" path={this.props.form.slide1.picture}  style={style} name="slide1File" bringFileUrl={this.bringFileUrl} />
                 </div>
                 <Input defaultValue={this.props.form.slide1.title} name="slide1Title" style={style} placeholder="Title" />
                 <Input defaultValue={this.props.form.slide1.text} name="slide1Text" style={style} placeholder="Text" />
@@ -105,7 +109,7 @@ removeContentTyps = (key) => {
               <Col>
                 <h5>Slide 2 </h5>
                 <div className="mb-3">
-                    <FileUploader name="slide2File" bringFileUrl={this.bringFileUrl} />
+                    <FileUploader index= "slide2" path={this.props.form.slide2.picture} name="slide2File" bringFileUrl={this.bringFileUrl} />
                 </div>
                 <Input defaultValue={this.props.form.slide2.title} name="slide2Title" style={style} placeholder="Title" />
                 <Input defaultValue={this.props.form.slide2.text} name="slide2Text" style={style} placeholder="Text" />
@@ -113,7 +117,7 @@ removeContentTyps = (key) => {
               <Col>
                 <h5>Slide 3 </h5>
                 <div className="mb-3">
-                    <FileUploader name="slide3File" bringFileUrl={this.bringFileUrl} />
+                    <FileUploader index= "slide3" path={this.props.form.slide3.picture} name="slide3File" bringFileUrl={this.bringFileUrl} />
                 </div>
                 <Input defaultValue={this.props.form.slide3.title} name="slide3Title" style={style} placeholder="Title" />
                 <Input defaultValue={this.props.form.slide3.text} name="slide3Text" style={style} placeholder="Text" />
@@ -121,7 +125,7 @@ removeContentTyps = (key) => {
               <Col>
                 <h5>Slide 4 </h5>
                 <div className="mb-3">
-                    <FileUploader name="slide4File" bringFileUrl={this.bringFileUrl} />
+                    <FileUploader index= "slide4" path={this.props.form.slide4.picture} name="slide4File" bringFileUrl={this.bringFileUrl} />
                 </div>
                 <Input defaultValue={this.props.form.slide4.title} name="slide4Title" style={style} placeholder="Title" />
                 <Input defaultValue={this.props.form.slide4.title} name="slide4Text" style={style} placeholder="Text" />
@@ -196,12 +200,7 @@ removeContentTyps = (key) => {
           </Col>
         </Row>
         <Row>
-          <Col>
-            <h5>Post</h5>
-            <Input style={btnFile} type="file" name="file" id="exampleFile" />
-            <Input style={style} placeholder="Title" />
-            <Input style={style} placeholder="Text" />
-          </Col>
+          
           <Col>
             <h5>Footer</h5>
             <Input

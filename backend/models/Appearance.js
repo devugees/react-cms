@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const AppearanceSchema = new Schema({
   websitetitle: String,
   menuItems: Array,
+  logopicture:String,
   slide1: {
     picture: String,
     title: String,
@@ -41,7 +42,7 @@ const AppearanceSchema = new Schema({
   },
   footertext: String,
   footeritems: Array,
-  ContentTypes: Array
+  contentTypesView: Array
 });
 
 const Appearance = mongoose.model('Appearance', AppearanceSchema);

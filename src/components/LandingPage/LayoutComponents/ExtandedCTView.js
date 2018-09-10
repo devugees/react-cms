@@ -7,23 +7,25 @@ import {
   CardText,
   CardBody,
   CardTitle,
-  CardSubtitle,
-  Button
+  CardSubtitle
 } from 'reactstrap';
 
 class ExtandedCTView extends Component {
   state = {
-    id: '5b2a386449988f99d479770a',
+    id: this.props.id,
+
     entry: {}
   };
 
   queryComponent = () => {
     axios
-      .get(`http://localhost:5000/api/entries/one/${this.state.id}`)
+      .get(
+        `http://localhost:5000/api/entries/one/${
+          this.state.id
+        }`
+      )
       .then(response => {
-        this.setState({
-          entry: response.data
-        });
+        this.setState({entry: response.data});
       })
       .catch(error => {
         console.error('Error: ', error);
@@ -35,23 +37,46 @@ class ExtandedCTView extends Component {
   };
 
   render() {
-    const { content } = this.state.entry
-    return (
-      <div>
-      {content ?
-        Object.keys(content).map(key => {
-          return (
-            key === 'image' ? <img src={content[key]} alt="" /> : 
-            key === 'title' ? <h1>{content[key]}</h1> :
-            key === 'body' ? <p>{content[key]}</p> :
-            key === 'describtion' ? <span>{content[key]}</span> :
-            key === 'categories' ? 
-            content[key].map(category => <span>{`${category.label}-${category.value}`}</span> )
-            : null
-        )}) : null}
-    </div>);
-  }
+    const { content } = this.state.entry;
+    let image;
+    let body;
+    let title;
+    let describtion;
+    let categories;
+    let misc;
+
+      content
+        ? Object.keys(content).map(key => {
+          return key === 'image' ? (
+            image = <CardImg style={{ height: '350px', boxShadow: '0 10px 6px -6px #777'}} src={content[key]} alt="#"/>
+          ) : key === 'title' ? (
+           title = <CardTitle style={{fontSize: '1.6rem',fontWeight: 'bold', marginBottom: '1rem'}}>{content[key]}</CardTitle>
+          ) : key === 'body' ? (
+            body = <CardText style={{boxShadow: '0 0 0 5px hsl(0, 0%, 80%),  0 0 0 10px hsl(0, 0%, 90%)', padding: '1rem', marginBottom: '2rem'}}>{content[key]}</CardText>
+          ) : key === 'describtion' ? (
+           describtion =  <CardSubtitle style={{marginBottom: '1rem'}}>{content[key]}</CardSubtitle>
+          ) : key === 'categories' ? (
+           content[key].map(category => {
+            categories = (<CardSubtitle style={{padding: '.5rem'}}>{category.label}</CardSubtitle>)
+           })) : key === undefined ? (
+             misc = <p>content[key]</p>
+          ) : null;
+        })
+        : null
+    
+    return <div>
+            <Card style={{display: 'block', textAlign: 'center',  border: 'none'}}>
+              {image}
+             <CardBody style={{padding: '1.5rem 15rem'}}>
+                {title}
+                {body}
+                {describtion}
+                {categories}
+                {misc}
+             </CardBody>
+            </Card>
+           </div>;
+    }
 }
 
 export default ExtandedCTView;
-

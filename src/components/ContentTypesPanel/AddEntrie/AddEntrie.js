@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Button, Input, Form, FormGroup, Label } from "reactstrap";
+import { Input, Button, Form, FormGroup, Label } from "reactstrap";
 import "./AddEntrie.css";
 import axios from "axios";
 import Select from "react-select";
 import "react-select/dist/react-select.css";
 import FileUploader from "../../FileUploader/FileUploader";
-
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 let newEntrie = {};
 
 class AddEntrie extends Component {
@@ -36,13 +37,17 @@ class AddEntrie extends Component {
     console.log("this.props", this.props);
   };
 
-  componentDidUpdate(nextProps, prevState) {}
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps != this.props) {
 
-  static getDerivedStateFromProps(props, state) {
-    props.fields.map(field => {
+      this.props.fields.map(field => {
       newEntrie[field.machineName] = "";
     });
-    return { categories: props.categorie };
+
+    this.setState({ categories: this.props.categorie }) ;
+    }
+    
+
   }
 
   bringFileUrl = (fileUrl, fieldLabel) => {
@@ -51,17 +56,20 @@ class AddEntrie extends Component {
       fieldLabel: fieldLabel,
       fileUrl: fileUrl
     };
-    this.setState({
-      selectedFile: selectedFile
-    });
+    newEntrie.image= fileUrl
   };
   handelChange = e => {
     let inputName = e.target.name;
     newEntrie[inputName] = e.target.value;
     this.setState({[inputName]: e.target.value})
-    console.log(newEntrie);
   };
+  handleQuillChange = (  name, value) => {
+    console.log("name",name);
+    console.log("value",value);
 
+    newEntrie[name] = value;
+    this.setState({[name]: value})
+  };
   handelFormSubmit = event => {
     console.log(this.state);
     event.preventDefault();
@@ -106,6 +114,7 @@ class AddEntrie extends Component {
   
 
   handleSelectChange(value) {
+    newEntrie.categories = value
     this.setState({ value });
   }
 
@@ -120,7 +129,6 @@ class AddEntrie extends Component {
 
     const categoriesProp = (
       <div className="section">
-        <h3 className="section-heading">{options.label}</h3>
         <Select
           multi
           joinValues
@@ -133,17 +141,11 @@ class AddEntrie extends Component {
       </div>
     );
 
-    const styleFormGroups = {
-      width: "250px",
-      float: "left",
-      margin: "15px",
-      padding: "15px"
-    };
 
     const labelCategorie = {marginBottom: "0"};
     const brdJumbo = { border: "1px solid grey", margin: '2em 1em 0 1em', padding: '1em'};
     const h3Brd = {
-      marginTop: " -17px",
+      marginTop: " -33px",
       marginLeft: "5px",
       background: "white",
       width: 'auto',
@@ -154,41 +156,47 @@ class AddEntrie extends Component {
 
     let allFields = this.props.fields.map((object, index) => {
       const objectMachinename = object.machineName
-      if (
-        object.type === "image"
-      ) {
+      if ( object.type === "image") {
         return (
           <FormGroup className="col-md-6 mt-1">
             <div>Upload Photo</div>
             <div>
               <FileUploader
                 bringFileUrl={this.bringFileUrl}
-                fieldLabel={object.fieldLabel}
                 remove={this.state.remove}
+                fieldLabel={object.fieldLabel.charAt(0).toUpperCase() + object.fieldLabel.slice(1)}
               />
             </div>
           </FormGroup>
         );
-      } else if (
-        object.type === "categories"
-      ) {
+      } else if ( object.type === "categories") {
         return (
           <FormGroup className="col-md-6">
             <Label style={labelCategorie}>Categories</Label>
             <div>{categoriesProp}</div>
           </FormGroup>
         );
+      } else if ( object.type === "textarea") {
+        return (
+          <div className="w-100 ">
+            <Label>{object.fieldLabel.charAt(0).toUpperCase() + object.fieldLabel.slice(1)}</Label>
+            <ReactQuill
+              value={this.state[object.machineName] || ''}
+              onChange={this.handleQuillChange.bind(this, object.machineName) }
+            />
+          </div>
+        );
       }
       return (
-
-        <div key={index}>
-          <FormGroup style={styleFormGroups} className="FormGroup">
-            <Label for="exampleEmail">{object.fieldLabel}</Label>
+        <div className="w-100" key={index}>
+          <FormGroup className="FormGroup w-100">
+            <Label for={object.machineName}>{object.fieldLabel.charAt(0).toUpperCase() + object.fieldLabel.slice(1)}</Label>
             <Input
+              placeholder={object.fieldLabel.charAt(0).toUpperCase() + object.fieldLabel.slice(1)}
+              id={object.machineName}
               name={object.machineName}
               type={object.type}
               required={object.required}
-              className={object.cssClasses}
               onChange={this.handelChange}
               value={this.state[object.machineName]}
             />
@@ -200,10 +208,10 @@ class AddEntrie extends Component {
     return (
       <div className="boxs" style={brdJumbo}>
           <h3 style={h3Brd}> {this.props.action} Entry </h3>
-        <Form sm="6" md="6" lg="6" onSubmit={this.handelFormSubmit}>
+        <Form onSubmit={this.handelFormSubmit}>
           <div className="row">{allFields}</div>
+        <Button style={{margin: '2em 0 0 0'}} type="submit" className="btn btn-outline-primary">Add New Post</Button>
         </Form>
-        <Button style={{transform: 'scale(0.88,1)', margin: '1em 0 0 0'}} type="submit" className="btn btn-outline-primary">Add New Post</Button>
       </div>
     );
   }

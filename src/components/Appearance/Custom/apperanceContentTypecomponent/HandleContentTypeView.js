@@ -36,9 +36,7 @@ class HandleContentTypeView extends Component {
               let value = selectedValues
                   .chosenFields
                   .map((field, index) => ({label: field.machineName, value: index}))
-
               for (var key in selectedValues) {
-                  console.log("key", key)
                   this.setState({[key]: this.props.selectedValues[key], value})
               }
           }
@@ -77,12 +75,9 @@ class HandleContentTypeView extends Component {
 
           let chosenFields = [];
           let values = [...value]
+          console.log("value",value)
           values.map(item => {
-              this
-                  .state
-                  .choosenContentType
-                  .fields
-                  .map((field) => {
+              this.state.choosenContentType.fields.map((field) => {
                       if (item.label === field.machineName) {
                           chosenFields.push(field)
                       }
@@ -156,7 +151,10 @@ class HandleContentTypeView extends Component {
           if (this.state.choosenContentType) {
               contentTypeFields = this.state.choosenContentType.fields
               // we perpare the options for the multi select Commp
-              let options = contentTypeFields.map((field, index) => ({label: field.machineName, value: index}))
+              let options = contentTypeFields.map((field, index) => ({
+                label: field.machineName,
+                 value: index
+               }))
               console.log("fieldsOptions", options)
 
               var selectContentTypeFields = (
